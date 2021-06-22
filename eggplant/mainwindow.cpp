@@ -1,10 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#define MAIN_PAGE_X 500
-#define MAIN_PAGE_Y 100
-#define MAIN_PAGE_W 800
-#define MAIN_PAGE_H 200
+#define START_PAGE_X 500
+#define START_PAGE_Y 100
+#define START_PAGE_W 800
+#define START_PAGE_H 200
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -25,8 +25,12 @@ MainWindow::MainWindow(QWidget *parent)
         icon_id[i]->show();
     }
 
-    this->setGeometry(MAIN_PAGE_X, MAIN_PAGE_Y, MAIN_PAGE_W, MAIN_PAGE_H);
+    this->setGeometry(START_PAGE_X, START_PAGE_Y, START_PAGE_W, START_PAGE_H);
     test_cnt1 = 0;
+
+    page_ctl = new Page_Ctl();
+    //page_ctl->home_page->show();
+
 }
 
 MainWindow::~MainWindow()
@@ -44,4 +48,16 @@ void MainWindow::on_test_id1_btn_clicked()
         icon_id[0]->ft_dark_enable();
         icon_id[0]->update();
     }
+}
+
+void MainWindow::on_home_page_clicked()
+{
+    page_ctl->home_page->setWindowState(Qt::WindowActive);
+    page_ctl->main_page->setWindowState(Qt::WindowNoState);
+}
+
+void MainWindow::on_main_page_clicked()
+{
+    page_ctl->main_page->setWindowState(Qt::WindowActive);
+    page_ctl->home_page->setWindowState(Qt::WindowNoState);
 }

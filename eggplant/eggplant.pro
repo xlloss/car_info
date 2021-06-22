@@ -16,15 +16,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    frame_page.cpp \
+    home_page.cpp \
     icon_btn.cpp \
     main.cpp \
-    mainwindow.cpp
+    main_page.cpp \
+    mainwindow.cpp \
+    page_ctl.cpp
 
 HEADERS += \
+    frame_page.h \
+    home_page.h \
     icon_btn.h \
-    mainwindow.h
+    main_page.h \
+    mainwindow.h \
+    page_ctl.h
 
 FORMS += \
+    frame_page.ui \
     mainwindow.ui
 
 # Default rules for deployment.
