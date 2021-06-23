@@ -32,5 +32,5 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
                                 BTN_W, BTN_H);
     }
 
-    this->setWindowState(Qt::WindowMinimized);
+    this->setWindowState(Qt::WindowNoState);
 }

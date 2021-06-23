@@ -9,7 +9,7 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
     }
 
     image_car_bus = image_car_bus.scaled(300, 400);
-    this->setWindowState(Qt::WindowMinimized);
+    this->setWindowState(Qt::WindowActive);
 }
 
 void Home_Page::paintEvent(QPaintEvent *)
