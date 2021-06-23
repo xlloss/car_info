@@ -32,7 +32,8 @@ HEADERS += \
     icon_btn.h \
     main_page.h \
     mainwindow.h \
-    page_ctl.h
+    page_ctl.h \
+    string/main_string.h
 
 FORMS += \
     barframe.ui \
