@@ -13,6 +13,7 @@ public:
     explicit Home_Page(QWidget *parent = nullptr);
 
     QImage image_car_bus;
+    QPixmap backimg;
 
 protected:
     void paintEvent(QPaintEvent *);

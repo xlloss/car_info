@@ -1,9 +1,39 @@
 <RCC>
     <qresource prefix="/">
-        <file>icon/apple-1.png</file>
-        <file>icon/banana-2.png</file>
-        <file>icon/banana-1.png</file>
-        <file>icon/apple-2.png</file>
         <file>icon/bus.png</file>
+        <file>icon/ID-0-0.png</file>
+        <file>icon/ID-0-1.png</file>
+        <file>icon/ID-10-1.png</file>
+        <file>icon/ID-10-0.png</file>
+        <file>icon/ID-9-1.png</file>
+        <file>icon/ID-9-0.png</file>
+        <file>icon/ID-8-1.png</file>
+        <file>icon/ID-8-0.png</file>
+        <file>icon/ID-7-1.png</file>
+        <file>icon/ID-7-0.png</file>
+        <file>icon/ID-6-1.png</file>
+        <file>icon/ID-6-0.png</file>
+        <file>icon/ID-5-1.png</file>
+        <file>icon/ID-5-0.png</file>
+        <file>icon/ID-4-1.png</file>
+        <file>icon/ID-4-0.png</file>
+        <file>icon/ID-3-1.png</file>
+        <file>icon/ID-3-0.png</file>
+        <file>icon/ID-2-1.png</file>
+        <file>icon/ID-2-0.png</file>
+        <file>icon/ID-1-1.png</file>
+        <file>icon/ID-1-0.png</file>
+        <file>icon/ID-12-0.png</file>
+        <file>icon/ID-12-1.png</file>
+        <file>icon/ID-13-0.png</file>
+        <file>icon/ID-13-1.png</file>
+        <file>icon/ID-14-0.png</file>
+        <file>icon/ID-14-1.png</file>
+        <file>icon/ID-11-0.png</file>
+        <file>icon/ID-11-1.png</file>
+        <file>icon/green-line-l.png</file>
+        <file>icon/green-line-r.png</file>
+        <file>icon/background.png</file>
+        <file>icon/bus-bg.png</file>
     </qresource>
 </RCC>

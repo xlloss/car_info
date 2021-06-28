@@ -10,7 +10,7 @@ class Icon_btn;
 
 
 #define ICON_SCALE_SIZ_W 50
-#define ICON_SCALE_SIZ_H 50
+#define ICON_SCALE_SIZ_H 60
 
 class Icon_btn : public QWidget
 {
@@ -23,6 +23,10 @@ public:
     QImage ft_img_light;
     QImage ft_img_dark;
     QImage ft_img;
+    int l_scale_sz_w;
+    int l_scale_sz_h;
+    int d_scale_sz_w;
+    int d_scale_sz_h;
 
     int width;
     int height;

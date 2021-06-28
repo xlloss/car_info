@@ -6,6 +6,10 @@
 Icon_btn::Icon_btn(QWidget *parent) :
     QWidget(parent)
 {
+    l_scale_sz_w = ICON_SCALE_SIZ_W;
+    l_scale_sz_h = ICON_SCALE_SIZ_H;
+    d_scale_sz_w = ICON_SCALE_SIZ_W;
+    d_scale_sz_h = ICON_SCALE_SIZ_H;
 }
 
 Icon_btn::~Icon_btn()
@@ -36,8 +40,8 @@ void Icon_btn::load_image_ft(QString ft_dark_name, QString ft_light_name)
         return;
     }
 
-    ft_img_dark = ft_img_dark.scaled(ICON_SCALE_SIZ_W, ICON_SCALE_SIZ_H);
-    ft_img_light = ft_img_light.scaled(ICON_SCALE_SIZ_W, ICON_SCALE_SIZ_H);
+    ft_img_dark = ft_img_dark.scaled(d_scale_sz_w, d_scale_sz_h);
+    ft_img_light = ft_img_light.scaled(l_scale_sz_w, l_scale_sz_h);
     ft_img = ft_img_dark;
 }
 
@@ -54,13 +58,5 @@ void Icon_btn::ft_light_enable()
 void Icon_btn::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    //QTransform trans;
-    //painter.drawPixmap(0, 0, bg_img);
-
-    qDebug("paintEvent");
-    //trans.translate(bg_img.width()/2, bg_img.height()/2);
-    //trans.rotate(rot_cnt);
-    //trans.translate(-(bg_img.width()/2), -(bg_img.width()/2));
-    //painter.setTransform(trans);
     painter.drawImage(0, 0, ft_img);
 }

@@ -23,6 +23,7 @@ SOURCES += \
     main.cpp \
     main_page.cpp \
     mainwindow.cpp \
+    mileage_rpm_page.cpp \
     page_ctl.cpp
 
 HEADERS += \
@@ -32,6 +33,7 @@ HEADERS += \
     icon_btn.h \
     main_page.h \
     mainwindow.h \
+    mileage_rpm_page.h \
     page_ctl.h \
     string/main_string.h
 
