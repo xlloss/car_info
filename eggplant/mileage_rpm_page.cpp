@@ -4,6 +4,8 @@
 
 Mile_Page::Mile_Page(QWidget *parent) : Frame_Page(parent)
 {
+    this->setObjectName("Rpm_Page");
+
     lable_title[0] = new QLabel(this);
     lable_title[0]->setText("里程資訊");
     lable_title[0]->setFrameStyle(QFrame::NoFrame);

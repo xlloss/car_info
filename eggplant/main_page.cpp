@@ -9,6 +9,8 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
     int i;
     QString btn_name;
 
+    this->setObjectName("Main_Page");
+
     for (i = 0; i < 5; i++) {
         btn[i] = new QPushButton(this);
         btn_name = main_page_str[i];

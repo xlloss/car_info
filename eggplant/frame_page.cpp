@@ -1,5 +1,6 @@
 #include "frame_page.h"
 #include "ui_frame_page.h"
+#include <QDebug>
 
 Frame_Page::Frame_Page(QWidget *parent) :
     QFrame(parent),
@@ -13,4 +14,9 @@ Frame_Page::Frame_Page(QWidget *parent) :
 Frame_Page::~Frame_Page()
 {
     delete ui;
+}
+
+void Frame_Page::Enable_Icon_Light(int i)
+{
+    qDebug("%s i=%d", __func__, i);
 }

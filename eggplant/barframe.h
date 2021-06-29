@@ -4,7 +4,7 @@
 #include <QFrame>
 #include <QPaintEvent>
 #include "icon_btn.h"
-
+#include "frame_page.h"
 #define ICON_NUM 15
 
 #define ID_0_0 ":/icon/ID-0-0.png"
@@ -56,16 +56,19 @@ namespace Ui {
 class BarFrame;
 }
 
-class BarFrame : public QFrame
+class BarFrame : public Frame_Page
 {
     Q_OBJECT
 
 public:
     explicit BarFrame(QWidget *parent = nullptr);
     ~BarFrame();
-
     Icon_btn *icon_id[ICON_NUM];
-    QPixmap green_line[2];
+
+
+private slots:
+        void Enable_Icon_Light(int i);
+
 protected:
     void paintEvent(QPaintEvent *);
 

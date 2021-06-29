@@ -24,7 +24,8 @@ SOURCES += \
     main_page.cpp \
     mainwindow.cpp \
     mileage_rpm_page.cpp \
-    page_ctl.cpp
+    page_ctl.cpp \
+    test_frame.cpp
 
 HEADERS += \
     barframe.h \
@@ -35,12 +36,14 @@ HEADERS += \
     mainwindow.h \
     mileage_rpm_page.h \
     page_ctl.h \
-    string/main_string.h
+    string/main_string.h \
+    test_frame.h
 
 FORMS += \
     barframe.ui \
     frame_page.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    test_frame.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

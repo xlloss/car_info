@@ -1,9 +1,9 @@
 #include <QPainter>
 #include "barframe.h"
 #include "ui_barframe.h"
-
+#include <QDebug>
 BarFrame::BarFrame(QWidget *parent) :
-    QFrame(parent),
+    Frame_Page(parent),
     ui(new Ui::BarFrame)
 {
     ui->setupUi(this);
@@ -56,10 +56,9 @@ BarFrame::BarFrame(QWidget *parent) :
         icon_id[i]->show();
     }
 
-    //green_line[0].load(":/icon/green-line-l.png");
-    //green_line[1].load(":/icon/green-line-r.png");
+    this->setGeometry(500, 115, BAR_FRAME_W, BAR_FRAME_H);
+    this->setObjectName("BarFrame");
 
-    this->setGeometry(0, 0, BAR_FRAME_W, BAR_FRAME_H);
 }
 
 BarFrame::~BarFrame()
@@ -73,7 +72,11 @@ void BarFrame::paintEvent(QPaintEvent *)
 
     painter.setBrush(QBrush(Qt::black));
     painter.drawRect(0, 0, this->width(), this->height());
+}
 
-    //painter.drawPixmap(0, BAR_FRAME_H - 2, green_line[0]);
-    //painter.drawPixmap(BAR_FRAME_W - 90, BAR_FRAME_H - 2, green_line[1]);
+
+void BarFrame::Enable_Icon_Light(int i)
+{
+    qDebug("%s i=%d", __func__, i);
+    icon_id[i]->ft_light_enable();
 }
