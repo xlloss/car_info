@@ -27,6 +27,15 @@ public:
     int l_scale_sz_h;
     int d_scale_sz_w;
     int d_scale_sz_h;
+    int enable_scale;
+    QString m_set_text;
+    QFont font;
+    int m_set_text_x;
+    int m_set_text_y;
+    QRect rectangle;
+    QRect boundingRect;
+
+    void set_text(QString set_text);
 
     int width;
     int height;

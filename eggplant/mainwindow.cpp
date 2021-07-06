@@ -28,7 +28,9 @@ MainWindow::MainWindow(QWidget *parent)
     testframe = new Test_Frame();
     testframe->show();
     testframe->Register((class Frame_Page *)bar_frame);
+    testframe->Register((class Frame_Page *)page_ctl->home_page);
     testframe->Register((class Frame_Page *)page_ctl->main_page);
+    testframe->Register((class Frame_Page *)page_ctl->mile_page);
 
     this->close();
 }

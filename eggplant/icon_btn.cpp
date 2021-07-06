@@ -10,6 +10,12 @@ Icon_btn::Icon_btn(QWidget *parent) :
     l_scale_sz_h = ICON_SCALE_SIZ_H;
     d_scale_sz_w = ICON_SCALE_SIZ_W;
     d_scale_sz_h = ICON_SCALE_SIZ_H;
+    m_set_text_x = 0;
+    m_set_text_x = 0;
+    enable_scale = 1;
+    font.setStyleHint(QFont::Times);
+    font.setBold(1);
+    font.setPointSize(22);
 }
 
 Icon_btn::~Icon_btn()
@@ -40,9 +46,20 @@ void Icon_btn::load_image_ft(QString ft_dark_name, QString ft_light_name)
         return;
     }
 
-    ft_img_dark = ft_img_dark.scaled(d_scale_sz_w, d_scale_sz_h);
-    ft_img_light = ft_img_light.scaled(l_scale_sz_w, l_scale_sz_h);
+    if (enable_scale) {
+        ft_img_dark = ft_img_dark.scaled(d_scale_sz_w, d_scale_sz_h);
+        ft_img_light = ft_img_light.scaled(l_scale_sz_w, l_scale_sz_h);
+    }
+
     ft_img = ft_img_dark;
+}
+
+void Icon_btn::set_text(QString text)
+{
+    m_set_text = text;
+    m_set_text_x = 30;
+    m_set_text_y = 40;
+
 }
 
 void Icon_btn::ft_dark_enable()
@@ -58,5 +75,12 @@ void Icon_btn::ft_light_enable()
 void Icon_btn::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+
     painter.drawImage(0, 0, ft_img);
+
+    if (!m_set_text.isNull()) {
+        painter.setFont(font);
+        painter.setPen(Qt::white);
+        painter.drawText(m_set_text_x, m_set_text_y, m_set_text);
+    }
 }

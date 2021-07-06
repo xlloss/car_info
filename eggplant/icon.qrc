@@ -35,5 +35,20 @@
         <file>icon/green-line-r.png</file>
         <file>icon/background.png</file>
         <file>icon/bus-bg.png</file>
+        <file>icon/main_page_bg.png</file>
+        <file>icon/menu-button.png</file>
+        <file>icon/menu-button-press.png</file>
+        <file>icon/rpm_page_bg.png</file>
+        <file>icon/rpm_page_bg_2.png</file>
+        <file>icon/rpm_page_str0.png</file>
+        <file>icon/rpm_page_str1.png</file>
+        <file>icon/rpm_page_str2.png</file>
+        <file>icon/rpm_page_str3.png</file>
+        <file>icon/rpm_page_str4.png</file>
+        <file>icon/rpm_page_str5.png</file>
+        <file>icon/rpm_page_str6.png</file>
+        <file>icon/rpm_page_str7.png</file>
+        <file>icon/rpm_btn_press.png</file>
+        <file>icon/rpm_btn.png</file>
     </qresource>
 </RCC>
