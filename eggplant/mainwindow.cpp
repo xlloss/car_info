@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     testframe->Register((class Frame_Page *)page_ctl->main_page);
     testframe->Register((class Frame_Page *)page_ctl->mile_page);
     testframe->Register((class Frame_Page *)page_ctl->car_inout_page);
+    testframe->Register((class Frame_Page *)page_ctl->time_adjust_page);
     testframe->show();
 
     this->close();

@@ -18,6 +18,7 @@ public:
     QPixmap bg_img;
     QString m_show_text;
     QFont font;
+    QColor text_color;
     int m_text_x;
     int m_text_y;
     void set_text(QString set_text);

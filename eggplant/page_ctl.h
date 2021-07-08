@@ -7,6 +7,7 @@
 #include "mileage_rpm_page.h"
 #include "frame_page.h"
 #include "car_inout_temp_page.h"
+#include "time_adjust_page.h"
 
 class Page_Ctl
 {
@@ -18,7 +19,7 @@ public:
     Main_Page *main_page;
     Mile_Page *mile_page;
     CarInOut_Page *car_inout_page;
-
+    TimeAdjust_Page *time_adjust_page;
     class Frame_Page *framepage;;
 
 signals:

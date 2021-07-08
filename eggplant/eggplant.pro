@@ -27,7 +27,8 @@ SOURCES += \
     mileage_rpm_page.cpp \
     page_ctl.cpp \
     show_text.cpp \
-    test_frame.cpp
+    test_frame.cpp \
+    time_adjust_page.cpp
 
 HEADERS += \
     barframe.h \
@@ -41,7 +42,8 @@ HEADERS += \
     page_ctl.h \
     show_text.h \
     string/main_string.h \
-    test_frame.h
+    test_frame.h \
+    time_adjust_page.h
 
 FORMS += \
     barframe.ui \

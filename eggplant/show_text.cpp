@@ -11,6 +11,7 @@ Show_text::Show_text(QWidget *parent) :
     font.setStyleHint(QFont::Times);
     font.setBold(1);
     font.setPointSize(22);
+    text_color = Qt::white;
 }
 
 Show_text::~Show_text()
@@ -40,7 +41,7 @@ void Show_text::paintEvent(QPaintEvent *)
 
     if (!m_show_text.isNull()) {
         painter.setFont(font);
-        painter.setPen(Qt::white);
+        painter.setPen(text_color);
         painter.drawText(m_text_x, m_text_y, m_show_text);
     }
 }

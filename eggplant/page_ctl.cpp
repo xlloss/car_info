@@ -10,4 +10,5 @@ Page_Ctl::Page_Ctl()
     main_page = new Main_Page();
     mile_page = new Mile_Page();
     car_inout_page = new CarInOut_Page();
+    time_adjust_page = new TimeAdjust_Page();
 }
