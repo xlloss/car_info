@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>585</width>
-    <height>145</height>
+    <width>594</width>
+    <height>249</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -90,6 +90,32 @@
    </property>
    <property name="text">
     <string>Page Icon ID</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="vol_add">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>90</y>
+     <width>89</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>vol+</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="vol_sub">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>130</y>
+     <width>89</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>vol-</string>
    </property>
   </widget>
  </widget>

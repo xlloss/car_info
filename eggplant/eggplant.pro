@@ -26,6 +26,7 @@ SOURCES += \
     mainwindow.cpp \
     mileage_rpm_page.cpp \
     page_ctl.cpp \
+    screen_volume_adjust_page.cpp \
     show_text.cpp \
     test_frame.cpp \
     time_adjust_page.cpp
@@ -40,6 +41,7 @@ HEADERS += \
     mainwindow.h \
     mileage_rpm_page.h \
     page_ctl.h \
+    screen_volume_adjust_page.h \
     show_text.h \
     string/main_string.h \
     test_frame.h \
