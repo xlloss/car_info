@@ -52,5 +52,6 @@
         <file>icon/car_inout_temp.png</file>
         <file>icon/cat_inout_table.png</file>
         <file>icon/time_adjust.png</file>
+        <file>icon/electrical_accessories_information.png</file>
     </qresource>
 </RCC>

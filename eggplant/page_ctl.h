@@ -9,6 +9,7 @@
 #include "car_inout_temp_page.h"
 #include "time_adjust_page.h"
 #include "screen_volume_adjust_page.h"
+#include "eai_page.h"
 
 class Page_Ctl
 {
@@ -22,6 +23,7 @@ public:
     CarInOut_Page *car_inout_page;
     TimeAdjust_Page *time_adjust_page;
     ScreenVolumeAdjust_Page *volume_adjust_page;
+    EleAccInfo_Page *eai_page;
     class Frame_Page *framepage;;
 
 signals:

@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     barframe.cpp \
     car_inout_temp_page.cpp \
+    eai_page.cpp \
     frame_page.cpp \
     home_page.cpp \
     icon_btn.cpp \
@@ -34,6 +35,7 @@ SOURCES += \
 HEADERS += \
     barframe.h \
     car_inout_temp_page.h \
+    eai_page.h \
     frame_page.h \
     home_page.h \
     icon_btn.h \
