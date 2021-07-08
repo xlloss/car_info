@@ -128,7 +128,7 @@ void Test_Frame::on_bar_comboBox_activated(int index)
 
 void Test_Frame::on_page_change_activated(int index)
 {
-    QString objname[] = {"Home_Page", "Main_Page", "Rpm_Page"};
+    QString objname[] = {"Home_Page", "Main_Page", "Rpm_Page", "CarInOut_Page"};
 
     Frame_Page_Show(objname[index]);
 }

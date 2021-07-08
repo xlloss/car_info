@@ -6,6 +6,7 @@
 #include "main_page.h"
 #include "mileage_rpm_page.h"
 #include "frame_page.h"
+#include "car_inout_temp_page.h"
 
 class Page_Ctl
 {
@@ -16,6 +17,7 @@ public:
     Home_Page *home_page;
     Main_Page *main_page;
     Mile_Page *mile_page;
+    CarInOut_Page *car_inout_page;
 
     class Frame_Page *framepage;;
 

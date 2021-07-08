@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     barframe.cpp \
+    car_inout_temp_page.cpp \
     frame_page.cpp \
     home_page.cpp \
     icon_btn.cpp \
@@ -30,6 +31,7 @@ SOURCES += \
 
 HEADERS += \
     barframe.h \
+    car_inout_temp_page.h \
     frame_page.h \
     home_page.h \
     icon_btn.h \
@@ -46,7 +48,6 @@ FORMS += \
     frame_page.ui \
     mainwindow.ui \
     test_frame.ui \
-    text_show.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

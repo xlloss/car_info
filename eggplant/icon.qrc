@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>icon/bus.png</file>
         <file>icon/ID-0-0.png</file>
         <file>icon/ID-0-1.png</file>
         <file>icon/ID-10-1.png</file>
@@ -50,5 +49,7 @@
         <file>icon/rpm_page_str7.png</file>
         <file>icon/rpm_btn_press.png</file>
         <file>icon/rpm_btn.png</file>
+        <file>icon/car_inout_temp.png</file>
+        <file>icon/cat_inout_table.png</file>
     </qresource>
 </RCC>
