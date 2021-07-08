@@ -10,7 +10,7 @@
 #include "time_adjust_page.h"
 #include "screen_volume_adjust_page.h"
 #include "eai_page.h"
-
+#include "control_msg1_page.h"
 class Page_Ctl
 {
 
@@ -24,6 +24,7 @@ public:
     TimeAdjust_Page *time_adjust_page;
     ScreenVolumeAdjust_Page *volume_adjust_page;
     EleAccInfo_Page *eai_page;
+    ControlMsg1_Page *control_msg1_page;
     class Frame_Page *framepage;;
 
 signals:

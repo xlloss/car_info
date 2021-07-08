@@ -53,5 +53,7 @@
         <file>icon/cat_inout_table.png</file>
         <file>icon/time_adjust.png</file>
         <file>icon/electrical_accessories_information.png</file>
+        <file>icon/control_msg1.png</file>
+        <file>icon/control_msg2.png</file>
     </qresource>
 </RCC>
