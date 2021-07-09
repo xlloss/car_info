@@ -19,6 +19,7 @@ SOURCES += \
     barframe.cpp \
     car_inout_temp_page.cpp \
     control_msg1_page.cpp \
+    control_msg2_page.cpp \
     eai_page.cpp \
     frame_page.cpp \
     home_page.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     barframe.h \
     car_inout_temp_page.h \
     control_msg1_page.h \
+    control_msg2_page.h \
     eai_page.h \
     frame_page.h \
     home_page.h \

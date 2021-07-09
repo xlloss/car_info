@@ -11,6 +11,7 @@
 #include "screen_volume_adjust_page.h"
 #include "eai_page.h"
 #include "control_msg1_page.h"
+#include "control_msg2_page.h"
 class Page_Ctl
 {
 
@@ -25,6 +26,7 @@ public:
     ScreenVolumeAdjust_Page *volume_adjust_page;
     EleAccInfo_Page *eai_page;
     ControlMsg1_Page *control_msg1_page;
+    ControlMsg2_Page *control_msg2_page;
     class Frame_Page *framepage;;
 
 signals:

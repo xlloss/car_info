@@ -130,7 +130,7 @@ void Test_Frame::on_page_change_activated(int index)
 {
     QString objname[] = {"Home_Page", "Main_Page", "Rpm_Page", "CarInOut_Page",
                         "TimeAdjust_Page", "ScreenVolumeAdjust_Page", "EleAccInfo_Page",
-                        "ControlMsg1_Page"};
+                        "ControlMsg1_Page", "ControlMsg2_Page"};
 
     Frame_Page_Show(objname[index]);
 }

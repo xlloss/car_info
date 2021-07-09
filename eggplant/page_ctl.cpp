@@ -14,4 +14,5 @@ Page_Ctl::Page_Ctl()
     volume_adjust_page = new ScreenVolumeAdjust_Page();
     eai_page = new EleAccInfo_Page();
     control_msg1_page = new ControlMsg1_Page();
+    control_msg2_page = new ControlMsg2_Page();
 }
