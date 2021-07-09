@@ -17,7 +17,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     barframe.cpp \
-    battery_info_page.cpp \
+    battery_temp_info_page.cpp \
+    battery_volt_info_page.cpp \
     car_inout_temp_page.cpp \
     control_msg1_page.cpp \
     control_msg2_page.cpp \
@@ -32,12 +33,14 @@ SOURCES += \
     page_ctl.cpp \
     screen_volume_adjust_page.cpp \
     show_text.cpp \
+    temp_module_page.cpp \
     test_frame.cpp \
     time_adjust_page.cpp
 
 HEADERS += \
     barframe.h \
-    battery_info_page.h \
+    battery_temp_info_page.h \
+    battery_volt_info_page.h \
     car_inout_temp_page.h \
     control_msg1_page.h \
     control_msg2_page.h \
@@ -51,6 +54,7 @@ HEADERS += \
     page_ctl.h \
     screen_volume_adjust_page.h \
     show_text.h \
+    temp_module_page.h \
     string/main_string.h \
     test_frame.h \
     time_adjust_page.h

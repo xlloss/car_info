@@ -36,7 +36,9 @@ MainWindow::MainWindow(QWidget *parent)
     testframe->Register((class Frame_Page *)page_ctl->eai_page);
     testframe->Register((class Frame_Page *)page_ctl->control_msg1_page);
     testframe->Register((class Frame_Page *)page_ctl->control_msg2_page);
-    testframe->Register((class Frame_Page *)page_ctl->bat_info_page);
+    testframe->Register((class Frame_Page *)page_ctl->bat_temp_info_page);
+    testframe->Register((class Frame_Page *)page_ctl->bat_volt_info_page);
+    testframe->Register((class Frame_Page *)page_ctl->temp_module_page);
     testframe->show();
 
     this->close();

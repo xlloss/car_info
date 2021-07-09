@@ -15,5 +15,7 @@ Page_Ctl::Page_Ctl()
     eai_page = new EleAccInfo_Page();
     control_msg1_page = new ControlMsg1_Page();
     control_msg2_page = new ControlMsg2_Page();
-    bat_info_page = new BatInfo_Page();
+    bat_temp_info_page = new BatTempInfo_Page();
+    bat_volt_info_page = new BatVoltInfo_Page();
+    temp_module_page = new TempModule_Page();
 }

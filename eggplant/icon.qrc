@@ -56,5 +56,6 @@
         <file>icon/control_msg1.png</file>
         <file>icon/control_msg2.png</file>
         <file>icon/battery-info.png</file>
+        <file>icon/temp_module.png</file>
     </qresource>
 </RCC>
