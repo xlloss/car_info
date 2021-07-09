@@ -15,4 +15,5 @@ Page_Ctl::Page_Ctl()
     eai_page = new EleAccInfo_Page();
     control_msg1_page = new ControlMsg1_Page();
     control_msg2_page = new ControlMsg2_Page();
+    bat_info_page = new BatInfo_Page();
 }

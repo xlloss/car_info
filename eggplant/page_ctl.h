@@ -12,6 +12,8 @@
 #include "eai_page.h"
 #include "control_msg1_page.h"
 #include "control_msg2_page.h"
+#include "battery_info_page.h"
+
 class Page_Ctl
 {
 
@@ -27,6 +29,7 @@ public:
     EleAccInfo_Page *eai_page;
     ControlMsg1_Page *control_msg1_page;
     ControlMsg2_Page *control_msg2_page;
+    BatInfo_Page *bat_info_page;
     class Frame_Page *framepage;;
 
 signals:

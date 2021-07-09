@@ -55,5 +55,6 @@
         <file>icon/electrical_accessories_information.png</file>
         <file>icon/control_msg1.png</file>
         <file>icon/control_msg2.png</file>
+        <file>icon/battery-info.png</file>
     </qresource>
 </RCC>

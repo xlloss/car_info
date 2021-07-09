@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     barframe.cpp \
+    battery_info_page.cpp \
     car_inout_temp_page.cpp \
     control_msg1_page.cpp \
     control_msg2_page.cpp \
@@ -36,6 +37,7 @@ SOURCES += \
 
 HEADERS += \
     barframe.h \
+    battery_info_page.h \
     car_inout_temp_page.h \
     control_msg1_page.h \
     control_msg2_page.h \
