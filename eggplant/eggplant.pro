@@ -38,7 +38,8 @@ SOURCES += \
     time_adjust_page.cpp \
     slave_sat_out_msg_page.cpp \
     slave_sat_in_msg_page.cpp \
-    sw_version_page.cpp
+    sw_version_page.cpp \
+    slave_sat_msg_page.cpp
 
 HEADERS += \
     barframe.h \
@@ -63,7 +64,8 @@ HEADERS += \
     time_adjust_page.h \
     slave_sat_out_msg_page.h \
     slave_sat_in_msg_page.h \
-    sw_version_page.h
+    sw_version_page.h \
+    slave_sat_msg_page.h
 
 FORMS += \
     barframe.ui \
@@ -75,12 +77,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-DISTFILES += \
-    icon/apple-1.png \
-    icon/apple-2.png \
-    icon/banana-1.png \
-    icon/banana-2.png
 
 RESOURCES += \
     icon.qrc

@@ -16,6 +16,9 @@ Icon_btn::Icon_btn(QWidget *parent) :
     font.setStyleHint(QFont::Times);
     font.setBold(1);
     font.setPointSize(22);
+    m_set_text_x = 30;
+    m_set_text_y = 40;
+
 }
 
 Icon_btn::~Icon_btn()
@@ -57,9 +60,6 @@ void Icon_btn::load_image_ft(QString ft_dark_name, QString ft_light_name)
 void Icon_btn::set_text(QString text)
 {
     m_set_text = text;
-    m_set_text_x = 30;
-    m_set_text_y = 40;
-
 }
 
 void Icon_btn::ft_dark_enable()

@@ -18,6 +18,7 @@
 #include "slave_sat_out_msg_page.h"
 #include "slave_sat_in_msg_page.h"
 #include "sw_version_page.h"
+#include "slave_sat_msg_page.h"
 
 class Page_Ctl
 {
@@ -40,6 +41,8 @@ public:
     SatOutMsg_Page *sat_outmsg_page;
     SatInMsg_Page *sat_inmsg_page;
     SwVersion_Page *sw_version_page;
+    SlaveSatMsg_Page *slave_sat_msg_page;
+
     class Frame_Page *framepage;
 
 signals:

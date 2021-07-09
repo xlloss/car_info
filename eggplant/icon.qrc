@@ -59,5 +59,10 @@
         <file>icon/temp_module.png</file>
         <file>icon/slave_sat_table.png</file>
         <file>icon/sw_version_table.png</file>
+        <file>icon/slave_back_level.png</file>
+        <file>icon/slave_back_main.png</file>
+        <file>icon/slave_msg_frame.png</file>
+        <file>icon/slve_msg_btn0.png</file>
+        <file>icon/slve_msg_btn1.png</file>
     </qresource>
 </RCC>

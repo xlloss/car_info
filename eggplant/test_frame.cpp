@@ -68,11 +68,11 @@ void Test_Frame::Frame_Page_Show(QString show_objname)
 
     i = Find_Frame(show_objname);
     if (i < 0) {
-        qDebug("can't find any show frame page\n");
+        qDebug() << "can't find any show frame page\n" << show_objname;
         return;
     }
     show_framepage = page_list.at(i);
-    qDebug() << "frameage objname=" <<show_framepage->objectName();
+    qDebug() << "show frameage objname=" <<show_framepage->objectName();
 
     j = Find_Frame(current_page);
     if (j < 0) {
@@ -131,7 +131,8 @@ void Test_Frame::on_page_change_activated(int index)
     QString objname[] = {"Home_Page", "Main_Page", "Rpm_Page", "CarInOut_Page",
                         "TimeAdjust_Page", "ScreenVolumeAdjust_Page", "EleAccInfo_Page",
                         "ControlMsg1_Page", "ControlMsg2_Page", "BatTempInfo_Page", "BatVoltInfo_Page",
-                        "TempModule_Page", "SatOutMsg_Page", "SatInMsg_Page", "SwVersion_Page"
+                        "TempModule_Page", "SatOutMsg_Page", "SatInMsg_Page", "SwVersion_Page",
+                        "SlaveSatMsg_Page"
                         };
 
     Frame_Page_Show(objname[index]);

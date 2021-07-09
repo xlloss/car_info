@@ -42,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
     testframe->Register((class Frame_Page *)page_ctl->sat_outmsg_page);
     testframe->Register((class Frame_Page *)page_ctl->sat_inmsg_page);
     testframe->Register((class Frame_Page *)page_ctl->sw_version_page);
+    testframe->Register((class Frame_Page *)page_ctl->slave_sat_msg_page);
     testframe->show();
 
     this->close();
