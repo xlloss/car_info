@@ -18,4 +18,7 @@ Page_Ctl::Page_Ctl()
     bat_temp_info_page = new BatTempInfo_Page();
     bat_volt_info_page = new BatVoltInfo_Page();
     temp_module_page = new TempModule_Page();
+    sat_outmsg_page = new SatOutMsg_Page();
+    sat_inmsg_page = new SatInMsg_Page();
+    sw_version_page = new SwVersion_Page();
 }

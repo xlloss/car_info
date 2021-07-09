@@ -39,6 +39,9 @@ MainWindow::MainWindow(QWidget *parent)
     testframe->Register((class Frame_Page *)page_ctl->bat_temp_info_page);
     testframe->Register((class Frame_Page *)page_ctl->bat_volt_info_page);
     testframe->Register((class Frame_Page *)page_ctl->temp_module_page);
+    testframe->Register((class Frame_Page *)page_ctl->sat_outmsg_page);
+    testframe->Register((class Frame_Page *)page_ctl->sat_inmsg_page);
+    testframe->Register((class Frame_Page *)page_ctl->sw_version_page);
     testframe->show();
 
     this->close();

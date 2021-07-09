@@ -16,7 +16,7 @@ Test_Frame::Test_Frame(QWidget *parent) :
         ui->bar_comboBox->insertItem(i, str);
     }
 
-    for (i = 0; i < 15; i++) {
+    for (i = 0; i < 20; i++) {
         str.sprintf("Page%d", i);
         ui->page_change->insertItem(i, str);
 
@@ -131,7 +131,7 @@ void Test_Frame::on_page_change_activated(int index)
     QString objname[] = {"Home_Page", "Main_Page", "Rpm_Page", "CarInOut_Page",
                         "TimeAdjust_Page", "ScreenVolumeAdjust_Page", "EleAccInfo_Page",
                         "ControlMsg1_Page", "ControlMsg2_Page", "BatTempInfo_Page", "BatVoltInfo_Page",
-                        "TempModule_Page"
+                        "TempModule_Page", "SatOutMsg_Page", "SatInMsg_Page", "SwVersion_Page"
                         };
 
     Frame_Page_Show(objname[index]);

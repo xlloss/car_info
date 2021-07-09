@@ -35,7 +35,10 @@ SOURCES += \
     show_text.cpp \
     temp_module_page.cpp \
     test_frame.cpp \
-    time_adjust_page.cpp
+    time_adjust_page.cpp \
+    slave_sat_out_msg_page.cpp \
+    slave_sat_in_msg_page.cpp \
+    sw_version_page.cpp
 
 HEADERS += \
     barframe.h \
@@ -57,7 +60,10 @@ HEADERS += \
     temp_module_page.h \
     string/main_string.h \
     test_frame.h \
-    time_adjust_page.h
+    time_adjust_page.h \
+    slave_sat_out_msg_page.h \
+    slave_sat_in_msg_page.h \
+    sw_version_page.h
 
 FORMS += \
     barframe.ui \

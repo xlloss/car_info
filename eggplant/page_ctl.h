@@ -15,6 +15,9 @@
 #include "battery_temp_info_page.h"
 #include "battery_volt_info_page.h"
 #include "temp_module_page.h"
+#include "slave_sat_out_msg_page.h"
+#include "slave_sat_in_msg_page.h"
+#include "sw_version_page.h"
 
 class Page_Ctl
 {
@@ -34,7 +37,10 @@ public:
     BatTempInfo_Page *bat_temp_info_page;
     BatVoltInfo_Page *bat_volt_info_page;
     TempModule_Page *temp_module_page;
-    class Frame_Page *framepage;;
+    SatOutMsg_Page *sat_outmsg_page;
+    SatInMsg_Page *sat_inmsg_page;
+    SwVersion_Page *sw_version_page;
+    class Frame_Page *framepage;
 
 signals:
 

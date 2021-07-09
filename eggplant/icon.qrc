@@ -57,5 +57,7 @@
         <file>icon/control_msg2.png</file>
         <file>icon/battery-info.png</file>
         <file>icon/temp_module.png</file>
+        <file>icon/slave_sat_table.png</file>
+        <file>icon/sw_version_table.png</file>
     </qresource>
 </RCC>
