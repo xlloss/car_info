@@ -64,5 +64,9 @@
         <file>icon/slave_msg_frame.png</file>
         <file>icon/slve_msg_btn0.png</file>
         <file>icon/slve_msg_btn1.png</file>
+        <file>icon/bus_sys_sat_btn_0.png</file>
+        <file>icon/bus_sys_sat_btn_1.png</file>
+        <file>icon/bus_sys_back_btn_0.png</file>
+        <file>icon/bus_sys_back_btn_1.png</file>
     </qresource>
 </RCC>

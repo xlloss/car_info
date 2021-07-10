@@ -22,4 +22,5 @@ Page_Ctl::Page_Ctl()
     sat_inmsg_page = new SatInMsg_Page();
     sw_version_page = new SwVersion_Page();
     slave_sat_msg_page = new SlaveSatMsg_Page();
+    bcm_page = new Bcm_Page();
 }

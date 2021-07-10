@@ -19,6 +19,7 @@
 #include "slave_sat_in_msg_page.h"
 #include "sw_version_page.h"
 #include "slave_sat_msg_page.h"
+#include "bcm_page.h"
 
 class Page_Ctl
 {
@@ -42,6 +43,7 @@ public:
     SatInMsg_Page *sat_inmsg_page;
     SwVersion_Page *sw_version_page;
     SlaveSatMsg_Page *slave_sat_msg_page;
+    Bcm_Page *bcm_page;
 
     class Frame_Page *framepage;
 

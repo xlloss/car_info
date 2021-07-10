@@ -39,7 +39,8 @@ SOURCES += \
     slave_sat_out_msg_page.cpp \
     slave_sat_in_msg_page.cpp \
     sw_version_page.cpp \
-    slave_sat_msg_page.cpp
+    slave_sat_msg_page.cpp \
+    bcm_page.cpp
 
 HEADERS += \
     barframe.h \
@@ -65,7 +66,8 @@ HEADERS += \
     slave_sat_out_msg_page.h \
     slave_sat_in_msg_page.h \
     sw_version_page.h \
-    slave_sat_msg_page.h
+    slave_sat_msg_page.h \
+    bcm_page.h
 
 FORMS += \
     barframe.ui \
