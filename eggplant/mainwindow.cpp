@@ -44,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
     testframe->Register((class Frame_Page *)page_ctl->sw_version_page);
     testframe->Register((class Frame_Page *)page_ctl->slave_sat_msg_page);
     testframe->Register((class Frame_Page *)page_ctl->bcm_page);
+    testframe->Register((class Frame_Page *)page_ctl->tires_press_show_page);
     testframe->show();
 
     this->close();

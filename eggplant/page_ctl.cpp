@@ -23,4 +23,5 @@ Page_Ctl::Page_Ctl()
     sw_version_page = new SwVersion_Page();
     slave_sat_msg_page = new SlaveSatMsg_Page();
     bcm_page = new Bcm_Page();
+    tires_press_show_page = new TiresPressShow_Page();
 }

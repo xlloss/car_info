@@ -68,5 +68,8 @@
         <file>icon/bus_sys_sat_btn_1.png</file>
         <file>icon/bus_sys_back_btn_0.png</file>
         <file>icon/bus_sys_back_btn_1.png</file>
+        <file>icon/tires_pressure_show.png</file>
+        <file>icon/tires_0.png</file>
+        <file>icon/tires_1.png</file>
     </qresource>
 </RCC>

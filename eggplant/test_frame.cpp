@@ -132,7 +132,7 @@ void Test_Frame::on_page_change_activated(int index)
                         "TimeAdjust_Page", "ScreenVolumeAdjust_Page", "EleAccInfo_Page",
                         "ControlMsg1_Page", "ControlMsg2_Page", "BatTempInfo_Page", "BatVoltInfo_Page",
                         "TempModule_Page", "SatOutMsg_Page", "SatInMsg_Page", "SwVersion_Page",
-                        "SlaveSatMsg_Page", "Bcm_Page"
+                        "SlaveSatMsg_Page", "Bcm_Page", "TiresPressShow_Page"
                         };
 
     Frame_Page_Show(objname[index]);

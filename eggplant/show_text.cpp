@@ -25,7 +25,7 @@ void Show_text::load_image_bg(QString bg_name)
 
     palette.setBrush(QPalette::Background, bg_img);
     this->setPalette(palette);
-    this->setGeometry(0, 0, bg_img.width(), bg_img.height());
+    //this->setGeometry(0, 0, bg_img.width(), bg_img.height());
 }
 
 void Show_text::set_text(QString text)
