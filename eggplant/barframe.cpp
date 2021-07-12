@@ -56,7 +56,7 @@ BarFrame::BarFrame(QWidget *parent) :
         icon_id[i]->show();
     }
 
-    this->setGeometry(500, 115, BAR_FRAME_W, BAR_FRAME_H);
+    this->setGeometry(0, 115, BAR_FRAME_W, BAR_FRAME_H);
     this->setObjectName("BarFrame");
 
 }

@@ -77,6 +77,9 @@ FORMS += \
     mainwindow.ui \
     test_frame.ui \
 
+TRANSLATIONS += \
+    eggplant_zh_TW.ts
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

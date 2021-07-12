@@ -2,7 +2,6 @@
 #include <QPainter>
 #include <qdebug.h>
 
-
 Icon_btn::Icon_btn(QWidget *parent) :
     QWidget(parent)
 {
@@ -13,12 +12,11 @@ Icon_btn::Icon_btn(QWidget *parent) :
     m_set_text_x = 0;
     m_set_text_x = 0;
     enable_scale = 1;
-    font.setStyleHint(QFont::Times);
-    font.setBold(1);
-    font.setPointSize(22);
+    font.setBold(0);
+    font.setPointSize(30);
+    font.setFamily("DroidSans");
     m_set_text_x = 30;
     m_set_text_y = 40;
-
 }
 
 Icon_btn::~Icon_btn()
@@ -75,11 +73,12 @@ void Icon_btn::ft_light_enable()
 void Icon_btn::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+    QFont usefont(font.family(), font.pointSize(), font.weight(), font.bold());
 
     painter.drawImage(0, 0, ft_img);
 
     if (!m_set_text.isNull()) {
-        painter.setFont(font);
+        painter.setFont(usefont);
         painter.setPen(Qt::white);
         painter.drawText(m_set_text_x, m_set_text_y, m_set_text);
     }

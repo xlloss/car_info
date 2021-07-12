@@ -2,52 +2,58 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "test_frame.h"
-
+#include "home_page.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     Test_Frame *testframe;
+    Home_Page *home_page;
 
     ui->setupUi(this);
     this->setObjectName("Mainwindow");
     this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
-    this->setGeometry(500, 100 + 65, 800, 415);
-    this->hide();
+    this->setGeometry(0, 100 + 65, 800, 415);
+    //this->hide();
     backimg.load(":/icon/background.png");
 
     bar_frame = new BarFrame (this);
     bar_frame->show();
 
-    page_ctl = new Page_Ctl();
-    page_ctl->home_page->show();
-    test_cnt1 = 0;
+    //home_page = new Home_Page();
+    //home_page->setGeometry(0, 170, 800, 480);
+    //home_page->show();
 
+    page_ctl = new Page_Ctl(this);
+    //page_ctl->home_page->show();
+    //page_ctl->main_page->show();
+    page_ctl-> mile_page->show();
 
     testframe = new Test_Frame();
-    testframe->Register((class Frame_Page *)bar_frame);
-    testframe->Register((class Frame_Page *)page_ctl->home_page);
-    testframe->Register((class Frame_Page *)page_ctl->main_page);
-    testframe->Register((class Frame_Page *)page_ctl->mile_page);
-    testframe->Register((class Frame_Page *)page_ctl->car_inout_page);
-    testframe->Register((class Frame_Page *)page_ctl->time_adjust_page);
-    testframe->Register((class Frame_Page *)page_ctl->volume_adjust_page);
-    testframe->Register((class Frame_Page *)page_ctl->eai_page);
-    testframe->Register((class Frame_Page *)page_ctl->control_msg1_page);
-    testframe->Register((class Frame_Page *)page_ctl->control_msg2_page);
-    testframe->Register((class Frame_Page *)page_ctl->bat_temp_info_page);
-    testframe->Register((class Frame_Page *)page_ctl->bat_volt_info_page);
-    testframe->Register((class Frame_Page *)page_ctl->temp_module_page);
-    testframe->Register((class Frame_Page *)page_ctl->sat_outmsg_page);
-    testframe->Register((class Frame_Page *)page_ctl->sat_inmsg_page);
-    testframe->Register((class Frame_Page *)page_ctl->sw_version_page);
-    testframe->Register((class Frame_Page *)page_ctl->slave_sat_msg_page);
-    testframe->Register((class Frame_Page *)page_ctl->bcm_page);
-    testframe->Register((class Frame_Page *)page_ctl->tires_press_show_page);
+    //testframe->Register((class Frame_Page *)bar_frame);
+    //testframe->Register((class Frame_Page *)page_ctl->home_page);
+    //testframe->Register((class Frame_Page *)page_ctl->main_page);
+    //testframe->Register((class Frame_Page *)page_ctl->mile_page);
+    //testframe->Register((class Frame_Page *)page_ctl->car_inout_page);
+    //testframe->Register((class Frame_Page *)page_ctl->time_adjust_page);
+    //testframe->Register((class Frame_Page *)page_ctl->volume_adjust_page);
+    //testframe->Register((class Frame_Page *)page_ctl->eai_page);
+    //testframe->Register((class Frame_Page *)page_ctl->control_msg1_page);
+    //testframe->Register((class Frame_Page *)page_ctl->control_msg2_page);
+    //testframe->Register((class Frame_Page *)page_ctl->bat_temp_info_page);
+    //testframe->Register((class Frame_Page *)page_ctl->bat_volt_info_page);
+    //testframe->Register((class Frame_Page *)page_ctl->temp_module_page);
+    //testframe->Register((class Frame_Page *)page_ctl->sat_outmsg_page);
+    //testframe->Register((class Frame_Page *)page_ctl->sat_inmsg_page);
+    //testframe->Register((class Frame_Page *)page_ctl->sw_version_page);
+    //testframe->Register((class Frame_Page *)page_ctl->slave_sat_msg_page);
+    //testframe->Register((class Frame_Page *)page_ctl->bcm_page);
+    //testframe->Register((class Frame_Page *)page_ctl->tires_press_show_page);
+    testframe->setGeometry(600, 0, 300, 300);
     testframe->show();
 
-    this->close();
+    //this->close();
 }
 
 MainWindow::~MainWindow()

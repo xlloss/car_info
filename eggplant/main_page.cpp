@@ -1,6 +1,7 @@
 #include "main_page.h"
 #include <QPainter>
 #include "string/main_string.h"
+#include <QTextCodec>
 
 #define  BUTTON_STR(n) STR_ID##n
 
@@ -8,6 +9,10 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
 {
     int i;
     QString btn_name;
+    QTextCodec *codec;
+
+    //QTextCodec::setCodecForCStrings(codec);
+    //QTextCodec::setCodecForTr(codec);
 
     this->setObjectName("Main_Page");
 
@@ -27,7 +32,8 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
         btn[i + 5] = new Icon_btn(this);
         btn[i + 5]->setObjectName(main_page_str[i]);
         btn[i + 5]->enable_scale = 0;
-        btn_name = main_page_str[i + 5];
+        //btn_name = main_page_str[i + 5];
+        btn_name = "123測試";
         btn[i + 5]->load_image_ft(":/icon/menu-button.png", ":/icon/menu-button-press.png");
         btn[i + 5]->setGeometry(BTN_RIGHT_X + BTN_W + BTN_OFF_X,
                                 BTN_RIGHT_Y + ((BTN_OFF_Y + BTN_H) * i),
@@ -50,7 +56,12 @@ void Main_Page::Enable_Icon_Light(int i)
 void Main_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+    QFont font("DroidSans", 22);
+
 
     painter.drawPixmap(0, 0, backimg, 0, 55, 800, 480);
     //painter.drawImage(190, 80, image_car_bus);
+
+    painter.setFont(font);
+    painter.drawText(0, 100, "測試123");
 }
