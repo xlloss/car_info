@@ -8,7 +8,10 @@ Frame_Page::Frame_Page(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
-    this->setGeometry(500, 100 + 65, 800, 415);
+    this->close();
+    this->setGeometry(0, 60, 800, 480);
+    this->setWindowState(Qt::WindowNoState);
+
 }
 
 Frame_Page::~Frame_Page()

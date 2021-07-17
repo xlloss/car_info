@@ -182,8 +182,6 @@ TiresPressShow_Page::TiresPressShow_Page(QWidget *parent) : Frame_Page(parent)
         tires_value_temp[i]->show();
         j = j + 2;
     }
-
-    this->setWindowState(Qt::WindowNoState);
 }
 
 void TiresPressShow_Page::Enable_Icon_Light(int i)

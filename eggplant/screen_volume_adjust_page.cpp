@@ -29,8 +29,6 @@ ScreenVolumeAdjust_Page::ScreenVolumeAdjust_Page(QWidget *parent) : Frame_Page(p
     show_volume_val->set_text(volume_value);
     show_volume_val->setGeometry(volume_value_xy[0], volume_value_xy[1], 150, 70);
     show_volume_val->show();
-
-    this->setWindowState(Qt::WindowActive);
 }
 
 

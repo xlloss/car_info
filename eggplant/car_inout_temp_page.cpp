@@ -46,8 +46,6 @@ CarInOut_Page::CarInOut_Page(QWidget *parent) : Frame_Page(parent)
         show_item_child[i]->show();
         j = j + 2;
     }
-
-    this->setWindowState(Qt::WindowActive);
 }
 
 void CarInOut_Page::paintEvent(QPaintEvent *)

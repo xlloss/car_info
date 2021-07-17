@@ -32,8 +32,7 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
         btn[i + 5] = new Icon_btn(this);
         btn[i + 5]->setObjectName(main_page_str[i]);
         btn[i + 5]->enable_scale = 0;
-        //btn_name = main_page_str[i + 5];
-        btn_name = "123測試";
+        btn_name = main_page_str[i + 5];
         btn[i + 5]->load_image_ft(":/icon/menu-button.png", ":/icon/menu-button-press.png");
         btn[i + 5]->setGeometry(BTN_RIGHT_X + BTN_W + BTN_OFF_X,
                                 BTN_RIGHT_Y + ((BTN_OFF_Y + BTN_H) * i),
@@ -43,8 +42,6 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
     }
 
     backimg.load(":/icon/main_page_bg.png");
-
-    this->setWindowState(Qt::WindowNoState);
 }
 
 void Main_Page::Enable_Icon_Light(int i)

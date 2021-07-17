@@ -94,7 +94,6 @@ Mile_Page::Mile_Page(QWidget *parent) : Frame_Page(parent)
         show_string[i]->show();
         j = j + 2;
     }
-    this->setWindowState(Qt::WindowNoState);
 }
 
 void Mile_Page::paintEvent(QPaintEvent *)

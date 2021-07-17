@@ -119,7 +119,6 @@ BatVoltInfo_Page::BatVoltInfo_Page(QWidget *parent) : Frame_Page(parent)
         }
     }
 
-    this->setWindowState(Qt::WindowActive);
 }
 
 void BatVoltInfo_Page::paintEvent(QPaintEvent *)

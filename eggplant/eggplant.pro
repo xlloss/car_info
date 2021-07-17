@@ -34,7 +34,6 @@ SOURCES += \
     screen_volume_adjust_page.cpp \
     show_text.cpp \
     temp_module_page.cpp \
-    test_frame.cpp \
     time_adjust_page.cpp \
     slave_sat_out_msg_page.cpp \
     slave_sat_in_msg_page.cpp \
@@ -62,7 +61,6 @@ HEADERS += \
     show_text.h \
     temp_module_page.h \
     string/main_string.h \
-    test_frame.h \
     time_adjust_page.h \
     slave_sat_out_msg_page.h \
     slave_sat_in_msg_page.h \

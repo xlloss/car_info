@@ -69,8 +69,6 @@ SatOutMsg_Page::SatOutMsg_Page(QWidget *parent) : Frame_Page(parent)
             j = j + 2;
         }
     }
-
-    this->setWindowState(Qt::WindowActive);
 }
 
 void SatOutMsg_Page::paintEvent(QPaintEvent *)

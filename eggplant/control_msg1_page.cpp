@@ -90,8 +90,6 @@ ControlMsg1_Page::ControlMsg1_Page(QWidget *parent) : Frame_Page(parent)
             j = j + 2;
         }
     }
-
-    this->setWindowState(Qt::WindowActive);
 }
 
 void ControlMsg1_Page::paintEvent(QPaintEvent *)

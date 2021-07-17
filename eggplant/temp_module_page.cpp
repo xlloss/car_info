@@ -70,8 +70,6 @@ TempModule_Page::TempModule_Page(QWidget *parent) : Frame_Page(parent)
             j = j + 2;
         }
     }
-
-    this->setWindowState(Qt::WindowActive);
 }
 
 void TempModule_Page::paintEvent(QPaintEvent *)

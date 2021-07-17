@@ -3,7 +3,7 @@
 
 #define MASTER_TEXT_X 335
 #define MASTER_TEXT_Y 40
-#define MASTER_TEXT_W 200
+#define MASTER_TEXT_W 250
 #define MASTER_TEXT_H 50
 #define MASTER_TEXT_GAP 50
 
@@ -88,8 +88,6 @@ ControlMsg2_Page::ControlMsg2_Page(QWidget *parent) : Frame_Page(parent)
             j = j + 2;
         }
     }
-
-    this->setWindowState(Qt::WindowActive);
 }
 
 void ControlMsg2_Page::paintEvent(QPaintEvent *)

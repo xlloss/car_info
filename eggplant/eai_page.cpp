@@ -88,8 +88,6 @@ EleAccInfo_Page::EleAccInfo_Page(QWidget *parent) : Frame_Page(parent)
             j = j + 2;
         }
     }
-
-    this->setWindowState(Qt::WindowActive);
 }
 
 void EleAccInfo_Page::paintEvent(QPaintEvent *)
@@ -97,5 +95,5 @@ void EleAccInfo_Page::paintEvent(QPaintEvent *)
     QPainter painter(this);
 
     painter.drawPixmap(0, 0, backimg, 0, 55, 800, 480);
-    painter.drawPixmap(8, 30, tableimg, 0, 0, 788, 360);
+    painter.drawPixmap(8, 87, tableimg, 0, 0, 788, 360);
 }

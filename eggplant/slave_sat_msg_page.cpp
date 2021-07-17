@@ -46,9 +46,6 @@ SlaveSatMsg_Page::SlaveSatMsg_Page(QWidget *parent) : Frame_Page(parent)
     back_main_btn->m_set_text_y = 90;
     back_main_btn->set_text(btn_name);
     back_main_btn->setGeometry(BTN_BACK_MAIN_X, BTN_BACK_MAIN_Y, BTN_BACK_MAIN_W, BTN_BACK_MAIN_H);
-
-
-    this->setWindowState(Qt::WindowNoState);
 }
 
 void SlaveSatMsg_Page::Enable_Icon_Light(int i)

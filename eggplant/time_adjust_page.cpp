@@ -60,8 +60,6 @@ TimeAdjust_Page::TimeAdjust_Page(QWidget *parent) : Frame_Page(parent)
         show_item_child[i]->show();
         j = j + 2;
     }
-
-    this->setWindowState(Qt::WindowActive);
 }
 
 void TimeAdjust_Page::paintEvent(QPaintEvent *)

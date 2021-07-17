@@ -119,7 +119,6 @@ BatTempInfo_Page::BatTempInfo_Page(QWidget *parent) : Frame_Page(parent)
         }
     }
 
-    this->setWindowState(Qt::WindowActive);
 }
 
 void BatTempInfo_Page::paintEvent(QPaintEvent *)

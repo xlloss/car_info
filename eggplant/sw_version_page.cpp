@@ -63,8 +63,6 @@ SwVersion_Page::SwVersion_Page(QWidget *parent) : Frame_Page(parent)
             j = j + 2;
         }
     }
-
-    this->setWindowState(Qt::WindowActive);
 }
 
 void SwVersion_Page::paintEvent(QPaintEvent *)

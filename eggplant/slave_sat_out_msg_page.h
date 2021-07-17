@@ -15,8 +15,8 @@ public:
     QPixmap backimg;
     QPixmap tableimg;
     Show_text *show_master_item[2];
-    Show_text *show_sub_item[3][6];
-    Show_text *show_sub_item_info[3][6];
+    Show_text *show_sub_item[4][8];
+    Show_text *show_sub_item_inf4[4][8];
 
 protected:
     void paintEvent(QPaintEvent *);
