@@ -42,27 +42,30 @@ MainWindow::MainWindow(QWidget *parent)
     //page_ctl->tires_press_show_page->show();
 
     //testframe = new Test_Frame();
-    //testframe->Register((class Frame_Page *)bar_frame);
-    //testframe->Register((class Frame_Page *)page_ctl->home_page);
-    //testframe->Register((class Frame_Page *)page_ctl->main_page);
-    //testframe->Register((class Frame_Page *)page_ctl->mile_page);
-    //testframe->Register((class Frame_Page *)page_ctl->car_inout_page);
-    //testframe->Register((class Frame_Page *)page_ctl->time_adjust_page);
-    //testframe->Register((class Frame_Page *)page_ctl->volume_adjust_page);
-    //testframe->Register((class Frame_Page *)page_ctl->eai_page);
-    //testframe->Register((class Frame_Page *)page_ctl->control_msg1_page);
-    //testframe->Register((class Frame_Page *)page_ctl->control_msg2_page);
-    //testframe->Register((class Frame_Page *)page_ctl->bat_temp_info_page);
-    //testframe->Register((class Frame_Page *)page_ctl->bat_volt_info_page);
-    //testframe->Register((class Frame_Page *)page_ctl->temp_module_page);
-    //testframe->Register((class Frame_Page *)page_ctl->sat_outmsg_page);
-    //testframe->Register((class Frame_Page *)page_ctl->sat_inmsg_page);
-    //testframe->Register((class Frame_Page *)page_ctl->sw_version_page);
-    //testframe->Register((class Frame_Page *)page_ctl->slave_sat_msg_page);
-    //testframe->Register((class Frame_Page *)page_ctl->bcm_page);
-    //testframe->Register((class Frame_Page *)page_ctl->tires_press_show_page);
     //testframe->setGeometry(600, 0, 300, 300);
     //testframe->show();
+
+    cmd_get = new Cmd_Receive(this);
+
+    cmd_get->Register((class Frame_Page *)bar_frame);
+    cmd_get->Register((class Frame_Page *)page_ctl->home_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->main_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->mile_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->car_inout_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->time_adjust_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->volume_adjust_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->eai_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->control_msg1_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->control_msg2_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->bat_temp_info_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->bat_volt_info_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->temp_module_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->sat_outmsg_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->sat_inmsg_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->sw_version_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->slave_sat_msg_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->bcm_page);
+    cmd_get->Register((class Frame_Page *)page_ctl->tires_press_show_page);
 
     this->close();
 }

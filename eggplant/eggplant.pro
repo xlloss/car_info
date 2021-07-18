@@ -1,7 +1,7 @@
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
+/
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -9,6 +9,7 @@ CONFIG += c++11
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
+
 
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -20,6 +21,7 @@ SOURCES += \
     battery_temp_info_page.cpp \
     battery_volt_info_page.cpp \
     car_inout_temp_page.cpp \
+    cmd_receive.cpp \
     control_msg1_page.cpp \
     control_msg2_page.cpp \
     eai_page.cpp \
@@ -32,6 +34,7 @@ SOURCES += \
     mileage_rpm_page.cpp \
     page_ctl.cpp \
     screen_volume_adjust_page.cpp \
+    serial_port.cpp \
     show_text.cpp \
     temp_module_page.cpp \
     time_adjust_page.cpp \
@@ -47,6 +50,7 @@ HEADERS += \
     battery_temp_info_page.h \
     battery_volt_info_page.h \
     car_inout_temp_page.h \
+    cmd_receive.h \
     control_msg1_page.h \
     control_msg2_page.h \
     eai_page.h \
@@ -58,6 +62,7 @@ HEADERS += \
     mileage_rpm_page.h \
     page_ctl.h \
     screen_volume_adjust_page.h \
+    serial_port.h \
     show_text.h \
     temp_module_page.h \
     string/main_string.h \
@@ -85,3 +90,16 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     icon.qrc
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/eggplantlib/release/ -lserial
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/eggplantlib/debug/ -lserial
+else:unix: LIBS += -L$$PWD/eggplantlib/ -lserial
+
+INCLUDEPATH += $$PWD/eggplantlib
+DEPENDPATH += $$PWD/eggplantlib
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/eggplantlib/release/libserial.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/eggplantlib/debug/libserial.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/eggplantlib/release/serial.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/eggplantlib/debug/serial.lib
+else:unix: PRE_TARGETDEPS += $$PWD/eggplantlib/libserial.a

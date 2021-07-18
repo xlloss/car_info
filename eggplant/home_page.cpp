@@ -1,6 +1,7 @@
 #include "home_page.h"
 #include <QPainter>
 
+
 Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
 {
     this->setObjectName("Home_Page");

@@ -2,7 +2,7 @@
 #define PAGE_CTL_H
 
 #include <QMainWindow>
-#include <QWidget>"
+#include <QWidget>
 #include "home_page.h"
 #include "main_page.h"
 #include "mileage_rpm_page.h"
