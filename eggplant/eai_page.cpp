@@ -1,14 +1,14 @@
 #include "eai_page.h"
 #include <QPainter>
 
-#define MASTER_TEXT_X 50
-#define MASTER_TEXT_Y 40
-#define MASTER_TEXT_W 200
+#define MASTER_TEXT_X 30
+#define MASTER_TEXT_Y 15
+#define MASTER_TEXT_W 220
 #define MASTER_TEXT_H 50
 #define MASTER_TEXT_GAP 50
 
 #define SUB_TEXT_X 30
-#define SUB_TEXT_Y 85
+#define SUB_TEXT_Y 55
 #define SUB_TEXT_W 200
 #define SUB_TEXT_H 45
 #define SUB_TEXT_GAP 45
@@ -61,7 +61,7 @@ EleAccInfo_Page::EleAccInfo_Page(QWidget *parent) : Frame_Page(parent)
         show_master_item[i] = new Show_text(this);
         show_master_item[i]->set_text(master_text[i]);
         show_master_item[i]->setGeometry(master_text_xy[j], master_text_xy[j + 1], MASTER_TEXT_W, MASTER_TEXT_H);
-        show_master_item[i]->show();
+        show_master_item[i]->m_font_size = 20;
         j = j + 2;
     }
 
@@ -71,7 +71,7 @@ EleAccInfo_Page::EleAccInfo_Page(QWidget *parent) : Frame_Page(parent)
             show_sub_item[i][k] = new Show_text(this);
             show_sub_item[i][k]->set_text(sub_text[i][k]);
             show_sub_item[i][k]->setGeometry(sub_text_xy[j] + sub_text_x_offset[i], sub_text_xy[j + 1], SUB_TEXT_W, SUB_TEXT_H);
-            show_sub_item[i][k]->font.setPixelSize(20);
+            show_sub_item[i][k]->m_font_size = 16;
             show_sub_item[i][k]->show();
             j = j + 2;
         }
@@ -83,7 +83,7 @@ EleAccInfo_Page::EleAccInfo_Page(QWidget *parent) : Frame_Page(parent)
             show_sub_item[i][k] = new Show_text(this);
             show_sub_item[i][k]->set_text(sub_text_msg[i][k]);
             show_sub_item[i][k]->setGeometry(sub_text_xy[j] + sub_text_msg_off[i], sub_text_xy[j + 1], SUB_TEXT_W, SUB_TEXT_H);
-            show_sub_item[i][k]->font.setPixelSize(20);
+            show_sub_item[i][k]->m_font_size = 16;
             show_sub_item[i][k]->show();
             j = j + 2;
         }
@@ -95,5 +95,5 @@ void EleAccInfo_Page::paintEvent(QPaintEvent *)
     QPainter painter(this);
 
     painter.drawPixmap(0, 0, backimg, 0, 55, 800, 480);
-    painter.drawPixmap(8, 87, tableimg, 0, 0, 788, 360);
+    painter.drawPixmap(8, 50, tableimg, 0, 0, 788, 360);
 }

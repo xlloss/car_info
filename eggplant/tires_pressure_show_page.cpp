@@ -135,7 +135,7 @@ TiresPressShow_Page::TiresPressShow_Page(QWidget *parent) : Frame_Page(parent)
         tires_text_air[i]->set_text(tires_text_air_str[i]);
         tires_text_air[i]->m_text_x = 50;
         tires_text_air[i]->m_text_y = 25;
-        tires_text_air[i]->font.setPixelSize(18);
+        tires_text_air[i]->m_font_size = 18;
         tires_text_air[i]->font.setBold(0);
         tires_text_air[i]->setGeometry(tires_text_air_coord[j], tires_text_air_coord[j + 1], 150, 50);
         tires_text_air[i]->show();
@@ -148,7 +148,7 @@ TiresPressShow_Page::TiresPressShow_Page(QWidget *parent) : Frame_Page(parent)
         tires_value_air[i]->set_text(tires_value_air_default);
         tires_value_air[i]->m_text_x = 50;
         tires_value_air[i]->m_text_y = 25;
-        tires_value_air[i]->font.setPixelSize(18);
+        tires_value_air[i]->m_font_size = 18;
         tires_value_air[i]->font.setBold(0);
         tires_value_air[i]->setGeometry(tires_value_air_coord[j], tires_value_air_coord[j + 1], 150, 50);
         tires_value_air[i]->show();

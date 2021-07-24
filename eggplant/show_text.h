@@ -21,6 +21,7 @@ public:
     QColor text_color;
     int m_text_x;
     int m_text_y;
+    int m_font_size;
     void set_text(QString set_text);
     void load_image_bg(QString bg_name);
 

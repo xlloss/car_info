@@ -8,8 +8,8 @@ Show_text::Show_text(QWidget *parent) :
 {
     m_text_x = 0;
     m_text_y = 0;
+    m_font_size = 20;
     font.setBold(0);
-    font.setPointSize(30);
     font.setFamily("DroidSans");
     text_color = Qt::white;
 }
@@ -38,12 +38,11 @@ void Show_text::set_text(QString text)
 void Show_text::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    QFont usefont(font.family(), font.pointSize(), font.weight(), font.bold());
+    QFont usefont(font.family(), m_font_size, font.weight(), font.bold());
 
     if (!m_show_text.isNull()) {
         painter.setFont(usefont);
         painter.setPen(Qt::white);
         painter.drawText(m_text_x, m_text_y, m_show_text);
-        //painter.drawText(m_text_x, m_text_y, "法課王");
     }
 }

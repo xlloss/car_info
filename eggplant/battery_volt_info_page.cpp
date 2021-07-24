@@ -100,7 +100,7 @@ BatVoltInfo_Page::BatVoltInfo_Page(QWidget *parent) : Frame_Page(parent)
             show_sub_item[i][k]->set_text(batvoltinfo_sub_text[i][k]);
             show_sub_item[i][k]->setGeometry(batvoltinfo_sub_text_xy[j] + batvoltinfo_sub_text_x_offset[i],
                                              batvoltinfo_sub_text_xy[j + 1], SUB_TEXT_W, SUB_TEXT_H);
-            show_sub_item[i][k]->font.setPixelSize(20);
+            show_sub_item[i][k]->m_font_size = 20;
             show_sub_item[i][k]->show();
             j = j + 2;
         }
@@ -113,7 +113,7 @@ BatVoltInfo_Page::BatVoltInfo_Page(QWidget *parent) : Frame_Page(parent)
             show_sub_item[i][k]->set_text(batvoltinfo_sub_text_msg[i][k]);
             show_sub_item[i][k]->setGeometry(batvoltinfo_sub_text_xy[j] + batvoltinfo_sub_text_msg_off[i],
                                              batvoltinfo_sub_text_xy[j + 1], SUB_TEXT_W, SUB_TEXT_H);
-            show_sub_item[i][k]->font.setPixelSize(20);
+            show_sub_item[i][k]->m_font_size = 20;
             show_sub_item[i][k]->show();
             j = j + 2;
         }
