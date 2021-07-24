@@ -10,6 +10,19 @@ CONFIG += c++11
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
+#KIT = QTx86
+KIT = sunpluse
+
+contains(KIT, QTx86) {
+    LIBS += -L$$PWD/eggplantlib/ -lserial
+    INCLUDEPATH += $$PWD/eggplantlib
+    DEPENDPATH += $$PWD/eggplantlib
+}
+contains(KIT, sunpluse) {
+    LIBS += -L$$PWD/eggplantlib_sunpluse/ -lserial
+    INCLUDEPATH += $$PWD/eggplantlib_sunpluse
+    DEPENDPATH += $$PWD/eggplantlib_sunpluse
+}
 
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -91,15 +104,15 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     icon.qrc
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/eggplantlib/release/ -lserial
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/eggplantlib/debug/ -lserial
-else:unix: LIBS += -L$$PWD/eggplantlib/ -lserial
-
-INCLUDEPATH += $$PWD/eggplantlib
-DEPENDPATH += $$PWD/eggplantlib
-
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/eggplantlib/release/libserial.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/eggplantlib/debug/libserial.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/eggplantlib/release/serial.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/eggplantlib/debug/serial.lib
-else:unix: PRE_TARGETDEPS += $$PWD/eggplantlib/libserial.a
+#win32:CONFIG(release, debug|release): LIBS += -L$$PWD/eggplantlib/release/ -lserial
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/eggplantlib/debug/ -lserial
+#else:unix: LIBS += -L$$PWD/eggplantlib/ -lserial
+#
+#INCLUDEPATH += $$PWD/eggplantlib
+#DEPENDPATH += $$PWD/eggplantlib
+#
+#win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/eggplantlib/release/libserial.a
+#else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/eggplantlib/debug/libserial.a
+#else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/eggplantlib/release/serial.lib
+#else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/eggplantlib/debug/serial.lib
+#else:unix: PRE_TARGETDEPS += $$PWD/eggplantlib/libserial.a

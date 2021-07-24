@@ -9,13 +9,14 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
 {
     int i;
     QString btn_name;
-    QTextCodec *codec;
-
-    //QTextCodec::setCodecForCStrings(codec);
-    //QTextCodec::setCodecForTr(codec);
+    QPalette palette;
 
     this->setObjectName("Main_Page");
-
+    backimg.load(":/icon/main_page_bg.png");
+    this->setGeometry(0, 55, 800, 480);
+    //palette.setBrush(QPalette::Background, bg_img);
+    palette.setColor(QPalette::Background, Qt::black);
+    this->setPalette(palette);
     for (i = 0; i < 5; i++) {
         btn[i] = new Icon_btn(this);
         btn[i]->setObjectName(main_page_str[i]);
@@ -40,9 +41,18 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
 
         btn[i + 5]->set_text(btn_name);
     }
-
-    backimg.load(":/icon/main_page_bg.png");
+    m_load_background_img = 0;
 }
+
+void Main_Page::LoadBackground()
+{
+    backimg.load(":/icon/main_page_bg.png");
+
+    QPalette palette;
+    palette.setColor(QPalette::Background, Qt::black);
+    m_load_background_img = 1;
+}
+
 
 void Main_Page::Enable_Icon_Light(int i)
 {
@@ -54,11 +64,15 @@ void Main_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     QFont font("DroidSans", 22);
+    //if (m_load_background_img) {
+    //    //painter.setBrush(QBrush(Qt::black));
+    //    painter.setFont(font);
+    //    painter.drawPixmap(0, 0, backimg, 0, 55, 800, 480 - 55);
+    //}
 
-
-    painter.drawPixmap(0, 0, backimg, 0, 55, 800, 480);
-    //painter.drawImage(190, 80, image_car_bus);
-
+//    painter.setBrush(QBrush(Qt::black));
+//    painter.setBrush(QBrush(Qt::red));
+//    qDebug("Main_Page %s", __func__);
     painter.setFont(font);
-    painter.drawText(0, 100, "測試123");
+    painter.drawPixmap(0, 0, backimg, 0, 55, 800, 480);
 }

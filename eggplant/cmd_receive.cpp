@@ -1,6 +1,10 @@
 #include "cmd_receive.h"
 #include <QDebug>
 
+#define HEAD1 0x11
+#define HEAD2 0x22
+#define HEAD3 0x33
+#define HEAD4 0x44
 
 WorkThread::WorkThread(QObject *parent, bool b) :
     QThread(parent), Stop(b)
@@ -8,16 +12,12 @@ WorkThread::WorkThread(QObject *parent, bool b) :
     int ret;
 
     serialport = new Serial_Port();
-    ret = serialport->Serial_Port_Open("/dev/ttyUSB1", 9600);
+    ret = serialport->Serial_Port_Open("/dev/ttyS3", 9600);
     if (ret)
         qDebug("Serial_Port_Open fail\n");
 
 }
 
-#define HEAD1 0x11
-#define HEAD2 0x22
-#define HEAD3 0x33
-#define HEAD4 0x44
 void WorkThread::run()
 {
     QByteArray rdata, cmdbuf;
@@ -27,7 +27,9 @@ void WorkThread::run()
 
         serialport->Serial_Port_Read(&rdata);
         if (rdata.size() != 0) {
-
+            qDebug("Serial Buf is come in %s %d\n", __func__, __LINE__);
+            //qDebug("Serial Buf is %s %d rdata %s\n", __func__, __LINE__, rdata.data());
+            //qDebug("Serial Buf have data %s %d\n", __func__, __LINE__);
             getcmd = new Cmd_Buf;
             getcmd->buf_sz = rdata.size();
             memcpy(getcmd->buf, rdata.data(), rdata.size());
@@ -35,9 +37,10 @@ void WorkThread::run()
 
             rdata.clear();
             rdata.resize(0);
-        } else {
-            qDebug("Serial Buf is empy %s %d\n", __func__, __LINE__);
         }
+        //else {
+        //    qDebug("Serial Buf is empy %s %d\n", __func__, __LINE__);
+        //}
 
         msleep(10);
     };
@@ -119,6 +122,7 @@ Cmd_Receive::Cmd_Receive(QObject *parent) : QObject(parent)
 {
     mThread = new WorkThread(this);
     mPage_ctl_thread = new PageCtl_Thread(this);
+
     mThread->start();
     mPage_ctl_thread->start();
     current_page = "Home_Page";
@@ -144,7 +148,7 @@ int Cmd_Receive::Find_Frame(QString objname)
     for (i = 0; i < list_cnt; i++) {
         frameage = page_list.at(i);
         ret = objname.compare(frameage->objectName());
-        qDebug() << "find frameage->objectName()" << frameage->objectName();
+        //qDebug() << "find frameage->objectName()" << frameage->objectName();
         if (!ret)
             break;
     }
@@ -159,8 +163,9 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
 {
     class Frame_Page *show_framepage;
     class Frame_Page *close_framepage;
+    class Frame_Page *bar_framepage;
 
-    int i, j;
+    int i, j, k;
 
     i = Find_Frame(show_objname);
     if (i < 0) {
@@ -178,13 +183,36 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
     close_framepage = page_list.at(j);
     qDebug() << "close frame page objname=" <<close_framepage->objectName();
 
-    show_framepage->show();
-    close_framepage->close();
+    k = Find_Frame("BarFrame");
+    if (j < 0) {
+        qDebug("can't find any BarFrame page\n");
+        return;
+    }
+    bar_framepage = page_list.at(k);
 
-    //this->connect(this, SIGNAL(set_show_page()), show_framepage, SLOT(show()));
-    //emit set_show_page();
-    //this->connect(this, SIGNAL(set_close_page()), close_framepage, SLOT(close()));
-    //emit set_close_page();
+
+//    show_framepage->setWindowFlags(Qt::WindowStaysOnTopHint);
+//    show_framepage->setWindowState(Qt::WindowActive);
+//    show_framepage->show();
+
+
+    close_framepage->setWindowState(Qt::WindowNoState);
+    close_framepage->close();
+//    show_framepage->update();
+
+    //bar_framepage->setWindowFlags(Qt::WindowStaysOnTopHint);
+    bar_framepage->update();
+
+    show_framepage->setWindowFlags(Qt::WindowStaysOnTopHint);
+    show_framepage->setGeometry(0, 0, 800, 480 - 55);
+    show_framepage->show();
+
+
+
+//    this->connect(this, SIGNAL(set_show_page()), show_framepage, SLOT(show()));
+//    emit set_show_page();
+//    this->connect(this, SIGNAL(set_close_page()), close_framepage, SLOT(close()));
+//    emit set_close_page();
 
     current_page = show_objname;
 }
@@ -197,7 +225,7 @@ void Cmd_Receive::Triger_Page(CarInfo_Data *carinfo_data)
                         "TimeAdjust_Page", "ScreenVolumeAdjust_Page", "EleAccInfo_Page",
                         "ControlMsg1_Page", "ControlMsg2_Page", "BatTempInfo_Page", "BatVoltInfo_Page",
                         "TempModule_Page", "SatOutMsg_Page", "SatInMsg_Page", "SwVersion_Page",
-                        "SlaveSatMsg_Page", "Bcm_Page", "TiresPressShow_Page"
+                        "SlaveSatMsg_Page", "Bcm_Page", "TiresPressShow_Page","BarFrame",
                         };
 
     Frame_Page_Show(objname[pcarinfo_data->page_number]);

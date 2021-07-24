@@ -101,8 +101,8 @@ void Mile_Page::paintEvent(QPaintEvent *)
     QPainter painter(this);
     int i;
 
-    painter.setBrush(QBrush(Qt::black));
-    painter.drawPixmap(0, 0, backimg, 0, 55, 800, 480);
+    //painter.setBrush(QBrush(Qt::black));
+    painter.drawPixmap(0, 0, backimg, 0, 55, 800, 480 - 55);
     painter.drawPixmap(8, 30, backimg2, 0, 0, 788, 360);
 
     for (i = 0; i < 8; i++)

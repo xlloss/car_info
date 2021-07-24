@@ -25,6 +25,8 @@ Icon_btn::~Icon_btn()
 
 void Icon_btn::load_image_bg(QString bg_name)
 {
+    qDebug("Icon_btn::load_image_bg");
+
     QPalette palette;
     bg_img.load(bg_name);
     width = bg_img.width();
@@ -37,6 +39,8 @@ void Icon_btn::load_image_bg(QString bg_name)
 
 void Icon_btn::load_image_ft(QString ft_dark_name, QString ft_light_name)
 {
+    qDebug("Icon_btn::load_image_ft");
+
     if (ft_img_dark.load(ft_dark_name) == false) {
         qDebug("ft_dark load fail");
         return;
@@ -74,7 +78,7 @@ void Icon_btn::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     QFont usefont(font.family(), font.pointSize(), font.weight(), font.bold());
-
+    qDebug("Icon_btn::paintEvent");
     painter.drawImage(0, 0, ft_img);
 
     if (!m_set_text.isNull()) {

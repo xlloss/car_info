@@ -17,12 +17,15 @@ public:
     ~Frame_Page();
     Icon_btn *icon_id[50];
     void Enable_Icon_Light(int i);
-
+    void Load_Background(QString image);
 private slots:
 
+protected:
+    void paintEvent(QPaintEvent *);
 
 private:
     Ui::Frame_Page *ui;
+    QPixmap backimg;
 };
 
 #endif // FRAME_PAGE_H

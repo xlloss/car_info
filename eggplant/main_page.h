@@ -29,7 +29,8 @@ public:
     //QPushButton *btn[10];
     Icon_btn *btn[10];
     QPixmap backimg;
-
+    void LoadBackground();
+    int m_load_background_img;
 private slots:
     void Enable_Icon_Light(int i);
 
