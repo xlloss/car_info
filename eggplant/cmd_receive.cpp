@@ -188,25 +188,12 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
         qDebug("can't find any BarFrame page\n");
         return;
     }
-    bar_framepage = page_list.at(k);
 
-
-//    show_framepage->setWindowFlags(Qt::WindowStaysOnTopHint);
-//    show_framepage->setWindowState(Qt::WindowActive);
-//    show_framepage->show();
-
-
-    close_framepage->setWindowState(Qt::WindowNoState);
-    close_framepage->close();
-//    show_framepage->update();
-
-    //bar_framepage->setWindowFlags(Qt::WindowStaysOnTopHint);
-    bar_framepage->update();
 
     show_framepage->setWindowFlags(Qt::WindowStaysOnTopHint);
     show_framepage->setGeometry(0, 0, 800, 480 - 55);
     show_framepage->show();
-
+    close_framepage->close();
 
 
 //    this->connect(this, SIGNAL(set_show_page()), show_framepage, SLOT(show()));

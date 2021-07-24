@@ -1,20 +1,21 @@
 #include "car_inout_temp_page.h"
 #include <QPainter>
+#include "string/string.h"
 
-QString item_text[3] = {"車內溫度:", "車外溫度:", "設備倉溫:"};
-QString item_text_child[3] = {"000°C", "000°C", "000°C"};
+QString item_text[3] = {CAR_INOUT_TEX_ID0, CAR_INOUT_TEX_ID1, CAR_INOUT_TEX_ID2};
+QString item_text_child[3] = {CAR_INOUT_TEX_SAMPLE, CAR_INOUT_TEX_SAMPLE, CAR_INOUT_TEX_SAMPLE};
 
 
 int item_text_xy[6] = {
-    30 , 320,
-    290, 320,
-    550, 320,
+    CAR_INOUT_TEX_ID0_X , CAR_INOUT_TEX_ID0_Y,
+    CAR_INOUT_TEX_ID1_X , CAR_INOUT_TEX_ID1_Y,
+    CAR_INOUT_TEX_ID2_X , CAR_INOUT_TEX_ID2_Y,
 };
 
 int item_text_child_xy[6] = {
-    170 , 320,
-    430, 320,
-    690, 320,
+    CAR_INOUT_CHILD_TEX_ID0_X, CAR_INOUT_CHILD_TEX_ID0_Y,
+    CAR_INOUT_CHILD_TEX_ID1_X, CAR_INOUT_CHILD_TEX_ID1_Y,
+    CAR_INOUT_CHILD_TEX_ID2_X, CAR_INOUT_CHILD_TEX_ID2_Y,
 };
 
 CarInOut_Page::CarInOut_Page(QWidget *parent) : Frame_Page(parent)
@@ -52,7 +53,8 @@ void CarInOut_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
-    painter.drawPixmap(0, 0, backimg, 0, 55, 800, 480);
+    painter.drawPixmap(0, 0, backimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+                       GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
     painter.setBrush(QBrush(Qt::black));
     painter.drawImage(0, 60, image_car_bus);
     painter.drawImage(5, 270, image_table);

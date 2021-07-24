@@ -43,9 +43,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     page_ctl->home_page->setWindowState(Qt::WindowActive);
     page_ctl->home_page->show();
-
-
-
 }
 
 MainWindow::~MainWindow()

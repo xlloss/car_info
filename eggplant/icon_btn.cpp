@@ -5,10 +5,10 @@
 Icon_btn::Icon_btn(QWidget *parent) :
     QWidget(parent)
 {
-    l_scale_sz_w = ICON_SCALE_SIZ_W;
-    l_scale_sz_h = ICON_SCALE_SIZ_H;
-    d_scale_sz_w = ICON_SCALE_SIZ_W;
-    d_scale_sz_h = ICON_SCALE_SIZ_H;
+    l_scale_sz_w = CARGEAR_ICON_SCALE_SIZ_W;
+    l_scale_sz_h = CARGEAR_ICON_SCALE_SIZ_H;
+    d_scale_sz_w = CARGEAR_ICON_SCALE_SIZ_W;
+    d_scale_sz_h = CARGEAR_ICON_SCALE_SIZ_H;
     m_set_text_x = 0;
     m_set_text_x = 0;
     enable_scale = 1;

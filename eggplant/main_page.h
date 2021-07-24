@@ -3,9 +3,14 @@
 
 #include <QMainWindow>
 #include <QImage>
+#include <QPushButton>
 #include "frame_page.h"
 #include "icon_btn.h"
-#include <QPushButton>
+
+
+#define MAIN_PAGE_OBJNAME "Main_Page"
+#define MAIN_PAGE_BACKGROUND ":/icon/main_page_bg.png"
+#define MAIN_PAGE_BUS ":/icon/bus-bg.png"
 
 #define BTN_LEFT_X 100
 #define BTN_LEFT_Y 35

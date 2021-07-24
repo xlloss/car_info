@@ -24,7 +24,6 @@
 #define ID_STR_IMG_6 ID_R_2
 #define ID_STR_IMG_7 ID_R_3
 
-
 class Mile_Page : public Frame_Page
 {
 Q_OBJECT

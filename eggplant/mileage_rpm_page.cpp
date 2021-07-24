@@ -1,6 +1,8 @@
 #include "home_page.h"
 #include <QPainter>
 #include <mileage_rpm_page.h>
+#include "coordinate.h"
+#include "string/string.h"
 
 QString str_img_id[8] = {
     {ID_STR_IMG_0},
@@ -14,51 +16,51 @@ QString str_img_id[8] = {
 };
 
 int str_img_xy[8][2] = {
-    {150, 45, },    //ID_STR_IMG_0
-    {20, 110, },    //ID_STR_IMG_1
-    {30, 170, },    //ID_STR_IMG_2
-    {25, 270, },    //ID_STR_IMG_3
+    {RPM_STR_IMG_ID_0_X, RPM_STR_IMG_ID_0_Y, },    //ID_STR_IMG_0
+    {RPM_STR_IMG_ID_1_X, RPM_STR_IMG_ID_1_Y, },    //ID_STR_IMG_1
+    {RPM_STR_IMG_ID_2_X, RPM_STR_IMG_ID_2_Y, },    //ID_STR_IMG_2
+    {RPM_STR_IMG_ID_3_X, RPM_STR_IMG_ID_3_Y, },    //ID_STR_IMG_3
 
-    {550, 45,},    //ID_STR_IMG_4
-    {430, 110,},    //ID_STR_IMG_5
-    {430, 170,},    //ID_STR_IMG_6
-    {430, 270,},    //ID_STR_IMG_7
+    {RPM_STR_IMG_ID_4_X, RPM_STR_IMG_ID_4_Y,},    //ID_STR_IMG_4
+    {RPM_STR_IMG_ID_5_X, RPM_STR_IMG_ID_5_Y,},    //ID_STR_IMG_5
+    {RPM_STR_IMG_ID_6_X, RPM_STR_IMG_ID_6_Y,},    //ID_STR_IMG_6
+    {RPM_STR_IMG_ID_7_X, RPM_STR_IMG_ID_7_Y,},    //ID_STR_IMG_7
 };
 
 int btn_img_xy[8] = {
-    230, 200,
-    230, 300,
-    650, 200,
-    650, 300,
+    RPM_BTN_IMG_ID0_X, RPM_BTN_IMG_ID0_Y,
+    RPM_BTN_IMG_ID1_X, RPM_BTN_IMG_ID1_Y,
+    RPM_BTN_IMG_ID2_X, RPM_BTN_IMG_ID2_Y,
+    RPM_BTN_IMG_ID3_X, RPM_BTN_IMG_ID3_Y,
 };
 
 int show_text_xy[12] = {
-    140, 115,
-    40, 215,
-    40, 315,
+    RPM_TEX_ID0_X, RPM_TEX_ID0_Y,
+    RPM_TEX_ID1_X, RPM_TEX_ID1_Y,
+    RPM_TEX_ID2_X, RPM_TEX_ID2_Y,
 
-    580, 115,
-    430, 215,
-    430, 315,
+    RPM_TEX_ID3_X, RPM_TEX_ID3_Y,
+    RPM_TEX_ID4_X, RPM_TEX_ID4_Y,
+    RPM_TEX_ID5_X, RPM_TEX_ID5_Y,
 };
 
+
+
 QString show_text_default[6] = {
-    "012345678Km",
-    "0000.2Km",
-    "0204.9Km",
-    "000002040Kr",
-    "000000002h",
-    "100000002h"
+    RPM_DAMPLE_STR_ID0,
+    RPM_DAMPLE_STR_ID1,
+    RPM_DAMPLE_STR_ID2,
+    RPM_DAMPLE_STR_ID3,
+    RPM_DAMPLE_STR_ID4,
+    RPM_DAMPLE_STR_ID5,
 };
 
 QString rpm_page_btn_objname[4] = {
-    "set_zero_0",
-    "set_zero_0",
-    "set_zero_1",
-    "set_zero_2",
+    RPM_SAMPLE_BTN_OBJ_ID0
+    RPM_SAMPLE_BTN_OBJ_ID1
+    RPM_SAMPLE_BTN_OBJ_ID2
+    RPM_SAMPLE_BTN_OBJ_ID3
 };
-
-QString rpm_page_btn_name = "歸零";
 
 Mile_Page::Mile_Page(QWidget *parent) : Frame_Page(parent)
 {
@@ -81,7 +83,7 @@ Mile_Page::Mile_Page(QWidget *parent) : Frame_Page(parent)
         btn[i]->load_image_ft(":/icon/rpm_btn.png", ":/icon/rpm_btn_press.png");
         btn[i]->setGeometry(btn_img_xy[j], btn_img_xy[j + 1], 120, 40);
 
-        btn[i]->set_text(rpm_page_btn_name);
+        btn[i]->set_text(RPM_PAGE_BTN_NAME);
         btn[i]->m_set_text_y = 30;
         j = j + 2;
     }
@@ -101,10 +103,11 @@ void Mile_Page::paintEvent(QPaintEvent *)
     QPainter painter(this);
     int i;
 
-    //painter.setBrush(QBrush(Qt::black));
-    painter.drawPixmap(0, 0, backimg, 0, 55, 800, 480 - 55);
-    painter.drawPixmap(8, 30, backimg2, 0, 0, 788, 360);
+    painter.drawPixmap(0, 0, backimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+                       GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
+    painter.drawPixmap(8, 30, backimg2, MILERPM_BACKIMAGE_X, MILERPM_BACKIMAGE_Y,
+                       MILERPM_BACKIMAGE_W, MILERPM_BACKIMAGE_H);
 
-    for (i = 0; i < 8; i++)
+    for (i = 0; i < RPM_STR_IMG_NUM; i++)
         painter.drawImage(str_img_xy[i][0], str_img_xy[i][1], str_img[i]);
 }

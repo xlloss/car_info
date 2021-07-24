@@ -3,14 +3,12 @@
 
 #include <QWidget>
 #include <QImage>
+#include "coordinate.h"
 
 namespace Ui {
 class Icon_btn;
 }
 
-
-#define ICON_SCALE_SIZ_W 50
-#define ICON_SCALE_SIZ_H 60
 
 class Icon_btn : public QWidget
 {

@@ -66,6 +66,7 @@ HEADERS += \
     cmd_receive.h \
     control_msg1_page.h \
     control_msg2_page.h \
+    coordinate.h \
     eai_page.h \
     frame_page.h \
     home_page.h \
@@ -77,8 +78,8 @@ HEADERS += \
     screen_volume_adjust_page.h \
     serial_port.h \
     show_text.h \
+    string/string.h \
     temp_module_page.h \
-    string/main_string.h \
     time_adjust_page.h \
     slave_sat_out_msg_page.h \
     slave_sat_in_msg_page.h \

@@ -5,6 +5,10 @@
 #include <QImage>
 #include "frame_page.h"
 
+#define HOME_PAGE_OBJNAME "Home_Page"
+#define HOME_PAGE_BACKGROUND ":/icon/background.png"
+#define HOME_PAGE_BUS ":/icon/bus-bg.png"
+
 
 class Home_Page : public Frame_Page
 {

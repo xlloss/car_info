@@ -1,13 +1,14 @@
 #include "home_page.h"
 #include <QPainter>
-
+#include "coordinate.h"
+#include "string/string.h"
 
 Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
 {
-    this->setObjectName("Home_Page");
+    this->setObjectName(HOME_PAGE_OBJNAME);
 
-    backimg.load(":/icon/background.png");
-    if (image_car_bus.load(":/icon/bus-bg.png") == false) {
+    backimg.load(HOME_PAGE_BACKGROUND);
+    if (image_car_bus.load(HOME_PAGE_BUS) == false) {
         qDebug("image_car_bus load fail");
         return;
     }
@@ -16,6 +17,10 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
 void Home_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.drawPixmap(0, 0, backimg, 0, 55, 800, 480);
-    painter.drawImage(190, 80, image_car_bus);
+
+    painter.drawPixmap(0, 0, backimg,
+                       GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+                       GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
+
+    painter.drawImage(HOME_CARBUS_IMG_X, HOME_CARBUS_IMG_Y, image_car_bus);
 }
