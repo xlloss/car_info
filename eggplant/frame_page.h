@@ -21,11 +21,10 @@ public:
 private slots:
 
 protected:
-//    void paintEvent(QPaintEvent *);
+    QPixmap bgimg;
 
 private:
     Ui::Frame_Page *ui;
-    QPixmap backimg;
 };
 
 #endif // FRAME_PAGE_H

@@ -10,7 +10,7 @@ ScreenVolumeAdjust_Page::ScreenVolumeAdjust_Page(QWidget *parent) : Frame_Page(p
 {
     this->setObjectName(VOL_ADJ_OBJNAME);
 
-    backimg.load(VOL_ADJ_BG_IMG);
+    bgimg.load(VOL_ADJ_BG_IMG);
 
     show_volume_text = new Show_text(this);
     show_volume_text->set_text(VOLUME_TEXT);
@@ -29,7 +29,7 @@ void ScreenVolumeAdjust_Page::paintEvent(QPaintEvent *)
     QPainter painter(this);
     int i;
 
-    painter.drawPixmap(0, 0, backimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+    painter.drawPixmap(0, 0, bgimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 
     painter.setBrush(QBrush(QColor(0, 245, 245)));

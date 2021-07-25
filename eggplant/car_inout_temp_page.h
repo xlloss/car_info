@@ -20,9 +20,8 @@ public:
 
     QImage image_car_bus;
     QImage image_table;
-    QPixmap backimg;
-    Show_text *show_item[3];
-    Show_text *show_item_child[3];
+    Show_text *show_item[CAR_INOUT_TEX_NUM];
+    Show_text *show_item_child[CAR_INOUT_CHILD_TEX_NUM];
 
 protected:
     void paintEvent(QPaintEvent *);

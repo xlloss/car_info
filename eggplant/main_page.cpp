@@ -23,7 +23,7 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
     };
 
     this->setObjectName(MAIN_PAGE_OBJNAME);
-    backimg.load(MAIN_PAGE_BACKGROUND);
+    bgimg.load(MAIN_PAGE_BACKGROUND);
     this->setGeometry(GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                       GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 
@@ -55,7 +55,7 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
 
 void Main_Page::LoadBackground()
 {
-    backimg.load(":/icon/main_page_bg.png");
+    bgimg.load(":/icon/main_page_bg.png");
 
     QPalette palette;
     palette.setColor(QPalette::Background, Qt::black);
@@ -74,6 +74,6 @@ void Main_Page::paintEvent(QPaintEvent *)
     QPainter painter(this);
     QFont font("DroidSans", 22);
     painter.setFont(font);
-    painter.drawPixmap(0, 0, backimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+    painter.drawPixmap(0, 0, bgimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 }

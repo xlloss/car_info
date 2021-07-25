@@ -21,11 +21,10 @@ Q_OBJECT
 public:
     explicit BatTempInfo_Page(QWidget *parent = nullptr);
 
-    QPixmap backimg;
     QPixmap tableimg;
-    Show_text *show_master_item[1];
-    Show_text *show_sub_item[6][4];
-    Show_text *show_sub_item_info[6][4];
+    Show_text *show_master_item[BATTINFO_MAS_NUM];
+    Show_text *show_sub_item[BATTINFO_TEX_COL_NUM][BATTINFO_TEX_ROW_NUM];
+    Show_text *show_sub_item_info[BATTINFO_TEX_COL_NUM][BATTINFO_TEX_ROW_NUM];
 
 protected:
     void paintEvent(QPaintEvent *);

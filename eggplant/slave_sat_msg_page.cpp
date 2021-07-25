@@ -11,7 +11,7 @@ SlaveSatMsg_Page::SlaveSatMsg_Page(QWidget *parent) : Frame_Page(parent)
 
     this->setObjectName("SlaveSatMsg_Page");
 
-    backimg.load(":/icon/rpm_page_bg.png");
+    bgimg.load(":/icon/rpm_page_bg.png");
     frameimg.load(":/icon/slave_msg_frame.png");
 
     for (i = 0; i < 8; i++) {
@@ -62,6 +62,7 @@ void SlaveSatMsg_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
-    painter.drawPixmap(0, 0, backimg, 0, 55, 800, 480);
+    painter.drawPixmap(0, 0, bgimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+                       GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
     painter.drawPixmap(5, 20, frameimg, 0, 0, 788, 369);
 }

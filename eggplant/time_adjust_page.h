@@ -20,7 +20,6 @@ Q_OBJECT
 public:
     explicit TimeAdjust_Page(QWidget *parent = nullptr);
 
-    QPixmap backimg;
     Show_text *show_item[TIME_ADJ_TEX_TITLE_NUM];
     Show_text *show_item_child[TIME_ADJ_CHILD_TEX_TIME_NUM];
 

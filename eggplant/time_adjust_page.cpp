@@ -44,7 +44,7 @@ TimeAdjust_Page::TimeAdjust_Page(QWidget *parent) : Frame_Page(parent)
     this->setObjectName(TIME_ADJ_OBJNAME);
     int i, j;
 
-    backimg.load(TIME_ADJ_BG_IMG);
+    bgimg.load(TIME_ADJ_BG_IMG);
 
     j = 0;
     for (i = 0; i < TIME_ADJ_TEX_TITLE_NUM / 2; i++) {
@@ -79,7 +79,7 @@ void TimeAdjust_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
-    painter.drawPixmap(0, 0, backimg,
+    painter.drawPixmap(0, 0, bgimg,
                        GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 }

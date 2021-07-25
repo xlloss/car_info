@@ -65,7 +65,7 @@ BatVoltInfo_Page::BatVoltInfo_Page(QWidget *parent) : Frame_Page(parent)
     this->setObjectName(BATTVAL_OBJNAME);
     int i, j, k;
 
-    backimg.load(BATTVAL_BG_IMG);
+    bgimg.load(BATTVAL_BG_IMG);
     tableimg.load(BATTVAL_FM_IMG);
 
     j = 0;
@@ -88,13 +88,13 @@ BatVoltInfo_Page::BatVoltInfo_Page(QWidget *parent) : Frame_Page(parent)
                                              batvoltinfo_sub_text_xy[j + 1], BATVOL_SUB_TEXT_W, BATVOL_SUB_TEXT_H);
             show_sub_item[i][k]->m_font_size = BATTVAL_TEX_FONT_SIZE;
             show_sub_item[i][k]->show();
-            j = j + 2;
-        }
-    }
-
-    j = 0;
-    for (i = 0; i < BATTVAL_TEX_COL_NUM; i++) {
-        for (k = 0; k < BATTVAL_TEX_ROW_NUM; k++) {
+//            j = j + 2;
+//        }
+//    }
+//
+//    j = 0;
+//    for (i = 0; i < BATTVAL_TEX_COL_NUM; i++) {
+//        for (k = 0; k < BATTVAL_TEX_ROW_NUM; k++) {
             show_sub_item[i][k] = new Show_text(this);
             show_sub_item[i][k]->set_text(batvoltinfo_sub_text_msg[i][k]);
             show_sub_item[i][k]->setGeometry(batvoltinfo_sub_text_xy[j] + batvoltinfo_sub_text_msg_off[i],
@@ -111,7 +111,7 @@ void BatVoltInfo_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
-    painter.drawPixmap(0, 0, backimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+    painter.drawPixmap(0, 0, bgimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 
     painter.drawPixmap(8, 20, tableimg, 0, 0, 788, 385);

@@ -36,7 +36,7 @@ SwVersion_Page::SwVersion_Page(QWidget *parent) : Frame_Page(parent)
     this->setObjectName(SWVER_OBJNAME);
     int i, j, k;
 
-    backimg.load(SWVER_BG_IMG);
+    bgimg.load(SWVER_BG_IMG);
     tableimg.load(SWVER_FM_IMG);
 
     for (i = 0; i < SW_VER_SUB_TEX_COL_NUM; i++) {
@@ -48,13 +48,7 @@ SwVersion_Page::SwVersion_Page(QWidget *parent) : Frame_Page(parent)
                                              sw_version_sub_text_xy[j + 1], SWVER_SUB_TEX_W, SWVER_SUB_TEX_H);
             show_sub_item[i][k]->font.setPixelSize(20);
             show_sub_item[i][k]->show();
-            j = j + 2;
-        }
-    }
 
-    for (i = 0; i < SW_VER_SUB_TEX_COL_NUM; i++) {
-        j = 0;
-        for (k = 0; k < SW_VER_SUB_TEX_ROW_NUM; k++) {
             show_sub_item[i][k] = new Show_text(this);
             show_sub_item[i][k]->set_text(sw_version_sub_text_msg[i]);
             show_sub_item[i][k]->setGeometry(sw_version_sub_text_xy[j] + sw_version_sub_text_msg_off[i],
@@ -70,7 +64,7 @@ void SwVersion_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
-    painter.drawPixmap(0, 0, backimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+    painter.drawPixmap(0, 0, bgimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 
     painter.drawPixmap(5, 20, tableimg, 0, 0, 788, 380);

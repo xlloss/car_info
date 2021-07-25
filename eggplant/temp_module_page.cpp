@@ -42,7 +42,7 @@ TempModule_Page::TempModule_Page(QWidget *parent) : Frame_Page(parent)
     this->setObjectName(TEMP_MOD_OBJNAME);
     int i, j, k;
 
-    backimg.load(TEMP_MOD_BG_IMG);
+    bgimg.load(TEMP_MOD_BG_IMG);
     tableimg.load(TEMP_MOD_FM_IMG);
 
     for (i = 0; i < TEMP_MAS_ITEM_NUM; i++) {
@@ -76,7 +76,7 @@ void TempModule_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
-    painter.drawPixmap(0, 0, backimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+    painter.drawPixmap(0, 0, bgimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 
     painter.drawPixmap(5, 20, tableimg, 0, 0, 788, 380);

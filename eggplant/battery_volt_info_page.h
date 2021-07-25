@@ -21,11 +21,10 @@ Q_OBJECT
 public:
     explicit BatVoltInfo_Page(QWidget *parent = nullptr);
 
-    QPixmap backimg;
     QPixmap tableimg;
-    Show_text *show_master_item[1];
-    Show_text *show_sub_item[6][4];
-    Show_text *show_sub_item_info[6][4];
+    Show_text *show_master_item[BATTVAL_MAS_NUM];
+    Show_text *show_sub_item[BATTVAL_TEX_COL_NUM][BATTVAL_TEX_ROW_NUM];
+    Show_text *show_sub_item_info[BATTVAL_TEX_COL_NUM][BATTVAL_TEX_ROW_NUM];
 
 protected:
     void paintEvent(QPaintEvent *);

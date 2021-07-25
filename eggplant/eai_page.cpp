@@ -78,14 +78,14 @@ EleAccInfo_Page::EleAccInfo_Page(QWidget *parent) : Frame_Page(parent)
                     EAI_SUB_TEXT_W, EAI_SUB_TEXT_H);
             show_sub_item[i][k]->m_font_size = RAI_FONT2_SIZE;
             show_sub_item[i][k]->show();
-            j = j + 2;
-        }
-    }
-
-    /* content value */
-    for (i = 0; i < EAI_MAS_TEX_NUM; i++) {
-        j = 0;
-        for (k = 0; k < EAI_SUB_TEX_NUM; k++) {
+//            j = j + 2;
+//        }
+//    }
+//
+//    /* content value */
+//    for (i = 0; i < EAI_MAS_TEX_NUM; i++) {
+//        j = 0;
+//        for (k = 0; k < EAI_SUB_TEX_NUM; k++) {
             show_sub_item[i][k] = new Show_text(this);
             show_sub_item[i][k]->set_text(sub_text_msg[i][k]);
             show_sub_item[i][k]->setGeometry(sub_text_xy[j] + sub_text_msg_off[i], sub_text_xy[j + 1],

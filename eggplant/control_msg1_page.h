@@ -21,11 +21,10 @@ Q_OBJECT
 public:
     explicit ControlMsg1_Page(QWidget *parent = nullptr);
 
-    QPixmap backimg;
     QPixmap tableimg;
-    Show_text *show_master_item[2];
-    Show_text *show_sub_item[3][6];
-    Show_text *show_sub_item_info[3][6];
+    Show_text *show_master_item[CONTROL1_MSA_TEX_NUM];
+    Show_text *show_sub_item[CONTROL1_SUB_TEX_COL_NUM][CONTROL1_SUB_TEX_ROW_NUM];
+    Show_text *show_sub_item_info[CONTROL1_SUB_TEX_COL_NUM][CONTROL1_SUB_TEX_ROW_NUM];
 
 protected:
     void paintEvent(QPaintEvent *);

@@ -41,7 +41,6 @@ class Mile_Page : public Frame_Page
 Q_OBJECT
 public:
     explicit Mile_Page(QWidget *parent = nullptr);
-    QPixmap backimg;
     QPixmap backimg2;
     QImage str_img[8];
     Icon_btn *btn[4];

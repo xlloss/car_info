@@ -20,7 +20,6 @@ Q_OBJECT
 public:
     explicit SwVersion_Page(QWidget *parent = nullptr);
 
-    QPixmap backimg;
     QPixmap tableimg;
     Show_text *show_sub_item[2][10];
     Show_text *show_sub_item_info[2][10];

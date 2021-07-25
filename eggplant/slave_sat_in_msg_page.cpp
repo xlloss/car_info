@@ -34,7 +34,7 @@ SatInMsg_Page::SatInMsg_Page(QWidget *parent) : Frame_Page(parent)
     this->setObjectName(SATIN_OBJNAME);
     int i, j, k;
 
-    backimg.load(SATIN_BG_IMG);
+    bgimg.load(SATIN_BG_IMG);
     tableimg.load(SATIN_FM_IMG);
 
     for (i = 0; i < SATIN_SUB_ITEM_COL_NUM; i++) {
@@ -62,7 +62,7 @@ void SatInMsg_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
-    painter.drawPixmap(0, 0, backimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+    painter.drawPixmap(0, 0, bgimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 
     painter.drawPixmap(5, 20, tableimg, 0, 0, 788, 380);

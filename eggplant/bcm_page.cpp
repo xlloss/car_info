@@ -34,7 +34,7 @@ Bcm_Page::Bcm_Page(QWidget *parent) : Frame_Page(parent)
 
     this->setObjectName("Bcm_Page");
 
-    backimg.load(":/icon/rpm_page_bg.png");
+    bgimg.load(":/icon/rpm_page_bg.png");
     frame_img.load(":/icon/slave_msg_frame.png");
 
     j = 0;
@@ -78,7 +78,7 @@ void Bcm_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
-    painter.drawPixmap(0, 0, backimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+    painter.drawPixmap(0, 0, bgimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 
     painter.drawPixmap(5, 20, frame_img, 0, 0, 788, 369);

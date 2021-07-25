@@ -17,7 +17,6 @@ Q_OBJECT
 public:
     explicit ScreenVolumeAdjust_Page(QWidget *parent = nullptr);
 
-    QPixmap backimg;
     Show_text *show_volume_text;
     Show_text *show_volume_val;
 

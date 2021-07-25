@@ -2,6 +2,7 @@
 #include "ui_frame_page.h"
 #include <QDebug>
 #include <QPainter>
+#include "coordinate.h"
 
 Frame_Page::Frame_Page(QWidget *parent) :
     QFrame(parent),
@@ -11,7 +12,8 @@ Frame_Page::Frame_Page(QWidget *parent) :
 
     this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     this->close();
-    this->setGeometry(0, 55, 800, 480 - 55);
+    this->setGeometry(GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+                      GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
     this->setWindowState(Qt::WindowNoState);
 }
 
@@ -28,8 +30,3 @@ void Frame_Page::Enable_Icon_Light(int i)
 {
     qDebug("%s i=%d", __func__, i);
 }
-
-//void Frame_Page::paintEvent(QPaintEvent *)
-//{
-//    QPainter painter(this);
-//}

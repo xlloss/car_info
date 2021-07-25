@@ -27,7 +27,6 @@ Q_OBJECT
 public:
     explicit TempModule_Page(QWidget *parent = nullptr);
 
-    QPixmap backimg;
     QPixmap tableimg;
     Show_text *show_master_item[TEMP_MAS_ITEM_NUM];
     Show_text *show_sub_item[TEMP_SUB_ITEM_COL_NUM][TEMP_SUB_ITEM_ROW_NUM];

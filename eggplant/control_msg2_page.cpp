@@ -46,7 +46,7 @@ ControlMsg2_Page::ControlMsg2_Page(QWidget *parent) : Frame_Page(parent)
     this->setObjectName(CONTROL2_OBJNAME);
     int i, j, k;
 
-    backimg.load(CONTROL2_BG_IMG);
+    bgimg.load(CONTROL2_BG_IMG);
     tableimg.load(CONTROL2_FM_IMG);
 
     j = 0;
@@ -69,13 +69,13 @@ ControlMsg2_Page::ControlMsg2_Page(QWidget *parent) : Frame_Page(parent)
                                              control2_sub_text_xy[j + 1], CONTROL2_SUB_TEX_W, CONTROL2_SUB_TEX_H);
             show_sub_item[i][k]->m_font_size = 20;
             show_sub_item[i][k]->show();
-            j = j + 2;
-        }
-    }
-
-    for (i = 0; i < CONTROL2_SUB_TEX_COL_NUM; i++) {
-        j = 0;
-        for (k = 0; k < CONTROL2_SUB_TEX_ROW_NUM; k++) {
+//            j = j + 2;
+//        }
+//    }
+//
+//    for (i = 0; i < CONTROL2_SUB_TEX_COL_NUM; i++) {
+//        j = 0;
+//        for (k = 0; k < CONTROL2_SUB_TEX_ROW_NUM; k++) {
             show_sub_item[i][k] = new Show_text(this);
             show_sub_item[i][k]->set_text(control2_sub_text_msg[i][k]);
             show_sub_item[i][k]->setGeometry(control2_sub_text_xy[j] + control2_sub_text_msg_off[i],
@@ -91,7 +91,7 @@ void ControlMsg2_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
-    painter.drawPixmap(0, 0, backimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+    painter.drawPixmap(0, 0, bgimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
     painter.drawPixmap(8, 30, tableimg, 0, 0, 788, 360);
 }

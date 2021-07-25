@@ -20,9 +20,8 @@ Q_OBJECT
 public:
     explicit Bcm_Page(QWidget *parent = nullptr);
 
-    Icon_btn *func_btn[4];
+    Icon_btn *func_btn[BCM_BTN_NUM];
     Icon_btn *back_btn;
-    QPixmap backimg;
     QPixmap frame_img;
 
 private slots:

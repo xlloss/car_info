@@ -20,9 +20,7 @@ Q_OBJECT
 public:
     explicit SatInMsg_Page(QWidget *parent = nullptr);
 
-    QPixmap backimg;
     QPixmap tableimg;
-
     Show_text *show_sub_item[4][8];
     Show_text *show_sub_item_info[4][8];
 

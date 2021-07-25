@@ -67,7 +67,7 @@ Mile_Page::Mile_Page(QWidget *parent) : Frame_Page(parent)
     this->setObjectName(RPM_OBJNAME);
     int i, j;
 
-    backimg.load(RPM_BG_IMG);
+    bgimg.load(RPM_BG_IMG);
     backimg2.load(RPM_FM_IMG);
 
     for (i = 0; i < RPM_STR_IMG_COL_NUM; i++) {
@@ -99,7 +99,7 @@ void Mile_Page::paintEvent(QPaintEvent *)
     QPainter painter(this);
     int i;
 
-    painter.drawPixmap(0, 0, backimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+    painter.drawPixmap(0, 0, bgimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 
     painter.drawPixmap(8, 30, backimg2, MILERPM_BACKIMAGE_X, MILERPM_BACKIMAGE_Y,
