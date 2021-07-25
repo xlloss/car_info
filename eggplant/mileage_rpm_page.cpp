@@ -4,7 +4,7 @@
 #include "coordinate.h"
 #include "string/string.h"
 
-QString str_img_id[8] = {
+QString str_img_id[RPM_STR_IMG_COL_NUM] = {
     {ID_STR_IMG_0},
     {ID_STR_IMG_1},
     {ID_STR_IMG_2},
@@ -15,7 +15,7 @@ QString str_img_id[8] = {
     {ID_STR_IMG_7},
 };
 
-int str_img_xy[8][2] = {
+int str_img_xy[RPM_STR_IMG_COL_NUM][RPM_STR_IMG_ROW_NUM] = {
     {RPM_STR_IMG_ID_0_X, RPM_STR_IMG_ID_0_Y, },    //ID_STR_IMG_0
     {RPM_STR_IMG_ID_1_X, RPM_STR_IMG_ID_1_Y, },    //ID_STR_IMG_1
     {RPM_STR_IMG_ID_2_X, RPM_STR_IMG_ID_2_Y, },    //ID_STR_IMG_2
@@ -27,14 +27,14 @@ int str_img_xy[8][2] = {
     {RPM_STR_IMG_ID_7_X, RPM_STR_IMG_ID_7_Y,},    //ID_STR_IMG_7
 };
 
-int btn_img_xy[8] = {
+int btn_img_xy[RPM_BTN_NUM * 2] = {
     RPM_BTN_IMG_ID0_X, RPM_BTN_IMG_ID0_Y,
     RPM_BTN_IMG_ID1_X, RPM_BTN_IMG_ID1_Y,
     RPM_BTN_IMG_ID2_X, RPM_BTN_IMG_ID2_Y,
     RPM_BTN_IMG_ID3_X, RPM_BTN_IMG_ID3_Y,
 };
 
-int show_text_xy[12] = {
+int show_text_xy[RPM_STR_NUM * 2] = {
     RPM_TEX_ID0_X, RPM_TEX_ID0_Y,
     RPM_TEX_ID1_X, RPM_TEX_ID1_Y,
     RPM_TEX_ID2_X, RPM_TEX_ID2_Y,
@@ -46,7 +46,7 @@ int show_text_xy[12] = {
 
 
 
-QString show_text_default[6] = {
+QString show_text_default[RPM_STR_NUM] = {
     RPM_DAMPLE_STR_ID0,
     RPM_DAMPLE_STR_ID1,
     RPM_DAMPLE_STR_ID2,
@@ -55,7 +55,7 @@ QString show_text_default[6] = {
     RPM_DAMPLE_STR_ID5,
 };
 
-QString rpm_page_btn_objname[4] = {
+QString rpm_page_btn_objname[RPM_BTN_NUM] = {
     RPM_SAMPLE_BTN_OBJ_ID0
     RPM_SAMPLE_BTN_OBJ_ID1
     RPM_SAMPLE_BTN_OBJ_ID2
@@ -64,18 +64,18 @@ QString rpm_page_btn_objname[4] = {
 
 Mile_Page::Mile_Page(QWidget *parent) : Frame_Page(parent)
 {
-    this->setObjectName("Rpm_Page");
+    this->setObjectName(RPM_OBJNAME);
     int i, j;
 
-    backimg.load(":/icon/rpm_page_bg.png");
-    backimg2.load(":/icon/rpm_page_bg_2.png");
+    backimg.load(RPM_BG_IMG);
+    backimg2.load(RPM_FM_IMG);
 
-    for (i = 0; i < 8; i++) {
+    for (i = 0; i < RPM_STR_IMG_COL_NUM; i++) {
         str_img[i].load(str_img_id[i]);
     }
 
     j = 0;
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < RPM_BTN_NUM; i++) {
         btn[i] = new Icon_btn(this);
         btn[i]->setObjectName(rpm_page_btn_objname[i]);
         btn[i]->enable_scale = 0;
@@ -84,12 +84,8 @@ Mile_Page::Mile_Page(QWidget *parent) : Frame_Page(parent)
         btn[i]->setGeometry(btn_img_xy[j], btn_img_xy[j + 1], 120, 40);
 
         btn[i]->set_text(RPM_PAGE_BTN_NAME);
-        btn[i]->m_set_text_y = 30;
-        j = j + 2;
-    }
+        btn[i]->m_set_text_y = RPM_FONT_SIZE;
 
-    j = 0;
-    for (i = 0; i < 6; i++) {
         show_string[i] = new Show_text(this);
         show_string[i]->set_text(show_text_default[i]);
         show_string[i]->setGeometry(show_text_xy[j], show_text_xy[j + 1], 200, 70);
@@ -105,6 +101,7 @@ void Mile_Page::paintEvent(QPaintEvent *)
 
     painter.drawPixmap(0, 0, backimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
+
     painter.drawPixmap(8, 30, backimg2, MILERPM_BACKIMAGE_X, MILERPM_BACKIMAGE_Y,
                        MILERPM_BACKIMAGE_W, MILERPM_BACKIMAGE_H);
 

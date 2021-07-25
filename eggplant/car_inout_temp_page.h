@@ -6,6 +6,12 @@
 #include "frame_page.h"
 #include "show_text.h"
 
+#define CAR_INOUT_TEX_NUM 3
+#define CAR_INOUT_CHILD_TEX_NUM 3
+#define CARINOUT_BG_IMG ":/icon/rpm_page_bg.png"
+#define CARINOUT_FM_IMG ":/icon/cat_inout_table.png"
+#define CARINOUT_FM2_IMG ":/icon/car_inout_temp.png"
+
 class CarInOut_Page : public Frame_Page
 {
 Q_OBJECT

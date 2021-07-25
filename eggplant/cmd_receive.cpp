@@ -189,17 +189,14 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
         return;
     }
 
-
-    show_framepage->setWindowFlags(Qt::WindowStaysOnTopHint);
-    show_framepage->setGeometry(0, 0, 800, 480 - 55);
-    show_framepage->show();
-    close_framepage->close();
-
-
-//    this->connect(this, SIGNAL(set_show_page()), show_framepage, SLOT(show()));
-//    emit set_show_page();
-//    this->connect(this, SIGNAL(set_close_page()), close_framepage, SLOT(close()));
-//    emit set_close_page();
+    if (current_page.compare(show_objname) != 0) {
+        show_framepage->setWindowFlags(Qt::WindowStaysOnTopHint);
+        show_framepage->setGeometry(0, 0, GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
+        show_framepage->show();
+        close_framepage->close();
+    } else {
+        show_framepage->update();
+    }
 
     current_page = show_objname;
 }

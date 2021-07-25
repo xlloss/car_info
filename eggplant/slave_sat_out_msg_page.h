@@ -6,6 +6,15 @@
 #include "frame_page.h"
 #include "show_text.h"
 
+#define SATOUT_MSATER_ITEM_NUM 2
+#define SATOUT_MSG_COL_NUM 4
+#define SATOUT_MSG_ROW_NUM 8
+#define SATOUT_FONT_SIZE 20
+
+#define SATOUT_BOJNAME "SatOutMsg_Page"
+#define SATOUT_BG_IMG ":/icon/rpm_page_bg.png"
+#define SATOUT_FM_IMG ":/icon/slave_sat_table.png"
+
 class SatOutMsg_Page : public Frame_Page
 {
 Q_OBJECT
@@ -14,9 +23,9 @@ public:
 
     QPixmap backimg;
     QPixmap tableimg;
-    Show_text *show_master_item[2];
-    Show_text *show_sub_item[4][8];
-    Show_text *show_sub_item_inf4[4][8];
+    Show_text *show_master_item[SATOUT_MSATER_ITEM_NUM];
+    Show_text *show_sub_item[SATOUT_MSG_COL_NUM][SATOUT_MSG_ROW_NUM];
+    Show_text *show_sub_item_inf4[SATOUT_MSG_COL_NUM][SATOUT_MSG_ROW_NUM];
 
 protected:
     void paintEvent(QPaintEvent *);

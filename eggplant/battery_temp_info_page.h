@@ -6,6 +6,15 @@
 #include "frame_page.h"
 #include "show_text.h"
 
+#define BATTINFO_OBJNAME "BatTempInfo_Page"
+#define BATTINFO_BG_IMG ":/icon/rpm_page_bg.png"
+#define BATTINFO_FM_IMG ":/icon/battery-info.png"
+
+#define BATTINFO_MAS_NUM 1
+#define BATTINFO_TEX_COL_NUM 6
+#define BATTINFO_TEX_ROW_NUM 4
+#define BATTINFO_TEX_FONT_SIZE 20
+
 class BatTempInfo_Page : public Frame_Page
 {
 Q_OBJECT

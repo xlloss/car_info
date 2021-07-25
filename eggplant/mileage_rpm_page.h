@@ -24,6 +24,18 @@
 #define ID_STR_IMG_6 ID_R_2
 #define ID_STR_IMG_7 ID_R_3
 
+#define RPM_BTN_NUM 4
+#define RPM_STR_NUM 6
+#define RPM_STR_IMG_COL_NUM 8
+#define RPM_STR_IMG_ROW_NUM 2
+
+#define RPM_FONT_SIZE 30
+
+#define RPM_OBJNAME "Rpm_Page"
+#define RPM_BG_IMG ":/icon/rpm_page_bg.png"
+#define RPM_FM_IMG ":/icon/rpm_page_bg_2.png"
+
+
 class Mile_Page : public Frame_Page
 {
 Q_OBJECT

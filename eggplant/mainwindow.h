@@ -31,6 +31,9 @@
 #include "tires_pressure_show_page.h"
 #include "cmd_receive.h"
 
+#define MAINWINDOW_OBJNAME "Mainwindow"
+#define MAINWINDOW_BG_IMG ":/icon/background.png"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 namespace name {
@@ -74,6 +77,7 @@ public:
     Cmd_Receive *cmd_get;
 protected:
     void paintEvent(QPaintEvent *);
+//     bool eventFilter(QObject *obj, QEvent *event);
 
 private slots:
 

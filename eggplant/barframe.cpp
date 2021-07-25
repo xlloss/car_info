@@ -3,6 +3,7 @@
 #include "ui_barframe.h"
 #include <QDebug>
 #include "string/string.h"
+
 BarFrame::BarFrame(QWidget *parent) :
     Frame_Page(parent),
     ui(new Ui::BarFrame)

@@ -5,6 +5,7 @@
 #include <QMutex>
 #include "serial_port.h"
 #include "frame_page.h"
+#include "home_page.h"
 
 class Cmd_Receive;
 

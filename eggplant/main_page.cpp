@@ -37,9 +37,8 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
                             BTN_W, BTN_H);
 
         btn[i]->set_text(btn_name);
-    }
 
-    for (i = 0; i < 5; i++) {
+
         btn[i + 5] = new Icon_btn(this);
         btn[i + 5]->setObjectName(main_page_string[i]);
         btn[i + 5]->enable_scale = 0;

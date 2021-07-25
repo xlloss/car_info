@@ -116,6 +116,16 @@ enum {
 #define MILERPM_BACKIMAGE_W 788
 #define MILERPM_BACKIMAGE_H 360
 
+
+/******************************
+ *     car inout page
+ *****************************/
+
+#define CAR_INOUT_BUS_IMG_X 0
+#define CAR_INOUT_BUS_IMG_Y 60
+#define CAR_INOUT_TABLE_IMG_X 5
+#define CAR_INOUT_TABLE_IMG_Y 270
+
 #define CAR_INOUT_TEX_ID0_X 30
 #define CAR_INOUT_TEX_ID0_Y 320
 #define CAR_INOUT_TEX_ID1_X 290
@@ -129,5 +139,360 @@ enum {
 #define CAR_INOUT_CHILD_TEX_ID1_Y 320
 #define CAR_INOUT_CHILD_TEX_ID2_X 690
 #define CAR_INOUT_CHILD_TEX_ID2_Y 320
+
+
+/******************************
+ *     time adj page
+ *****************************/
+#define TIME_ADJ_TEX_TITLE_ID0_X 40
+#define TIME_ADJ_TEX_TITLE_ID0_Y 60
+#define TIME_ADJ_TEX_TITLE_ID1_X 40
+#define TIME_ADJ_TEX_TITLE_ID1_Y 110
+#define TIME_ADJ_TEX_TITLE_ID2_X 40
+#define TIME_ADJ_TEX_TITLE_ID2_Y 160
+
+#define TIME_ADJ_TEX_TITLE_ID3_X 230
+#define TIME_ADJ_TEX_TITLE_ID3_Y 160
+#define TIME_ADJ_TEX_TITLE_ID4_X 340
+#define TIME_ADJ_TEX_TITLE_ID4_Y 160
+#define TIME_ADJ_TEX_TITLE_ID5_X 450
+#define TIME_ADJ_TEX_TITLE_ID5_Y 160
+
+#define TIME_ADJ_CHILD_TEX_ID0_X 140
+#define TIME_ADJ_CHILD_TEX_ID0_Y 60
+#define TIME_ADJ_CHILD_TEX_ID1_X 140
+#define TIME_ADJ_CHILD_TEX_ID1_Y 110
+#define TIME_ADJ_CHILD_TEX_ID2_X 140
+#define TIME_ADJ_CHILD_TEX_ID2_Y 160
+#define TIME_ADJ_CHILD_TEX_ID3_X 280
+#define TIME_ADJ_CHILD_TEX_ID3_Y 160
+#define TIME_ADJ_CHILD_TEX_ID4_X 400
+#define TIME_ADJ_CHILD_TEX_ID4_Y 160
+
+
+/******************************
+ *     screen volume page
+ *****************************/
+#define VOL_BAR_X 220
+#define VOL_BAR_Y 105
+#define VOL_BAR_W 55
+#define VOL_BAR_H 20
+#define VOL_BAR_GAP 5
+
+#define VOL_TEX_X 50
+#define VOL_TEX_Y 100
+
+#define VOL_TEX_VAL_X 700
+#define VOL_TEX_VAL_Y 100
+
+
+/******************************
+ *     EAI page
+ *****************************/
+
+#define EAI_MASTER_TEXT_X 30
+#define EAI_MASTER_TEXT_Y 15
+#define EAI_MASTER_TEXT_W 220
+#define EAI_MASTER_TEXT_H 50
+#define EAI_MASTER_TEXT_GAP 50
+
+#define EAI_SUB_TEXT_X 30
+#define EAI_SUB_TEXT_Y 55
+#define EAI_SUB_TEXT_W 200
+#define EAI_SUB_TEXT_H 45
+#define EAI_SUB_TEXT_GAP 45
+
+
+/******************************
+ *     control msg 1 page
+ *****************************/
+#define CONTROL1_MAS_TEX_X 50
+#define CONTROL1_MAS_TEX_Y 40
+#define CONTROL1_MAS_TEX_W 200
+#define CONTROL1_MAS_TEX_H 50
+#define CONTROL1_MAS_TEX_GAP 50
+
+#define CONTROL1_SUB_TEX_X 30
+#define CONTROL1_SUB_TEX_Y 85
+#define CONTROL1_SUB_TEX_W 200
+#define CONTROL1_SUB_TEX_H 45
+#define CONTROL1_SUB_TEX_GAP 45
+
+
+/******************************************
+ *  control msg 2 page
+ ******************************************/
+#define CONTROL2_MAS_TEX_X 335
+#define CONTROL2_MAS_TEX_Y 40
+#define CONTROL2_MAS_TEX_W 250
+#define CONTROL2_MAS_TEX_H 50
+#define CONTROL2_MAS_TEX_GAP 50
+
+#define CONTROL2_SUB_TEX_X 25
+#define CONTROL2_SUB_TEX_Y 85
+#define CONTROL2_SUB_TEX_W 200
+#define CONTROL2_SUB_TEX_H 45
+#define CONTROL2_SUB_TEX_GAP 45
+
+
+
+/******************************************
+ *  battery temp page
+ ******************************************/
+#define BATTEMP_MASTER_TEXT_X 335
+#define BATTEMP_MASTER_TEXT_Y 30
+#define BATTEMP_MASTER_TEXT_W 200
+#define BATTEMP_MASTER_TEXT_H 50
+#define BATTEMP_MASTER_TEXT_GAP 50
+#define BATTEMP_SUB_TEXT_X 25
+#define BATTEMP_SUB_TEXT_Y 70
+#define BATTEMP_SUB_TEXT_W 200
+#define BATTEMP_SUB_TEXT_H 45
+#define BATTEMP_SUB_TEXT_GAP 40
+
+
+
+/******************************************
+ *  battery volt page
+ ******************************************/
+#define BATVOL_MASTER_TEXT_X 335
+#define BATVOL_MASTER_TEXT_Y 30
+#define BATVOL_MASTER_TEXT_W 200
+#define BATVOL_MASTER_TEXT_H 50
+#define BATVOL_MASTER_TEXT_GAP 50
+
+#define BATVOL_SUB_TEXT_X 25
+#define BATVOL_SUB_TEXT_Y 70
+#define BATVOL_SUB_TEXT_W 200
+#define BATVOL_SUB_TEXT_H 45
+#define BATVOL_SUB_TEXT_GAP 40
+
+
+
+/******************************************
+ *  temp module info page
+ ******************************************/
+#define TEMP_MAS_TEX_X 30
+#define TEMP_MAS_TEX_Y 20
+#define TEMP_MAS_TEX_W 200
+#define TEMP_MAS_TEX_H 50
+#define TEMP_MAS_TEX_GAP 50
+
+#define TEMP_SUB_TEX_X 30
+#define TEMP_SUB_TEX_Y 40
+#define TEMP_SUB_TEX_W 200
+#define TEMP_SUB_TEX_H 45
+#define TEMP_SUB_TEX_GAP 45
+
+
+/******************************************
+ *  sat out info page
+ ******************************************/
+#define SATOUT_MAS_TEX_X 30
+#define SATOUT_MAS_TEX_Y 20
+#define SATOUT_MAS_TEX_W 200
+#define SATOUT_MAS_TEX_H 50
+#define SATOUT_MAS_TEX_GAP 50
+
+#define SATOUT_SUB_TEX_X 30
+#define SATOUT_SUB_TEX_Y 30
+#define SATOUT_SUB_TEX_W 200
+#define SATOUT_SUB_TEX_H 45
+#define SATOUT_SUB_TEX_GAP 45
+
+
+
+/******************************************
+ *  sat in info page
+ ******************************************/
+#define SATIN_MAS_TEX_X 30
+#define SATIN_MAS_TEX_Y 20
+#define SATIN_MAS_TEX_W 200
+#define SATIN_MAS_TEX_H 50
+#define SATIN_MAS_TEX_GAP 50
+
+#define SATIN_SUB_TEX_X 30
+#define SATIN_SUB_TEX_Y 30
+#define SATIN_SUB_TEX_W 200
+#define SATIN_SUB_TEX_H 45
+#define SATIN_SUB_TEX_GAP 45
+
+
+/******************************************
+ *  sw version page
+ ******************************************/
+#define SWVER_SUB_TEX_X 35
+#define SWVER_SUB_TEX_Y 22
+#define SWVER_SUB_TEX_W 200
+#define SWVER_SUB_TEX_H 45
+#define SWVER_SUB_TEX_GAP 36
+
+
+/******************************************
+ *  slave station mesg page
+ ******************************************/
+
+#define SLASAT_MSG_BTN_X 100
+#define SLASAT_MSG_BTN_Y 30
+#define SLASAT_MSG_BTN_OFF_X 170
+#define SLASAT_MSG_BTN_OFF_Y 8
+#define SLASAT_MSG_BTN_W 260
+#define SLASAT_MSG_BTN_H 36
+
+#define SLASAT_BACK_LV_BTN_X 460
+#define SLASAT_BACK_LV_BTN_Y 30
+#define SLASAT_BACK_LV_BTN_W 240
+#define SLASAT_BACK_LV_BTN_H 135
+
+#define SLASAT_BACK_MAIN_BTN_X 460
+#define SLASAT_BACK_MAIN_BTN_Y 185
+#define SLASAT_BACK_MAIN_BTN_W 240
+#define SLASAT_BACK_MAIN_BTN_H 192
+
+/******************************************
+ *  bcm info page
+ ******************************************/
+#define BCM_FUNC_BTN_X 70
+#define BCM_FUNC_BTN_Y 50
+#define BCM_FUNC_BTN_W 200
+#define BCM_FUNC_BTN_H 120
+#define BCM_FUNC_BTN_OFF_X 210
+#define BCM_FUNC_BTN_OFF_Y 130
+
+#define BCM_BACK_BTN_X 500
+#define BCM_BACK_BTN_Y 50
+#define BCM_BACK_BTN_W 200
+#define BCM_BACK_BTN_H 260
+
+#define BCM_BTN_TEX_ID0_X 15
+#define BCM_BTN_TEX_ID0_Y 70
+#define BCM_BTN_TEX_ID1_X 15
+#define BCM_BTN_TEX_ID1_Y 70
+#define BCM_BTN_TEX_ID2_X 45
+#define BCM_BTN_TEX_ID2_Y 70
+#define BCM_BTN_TEX_ID3_X 15
+#define BCM_BTN_TEX_ID3_Y 70
+
+#define BCM_BACK_TEX_X 15
+#define BCM_BACK_TEX_Y 130
+
+
+
+/******************************************
+ *  tire press info page
+ ******************************************/
+#define FRAME_IMG_WIN_X 2
+#define FRAME_IMG_WIN_Y 5
+#define FRAME_IMG_X 0
+#define FRAME_IMG_Y 0
+#define FRAME_IMG_W 800
+#define FRAME_IMG_H 418
+
+#define TIRES_BTN_X 576
+#define TIRES_BTN_Y 96
+#define TIRES_BTN_W 85
+#define TIRES_BTN_H 51
+
+#define TIRES_ID_1_BTN_OFF_X 0
+#define TIRES_ID_1_BTN_OFF_Y 0
+
+#define TIRES_ID_6_BTN_OFF_X 0
+#define TIRES_ID_6_BTN_OFF_Y 180
+
+#define TIRES_ID_2_BTN_OFF_X TIRES_ID_3_BTN_OFF_X
+#define TIRES_ID_2_BTN_OFF_Y -38
+
+#define TIRES_ID_3_BTN_OFF_X -264
+#define TIRES_ID_3_BTN_OFF_Y TIRES_ID_1_BTN_OFF_Y
+
+#define TIRES_ID_4_BTN_OFF_X TIRES_ID_3_BTN_OFF_X
+#define TIRES_ID_4_BTN_OFF_Y TIRES_ID_6_BTN_OFF_Y
+
+#define TIRES_ID_5_BTN_OFF_X TIRES_ID_3_BTN_OFF_X
+#define TIRES_ID_5_BTN_OFF_Y 220
+
+
+#define TIRES_VAL_AIR_OFF_X 70
+
+#define TIRES_VAL_AIR_ID0_X 350 + TIRES_VAL_AIR_OFF_X
+#define TIRES_VAL_AIR_ID0_Y 55
+
+#define TIRES_VAL_AIR_ID1_X 350 + TIRES_VAL_AIR_OFF_X
+#define TIRES_VAL_AIR_ID1_Y 300
+
+#define TIRES_VAL_AIR_ID2_X -20 + TIRES_VAL_AIR_OFF_X
+#define TIRES_VAL_AIR_ID2_Y 60
+
+#define TIRES_VAL_AIR_ID3_X -20 + TIRES_VAL_AIR_OFF_X
+#define TIRES_VAL_AIR_ID3_Y 60 + (80 * 1)
+
+#define TIRES_VAL_AIR_ID4_X -20 + TIRES_VAL_AIR_OFF_X
+#define TIRES_VAL_AIR_ID4_Y 60 + (80 * 2)
+
+#define TIRES_VAL_AIR_ID5_X -20 + TIRES_VAL_AIR_OFF_X
+#define TIRES_VAL_AIR_ID5_Y 60 + (80 * 3)
+
+#define TIRE_AIT_TEX_ID0_X 350
+#define TIRE_AIT_TEX_ID0_Y 55
+
+#define TIRE_AIT_TEX_ID1_X 350
+#define TIRE_AIT_TEX_ID1_Y 300
+
+#define TIRE_AIT_TEX_ID2_X -20
+#define TIRE_AIT_TEX_ID2_Y 60
+
+#define TIRE_AIT_TEX_ID3_X -20
+#define TIRE_AIT_TEX_ID3_Y 60 + (80 * 1)
+
+#define TIRE_AIT_TEX_ID4_X -20
+#define TIRE_AIT_TEX_ID4_Y 60 + (80 * 2)
+
+#define TIRE_AIT_TEX_ID5_X -20
+#define TIRE_AIT_TEX_ID5_Y 60 + (80 * 3)
+
+
+#define TEXT_TEMP_OFF_Y 30
+
+#define TIRES_TEMP_TEX_ID0_X 350
+#define TIRES_TEMP_TEX_ID0_Y 55 + TEXT_TEMP_OFF_Y
+#define TIRES_TEMP_TEX_ID1_X 350
+#define TIRES_TEMP_TEX_ID1_Y 300 + TEXT_TEMP_OFF_Y
+#define TIRES_TEMP_TEX_ID2_X -20
+#define TIRES_TEMP_TEX_ID2_Y 60 + TEXT_TEMP_OFF_Y
+#define TIRES_TEMP_TEX_ID3_X -20
+#define TIRES_TEMP_TEX_ID3_Y 60 + (80 * 1) + TEXT_TEMP_OFF_Y
+#define TIRES_TEMP_TEX_ID4_X -20
+#define TIRES_TEMP_TEX_ID4_Y 60 + (80 * 2) + TEXT_TEMP_OFF_Y
+#define TIRES_TEMP_TEX_ID5_X -20
+#define TIRES_TEMP_TEX_ID5_Y 60 + (80 * 3) + TEXT_TEMP_OFF_Y
+
+
+#define TIRES_BTN_TEX_ID0_X 20
+#define TIRES_BTN_TEX_ID0_Y 30
+#define TIRES_BTN_TEX_ID1_X 20
+#define TIRES_BTN_TEX_ID1_Y 30
+#define TIRES_BTN_TEX_ID2_X 20
+#define TIRES_BTN_TEX_ID2_Y 30
+#define TIRES_BTN_TEX_ID3_X 20
+#define TIRES_BTN_TEX_ID3_Y 30
+#define TIRES_BTN_TEX_ID4_X 20
+#define TIRES_BTN_TEX_ID4_Y 30
+
+#define TIRES_TEMPVAL_DEF "000°C"
+
+#define TIRES_VAL_TEMP_OFF_X 70
+
+#define TIRES_TMEPVAL_ID0_X (350 + TIRES_VAL_TEMP_OFF_X)
+#define TIRES_TMEPVAL_ID0_Y (55  + TEXT_TEMP_OFF_Y)
+#define TIRES_TMEPVAL_ID1_X (350 + TIRES_VAL_TEMP_OFF_X)
+#define TIRES_TMEPVAL_ID1_Y (300 + TEXT_TEMP_OFF_Y)
+#define TIRES_TMEPVAL_ID2_X (-20 + TIRES_VAL_TEMP_OFF_X)
+#define TIRES_TMEPVAL_ID2_Y (60  + TEXT_TEMP_OFF_Y)
+#define TIRES_TMEPVAL_ID3_X (-20 + TIRES_VAL_TEMP_OFF_X)
+#define TIRES_TMEPVAL_ID3_Y (60 + (80 * 1) + TEXT_TEMP_OFF_Y)
+#define TIRES_TMEPVAL_ID4_X (-20 + TIRES_VAL_TEMP_OFF_X)
+#define TIRES_TMEPVAL_ID4_Y (60 + (80 * 2) + TEXT_TEMP_OFF_Y)
+#define TIRES_TMEPVAL_ID5_X (-20 + TIRES_VAL_TEMP_OFF_X)
+#define TIRES_TMEPVAL_ID5_Y (0 + (80 * 3) + TEXT_TEMP_OFF_Y)
 
 #endif // COORDINATE_H

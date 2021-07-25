@@ -7,19 +7,12 @@
 #include "frame_page.h"
 #include "icon_btn.h"
 
-
-#define FUNC_BTN_X 70
-#define FUNC_BTN_Y 50
-#define FUNC_BTN_W 200
-#define FUNC_BTN_H 120
-#define FUNC_BTN_OFF_X 210
-#define FUNC_BTN_OFF_Y 130
-
-#define BACK_BTN_X 500
-#define BACK_BTN_Y 50
-#define BACK_BTN_W 200
-#define BACK_BTN_H 260
-
+#define BCM_BTN_NUM 4
+#define BCM_BTN_ID0_OBJNAME "bcm_btn_id_0"
+#define BCM_BTN_ID1_OBJNAME "bcm_btn_id_1"
+#define BCM_BTN_ID2_OBJNAME "bcm_btn_id_2"
+#define BCM_BTN_ID3_OBJNAME "bcm_btn_id_3"
+#define BCM_BTN_ID4_OBJNAME "bcm_btn_id_4"
 
 class Bcm_Page : public Frame_Page
 {
@@ -29,7 +22,7 @@ public:
 
     Icon_btn *func_btn[4];
     Icon_btn *back_btn;
-    QPixmap back_img;
+    QPixmap backimg;
     QPixmap frame_img;
 
 private slots:

@@ -29,7 +29,7 @@ void Frame_Page::Enable_Icon_Light(int i)
     qDebug("%s i=%d", __func__, i);
 }
 
-void Frame_Page::paintEvent(QPaintEvent *)
-{
-    QPainter painter(this);
-}
+//void Frame_Page::paintEvent(QPaintEvent *)
+//{
+//    QPainter painter(this);
+//}

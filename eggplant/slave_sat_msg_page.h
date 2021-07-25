@@ -7,22 +7,6 @@
 #include "icon_btn.h"
 #include <QPushButton>
 
-#define BTN_SAT_MSG_X 100
-#define BTN_SAT_MSG_Y 30
-#define BTN_SAT_OFF_X 170
-#define BTN_SAT_OFF_Y 8
-#define BTN_SAT_W 260
-#define BTN_SAT_H 36
-
-#define BTN_BACK_LEVEL_X 460
-#define BTN_BACK_LEVEL_Y 30
-#define BTN_BACK_LEVEL_W 240
-#define BTN_BACK_LEVEL_H 135
-
-#define BTN_BACK_MAIN_X 460
-#define BTN_BACK_MAIN_Y 185
-#define BTN_BACK_MAIN_W 240
-#define BTN_BACK_MAIN_H 192
 
 class SlaveSatMsg_Page : public Frame_Page
 {

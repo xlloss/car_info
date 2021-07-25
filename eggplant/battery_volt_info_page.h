@@ -6,6 +6,15 @@
 #include "frame_page.h"
 #include "show_text.h"
 
+#define BATTVAL_OBJNAME "BatVoltInfo_Page"
+#define BATTVAL_BG_IMG ":/icon/rpm_page_bg.png"
+#define BATTVAL_FM_IMG ":/icon/battery-info.png"
+
+#define BATTVAL_MAS_NUM 1
+#define BATTVAL_TEX_COL_NUM 6
+#define BATTVAL_TEX_ROW_NUM 4
+#define BATTVAL_TEX_FONT_SIZE 20
+
 class BatVoltInfo_Page : public Frame_Page
 {
 Q_OBJECT

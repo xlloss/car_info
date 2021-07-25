@@ -1,6 +1,7 @@
 #include <QPainter>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "coordinate.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -9,10 +10,12 @@ MainWindow::MainWindow(QWidget *parent)
     QPalette palette;
 
     ui->setupUi(this);
-    this->setObjectName("Mainwindow");
+    this->setObjectName(MAINWINDOW_OBJNAME);
     this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
-    this->setGeometry(0, 55, 800, 480 - 55);
-    backimg.load(":/icon/background.png");
+    this->setGeometry(GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+                      GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
+
+    backimg.load(MAINWINDOW_BG_IMG);
 
     bar_frame = new BarFrame (this);
     bar_frame->show();
@@ -20,7 +23,6 @@ MainWindow::MainWindow(QWidget *parent)
     page_ctl = new Page_Ctl(this);
 
     cmd_get = new Cmd_Receive(this);
-
     cmd_get->Register((class Frame_Page *)bar_frame);
     cmd_get->Register((class Frame_Page *)page_ctl->home_page);
     cmd_get->Register((class Frame_Page *)page_ctl->main_page);
@@ -40,6 +42,8 @@ MainWindow::MainWindow(QWidget *parent)
     cmd_get->Register((class Frame_Page *)page_ctl->slave_sat_msg_page);
     cmd_get->Register((class Frame_Page *)page_ctl->bcm_page);
     cmd_get->Register((class Frame_Page *)page_ctl->tires_press_show_page);
+
+    this->installEventFilter(this);
 
     page_ctl->home_page->setWindowState(Qt::WindowActive);
     page_ctl->home_page->show();
