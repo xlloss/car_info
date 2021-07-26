@@ -108,3 +108,8 @@ void Mile_Page::paintEvent(QPaintEvent *)
     for (i = 0; i < RPM_STR_IMG_NUM; i++)
         painter.drawImage(str_img_xy[i][0], str_img_xy[i][1], str_img[i]);
 }
+
+void Mile_Page::GetMcuData()
+{
+    qDebug("Mile_Page:%s\n", __func__);
+}

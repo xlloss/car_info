@@ -113,3 +113,8 @@ void BatTempInfo_Page::paintEvent(QPaintEvent *)
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
     painter.drawPixmap(8, 20, tableimg, 0, 0, 788, 385);
 }
+
+void BatTempInfo_Page::GetMcuData()
+{
+    qDebug("BatTempInfo_Page:%s\n", __func__);
+}

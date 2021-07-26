@@ -37,3 +37,8 @@ void ScreenVolumeAdjust_Page::paintEvent(QPaintEvent *)
     for (i = 0; i < VOL_LV_NUM; i++)
         painter.drawRect(VOL_BAR_X + (VOL_BAR_W + VOL_BAR_GAP) * i , 105, VOL_BAR_W, VOL_BAR_H);
 }
+
+void ScreenVolumeAdjust_Page::GetMcuData()
+{
+    qDebug("ScreenVolumeAdjust_Page:%s\n", __func__);
+}

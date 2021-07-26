@@ -67,3 +67,8 @@ void SatInMsg_Page::paintEvent(QPaintEvent *)
 
     painter.drawPixmap(5, 20, tableimg, 0, 0, 788, 380);
 }
+
+void SatInMsg_Page::GetMcuData()
+{
+    qDebug("SatInMsg_Page:%s\n", __func__);
+}

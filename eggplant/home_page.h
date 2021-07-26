@@ -17,6 +17,7 @@ public:
     explicit Home_Page(QWidget *parent = nullptr);
     QImage image_car_bus;
 
+    virtual void GetMcuData() override;
 protected:
     void paintEvent(QPaintEvent *);
 

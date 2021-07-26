@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     page_ctl = new Page_Ctl(this);
 
     cmd_get = new Cmd_Receive(this);
-    cmd_get->Register((class Frame_Page *)bar_frame);
+    //cmd_get->Register((class Frame_Page *)bar_frame);
     cmd_get->Register((class Frame_Page *)page_ctl->home_page);
     cmd_get->Register((class Frame_Page *)page_ctl->main_page);
     cmd_get->Register((class Frame_Page *)page_ctl->mile_page);

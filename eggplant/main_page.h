@@ -31,6 +31,8 @@ public:
     Icon_btn *btn[10];
     void LoadBackground();
     int m_load_background_img;
+    virtual void GetMcuData() override;
+
 private slots:
     void Enable_Icon_Light(int i);
 

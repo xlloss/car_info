@@ -66,3 +66,8 @@ void SatOutMsg_Page::paintEvent(QPaintEvent *)
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
     painter.drawPixmap(5, 20, tableimg, 0, 0, 788, 380);
 }
+
+void SatOutMsg_Page::GetMcuData()
+{
+    qDebug("SatOutMsg_Page:%s\n", __func__);
+}

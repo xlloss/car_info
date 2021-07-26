@@ -31,7 +31,7 @@ public:
     Show_text *show_master_item[TEMP_MAS_ITEM_NUM];
     Show_text *show_sub_item[TEMP_SUB_ITEM_COL_NUM][TEMP_SUB_ITEM_ROW_NUM];
     Show_text *show_sub_item_info[TEMP_SUB_INFO_COL_NUM][TEMP_SUB_INFO_ROW_NUM];
-
+    virtual void GetMcuData() override;
 protected:
     void paintEvent(QPaintEvent *);
 

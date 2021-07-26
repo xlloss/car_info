@@ -77,3 +77,8 @@ void Main_Page::paintEvent(QPaintEvent *)
     painter.drawPixmap(0, 0, bgimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 }
+
+void Main_Page::GetMcuData()
+{
+    qDebug("Main_Page:%s\n", __func__);
+}

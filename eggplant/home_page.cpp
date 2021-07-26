@@ -25,3 +25,8 @@ void Home_Page::paintEvent(QPaintEvent *)
 
     painter.drawImage(HOME_CARBUS_IMG_X, HOME_CARBUS_IMG_Y, image_car_bus);
 }
+
+void Home_Page::GetMcuData()
+{
+    qDebug("Home_Page:%s\n", __func__);
+}

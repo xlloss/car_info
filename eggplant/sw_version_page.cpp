@@ -69,3 +69,9 @@ void SwVersion_Page::paintEvent(QPaintEvent *)
 
     painter.drawPixmap(5, 20, tableimg, 0, 0, 788, 380);
 }
+
+
+void SwVersion_Page::GetMcuData()
+{
+    qDebug("SwVersion_Page:%s\n", __func__);
+}

@@ -83,3 +83,8 @@ void TimeAdjust_Page::paintEvent(QPaintEvent *)
                        GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 }
+
+void TimeAdjust_Page::GetMcuData()
+{
+    qDebug("TimeAdjust_Page:%s\n", __func__);
+}

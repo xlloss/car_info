@@ -18,6 +18,8 @@ public:
     Icon_btn *icon_id[50];
     void Enable_Icon_Light(int i);
     void Load_Background(QString image);
+
+    virtual void GetMcuData() = 0;
 private slots:
 
 protected:

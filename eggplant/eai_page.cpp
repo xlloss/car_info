@@ -106,3 +106,8 @@ void EleAccInfo_Page::paintEvent(QPaintEvent *)
 
     painter.drawPixmap(8, 50, tableimg, 0, 0, 788, 360);
 }
+
+void EleAccInfo_Page::GetMcuData()
+{
+    qDebug("EleAccInfo_Page:%s\n", __func__);
+}

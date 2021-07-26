@@ -19,7 +19,7 @@ public:
 
     Show_text *show_volume_text;
     Show_text *show_volume_val;
-
+    virtual void GetMcuData() override;
 protected:
     void paintEvent(QPaintEvent *);
 

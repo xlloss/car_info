@@ -66,3 +66,8 @@ void SlaveSatMsg_Page::paintEvent(QPaintEvent *)
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
     painter.drawPixmap(5, 20, frameimg, 0, 0, 788, 369);
 }
+
+void SlaveSatMsg_Page::GetMcuData()
+{
+    qDebug("SlaveSatMsg_Page:%s\n", __func__);
+}

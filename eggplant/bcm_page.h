@@ -23,7 +23,7 @@ public:
     Icon_btn *func_btn[BCM_BTN_NUM];
     Icon_btn *back_btn;
     QPixmap frame_img;
-
+    virtual void GetMcuData() override;
 private slots:
     void Enable_Icon_Light(int i);
 

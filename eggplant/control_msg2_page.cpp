@@ -95,3 +95,8 @@ void ControlMsg2_Page::paintEvent(QPaintEvent *)
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
     painter.drawPixmap(8, 30, tableimg, 0, 0, 788, 360);
 }
+
+void ControlMsg2_Page::GetMcuData()
+{
+    qDebug("ControlMsg2_Page:%s\n", __func__);
+}

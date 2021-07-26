@@ -45,7 +45,7 @@ public:
     QImage str_img[8];
     Icon_btn *btn[4];
     Show_text *show_string[6];
-
+    virtual void GetMcuData() override;
 protected:
     void paintEvent(QPaintEvent *);
 

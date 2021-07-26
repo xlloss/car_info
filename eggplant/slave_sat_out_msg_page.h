@@ -26,7 +26,7 @@ public:
     Show_text *show_master_item[SATOUT_MSATER_ITEM_NUM];
     Show_text *show_sub_item[SATOUT_MSG_COL_NUM][SATOUT_MSG_ROW_NUM];
     Show_text *show_sub_item_inf4[SATOUT_MSG_COL_NUM][SATOUT_MSG_ROW_NUM];
-
+    virtual void GetMcuData() override;
 protected:
     void paintEvent(QPaintEvent *);
 

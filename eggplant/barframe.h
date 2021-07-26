@@ -53,7 +53,7 @@ public:
     explicit BarFrame(QWidget *parent = nullptr);
     ~BarFrame();
     Icon_btn *icon_id[CARGEAR_ICON_NUM];
-
+    virtual void GetMcuData() override;
 
 private slots:
         void Enable_Icon_Light(int i);

@@ -159,12 +159,14 @@ int Cmd_Receive::Find_Frame(QString objname)
     return i;
 }
 
+
+
 void Cmd_Receive::Frame_Page_Show(QString show_objname)
 {
     class Frame_Page *show_framepage;
     class Frame_Page *close_framepage;
     class Frame_Page *bar_framepage;
-
+    Home_Page *home_page;
     int i, j, k;
 
     i = Find_Frame(show_objname);
@@ -198,6 +200,7 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
         show_framepage->update();
     }
 
+    show_framepage->GetMcuData();
     current_page = show_objname;
 }
 

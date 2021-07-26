@@ -26,7 +26,7 @@ public:
     Show_text *show_master_item[3];
     Show_text *show_sub_item[3][7];
     Show_text *show_sub_item_info[3][7];
-
+    virtual void GetMcuData() override;
 protected:
     void paintEvent(QPaintEvent *);
 

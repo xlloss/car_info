@@ -20,7 +20,7 @@ public:
     QPixmap backimg;
     QPixmap frameimg;
     QString sat_msg_str[10];
-
+    virtual void GetMcuData() override;
 private slots:
     void Enable_Icon_Light(int i);
 

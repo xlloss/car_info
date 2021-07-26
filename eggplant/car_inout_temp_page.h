@@ -22,7 +22,7 @@ public:
     QImage image_table;
     Show_text *show_item[CAR_INOUT_TEX_NUM];
     Show_text *show_item_child[CAR_INOUT_CHILD_TEX_NUM];
-
+    virtual void GetMcuData() override;
 protected:
     void paintEvent(QPaintEvent *);
 

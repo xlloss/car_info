@@ -180,3 +180,8 @@ void TiresPressShow_Page::mousePressEvent(QMouseEvent *ev)
 {
     qDebug("x=%d, y=%d", ev->x(), ev->y());
 }
+
+void TiresPressShow_Page::GetMcuData()
+{
+    qDebug("TiresPressShow_Page:%s\n", __func__);
+}

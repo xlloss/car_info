@@ -82,3 +82,8 @@ void BarFrame::Enable_Icon_Light(int i)
     qDebug("%s i=%d", __func__, i);
     icon_id[i]->ft_light_enable();
 }
+
+void BarFrame::GetMcuData()
+{
+    qDebug("BarFrame:%s\n", __func__);
+}

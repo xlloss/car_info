@@ -23,7 +23,7 @@ public:
     QPixmap tableimg;
     Show_text *show_sub_item[4][8];
     Show_text *show_sub_item_info[4][8];
-
+    virtual void GetMcuData() override;
 protected:
     void paintEvent(QPaintEvent *);
 

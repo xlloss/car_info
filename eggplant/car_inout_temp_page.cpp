@@ -60,3 +60,8 @@ void CarInOut_Page::paintEvent(QPaintEvent *)
     painter.drawImage(CAR_INOUT_BUS_IMG_X, CAR_INOUT_BUS_IMG_Y, image_car_bus);
     painter.drawImage(CAR_INOUT_TABLE_IMG_X, CAR_INOUT_TABLE_IMG_Y, image_table);
 }
+
+void CarInOut_Page::GetMcuData()
+{
+    qDebug("CarInOut_Page:%s\n", __func__);
+}

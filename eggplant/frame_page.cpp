@@ -24,9 +24,15 @@ Frame_Page::~Frame_Page()
 
 void Frame_Page::Load_Background(QString image)
 {
+    qDebug("%s\n", __func__);
 }
 
 void Frame_Page::Enable_Icon_Light(int i)
 {
     qDebug("%s i=%d", __func__, i);
 }
+
+//void Frame_Page::GetMcuData()
+//{
+//    qDebug("Frame_Page:%s\n", __func__);
+//}

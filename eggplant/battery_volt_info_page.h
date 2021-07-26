@@ -25,7 +25,7 @@ public:
     Show_text *show_master_item[BATTVAL_MAS_NUM];
     Show_text *show_sub_item[BATTVAL_TEX_COL_NUM][BATTVAL_TEX_ROW_NUM];
     Show_text *show_sub_item_info[BATTVAL_TEX_COL_NUM][BATTVAL_TEX_ROW_NUM];
-
+    virtual void GetMcuData() override;
 protected:
     void paintEvent(QPaintEvent *);
 
