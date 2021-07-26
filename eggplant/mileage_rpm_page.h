@@ -43,8 +43,8 @@ public:
     explicit Mile_Page(QWidget *parent = nullptr);
     QPixmap backimg2;
     QImage str_img[8];
-    Icon_btn *btn[4];
-    Show_text *show_string[6];
+    Icon_btn *btn[RPM_BTN_NUM];
+    Show_text *show_string[RPM_STR_NUM];
     virtual void GetMcuData() override;
 protected:
     void paintEvent(QPaintEvent *);

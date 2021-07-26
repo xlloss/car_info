@@ -21,8 +21,8 @@ public:
     explicit SatInMsg_Page(QWidget *parent = nullptr);
 
     QPixmap tableimg;
-    Show_text *show_sub_item[4][8];
-    Show_text *show_sub_item_info[4][8];
+    Show_text *show_sub_item[SATIN_SUB_ITEM_COL_NUM][SATIN_SUB_ITEM_ROW_NUM];
+    Show_text *show_sub_item_info[SATIN_SUB_ITEM_COL_NUM][SATIN_SUB_ITEM_ROW_NUM];
     virtual void GetMcuData() override;
 protected:
     void paintEvent(QPaintEvent *);

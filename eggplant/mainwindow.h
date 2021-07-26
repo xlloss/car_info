@@ -53,7 +53,6 @@ public:
 
     BarFrame *bar_frame;
     Page_Ctl *page_ctl;
-    int test_cnt1;
 
     Home_Page *home_page;
     Main_Page *main_page;
@@ -75,9 +74,9 @@ public:
     TiresPressShow_Page *tires_press_show_page;
 
     Cmd_Receive *cmd_get;
+
 protected:
     void paintEvent(QPaintEvent *);
-//     bool eventFilter(QObject *obj, QEvent *event);
 
 private slots:
 

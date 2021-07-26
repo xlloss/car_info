@@ -6,9 +6,8 @@
 #define GOBAL_BACKGROUND_IMG_W 800
 #define GOBAL_BACKGROUND_IMG_H 480 - 55
 
-
 /******************************
- *           car gear page
+ *   car gear page
  * ****************************/
 
 #define CARGEAR_ICON_SCALE_SIZ_W 50
@@ -65,7 +64,14 @@ enum {
 /******************************
  *           man page
  *****************************/
-
+#define MAIN_BTN_LEFT_X 100
+#define MAIN_BTN_LEFT_Y 35
+#define MAIN_BTN_RIGHT_X 10
+#define MAIN_BTN_RIGHT_Y MAIN_BTN_LEFT_Y
+#define MAIN_BTN_OFF_X 170
+#define MAIN_BTN_OFF_Y 10
+#define MAIN_BTN_W 260
+#define MAIN_BTN_H 66
 
 
 /******************************

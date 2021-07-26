@@ -69,13 +69,7 @@ ControlMsg2_Page::ControlMsg2_Page(QWidget *parent) : Frame_Page(parent)
                                              control2_sub_text_xy[j + 1], CONTROL2_SUB_TEX_W, CONTROL2_SUB_TEX_H);
             show_sub_item[i][k]->m_font_size = 20;
             show_sub_item[i][k]->show();
-//            j = j + 2;
-//        }
-//    }
-//
-//    for (i = 0; i < CONTROL2_SUB_TEX_COL_NUM; i++) {
-//        j = 0;
-//        for (k = 0; k < CONTROL2_SUB_TEX_ROW_NUM; k++) {
+
             show_sub_item[i][k] = new Show_text(this);
             show_sub_item[i][k]->set_text(control2_sub_text_msg[i][k]);
             show_sub_item[i][k]->setGeometry(control2_sub_text_xy[j] + control2_sub_text_msg_off[i],

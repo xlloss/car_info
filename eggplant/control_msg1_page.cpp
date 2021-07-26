@@ -74,13 +74,7 @@ ControlMsg1_Page::ControlMsg1_Page(QWidget *parent) : Frame_Page(parent)
                                              control1_sub_text_xy[j + 1], CONTROL1_SUB_TEX_W, CONTROL1_SUB_TEX_H);
             show_sub_item[i][k]->m_font_size = CONTROL1_FONT_SIZE;
             show_sub_item[i][k]->show();
-//            j = j + 2;
-//        }
-//    }
-//
-//    for (i = 0; i < CONTROL1_SUB_TEX_COL_NUM; i++) {
-//        j = 0;
-//        for (k = 0; k < CONTROL1_SUB_TEX_ROW_NUM; k++) {
+
             show_sub_item[i][k] = new Show_text(this);
             show_sub_item[i][k]->set_text(control1_sub_text_msg[i][k]);
             show_sub_item[i][k]->setGeometry(control1_sub_text_xy[j] + control1_sub_text_msg_off[i],

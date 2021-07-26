@@ -70,9 +70,9 @@ Mile_Page::Mile_Page(QWidget *parent) : Frame_Page(parent)
     bgimg.load(RPM_BG_IMG);
     backimg2.load(RPM_FM_IMG);
 
-    for (i = 0; i < RPM_STR_IMG_COL_NUM; i++) {
+    for (i = 0; i < RPM_STR_IMG_COL_NUM; i++)
         str_img[i].load(str_img_id[i]);
-    }
+
 
     j = 0;
     for (i = 0; i < RPM_BTN_NUM; i++) {

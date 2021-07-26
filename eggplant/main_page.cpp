@@ -33,8 +33,8 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
         btn[i]->enable_scale = 0;
         btn_name = main_page_string[i];
         btn[i]->load_image_ft(":/icon/menu-button.png", ":/icon/menu-button-press.png");
-        btn[i]->setGeometry(BTN_LEFT_X, BTN_LEFT_Y + ((BTN_OFF_Y + BTN_H) * i),
-                            BTN_W, BTN_H);
+        btn[i]->setGeometry(MAIN_BTN_LEFT_X, MAIN_BTN_LEFT_Y + ((MAIN_BTN_OFF_Y + MAIN_BTN_H) * i),
+                            MAIN_BTN_W, MAIN_BTN_H);
 
         btn[i]->set_text(btn_name);
 
@@ -44,9 +44,9 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
         btn[i + 5]->enable_scale = 0;
         btn_name = main_page_string[i + 5];
         btn[i + 5]->load_image_ft(":/icon/menu-button.png", ":/icon/menu-button-press.png");
-        btn[i + 5]->setGeometry(BTN_RIGHT_X + BTN_W + BTN_OFF_X,
-                                BTN_RIGHT_Y + ((BTN_OFF_Y + BTN_H) * i),
-                                BTN_W, BTN_H);
+        btn[i + 5]->setGeometry(MAIN_BTN_RIGHT_X + MAIN_BTN_W + MAIN_BTN_OFF_X,
+                                MAIN_BTN_RIGHT_Y + ((MAIN_BTN_OFF_Y + MAIN_BTN_H) * i),
+                                MAIN_BTN_W, MAIN_BTN_H);
 
         btn[i + 5]->set_text(btn_name);
     }
