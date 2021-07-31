@@ -114,7 +114,7 @@ void BatTempInfo_Page::paintEvent(QPaintEvent *)
     painter.drawPixmap(8, 20, tableimg, 0, 0, 788, 385);
 }
 
-void BatTempInfo_Page::GetMcuData()
+void BatTempInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     qDebug("BatTempInfo_Page:%s\n", __func__);
 }

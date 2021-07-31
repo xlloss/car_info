@@ -22,7 +22,7 @@ public:
 
     Show_text *show_item[TIME_ADJ_TEX_TITLE_NUM];
     Show_text *show_item_child[TIME_ADJ_CHILD_TEX_TIME_NUM];
-    virtual void GetMcuData() override;
+    virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
 protected:
     void paintEvent(QPaintEvent *);
 

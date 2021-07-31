@@ -38,7 +38,7 @@ void ScreenVolumeAdjust_Page::paintEvent(QPaintEvent *)
         painter.drawRect(VOL_BAR_X + (VOL_BAR_W + VOL_BAR_GAP) * i , 105, VOL_BAR_W, VOL_BAR_H);
 }
 
-void ScreenVolumeAdjust_Page::GetMcuData()
+void ScreenVolumeAdjust_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     qDebug("ScreenVolumeAdjust_Page:%s\n", __func__);
 }

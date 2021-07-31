@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     page_ctl = new Page_Ctl(this);
 
     cmd_get = new Cmd_Receive(this);
-    //cmd_get->Register((class Frame_Page *)bar_frame);
+
     cmd_get->Register((class Frame_Page *)page_ctl->home_page);
     cmd_get->Register((class Frame_Page *)page_ctl->main_page);
     cmd_get->Register((class Frame_Page *)page_ctl->mile_page);
@@ -42,8 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
     cmd_get->Register((class Frame_Page *)page_ctl->slave_sat_msg_page);
     cmd_get->Register((class Frame_Page *)page_ctl->bcm_page);
     cmd_get->Register((class Frame_Page *)page_ctl->tires_press_show_page);
-
-    this->installEventFilter(this);
+    cmd_get->Register((class Frame_Page *)bar_frame);
 
     page_ctl->home_page->setWindowState(Qt::WindowActive);
     page_ctl->home_page->show();
@@ -57,5 +56,7 @@ MainWindow::~MainWindow()
 void MainWindow::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.drawPixmap(0, 0, backimg, 0, 55, 800, 480 - 55);
+    painter.drawPixmap(0, 0, backimg,
+                       GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+                       GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 }

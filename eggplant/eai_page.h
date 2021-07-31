@@ -26,7 +26,7 @@ public:
     Show_text *show_master_item[EAI_MAS_TEX_NUM];
     Show_text *show_sub_item[EAI_MAS_TEX_NUM][EAI_SUB_TEX_NUM];
     Show_text *show_sub_item_info[EAI_MAS_TEX_NUM][EAI_SUB_TEX_NUM];
-    virtual void GetMcuData() override;
+    virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
 protected:
     void paintEvent(QPaintEvent *);
 

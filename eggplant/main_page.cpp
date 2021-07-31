@@ -78,7 +78,7 @@ void Main_Page::paintEvent(QPaintEvent *)
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 }
 
-void Main_Page::GetMcuData()
+void Main_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     qDebug("Main_Page:%s\n", __func__);
 }

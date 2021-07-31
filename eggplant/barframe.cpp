@@ -4,6 +4,24 @@
 #include <QDebug>
 #include "string/string.h"
 
+QString icon_name[CARGEAR_ICON_NUM][2] = {
+        {CARGEAR_ID_0_0,  CARGEAR_ID_0_1},
+        {CARGEAR_ID_1_0,  CARGEAR_ID_1_1},
+        {CARGEAR_ID_2_0,  CARGEAR_ID_2_1},
+        {CARGEAR_ID_3_0,  CARGEAR_ID_3_1},
+        {CARGEAR_ID_4_0,  CARGEAR_ID_4_1},
+        {CARGEAR_ID_5_0,  CARGEAR_ID_5_1},
+        {CARGEAR_ID_6_0,  CARGEAR_ID_6_1},
+        {CARGEAR_ID_7_0,  CARGEAR_ID_7_1},
+        {CARGEAR_ID_8_0,  CARGEAR_ID_8_1},
+        {CARGEAR_ID_9_0,  CARGEAR_ID_9_1},
+        {CARGEAR_ID_10_0, CARGEAR_ID_10_1},
+        {CARGEAR_ID_11_0, CARGEAR_ID_11_1},
+        {CARGEAR_ID_12_0, CARGEAR_ID_12_1},
+        {CARGEAR_ID_13_0, CARGEAR_ID_13_1},
+        {CARGEAR_ID_14_0, CARGEAR_ID_14_1},
+        };
+
 BarFrame::BarFrame(QWidget *parent) :
     Frame_Page(parent),
     ui(new Ui::BarFrame)
@@ -11,23 +29,6 @@ BarFrame::BarFrame(QWidget *parent) :
     ui->setupUi(this);
 
     int i;
-    QString icon_name[CARGEAR_ICON_NUM][2] = {
-            {CARGEAR_ID_0_0,  CARGEAR_ID_0_1},
-            {CARGEAR_ID_1_0,  CARGEAR_ID_1_1},
-            {CARGEAR_ID_2_0,  CARGEAR_ID_2_1},
-            {CARGEAR_ID_3_0,  CARGEAR_ID_3_1},
-            {CARGEAR_ID_4_0,  CARGEAR_ID_4_1},
-            {CARGEAR_ID_5_0,  CARGEAR_ID_5_1},
-            {CARGEAR_ID_6_0,  CARGEAR_ID_6_1},
-            {CARGEAR_ID_7_0,  CARGEAR_ID_7_1},
-            {CARGEAR_ID_8_0,  CARGEAR_ID_8_1},
-            {CARGEAR_ID_9_0,  CARGEAR_ID_9_1},
-            {CARGEAR_ID_10_0, CARGEAR_ID_10_1},
-            {CARGEAR_ID_11_0, CARGEAR_ID_11_1},
-            {CARGEAR_ID_12_0, CARGEAR_ID_12_1},
-            {CARGEAR_ID_13_0, CARGEAR_ID_13_1},
-            {CARGEAR_ID_14_0, CARGEAR_ID_14_1},
-            };
 
     for (i = CARGEAR_ID_0; i < CARGEAR_ID_5; i++) {
         icon_id[i] = new Icon_btn(this);
@@ -59,7 +60,7 @@ BarFrame::BarFrame(QWidget *parent) :
     }
 
     this->setGeometry(0, 0, CARGEAR_BAR_FRAME_W, CARGEAR_BAR_FRAME_H);
-    this->setObjectName("BarFrame");
+    this->setObjectName(BAR_FRAME_OBJNAME);
 
 }
 
@@ -83,7 +84,14 @@ void BarFrame::Enable_Icon_Light(int i)
     icon_id[i]->ft_light_enable();
 }
 
-void BarFrame::GetMcuData()
+void BarFrame::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    qDebug("BarFrame:%s\n", __func__);
+    int i;
+
+    for (i = CARGEAR_ID_0; i < CARGEAR_ID_15; i++) {
+        if ((protolcol_data->widge_id >> i & 0x01) == 0x01)
+            icon_id[i]->ft_light_enable();
+        else
+            icon_id[i]->ft_dark_enable();
+    }
 }

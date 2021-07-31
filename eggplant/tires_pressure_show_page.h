@@ -28,7 +28,7 @@ public:
     Show_text *tires_text_temp[TIRES_BTN_NUM];
     Show_text *tires_value_air[TIRES_BTN_NUM];
     Show_text *tires_value_temp[TIRES_BTN_NUM];
-    virtual void GetMcuData() override;
+    virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
 private slots:
     void Enable_Icon_Light(int i);
     void mousePressEvent(QMouseEvent *ev);

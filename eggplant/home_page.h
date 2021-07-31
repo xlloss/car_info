@@ -5,7 +5,7 @@
 #include <QImage>
 #include "frame_page.h"
 
-#define HOME_PAGE_OBJNAME "Home_Page"
+
 #define HOME_PAGE_BACKGROUND ":/icon/background.png"
 #define HOME_PAGE_BUS ":/icon/bus-bg.png"
 
@@ -17,7 +17,7 @@ public:
     explicit Home_Page(QWidget *parent = nullptr);
     QImage image_car_bus;
 
-    virtual void GetMcuData() override;
+    virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
 protected:
     void paintEvent(QPaintEvent *);
 

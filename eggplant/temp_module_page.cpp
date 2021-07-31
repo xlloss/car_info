@@ -82,7 +82,7 @@ void TempModule_Page::paintEvent(QPaintEvent *)
     painter.drawPixmap(5, 20, tableimg, 0, 0, 788, 380);
 }
 
-void TempModule_Page::GetMcuData()
+void TempModule_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     qDebug("TempModule_Page:%s\n", __func__);
 }

@@ -31,7 +31,7 @@
 
 #define RPM_FONT_SIZE 30
 
-#define RPM_OBJNAME "Rpm_Page"
+
 #define RPM_BG_IMG ":/icon/rpm_page_bg.png"
 #define RPM_FM_IMG ":/icon/rpm_page_bg_2.png"
 
@@ -45,7 +45,7 @@ public:
     QImage str_img[8];
     Icon_btn *btn[RPM_BTN_NUM];
     Show_text *show_string[RPM_STR_NUM];
-    virtual void GetMcuData() override;
+    virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
 protected:
     void paintEvent(QPaintEvent *);
 

@@ -3,6 +3,7 @@
 
 #include <QFrame>
 #include "icon_btn.h"
+#include "protocol_fmt.h"
 
 namespace Ui {
 class Frame_Page;
@@ -19,7 +20,7 @@ public:
     void Enable_Icon_Light(int i);
     void Load_Background(QString image);
 
-    virtual void GetMcuData() = 0;
+    virtual void GetMcuData(class CarInfo_Data *) = 0;
 private slots:
 
 protected:

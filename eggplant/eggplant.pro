@@ -75,6 +75,7 @@ HEADERS += \
     mainwindow.h \
     mileage_rpm_page.h \
     page_ctl.h \
+    protocol_fmt.h \
     screen_volume_adjust_page.h \
     serial_port.h \
     show_text.h \

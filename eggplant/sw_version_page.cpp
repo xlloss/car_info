@@ -71,7 +71,7 @@ void SwVersion_Page::paintEvent(QPaintEvent *)
 }
 
 
-void SwVersion_Page::GetMcuData()
+void SwVersion_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     qDebug("SwVersion_Page:%s\n", __func__);
 }

@@ -25,7 +25,7 @@ public:
     Show_text *show_master_item[BATTINFO_MAS_NUM];
     Show_text *show_sub_item[BATTINFO_TEX_COL_NUM][BATTINFO_TEX_ROW_NUM];
     Show_text *show_sub_item_info[BATTINFO_TEX_COL_NUM][BATTINFO_TEX_ROW_NUM];
-    virtual void GetMcuData() override;
+    virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
 protected:
     void paintEvent(QPaintEvent *);
 

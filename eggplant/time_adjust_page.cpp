@@ -84,7 +84,7 @@ void TimeAdjust_Page::paintEvent(QPaintEvent *)
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 }
 
-void TimeAdjust_Page::GetMcuData()
+void TimeAdjust_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     qDebug("TimeAdjust_Page:%s\n", __func__);
 }

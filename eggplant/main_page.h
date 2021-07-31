@@ -8,7 +8,7 @@
 #include "icon_btn.h"
 #include "coordinate.h"
 
-#define MAIN_PAGE_OBJNAME "Main_Page"
+
 #define MAIN_PAGE_BACKGROUND ":/icon/main_page_bg.png"
 #define MAIN_PAGE_BUS ":/icon/bus-bg.png"
 
@@ -21,7 +21,7 @@ public:
     Icon_btn *btn[10];
     void LoadBackground();
     int m_load_background_img;
-    virtual void GetMcuData() override;
+    virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
 
 private slots:
     void Enable_Icon_Light(int i);

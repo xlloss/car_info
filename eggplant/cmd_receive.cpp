@@ -1,10 +1,13 @@
 #include "cmd_receive.h"
+#include "barframe.h"
 #include <QDebug>
 
 #define HEAD1 0x11
 #define HEAD2 0x22
 #define HEAD3 0x33
 #define HEAD4 0x44
+#define REC_UART_PORT "/dev/ttyS1"
+#define REC_UART_SPEED 9600
 
 WorkThread::WorkThread(QObject *parent, bool b) :
     QThread(parent), Stop(b)
@@ -12,7 +15,7 @@ WorkThread::WorkThread(QObject *parent, bool b) :
     int ret;
 
     serialport = new Serial_Port();
-    ret = serialport->Serial_Port_Open("/dev/ttyS3", 9600);
+    ret = serialport->Serial_Port_Open(REC_UART_PORT, REC_UART_SPEED);
     if (ret)
         qDebug("Serial_Port_Open fail\n");
 
@@ -159,14 +162,11 @@ int Cmd_Receive::Find_Frame(QString objname)
     return i;
 }
 
-
-
 void Cmd_Receive::Frame_Page_Show(QString show_objname)
 {
     class Frame_Page *show_framepage;
     class Frame_Page *close_framepage;
-    class Frame_Page *bar_framepage;
-    Home_Page *home_page;
+    class BarFrame *bar_page;
     int i, j, k;
 
     i = Find_Frame(show_objname);
@@ -174,6 +174,15 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
         qDebug() << "can't find any show frame page\n" << show_objname;
         return;
     }
+
+    if (!show_objname.compare(BAR_FRAME_OBJNAME)) {
+        bar_page = (BarFrame *)page_list.at(i);
+        bar_page->GetMcuData(pcarinfo_data);
+        bar_page->update();
+        return;
+    }
+
+
     show_framepage = page_list.at(i);
     qDebug() << "show frameage objname=" <<show_framepage->objectName();
 
@@ -185,13 +194,8 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
     close_framepage = page_list.at(j);
     qDebug() << "close frame page objname=" <<close_framepage->objectName();
 
-    k = Find_Frame("BarFrame");
-    if (j < 0) {
-        qDebug("can't find any BarFrame page\n");
-        return;
-    }
-
     if (current_page.compare(show_objname) != 0) {
+        show_framepage->GetMcuData(pcarinfo_data);
         show_framepage->setWindowFlags(Qt::WindowStaysOnTopHint);
         show_framepage->setGeometry(0, 0, GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
         show_framepage->show();
@@ -200,19 +204,18 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
         show_framepage->update();
     }
 
-    show_framepage->GetMcuData();
     current_page = show_objname;
 }
 
 void Cmd_Receive::Triger_Page(CarInfo_Data *carinfo_data)
 {
-    CarInfo_Data *pcarinfo_data = carinfo_data;
+    pcarinfo_data = carinfo_data;
     qDebug("page_number %d", pcarinfo_data->page_number);
-    QString objname[] = {"Home_Page", "Main_Page", "Rpm_Page", "CarInOut_Page",
+    QString objname[] = {HOME_PAGE_OBJNAME, MAIN_PAGE_OBJNAME, RPM_OBJNAME, "CarInOut_Page",
                         "TimeAdjust_Page", "ScreenVolumeAdjust_Page", "EleAccInfo_Page",
                         "ControlMsg1_Page", "ControlMsg2_Page", "BatTempInfo_Page", "BatVoltInfo_Page",
                         "TempModule_Page", "SatOutMsg_Page", "SatInMsg_Page", "SwVersion_Page",
-                        "SlaveSatMsg_Page", "Bcm_Page", "TiresPressShow_Page","BarFrame",
+                        "SlaveSatMsg_Page", "Bcm_Page", "TiresPressShow_Page",BAR_FRAME_OBJNAME,
                         };
 
     Frame_Page_Show(objname[pcarinfo_data->page_number]);

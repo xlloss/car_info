@@ -68,7 +68,7 @@ void SatInMsg_Page::paintEvent(QPaintEvent *)
     painter.drawPixmap(5, 20, tableimg, 0, 0, 788, 380);
 }
 
-void SatInMsg_Page::GetMcuData()
+void SatInMsg_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     qDebug("SatInMsg_Page:%s\n", __func__);
 }

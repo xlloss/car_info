@@ -109,7 +109,7 @@ void Mile_Page::paintEvent(QPaintEvent *)
         painter.drawImage(str_img_xy[i][0], str_img_xy[i][1], str_img[i]);
 }
 
-void Mile_Page::GetMcuData()
+void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     qDebug("Mile_Page:%s\n", __func__);
 }

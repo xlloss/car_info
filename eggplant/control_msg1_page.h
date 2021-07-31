@@ -25,7 +25,7 @@ public:
     Show_text *show_master_item[CONTROL1_MSA_TEX_NUM];
     Show_text *show_sub_item[CONTROL1_SUB_TEX_COL_NUM][CONTROL1_SUB_TEX_ROW_NUM];
     Show_text *show_sub_item_info[CONTROL1_SUB_TEX_COL_NUM][CONTROL1_SUB_TEX_ROW_NUM];
-    virtual void GetMcuData() override;
+    virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
 protected:
     void paintEvent(QPaintEvent *);
 

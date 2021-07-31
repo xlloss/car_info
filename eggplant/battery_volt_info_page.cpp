@@ -117,7 +117,7 @@ void BatVoltInfo_Page::paintEvent(QPaintEvent *)
     painter.drawPixmap(8, 20, tableimg, 0, 0, 788, 385);
 }
 
-void BatVoltInfo_Page::GetMcuData()
+void BatVoltInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     qDebug("BatVoltInfo_Page:%s\n", __func__);
 }

@@ -6,6 +6,7 @@
 #include "serial_port.h"
 #include "frame_page.h"
 #include "home_page.h"
+#include "protocol_fmt.h"
 
 class Cmd_Receive;
 
@@ -16,14 +17,6 @@ public:
     uint8_t buf_sz;
 };
 
-class CarInfo_Data
-{
-public:
-    uint8_t page_number;
-    uint8_t widge_id;
-    uint8_t widge_data[25];
-    uint8_t pad[5];
-};
 
 
 class WorkThread : public QThread
@@ -81,6 +74,7 @@ public:
     int Find_Frame(QString objname);
     QString current_page;
     QList <class Frame_Page *> page_list;
+    CarInfo_Data *pcarinfo_data;
 
 private slots:
     void Triger_Page(CarInfo_Data *carinfo_data);
