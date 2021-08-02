@@ -3,6 +3,15 @@
 #include "coordinate.h"
 #include "string/string.h"
 
+#define HOME_ITEM_TEX1_X 10
+#define HOME_ITEM_TEX1_Y 80
+
+#define HOME_ITEM_TEX2_X 630
+#define HOME_ITEM_TEX2_Y 80
+
+#define HOME_ITEM_TEX3_X 180
+#define HOME_ITEM_TEX3_Y 450
+
 Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
 {
     this->setObjectName(HOME_PAGE_OBJNAME);
