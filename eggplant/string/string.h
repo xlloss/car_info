@@ -8,6 +8,26 @@
  ******************************************/
 
 
+/******************************************
+ *  home page
+ ******************************************/
+#define DATE_TIME "日期時間
+#define SLOPE "坡度"
+#define GEAR_SAT "檔位狀態"
+#define BATT_SAT "電池狀態"
+#define IMM_PWR_CONSUMP "瞬間耗電"
+#define TOTAL_MILEAGE "里程總數"
+#define PRE_MILEAGE "當次里程"
+#define AVAILABLE_MILE "剩餘可行里程數"
+#define MOTO_TEMP "馬達溫度"
+#define BATT_PACK "電池PACK"
+#define SMALL_VOLAT "小電電壓"
+#define TOTAL_VOLT "總電壓"
+#define TOTAL_CURREN "總電流"
+#define BATT_SOC "電池 SOC"
+#define FRONT_AIR_PRESSURE "前儲氣筒氣壓值"
+#define BEHIND_AIR_PRESSURE "後儲氣筒氣壓值"
+#define ALARM_MSG "警報訊息"
 
 /******************************************
  *  main page
