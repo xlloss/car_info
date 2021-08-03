@@ -10,8 +10,8 @@ CONFIG += c++11
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
-#KIT = QTx86
-KIT = sunpluse
+KIT = QTx86
+#KIT = sunpluse
 
 contains(KIT, QTx86) {
     LIBS += -L$$PWD/eggplantlib/ -lserial

@@ -37,11 +37,7 @@ CarInOut_Page::CarInOut_Page(QWidget *parent) : Frame_Page(parent)
         show_item[i]->set_text(item_text[i]);
         show_item[i]->setGeometry(item_text_xy[j], item_text_xy[j + 1], 150, 70);
         show_item[i]->show();
-//        j = j + 2;
-//    }
-//
-//    j = 0;
-//    for (i = 0; i < CAR_INOUT_CHILD_TEX_NUM; i++) {
+
         show_item_child[i] = new Show_text(this);
         show_item_child[i]->set_text(item_text_child[i]);
         show_item_child[i]->setGeometry(item_text_child_xy[j], item_text_child_xy[j + 1], 100, 70);

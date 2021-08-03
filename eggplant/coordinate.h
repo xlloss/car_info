@@ -52,10 +52,26 @@ enum {
 /******************************
  *           home page
  * ****************************/
-#define HOME_CARBUS_IMG_X 190
+#define HOME_CARBUS_IMG_X 210
 #define HOME_CARBUS_IMG_Y 80
 
+#define HOME_ITEM_TEX1_X 10
+#define HOME_ITEM_TEX1_Y 80
+#define HOME_ITEM_TEX1_W 120
+#define HOME_ITEM_TEX1_H 70
+#define HOME_ITEM_TEX1_Y_OFF 30
 
+#define HOME_ITEM_TEX2_X 630
+#define HOME_ITEM_TEX2_Y 80
+#define HOME_ITEM_TEX2_W 120
+#define HOME_ITEM_TEX2_H 70
+#define HOME_ITEM_TEX2_Y_OFF 30
+
+
+#define HOME_ITEM_TEX3_X 340
+#define HOME_ITEM_TEX3_Y 350
+#define HOME_ITEM_TEX3_W 100
+#define HOME_ITEM_TEX3_H 70
 
 
 
