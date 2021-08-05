@@ -44,7 +44,7 @@ int Serial_Port::Serial_Port_Read(QByteArray *data_read)
 {
     unsigned char buf[64];
     int ret;
-    #define TIMEOUT 2000
+    #define TIMEOUT 100
 
     if (!data_read)
         return -EINVAL;
