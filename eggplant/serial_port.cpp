@@ -42,7 +42,7 @@ int Serial_Port::Serial_Port_Write(QByteArray *data_write)
 
 int Serial_Port::Serial_Port_Read(QByteArray *data_read)
 {
-    unsigned char buf[64];
+    unsigned char buf[128];
     int ret;
     #define TIMEOUT 100
 

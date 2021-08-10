@@ -21,6 +21,22 @@ WorkThread::WorkThread(QObject *parent, bool b) :
 
 }
 
+int WorkThread::do_checksum(uint8_t *data, uint16_t data_len, uint8_t check)
+{
+    int ret = -1;
+    uint8_t len = 0;
+
+    do {
+        ret = ret ^ data[len];
+        len++;
+    } while (len < data_len);
+
+    if (ret != check)
+        ret = -1;
+
+    return ret;
+}
+
 void WorkThread::run()
 {
     QByteArray rdata, cmdbuf;
@@ -62,8 +78,12 @@ void PageCtl_Thread::run()
     Cmd_Buf *getcmdlistbuf;
     CarInfo_Data cmd_carinfo;
     uint8_t cmd_data_n, get_headinfo;
-    uint8_t temp_buf[32] = {0};
+    uint8_t temp_buf[128] = {0};
     uint8_t *readbuf;
+    uint8_t cmd_id, cmd_buf_ck;
+    uint16_t data_buf_sz;
+    int ret;
+
     cmd_data_n = 0;
     get_headinfo = 0;
     while(1) {
@@ -77,46 +97,65 @@ void PageCtl_Thread::run()
                 readbuf[getcmdlistbuf->buf_sz] = 0;
                 qDebug("getcmdlistbuf->buf_sz -> %d\n", getcmdlistbuf->buf_sz);
 
-                if (!get_headinfo && readbuf[0] == HEAD1 && readbuf[1] == HEAD2
-                        && readbuf[2] == HEAD3 && readbuf[3] == HEAD4) {
-                    qDebug("-->Get Head\n");
-                    if (getcmdlistbuf->buf_sz - 4 >= 32) {
-                        qDebug("SLASH TEST\n");
-                        memcpy((uint8_t *)&temp_buf, &readbuf[4], 32);
-                        cmd_data_n = 32;
-                    } else {
-                        memcpy((uint8_t *)&temp_buf, &readbuf[4], getcmdlistbuf->buf_sz);
-                        cmd_data_n = cmd_data_n + getcmdlistbuf->buf_sz;
-                    }
+                if (!get_headinfo && readbuf[0] == 0x5A && readbuf[1] == 0x87) {
+                    cmd_id = readbuf[2];
+                    data_buf_sz = (readbuf[3] << 8) | readbuf[4];
+
+                    //compute checksun
+                    ret = do_checksum(&readbuf[5], cmd_buf_sz, readbuf[5 + cmd_buf_sz])
+                    if (ret < 0)
+                        continue;
+
+                    if (cmd_buf_sz > 128)
+                        qDebug("data buffer[%d] over temp_buf size\n", cmd_buf_sz);
+
+                    memcpy((uint8_t *)&temp_buf, &readbuf[5], cmd_buf_sz - 1);
                     get_headinfo = 1;
-                } else if (get_headinfo) {
-                    if (32 - cmd_data_n > getcmdlistbuf->buf_sz) {
-                        memcpy((uint8_t *)&temp_buf[cmd_data_n], readbuf, getcmdlistbuf->buf_sz);
-                        cmd_data_n = cmd_data_n + getcmdlistbuf->buf_sz;
-                    } else {
-                        memcpy((uint8_t *)&temp_buf[cmd_data_n], readbuf, 32 - cmd_data_n);
-                        cmd_data_n = cmd_data_n + 32 - cmd_data_n;
-                    }
+                    memcpy((uint8_t *)&cmd_carinfo, temp_buf, cmd_buf_sz - 1);
+                    emit Triger_Page_Signal(&cmd_carinfo);
+                    get_headinfo = 0;
                 }
 
-                if (cmd_data_n >= 32) {
-                    cmd_data_n = 0;
-                    get_headinfo = 0;
-                    memcpy((uint8_t *)&cmd_carinfo, temp_buf, 32);
-                    emit Triger_Page_Signal(&cmd_carinfo);
-                    //qDebug("cmd_carinfo.page_number %d\n", cmd_carinfo.page_number);
-                    //qDebug("cmd_carinfo.widge_id %d\n", cmd_carinfo.widge_id);
-                    //int i;
-                    //for (i = 0; i < 25; i++)
-                    //    qDebug("cmd_carinfo.widge_data[%d] %d\n", i, cmd_carinfo.widge_data[i]);
-                }
+                //if (!get_headinfo && readbuf[0] == HEAD1 && readbuf[1] == HEAD2
+                //        && readbuf[2] == HEAD3 && readbuf[3] == HEAD4) {
+                //    qDebug("-->Get Head\n");
+                //    if (getcmdlistbuf->buf_sz - 4 >= 32) {
+                //        qDebug("SLASH TEST\n");
+                //        memcpy((uint8_t *)&temp_buf, &readbuf[4], 32);
+                //        cmd_data_n = 32;
+                //    } else {
+                //        memcpy((uint8_t *)&temp_buf, &readbuf[4], getcmdlistbuf->buf_sz);
+                //        cmd_data_n = cmd_data_n + getcmdlistbuf->buf_sz;
+                //    }
+                //    get_headinfo = 1;
+                //} else if (get_headinfo) {
+                //    if (32 - cmd_data_n > getcmdlistbuf->buf_sz) {
+                //        memcpy((uint8_t *)&temp_buf[cmd_data_n], readbuf, getcmdlistbuf->buf_sz);
+                //        cmd_data_n = cmd_data_n + getcmdlistbuf->buf_sz;
+                //    } else {
+                //        memcpy((uint8_t *)&temp_buf[cmd_data_n], readbuf, 32 - cmd_data_n);
+                //        cmd_data_n = cmd_data_n + 32 - cmd_data_n;
+                //    }
+                //}
+                //
+                //if (cmd_data_n >= 32) {
+                //    cmd_data_n = 0;
+                //    get_headinfo = 0;
+                //    memcpy((uint8_t *)&cmd_carinfo, temp_buf, 32);
+                //    emit Triger_Page_Signal(&cmd_carinfo);
+                //    //qDebug("cmd_carinfo.page_number %d\n", cmd_carinfo.page_number);
+                //    //qDebug("cmd_carinfo.widge_id %d\n", cmd_carinfo.widge_id);
+                //    //int i;
+                //    //for (i = 0; i < 25; i++)
+                //    //    qDebug("cmd_carinfo.widge_data[%d] %d\n", i, cmd_carinfo.widge_data[i]);
+                //}
 
                 delete readbuf;
                 cmd_receive->mThread->cmd_list.removeAt(i);
                 delete getcmdlistbuf;
             }
         }
-        QThread::msleep(100);
+        QThread::msleep(5);
     };
 }
 
