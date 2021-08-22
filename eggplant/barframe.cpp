@@ -88,10 +88,10 @@ void BarFrame::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     int i;
 
-    for (i = CARGEAR_ID_0; i < CARGEAR_ID_15; i++) {
-        if ((protolcol_data->widge_id >> i & 0x01) == 0x01)
-            icon_id[i]->ft_light_enable();
-        else
-            icon_id[i]->ft_dark_enable();
-    }
+    //for (i = CARGEAR_ID_0; i < CARGEAR_ID_15; i++) {
+    //    if ((protolcol_data->widge_id >> i & 0x01) == 0x01)
+    //        icon_id[i]->ft_light_enable();
+    //    else
+    //        icon_id[i]->ft_dark_enable();
+    //}
 }

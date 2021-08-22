@@ -2,12 +2,25 @@
 #include "barframe.h"
 #include <QDebug>
 
-#define HEAD1 0x11
-#define HEAD2 0x22
-#define HEAD3 0x33
-#define HEAD4 0x44
+#define HEAD1 0x5A
+#define HEAD2 0x87
+#define PAGE_RQ 0x0B
+
+#define HEAD1_OFF 0
+#define HEAD2_OFF 1
+#define ID_OFF 2
+#define LENH_OFF 3
+#define LENL_OFF 4
+#define PAGE_DATA_OFF 5
+
+#define HEAD_SIZE 5
+#define PAGE_NUM_OFF 0
+#define METER_SAT_OFF 1
+#define PAGE_DAT_OFF 4
+
+
 #define REC_UART_PORT "/dev/ttyS1"
-#define REC_UART_SPEED 9600
+#define REC_UART_SPEED 921600
 
 WorkThread::WorkThread(QObject *parent, bool b) :
     QThread(parent), Stop(b)
@@ -23,8 +36,8 @@ WorkThread::WorkThread(QObject *parent, bool b) :
 
 int WorkThread::do_checksum(uint8_t *data, uint16_t data_len, uint8_t check)
 {
-    int ret = -1;
-    uint8_t len = 0;
+    int ret = 0;
+    uint32_t len = 0;
 
     do {
         ret = ret ^ data[len];
@@ -45,23 +58,21 @@ void WorkThread::run()
     while(1) {
 
         serialport->Serial_Port_Read(&rdata);
-        if (rdata.size() != 0) {
-            qDebug("Serial Buf is come in %s %d\n", __func__, __LINE__);
-            //qDebug("Serial Buf is %s %d rdata %s\n", __func__, __LINE__, rdata.data());
-            //qDebug("Serial Buf have data %s %d\n", __func__, __LINE__);
-            getcmd = new Cmd_Buf;
-            getcmd->buf_sz = rdata.size();
-            memcpy(getcmd->buf, rdata.data(), rdata.size());
-            cmd_list.append(getcmd);
+        if (rdata.size() <= 0)
+            continue;
 
-            rdata.clear();
-            rdata.resize(0);
-        }
-        //else {
-        //    qDebug("Serial Buf is empy %s %d\n", __func__, __LINE__);
-        //}
+        //qDebug("Serial Buf is come in %s %d\n", __func__, __LINE__);
+        //qDebug("Serial Buf is %s %d rdata %d\n", __func__, __LINE__, rdata.size());
+        //qDebug("Serial Buf have data %s %d 0x%x\n", __func__, __LINE__, rdata.at(0));
+        getcmd = new Cmd_Buf;
+        getcmd->buf_sz = rdata.size();
+        memcpy(getcmd->buf, rdata.data(), rdata.size());
+        cmd_list.append(getcmd);
 
-        msleep(10);
+        rdata.clear();
+        rdata.resize(0);
+
+        msleep(100);
     };
 }
 
@@ -74,88 +85,76 @@ PageCtl_Thread::PageCtl_Thread(QObject *parent, bool b) :
 
 void PageCtl_Thread::run()
 {
-    uint32_t cmd_n, i;
+    int32_t buf_index;
+    uint32_t cmd_n, cmd_index;
     Cmd_Buf *getcmdlistbuf;
-    CarInfo_Data cmd_carinfo;
     uint8_t cmd_data_n, get_headinfo;
     uint8_t temp_buf[128] = {0};
     uint8_t *readbuf;
     uint8_t cmd_id, cmd_buf_ck;
-    uint16_t data_buf_sz;
+    uint16_t pagedata_sz;
     int ret;
 
     cmd_data_n = 0;
     get_headinfo = 0;
+
     while(1) {
         cmd_n = cmd_receive->mThread->cmd_list.size();
-        if (cmd_n > 0) {
-            for (i = 0; i < cmd_n; i++) {
-                getcmdlistbuf = cmd_receive->mThread->cmd_list.at(i);
+        if (!cmd_n)
+            goto do_sleep;
 
-                readbuf = new uint8_t [getcmdlistbuf->buf_sz + 1];
-                memcpy(readbuf, getcmdlistbuf->buf, getcmdlistbuf->buf_sz);
-                readbuf[getcmdlistbuf->buf_sz] = 0;
-                qDebug("getcmdlistbuf->buf_sz -> %d\n", getcmdlistbuf->buf_sz);
+        for (cmd_index = 0; cmd_index < cmd_n; cmd_index++) {
+            getcmdlistbuf = cmd_receive->mThread->cmd_list.at(cmd_index);
 
-                if (!get_headinfo && readbuf[0] == 0x5A && readbuf[1] == 0x87) {
-                    cmd_id = readbuf[2];
-                    data_buf_sz = (readbuf[3] << 8) | readbuf[4];
+            readbuf = new uint8_t [getcmdlistbuf->buf_sz + 1];
+            memcpy(readbuf, getcmdlistbuf->buf, getcmdlistbuf->buf_sz);
+            readbuf[getcmdlistbuf->buf_sz] = 0;
+            qDebug("getcmdlistbuf->buf_sz -> %d\n", getcmdlistbuf->buf_sz);
+
+            buf_index = 0;
+            while (buf_index < getcmdlistbuf->buf_sz) {
+
+                if (readbuf[buf_index + HEAD1_OFF] == HEAD1 && readbuf[buf_index + HEAD2_OFF] == HEAD2) {
+                    qDebug("Get Head\n");
+                    cmd_id = readbuf[buf_index + ID_OFF];
+                    pagedata_sz = (readbuf[buf_index + LENH_OFF] << 8) | readbuf[buf_index + LENL_OFF];
 
                     //compute checksun
-                    ret = do_checksum(&readbuf[5], cmd_buf_sz, readbuf[5 + cmd_buf_sz])
-                    if (ret < 0)
-                        continue;
+                    ret = cmd_receive->mThread->do_checksum(&readbuf[buf_index + HEAD1_OFF], pagedata_sz + HEAD_SIZE,
+                                      readbuf[buf_index + PAGE_DATA_OFF + pagedata_sz]);
+                    if (ret < 0) {
+                        qDebug("check sum fail\n");
+                        goto do_sleep;
+                    } else
+                        qDebug("check sum ok\n");
 
-                    if (cmd_buf_sz > 128)
-                        qDebug("data buffer[%d] over temp_buf size\n", cmd_buf_sz);
-
-                    memcpy((uint8_t *)&temp_buf, &readbuf[5], cmd_buf_sz - 1);
-                    get_headinfo = 1;
-                    memcpy((uint8_t *)&cmd_carinfo, temp_buf, cmd_buf_sz - 1);
-                    emit Triger_Page_Signal(&cmd_carinfo);
-                    get_headinfo = 0;
+                    m_carinfo_data.page_number = readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF];
+                    memcpy(m_carinfo_data.meter_sat, &readbuf[PAGE_DATA_OFF + METER_SAT_OFF], 3);
+                    memcpy(m_carinfo_data.widge_data, &readbuf[PAGE_DATA_OFF + PAGE_DAT_OFF], pagedata_sz - 4);
+                    //emit Triger_Page_Signal(&cmd_carinfo);
                 }
-
-                //if (!get_headinfo && readbuf[0] == HEAD1 && readbuf[1] == HEAD2
-                //        && readbuf[2] == HEAD3 && readbuf[3] == HEAD4) {
-                //    qDebug("-->Get Head\n");
-                //    if (getcmdlistbuf->buf_sz - 4 >= 32) {
-                //        qDebug("SLASH TEST\n");
-                //        memcpy((uint8_t *)&temp_buf, &readbuf[4], 32);
-                //        cmd_data_n = 32;
-                //    } else {
-                //        memcpy((uint8_t *)&temp_buf, &readbuf[4], getcmdlistbuf->buf_sz);
-                //        cmd_data_n = cmd_data_n + getcmdlistbuf->buf_sz;
-                //    }
-                //    get_headinfo = 1;
-                //} else if (get_headinfo) {
-                //    if (32 - cmd_data_n > getcmdlistbuf->buf_sz) {
-                //        memcpy((uint8_t *)&temp_buf[cmd_data_n], readbuf, getcmdlistbuf->buf_sz);
-                //        cmd_data_n = cmd_data_n + getcmdlistbuf->buf_sz;
-                //    } else {
-                //        memcpy((uint8_t *)&temp_buf[cmd_data_n], readbuf, 32 - cmd_data_n);
-                //        cmd_data_n = cmd_data_n + 32 - cmd_data_n;
-                //    }
-                //}
-                //
-                //if (cmd_data_n >= 32) {
-                //    cmd_data_n = 0;
-                //    get_headinfo = 0;
-                //    memcpy((uint8_t *)&cmd_carinfo, temp_buf, 32);
-                //    emit Triger_Page_Signal(&cmd_carinfo);
-                //    //qDebug("cmd_carinfo.page_number %d\n", cmd_carinfo.page_number);
-                //    //qDebug("cmd_carinfo.widge_id %d\n", cmd_carinfo.widge_id);
-                //    //int i;
-                //    //for (i = 0; i < 25; i++)
-                //    //    qDebug("cmd_carinfo.widge_data[%d] %d\n", i, cmd_carinfo.widge_data[i]);
-                //}
-
-                delete readbuf;
-                cmd_receive->mThread->cmd_list.removeAt(i);
-                delete getcmdlistbuf;
+                buf_index++;
             }
+
+            //if (cmd_data_n >= 32) {
+            //    cmd_data_n = 0;
+            //    get_headinfo = 0;
+            //    memcpy((uint8_t *)&cmd_carinfo, temp_buf, 32);
+            //    emit Triger_Page_Signal(&cmd_carinfo);
+            //    //qDebug("cmd_carinfo.page_number %d\n", cmd_carinfo.page_number);
+            //    //qDebug("cmd_carinfo.widge_id %d\n", cmd_carinfo.widge_id);
+            //    //int i;
+            //    //for (i = 0; i < 25; i++)
+            //    //    qDebug("cmd_carinfo.widge_data[%d] %d\n", i, cmd_carinfo.widge_data[i]);
+            //}
+
+            delete readbuf;
+            cmd_receive->mThread->cmd_list.removeAt(cmd_index);
+            delete getcmdlistbuf;
         }
-        QThread::msleep(5);
+
+do_sleep:
+        QThread::msleep(100);
     };
 }
 

@@ -12,9 +12,8 @@ class CarInfo_Data
 {
 public:
     uint8_t page_number;
-    uint8_t widge_id[3];
-    uint8_t widge_data[50];
-    uint8_t pad[2];
+    uint8_t meter_sat[3];
+    uint8_t widge_data[256];
 };
 
 #endif // PROTOCOL_FMT_H

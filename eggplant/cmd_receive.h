@@ -13,8 +13,8 @@ class Cmd_Receive;
 class Cmd_Buf
 {
 public:
-    uint8_t buf[64];
-    uint8_t buf_sz;
+    uint8_t buf[256];
+    int32_t buf_sz;
 };
 
 
@@ -49,6 +49,7 @@ public:
     bool Stop;
     explicit PageCtl_Thread(QObject *parent = 0, bool b = false);
     void run();
+    CarInfo_Data m_carinfo_data;
 
 signals:
     // To communicate with Gui Thread
