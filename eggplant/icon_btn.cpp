@@ -64,11 +64,17 @@ void Icon_btn::set_text(QString text)
 
 void Icon_btn::ft_dark_enable()
 {
+    if (ft_img == ft_img_dark)
+        return;
+
     ft_img = ft_img_dark;
 }
 
 void Icon_btn::ft_light_enable()
 {
+    if (ft_img == ft_img_light)
+        return;
+
     ft_img = ft_img_light;
 }
 

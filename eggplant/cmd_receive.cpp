@@ -72,7 +72,7 @@ void WorkThread::run()
         rdata.clear();
         rdata.resize(0);
 
-        msleep(100);
+        msleep(10);
     };
 }
 
@@ -80,7 +80,7 @@ PageCtl_Thread::PageCtl_Thread(QObject *parent, bool b) :
     QThread(parent), Stop(b)
 {
     cmd_receive = (Cmd_Receive *)parent;
-    connect(this, SIGNAL(Triger_Page_Signal(CarInfo_Data *)), cmd_receive, SLOT(Triger_Page(CarInfo_Data *)));
+    connect(this, SIGNAL(Triger_Page_Signal()), cmd_receive, SLOT(Triger_Page()));
 }
 
 void PageCtl_Thread::run()
@@ -109,44 +109,33 @@ void PageCtl_Thread::run()
             readbuf = new uint8_t [getcmdlistbuf->buf_sz + 1];
             memcpy(readbuf, getcmdlistbuf->buf, getcmdlistbuf->buf_sz);
             readbuf[getcmdlistbuf->buf_sz] = 0;
-            qDebug("getcmdlistbuf->buf_sz -> %d\n", getcmdlistbuf->buf_sz);
+            //qDebug("getcmdlistbuf->buf_sz -> %d\n", getcmdlistbuf->buf_sz);
 
             buf_index = 0;
             while (buf_index < getcmdlistbuf->buf_sz) {
 
                 if (readbuf[buf_index + HEAD1_OFF] == HEAD1 && readbuf[buf_index + HEAD2_OFF] == HEAD2) {
-                    qDebug("Get Head\n");
+                    //qDebug("Get Head\n");
                     cmd_id = readbuf[buf_index + ID_OFF];
                     pagedata_sz = (readbuf[buf_index + LENH_OFF] << 8) | readbuf[buf_index + LENL_OFF];
 
                     //compute checksun
                     ret = cmd_receive->mThread->do_checksum(&readbuf[buf_index + HEAD1_OFF], pagedata_sz + HEAD_SIZE,
                                       readbuf[buf_index + PAGE_DATA_OFF + pagedata_sz]);
-                    if (ret < 0) {
-                        qDebug("check sum fail\n");
-                        goto do_sleep;
-                    } else
-                        qDebug("check sum ok\n");
+                    //if (ret < 0) {
+                    //    qDebug("check sum fail\n");
+                    //    goto do_sleep;
+                    //} else
+                    //    qDebug("check sum ok\n");
 
                     m_carinfo_data.page_number = readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF];
                     memcpy(m_carinfo_data.meter_sat, &readbuf[PAGE_DATA_OFF + METER_SAT_OFF], 3);
                     memcpy(m_carinfo_data.widge_data, &readbuf[PAGE_DATA_OFF + PAGE_DAT_OFF], pagedata_sz - 4);
-                    //emit Triger_Page_Signal(&cmd_carinfo);
+                    cmd_receive->pcarinfo_data = &m_carinfo_data;
+                    emit Triger_Page_Signal();
                 }
                 buf_index++;
             }
-
-            //if (cmd_data_n >= 32) {
-            //    cmd_data_n = 0;
-            //    get_headinfo = 0;
-            //    memcpy((uint8_t *)&cmd_carinfo, temp_buf, 32);
-            //    emit Triger_Page_Signal(&cmd_carinfo);
-            //    //qDebug("cmd_carinfo.page_number %d\n", cmd_carinfo.page_number);
-            //    //qDebug("cmd_carinfo.widge_id %d\n", cmd_carinfo.widge_id);
-            //    //int i;
-            //    //for (i = 0; i < 25; i++)
-            //    //    qDebug("cmd_carinfo.widge_data[%d] %d\n", i, cmd_carinfo.widge_data[i]);
-            //}
 
             delete readbuf;
             cmd_receive->mThread->cmd_list.removeAt(cmd_index);
@@ -154,7 +143,7 @@ void PageCtl_Thread::run()
         }
 
 do_sleep:
-        QThread::msleep(100);
+        QThread::msleep(10);
     };
 }
 
@@ -221,33 +210,34 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
     }
 
 
-    show_framepage = page_list.at(i);
-    qDebug() << "show frameage objname=" <<show_framepage->objectName();
-
-    j = Find_Frame(current_page);
-    if (j < 0) {
-        qDebug("can't find any current page\n");
-        return;
-    }
-    close_framepage = page_list.at(j);
-    qDebug() << "close frame page objname=" <<close_framepage->objectName();
-
-    if (current_page.compare(show_objname) != 0) {
-        show_framepage->GetMcuData(pcarinfo_data);
-        show_framepage->setWindowFlags(Qt::WindowStaysOnTopHint);
-        show_framepage->setGeometry(0, 0, GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
-        show_framepage->show();
-        close_framepage->close();
-    } else {
-        show_framepage->update();
-    }
-
-    current_page = show_objname;
+//    show_framepage = page_list.at(i);
+//    qDebug() << "show frameage objname=" <<show_framepage->objectName();
+//
+//    j = Find_Frame(current_page);
+//    if (j < 0) {
+//        qDebug("can't find any current page\n");
+//        return;
+//    }
+//    close_framepage = page_list.at(j);
+//    qDebug() << "close frame page objname=" <<close_framepage->objectName();
+//
+//    if (current_page.compare(show_objname) != 0) {
+//        show_framepage->GetMcuData(pcarinfo_data);
+//        show_framepage->setWindowFlags(Qt::WindowStaysOnTopHint);
+//        show_framepage->setGeometry(0, 0, GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
+//        show_framepage->show();
+//        close_framepage->close();
+//    } else {
+//        show_framepage->update();
+//    }
+//
+//    current_page = show_objname;
 }
 
-void Cmd_Receive::Triger_Page(CarInfo_Data *carinfo_data)
+//void Cmd_Receive::Triger_Page(CarInfo_Data *carinfo_data)
+void Cmd_Receive::Triger_Page()
 {
-    pcarinfo_data = carinfo_data;
+    //pcarinfo_data = carinfo_data;
     qDebug("page_number %d", pcarinfo_data->page_number);
     QString objname[] = {HOME_PAGE_OBJNAME, MAIN_PAGE_OBJNAME, RPM_OBJNAME, "CarInOut_Page",
                         "TimeAdjust_Page", "ScreenVolumeAdjust_Page", "EleAccInfo_Page",
@@ -256,6 +246,7 @@ void Cmd_Receive::Triger_Page(CarInfo_Data *carinfo_data)
                         "SlaveSatMsg_Page", "Bcm_Page", "TiresPressShow_Page",BAR_FRAME_OBJNAME,
                         };
 
-    Frame_Page_Show(objname[pcarinfo_data->page_number]);
+    Frame_Page_Show(BAR_FRAME_OBJNAME);
+    //Frame_Page_Show(objname[pcarinfo_data->page_number]);
 
 }

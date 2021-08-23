@@ -55,7 +55,7 @@ signals:
     // To communicate with Gui Thread
     // we need to emit a signal
     //void valueChanged(int);
-    void Triger_Page_Signal(CarInfo_Data *);
+    void Triger_Page_Signal();
 public slots:
 
 };
@@ -78,7 +78,7 @@ public:
     CarInfo_Data *pcarinfo_data;
 
 private slots:
-    void Triger_Page(CarInfo_Data *carinfo_data);
+    void Triger_Page();
 
 signals:
     void set_icon_light_enable(int);

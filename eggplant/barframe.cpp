@@ -86,12 +86,62 @@ void BarFrame::Enable_Icon_Light(int i)
 
 void BarFrame::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    int i;
+    int i, index;
+    unsigned char cargera_data[3];
+    unsigned char cargera_grp0[4] = {CARGEAR_ID_0, CARGEAR_ID_1, CARGEAR_ID_2, CARGEAR_ID_3};
+    unsigned char cargera_grp1[2] = {CARGEAR_ID_4, CARGEAR_ID_5};
+    unsigned char cargera_grp2[4] = {CARGEAR_ID_11, CARGEAR_ID_12, CARGEAR_ID_13, CARGEAR_ID_14};
+    unsigned char cargera_grp3[5] = {CARGEAR_ID_6, CARGEAR_ID_7, CARGEAR_ID_8, CARGEAR_ID_9, CARGEAR_ID_10};
 
-    //for (i = CARGEAR_ID_0; i < CARGEAR_ID_15; i++) {
-    //    if ((protolcol_data->widge_id >> i & 0x01) == 0x01)
-    //        icon_id[i]->ft_light_enable();
-    //    else
-    //        icon_id[i]->ft_dark_enable();
-    //}
+
+    memcpy(cargera_data, (unsigned char *)protolcol_data->meter_sat, sizeof(unsigned char) * 3);
+
+    i = 0;
+    while (i < 4) {
+        index = i * 2;
+        if ((cargera_data[0] >> index & 0x01) == 0)
+            icon_id[cargera_grp0[i]]->ft_dark_enable();
+        else
+            icon_id[cargera_grp0[i]]->ft_light_enable();
+
+        i++;
+    }
+
+    i = 0;
+    while (i < 2) {
+        if (i == 0)
+            index = 0;
+        else
+            index = 6;
+
+        if ((cargera_data[1] >> index & 0x01) == 0)
+            icon_id[cargera_grp1[i]]->ft_dark_enable();
+        else
+            icon_id[cargera_grp1[i]]->ft_light_enable();
+
+        i++;
+    }
+
+    i = 0;
+    while (i < 4) {
+        index = i + 2;
+        if ((cargera_data[1] >> index & 0x01) == 0)
+            icon_id[cargera_grp2[i]]->ft_dark_enable();
+        else
+            icon_id[cargera_grp2[i]]->ft_light_enable();
+
+        i++;
+    }
+
+    i = 0;
+    while (i < 5) {
+        index = i;
+        if ((cargera_data[2] >> index & 0x01) == 0)
+            icon_id[cargera_grp3[i]]->ft_dark_enable();
+        else
+            icon_id[cargera_grp3[i]]->ft_light_enable();
+
+        i++;
+    }
+
 }
