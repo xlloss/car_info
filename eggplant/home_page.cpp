@@ -3,6 +3,18 @@
 #include "coordinate.h"
 #include "string/string.h"
 
+QString door_name[3][2] = {
+        {F_DOOR_TYPE0,  F_DOOR_TYPE1},
+        {M_DOOR_TYPE0,  M_DOOR_TYPE1},
+        {R_DOOR_TYPE0,  R_DOOR_TYPE1},
+};
+
+int door_coord_xy[3][2] = {
+        {HOME_CARBUS_IMG_X,  HOME_CARBUS_IMG_Y},
+        {HOME_CARBUS_IMG_X,  HOME_CARBUS_IMG_Y},
+        {HOME_CARBUS_IMG_X,  HOME_CARBUS_IMG_Y},
+};
+
 
 QString item1_text[HOME_ITEM_TEX1_NUM] = {
     HOME_ITEM_TEX_DATE_TIME,
@@ -38,7 +50,15 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
         return;
     }
 
-    image_car_bus = image_car_bus.scaled(294, 175);
+    for (i = 0; i < 3; i++) {
+        icon_door[i] = new Icon_btn(this);
+        icon_door[i]->enable_scale = 0;
+        icon_door[i]->load_image_ft(door_name[i][0], door_name[i][1]);
+        icon_door[i]->setGeometry(door_coord_xy[i][0], door_coord_xy[i][1], 420, 250);
+        icon_door[i]->show();
+    }
+
+    //image_car_bus = image_car_bus.scaled(294, 175);
 
     for (i = 0; i < HOME_ITEM_TEX1_NUM; i++) {
         show_item[i] = new Show_text(this);

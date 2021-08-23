@@ -71,5 +71,11 @@
         <file>icon/tires_pressure_show.png</file>
         <file>icon/tires_0.png</file>
         <file>icon/tires_1.png</file>
+        <file>icon/FDoorType0.png</file>
+        <file>icon/FDoorType1.png</file>
+        <file>icon/MDoorType0.png</file>
+        <file>icon/MDoorType1.png</file>
+        <file>icon/RDoorType0.png</file>
+        <file>icon/RDoorType1.png</file>
     </qresource>
 </RCC>

@@ -210,35 +210,35 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
     }
 
 
-//    show_framepage = page_list.at(i);
-//    qDebug() << "show frameage objname=" <<show_framepage->objectName();
-//
-//    j = Find_Frame(current_page);
-//    if (j < 0) {
-//        qDebug("can't find any current page\n");
-//        return;
-//    }
-//    close_framepage = page_list.at(j);
-//    qDebug() << "close frame page objname=" <<close_framepage->objectName();
-//
-//    if (current_page.compare(show_objname) != 0) {
-//        show_framepage->GetMcuData(pcarinfo_data);
-//        show_framepage->setWindowFlags(Qt::WindowStaysOnTopHint);
-//        show_framepage->setGeometry(0, 0, GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
-//        show_framepage->show();
-//        close_framepage->close();
-//    } else {
-//        show_framepage->update();
-//    }
-//
-//    current_page = show_objname;
+    show_framepage = page_list.at(i);
+    //qDebug() << "show frameage objname=" <<show_framepage->objectName();
+
+    j = Find_Frame(current_page);
+    if (j < 0) {
+        qDebug("can't find any current page\n");
+        return;
+    }
+    close_framepage = page_list.at(j);
+    //qDebug() << "close frame page objname=" <<close_framepage->objectName();
+
+    if (current_page.compare(show_objname) != 0) {
+        show_framepage->GetMcuData(pcarinfo_data);
+        show_framepage->setWindowFlags(Qt::WindowStaysOnTopHint);
+        show_framepage->setGeometry(0, 0, GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
+        show_framepage->show();
+        close_framepage->close();
+    } else {
+        show_framepage->update();
+    }
+
+    current_page = show_objname;
 }
 
 //void Cmd_Receive::Triger_Page(CarInfo_Data *carinfo_data)
 void Cmd_Receive::Triger_Page()
 {
     //pcarinfo_data = carinfo_data;
-    qDebug("page_number %d", pcarinfo_data->page_number);
+    //qDebug("page_number %d", pcarinfo_data->page_number);
     QString objname[] = {HOME_PAGE_OBJNAME, MAIN_PAGE_OBJNAME, RPM_OBJNAME, "CarInOut_Page",
                         "TimeAdjust_Page", "ScreenVolumeAdjust_Page", "EleAccInfo_Page",
                         "ControlMsg1_Page", "ControlMsg2_Page", "BatTempInfo_Page", "BatVoltInfo_Page",
@@ -247,6 +247,6 @@ void Cmd_Receive::Triger_Page()
                         };
 
     Frame_Page_Show(BAR_FRAME_OBJNAME);
-    //Frame_Page_Show(objname[pcarinfo_data->page_number]);
+    Frame_Page_Show(objname[pcarinfo_data->page_number - 1]);
 
 }
