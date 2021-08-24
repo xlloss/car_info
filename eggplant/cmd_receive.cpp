@@ -53,7 +53,7 @@ int WorkThread::do_checksum(uint8_t *data, uint16_t data_len, uint8_t check)
 void WorkThread::run()
 {
     QByteArray rdata, cmdbuf;
-    Cmd_Buf *getcmd;
+
 
     while(1) {
 

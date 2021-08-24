@@ -30,6 +30,7 @@ public:
     // out of the loop, and will be disposed
     bool Stop;
     QList <Cmd_Buf *> cmd_list;
+    Cmd_Buf *getcmd;
     Serial_Port *serialport;
     int do_checksum(uint8_t *data, uint16_t data_len, uint8_t check);
 signals:
