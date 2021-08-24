@@ -94,8 +94,7 @@ void BarFrame::GetMcuData(class CarInfo_Data *protolcol_data)
     unsigned char cargera_grp3[5] = {CARGEAR_ID_6, CARGEAR_ID_7, CARGEAR_ID_8, CARGEAR_ID_9, CARGEAR_ID_10};
 
 
-    memcpy(cargera_data, (unsigned char *)protolcol_data->meter_sat, sizeof(unsigned char) * 3);
-
+    memcpy(cargera_data, protolcol_data->meter_sat, sizeof(unsigned char) * 3);
     i = 0;
     while (i < 4) {
         index = i * 2;

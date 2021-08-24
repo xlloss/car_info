@@ -15,9 +15,9 @@
 #define HOME_ITEM_TEX_ALL_NUM 17
 
 
-#define DOOR_ID_0
-#define DOOR_ID_1
-#define DOOR_ID_2
+#define DOOR_TYPE_ID_F 0
+#define DOOR_TYPE_ID_M 1
+#define DOOR_TYPE_ID_R 2
 
 #define F_DOOR_TYPE0 ":/icon/FDoorType0.png"
 #define F_DOOR_TYPE1 ":/icon/FDoorType1.png"
@@ -26,6 +26,57 @@
 #define R_DOOR_TYPE0 ":/icon/RDoorType0.png"
 #define R_DOOR_TYPE1 ":/icon/RDoorType1.png"
 
+#define DOOR_STAUS_TYPE_DISABLE 0
+#define DOOR_STAUS_TYPE_NOR_EN 1
+#define DOOR_STAUS_TYPE_FOC_EN 2
+
+#define DOOR_TYPE_F_SHIF 0
+#define DOOR_TYPE_M_SHIF 2
+#define DOOR_TYPE_R_SHIF 4
+
+#define GEAR_FORW 0x01
+#define GEAR_BACK 0x02
+#define GEAR_EMPY 0x04
+#define GEAR_PARK 0x08
+#define GEAR_FORW_1 0x03
+#define GEAR_FORW_2 0x05
+#define GEAR_FORW_3 0x06
+#define GEAR_FORW_4 0x09
+#define GEAR_FORW_5 0x0A
+#define GEAR_FORW_6 0x0B
+
+#define GEAR_STR_ID0 "前進擋"
+#define GEAR_STR_ID1 "後退擋"
+#define GEAR_STR_ID2 "空擋"
+#define GEAR_STR_ID3 "PARK擋"
+#define GEAR_STR_ID4 "前進1檔"
+#define GEAR_STR_ID5 "前進2檔"
+#define GEAR_STR_ID6 "前進3檔"
+#define GEAR_STR_ID7 "前進4檔"
+#define GEAR_STR_ID8 "前進5檔"
+#define GEAR_STR_ID9 "前進6檔"
+
+//#define GEAR_STR_ID0 "AAA0"
+//#define GEAR_STR_ID1 "AAA1"
+//#define GEAR_STR_ID2 "AAA2"
+//#define GEAR_STR_ID3 "AAA3"
+//#define GEAR_STR_ID4 "AAA4"
+//#define GEAR_STR_ID5 "AAA5"
+//#define GEAR_STR_ID6 "AAA6"
+//#define GEAR_STR_ID7 "AAA7"
+//#define GEAR_STR_ID8 "AAA8"
+//#define GEAR_STR_ID9 "AAA0"
+
+
+#define BATT_SAT0 0
+#define BATT_SAT1 1
+#define BATT_SAT2 2
+#define BATT_SAT3 3
+
+#define BATT_SAT_STR_ID0 "閒置"
+#define BATT_SAT_STR_ID1 "放電"
+#define BATT_SAT_STR_ID2 "充電"
+#define BATT_SAT_STR_ID3 "異常"
 
 class Home_Page : public Frame_Page
 {
@@ -36,6 +87,28 @@ public:
     Show_text *show_item[HOME_ITEM_TEX_ALL_NUM];
     Show_text *show_data[HOME_ITEM_TEX_ALL_NUM];
     Icon_btn *icon_door[3];
+    void Door_Sat_Change(uint8_t door_type, uint8_t status);
+
+    Show_text *show_time_str;
+    Show_text *show_slope_str;
+    Show_text *show_gear_str;
+    Show_text *show_batt_str;
+    Show_text *show_battconsum_str;
+    Show_text *show_totalkilo_str;
+    Show_text *show_currkilo_str;
+    Show_text *show_availkilo_str;
+    Show_text *show_mototemp_str;
+    Show_text *show_battpack_str;
+    Show_text *show_smallvolt_str;
+    Show_text *show_totalvolt_str;
+    Show_text *show_totalcurr_str;
+    Show_text *show_battsoc_str;
+    Show_text *show_frontair_str;
+    Show_text *show_behindair_str;
+
+
+    QStringList   strlist_gear;
+    QStringList   strlist_batt;
 
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
 protected:

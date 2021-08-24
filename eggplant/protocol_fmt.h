@@ -13,7 +13,8 @@ class CarInfo_Data
 public:
     uint8_t page_number;
     uint8_t meter_sat[3];
-    uint8_t widge_data[256];
+    uint8_t page_data[256];
+    uint32_t page_data_sz;
 };
 
 #endif // PROTOCOL_FMT_H
