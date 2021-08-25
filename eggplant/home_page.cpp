@@ -3,20 +3,19 @@
 #include "coordinate.h"
 #include "string/string.h"
 
-QString door_name[3][2] = {
+static QString door_name[3][2] = {
         {F_DOOR_TYPE0,  F_DOOR_TYPE1},
         {M_DOOR_TYPE0,  M_DOOR_TYPE1},
         {R_DOOR_TYPE0,  R_DOOR_TYPE1},
 };
 
-int door_coord_xy[3][2] = {
+static int door_coord_xy[3][2] = {
         {HOME_CARBUS_IMG_X,  HOME_CARBUS_IMG_Y},
         {HOME_CARBUS_IMG_X,  HOME_CARBUS_IMG_Y},
         {HOME_CARBUS_IMG_X,  HOME_CARBUS_IMG_Y},
 };
 
-
-QString item1_text[HOME_ITEM_TEX1_NUM] = {
+static QString item1_text[HOME_ITEM_TEX1_NUM] = {
     HOME_ITEM_TEX_DATE_TIME,
     HOME_ITEM_TEX_SLOPE,
     HOME_ITEM_TEX_GEAR_SAT,
@@ -27,7 +26,7 @@ QString item1_text[HOME_ITEM_TEX1_NUM] = {
     HOME_ITEM_TEX_AVAILABLE_MILE
 };
 
-QString item2_text[HOME_ITEM_TEX2_NUM] = {
+static QString item2_text[HOME_ITEM_TEX2_NUM] = {
     HOME_ITEM_TEX_MOTO_TEMP,
     HOME_ITEM_TEX_BATT_PACK,
     HOME_ITEM_TEX_SMALL_VOLAT,
@@ -36,6 +35,26 @@ QString item2_text[HOME_ITEM_TEX2_NUM] = {
     HOME_ITEM_TEX_BATT_SOC,
     HOME_ITEM_TEX_FRONT_AIR_PRESSURE,
     HOME_ITEM_TEX_BEHIND_AIR_PRESSURE
+};
+
+static QString strgear[10] = {
+    GEAR_STR_ID0,
+    GEAR_STR_ID1,
+    GEAR_STR_ID2,
+    GEAR_STR_ID3,
+    GEAR_STR_ID4,
+    GEAR_STR_ID5,
+    GEAR_STR_ID6,
+    GEAR_STR_ID7,
+    GEAR_STR_ID8,
+    GEAR_STR_ID9
+};
+
+static QString strbatt [4] = {
+    BATT_SAT_STR_ID0,
+    BATT_SAT_STR_ID1,
+    BATT_SAT_STR_ID2,
+    BATT_SAT_STR_ID3
 };
 
 Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
@@ -55,8 +74,9 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
         icon_door[i]->enable_scale = 0;
         icon_door[i]->load_image_ft(door_name[i][0], door_name[i][1]);
         icon_door[i]->setGeometry(door_coord_xy[i][0], door_coord_xy[i][1], 420, 250);
-        icon_door[i]->show();
+        //icon_door[i]->show();
     }
+
 
     //image_car_bus = image_car_bus.scaled(294, 175);
 
@@ -77,7 +97,7 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
             HOME_ITEM_TEX2_Y + HOME_ITEM_TEX2_Y_OFF * i,
             HOME_ITEM_TEX1_W, HOME_ITEM_TEX2_H);
 
-        show_item[i + 8]->show();
+//        show_item[i + 8]->show();
     }
 
 
@@ -87,7 +107,7 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
     show_item[HOME_ITEM_TEX_ALL_NUM - 1]->setGeometry(HOME_ITEM_TEX3_X, HOME_ITEM_TEX3_Y,
         HOME_ITEM_TEX3_W, HOME_ITEM_TEX3_H);
 
-    show_item[HOME_ITEM_TEX_ALL_NUM - 1]->show();
+//    show_item[HOME_ITEM_TEX_ALL_NUM - 1]->show();
 
 
     /* Dat Time */
@@ -108,26 +128,11 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
     show_gear_str->m_font_size = 12;
     show_gear_str->setGeometry(80, 120, 50, 70);
 
-    strlist_gear.insert(GEAR_FORW, GEAR_STR_ID0);
-    strlist_gear.insert(GEAR_BACK, GEAR_STR_ID1);
-    strlist_gear.insert(GEAR_EMPY, GEAR_STR_ID2);
-    strlist_gear.insert(GEAR_PARK, GEAR_STR_ID3);
-    strlist_gear.insert(GEAR_FORW_1, GEAR_STR_ID4);
-    strlist_gear.insert(GEAR_FORW_2, GEAR_STR_ID5);
-    strlist_gear.insert(GEAR_FORW_3, GEAR_STR_ID6);
-    strlist_gear.insert(GEAR_FORW_4, GEAR_STR_ID7);
-    strlist_gear.insert(GEAR_FORW_5, GEAR_STR_ID8);
-    strlist_gear.insert(GEAR_FORW_6, GEAR_STR_ID9);
-
     /* Battery status */
     show_batt_str = new Show_text(this);
     show_batt_str->set_text("閒置");
     show_batt_str->m_font_size = 12;
     show_batt_str->setGeometry(80, 150, 50, 70);
-    strlist_batt.insert(BATT_SAT0, BATT_SAT_STR_ID0);
-    strlist_batt.insert(BATT_SAT1, BATT_SAT_STR_ID1);
-    strlist_batt.insert(BATT_SAT2, BATT_SAT_STR_ID2);
-    strlist_batt.insert(BATT_SAT3, BATT_SAT_STR_ID3);
 
     /* Instant battery consumption */
     show_battconsum_str = new Show_text(this);
@@ -158,7 +163,6 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
     show_mototemp_str->set_text("0 °C");
     show_mototemp_str->m_font_size = 12;
     show_mototemp_str->setGeometry(700, 60, 100, 70);
-
 
     /* battery pack */
     show_battpack_str = new Show_text(this);
@@ -201,6 +205,13 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
     show_behindair_str->set_text("0 Mpa");
     show_behindair_str->m_font_size = 12;
     show_behindair_str->setGeometry(720, 270, 100, 70);
+
+    for (i = 0; i < HOME_ITEM_TEX_ALL_NUM; i++)
+        show_item[i]->show();
+
+    for (i = 0; i < 3; i++)
+        icon_door[i]->show();
+
 }
 
 void Home_Page::Door_Sat_Change(uint8_t door_type, uint8_t status)
@@ -257,8 +268,6 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     double frontair_data;
     double behind_data;
 
-    //qDebug("Home_Page:%s\n", __func__);
-
     memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
 
     /* Door */
@@ -273,34 +282,37 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     /* Date Time */
     memcpy(date_time, &page_data[1], sizeof(uint8_t) * 6);
-    time_hr = date_time[3];
-    time_min = date_time[4];
-    time_sec = date_time[5];
+    time_hr = date_time[HOME_PGE_DATA_TIME_H];
+    time_min = date_time[HOME_PGE_DATA_TIME_M];
+    time_sec = date_time[HOME_PGE_DATA_TIME_S];
     str_temp.sprintf("%d 時 %d 分 %d 秒", time_hr, time_min, time_sec);
     show_time_str->set_text(str_temp);
 
    /* slope data */
-    slope_data = page_data[7];
+    slope_data = int8_t(page_data[HOME_PGE_DATA_SLOPE]);
     str_temp.sprintf("%i %c", slope_data, 0x25); /* ASCII 0x25 => % */
     show_slope_str->set_text(str_temp);
 
     /* Gear_Data */
-    gear_data = (page_data[33] >> 4) & 0x0F;
-    show_gear_str->set_text(strlist_gear.at(gear_data));
+    gear_data = (page_data[HOME_PGE_DATA_GEAR] >> 4) & 0x0F;
+    show_gear_str->set_text(strgear[gear_data]);
 
     /* Battery status */
-    batt_data = page_data[9] << 8 | page_data[8];
+    batt_data = uint16_t(page_data[HOME_PGE_DATA_BATT_SAT_H] << 8 | page_data[HOME_PGE_DATA_BATT_SAT_L]);
     batt_data = batt_data & 0x03;
-    show_batt_str->set_text(strlist_batt.at(batt_data));
+    show_batt_str->set_text(strbatt[batt_data]);
 
 
     /* Instant battery consumption */
-    battconsum_data = page_data[11] << 8 | page_data[10];
+    battconsum_data = uint16_t(page_data[HOME_PGE_DATA_BATT_CSUM_H] << 8 | page_data[HOME_PGE_DATA_BATT_CSUM_L]);
     str_temp.sprintf("%d kw/100km", battconsum_data);
     show_battconsum_str->set_text(str_temp);
 
     /* total kilo */
-    totalkilo_data = page_data[15] << 24 | page_data[14] << 16 | page_data[13] << 8 | page_data[12];
+    totalkilo_data = double(page_data[HOME_PGE_DATA_TOT_KM_BIT3] << 24 |
+                            page_data[HOME_PGE_DATA_TOT_KM_BIT2] << 16 |
+                            page_data[HOME_PGE_DATA_TOT_KM_BIT1] << 8 |
+                            page_data[HOME_PGE_DATA_TOT_KM_BIT0]);
     totalkilo_data = totalkilo_data * 0.005;
     if (totalkilo_data < 0)
         totalkilo_data = 0;
@@ -308,7 +320,11 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     show_totalkilo_str->set_text(str_temp);
 
     /* current kilo */
-    currkilo_data = page_data[19] << 24 | page_data[18] << 16 | page_data[17] << 8 | page_data[16];
+
+    currkilo_data = double(page_data[HOME_PGE_DATA_CUR_KM_BIT3] << 24 |
+                           page_data[HOME_PGE_DATA_CUR_KM_BIT2] << 16 |
+                           page_data[HOME_PGE_DATA_CUR_KM_BIT1] << 8 |
+                           page_data[HOME_PGE_DATA_CUR_KM_BIT0]);
     currkilo_data = currkilo_data * 0.005;
     if (currkilo_data < 0)
         currkilo_data = 0;
@@ -316,12 +332,12 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     show_currkilo_str->set_text(str_temp);
 
     /* available kilo */
-    availkilo_data = page_data[21] << 8 | page_data[20];
+    availkilo_data = uint16_t(page_data[21] << 8 | page_data[20]);
     str_temp.sprintf("%u km", availkilo_data);
     show_availkilo_str->set_text(str_temp);
 
     /* moto temp */
-    mototemp_data = page_data[22];
+    mototemp_data = int8_t(page_data[22]);
     mototemp_data = mototemp_data - 40;
     if (mototemp_data < 0)
         mototemp_data = 0;
@@ -330,7 +346,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     show_mototemp_str->set_text(str_temp);
 
     /* battery pack */
-    battpack_data = page_data[23];
+    battpack_data = int8_t(page_data[23]);
     battpack_data = battpack_data - 40;
     if (battpack_data < 40)
         battpack_data = 0;

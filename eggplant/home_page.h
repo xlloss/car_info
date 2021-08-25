@@ -14,6 +14,24 @@
 #define HOME_ITEM_TEX3_NUM 1
 #define HOME_ITEM_TEX_ALL_NUM 17
 
+#define HOME_PGE_DATA_TIME_H 3
+#define HOME_PGE_DATA_TIME_M 4
+#define HOME_PGE_DATA_TIME_S 5
+#define HOME_PGE_DATA_SLOPE 7
+#define HOME_PGE_DATA_GEAR 33
+#define HOME_PGE_DATA_BATT_SAT_H 9
+#define HOME_PGE_DATA_BATT_SAT_L 8
+#define HOME_PGE_DATA_BATT_CSUM_H 11
+#define HOME_PGE_DATA_BATT_CSUM_L 10
+#define HOME_PGE_DATA_TOT_KM_BIT3 15
+#define HOME_PGE_DATA_TOT_KM_BIT2 14
+#define HOME_PGE_DATA_TOT_KM_BIT1 13
+#define HOME_PGE_DATA_TOT_KM_BIT0 12
+#define HOME_PGE_DATA_CUR_KM_BIT3 19
+#define HOME_PGE_DATA_CUR_KM_BIT2 18
+#define HOME_PGE_DATA_CUR_KM_BIT1 17
+#define HOME_PGE_DATA_CUR_KM_BIT0 16
+
 
 #define DOOR_TYPE_ID_F 0
 #define DOOR_TYPE_ID_M 1
@@ -56,18 +74,6 @@
 #define GEAR_STR_ID8 "前進5檔"
 #define GEAR_STR_ID9 "前進6檔"
 
-//#define GEAR_STR_ID0 "AAA0"
-//#define GEAR_STR_ID1 "AAA1"
-//#define GEAR_STR_ID2 "AAA2"
-//#define GEAR_STR_ID3 "AAA3"
-//#define GEAR_STR_ID4 "AAA4"
-//#define GEAR_STR_ID5 "AAA5"
-//#define GEAR_STR_ID6 "AAA6"
-//#define GEAR_STR_ID7 "AAA7"
-//#define GEAR_STR_ID8 "AAA8"
-//#define GEAR_STR_ID9 "AAA0"
-
-
 #define BATT_SAT0 0
 #define BATT_SAT1 1
 #define BATT_SAT2 2
@@ -85,7 +91,7 @@ public:
     explicit Home_Page(QWidget *parent = nullptr);
     QImage image_car_bus;
     Show_text *show_item[HOME_ITEM_TEX_ALL_NUM];
-    Show_text *show_data[HOME_ITEM_TEX_ALL_NUM];
+
     Icon_btn *icon_door[3];
     void Door_Sat_Change(uint8_t door_type, uint8_t status);
 
@@ -107,7 +113,9 @@ public:
     Show_text *show_behindair_str;
 
 
-    QStringList   strlist_gear;
+    QStringList strlist_gear;
+
+
     QStringList   strlist_batt;
 
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
