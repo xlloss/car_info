@@ -4,11 +4,25 @@
 #include "string/string.h"
 #include "coordinate.h"
 
+enum main_page_id {
+    MAIN_PAG_ID_MILE_RPM = 0,
+    MAIN_PAG_ID_CAR_INOUT_TEMP,
+    MAIN_PAG_ID_TIME_ADJ,
+    MAIN_PAG_ID_SPEAK_SET,
+    MAIN_PAG_ID_EMESG,
+    MAIN_PAG_ID_CTRL_MSG,
+    MAIN_PAG_ID_BATT_SAT,
+    MAIN_PAG_ID_BUS_SYS_SAT,
+    MAIN_PAG_ID_TIRE_PRESS,
+    MAIN_PAG_ID_RETURN_MAIN,
+    MAIN_PAG_TOTAL_NUM
+};
+
 Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
 {
-    int i;
+    int i, item_num;
     QString btn_name;
-    QPalette palette;
+
     QString main_page_string[MAIN_STR_NUM] = {
         {MAIN_STR_ID0},
         {MAIN_STR_ID1},
@@ -27,7 +41,8 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
     this->setGeometry(GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                       GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 
-    for (i = 0; i < 5; i++) {
+    item_num = MAIN_PAG_TOTAL_NUM / 2;
+    for (i = 0; i < item_num; i++) {
         btn[i] = new Icon_btn(this);
         btn[i]->setObjectName(main_page_string[i]);
         btn[i]->enable_scale = 0;
@@ -39,40 +54,45 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
         btn[i]->set_text(btn_name);
 
 
-        btn[i + 5] = new Icon_btn(this);
-        btn[i + 5]->setObjectName(main_page_string[i]);
-        btn[i + 5]->enable_scale = 0;
-        btn_name = main_page_string[i + 5];
-        btn[i + 5]->load_image_ft(":/icon/menu-button.png", ":/icon/menu-button-press.png");
-        btn[i + 5]->setGeometry(MAIN_BTN_RIGHT_X + MAIN_BTN_W + MAIN_BTN_OFF_X,
+        btn[i + MAIN_PAG_ID_CTRL_MSG] = new Icon_btn(this);
+        btn[i + MAIN_PAG_ID_CTRL_MSG]->setObjectName(main_page_string[i]);
+        btn[i + MAIN_PAG_ID_CTRL_MSG]->enable_scale = 0;
+
+        btn_name = main_page_string[i + MAIN_PAG_ID_CTRL_MSG];
+        btn[i + MAIN_PAG_ID_CTRL_MSG]->load_image_ft(":/icon/menu-button.png", ":/icon/menu-button-press.png");
+        btn[i + MAIN_PAG_ID_CTRL_MSG]->setGeometry(MAIN_BTN_RIGHT_X + MAIN_BTN_W + MAIN_BTN_OFF_X,
                                 MAIN_BTN_RIGHT_Y + ((MAIN_BTN_OFF_Y + MAIN_BTN_H) * i),
                                 MAIN_BTN_W, MAIN_BTN_H);
 
-        btn[i + 5]->set_text(btn_name);
+        btn[i + MAIN_PAG_ID_CTRL_MSG]->set_text(btn_name);
     }
+
     m_load_background_img = 0;
+}
+
+void Main_Page::Enable_Icon_Light(int i)
+{
+    btn[i]->ft_light_enable();
+}
+
+void Main_Page::Disable_Icon_Light(int i)
+{
+    btn[i]->ft_dark_enable();
 }
 
 void Main_Page::LoadBackground()
 {
-    bgimg.load(":/icon/main_page_bg.png");
-
     QPalette palette;
+
+    bgimg.load(MAIN_PAGE_BACKGROUND);
     palette.setColor(QPalette::Background, Qt::black);
     m_load_background_img = 1;
-}
-
-
-void Main_Page::Enable_Icon_Light(int i)
-{
-    qDebug("%s i=%d", __func__, i);
-    btn[i]->ft_light_enable();
 }
 
 void Main_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    QFont font("DroidSans", 22);
+    QFont font(MAIN_PAG_FONT_TYPE, MAIN_PAG_FONT_SIZE);
     painter.setFont(font);
     painter.drawPixmap(0, 0, bgimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
@@ -80,5 +100,33 @@ void Main_Page::paintEvent(QPaintEvent *)
 
 void Main_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
+    uint8_t page_data[128];
+    int i, item_num, ret;
+
     qDebug("Main_Page:%s\n", __func__);
+
+    memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
+
+    item_num = (MAIN_PAG_ID_BUS_SYS_SAT + 1);
+    i = MAIN_PAG_ID_MILE_RPM;
+    while (i < item_num) {
+        ret = (page_data[0] >> i) & 0x01;
+        if (ret)
+            Enable_Icon_Light(i);
+        else
+            Disable_Icon_Light(i);
+        i++;
+    }
+
+    item_num = MAIN_PAG_TOTAL_NUM;
+    i = MAIN_PAG_ID_TIRE_PRESS;
+    while (i < item_num) {
+        ret = (page_data[1] >> i) & 0x01;
+        if (ret)
+            Enable_Icon_Light(i);
+        else
+            Disable_Icon_Light(i);
+        i++;
+    }
+
 }

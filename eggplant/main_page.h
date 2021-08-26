@@ -11,6 +11,8 @@
 
 #define MAIN_PAGE_BACKGROUND ":/icon/main_page_bg.png"
 #define MAIN_PAGE_BUS ":/icon/bus-bg.png"
+#define MAIN_PAG_FONT_TYPE "DroidSans"
+#define MAIN_PAG_FONT_SIZE 22
 
 class Main_Page : public Frame_Page
 {
@@ -25,6 +27,7 @@ public:
 
 private slots:
     void Enable_Icon_Light(int i);
+    void Disable_Icon_Light(int i);
 
 signals:
 

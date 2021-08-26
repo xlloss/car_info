@@ -223,6 +223,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     #define DOOR_DATA_MASK 0x03
     #define TIME_DATA_SIZE 6
     #define BATTSAT_DATA_MASK 0x03
+    #define DATA_GEAR_MASK 0x0F
 
     memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
 
@@ -250,7 +251,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     show_item_data[HOME_ITEM_ID_SLOPE]->set_text(str_temp);
 
     /* Gear_Data */
-    gear_data = (page_data[HOME_PGE_DATA_GEAR] >> 4) & 0x0F;
+    gear_data = (page_data[HOME_PGE_DATA_GEAR] >> 4) & DATA_GEAR_MASK;
     show_item_data[HOME_ITEM_ID_GEAR_SAT]->set_text(strgear[gear_data]);
 
     /* Battery status */
@@ -288,7 +289,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     show_item_data[HOME_ITEM_ID_PRE_MILEAGE]->set_text(str_temp);
 
     /* available kilo */
-    availkilo_data = uint16_t(page_data[21] << 8 | page_data[20]);
+    availkilo_data = uint16_t(page_data[HOME_PGE_DATA_AVAI_KILO_H] << 8 | page_data[HOME_PGE_DATA_AVAI_KILO_L]);
     str_temp.sprintf("%u km", availkilo_data);
     show_item_data[HOME_ITEM_ID_AVAILABLE_MILE]->set_text(str_temp);
 

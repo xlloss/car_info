@@ -116,6 +116,10 @@ void PageCtl_Thread::run()
                     if (ret) {
                         qDebug("checksun fail\n");
                     }
+
+                    /* For TEST */
+
+                    readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF] = 2;
                     m_carinfo_data.page_number = readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF];
                     memcpy(m_carinfo_data.meter_sat, &readbuf[PAGE_DATA_OFF + METER_SAT_OFF], 3);
                     memcpy(m_carinfo_data.page_data, &readbuf[PAGE_DATA_OFF + PAGE_DAT_OFF], data_sz - 4);
@@ -211,13 +215,13 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
     //qDebug() << "close frame page objname=" <<close_framepage->objectName();
 
     if (current_page.compare(show_objname) != 0) {
-        show_framepage->GetMcuData(pcarinfo_data);
+        //show_framepage->GetMcuData(pcarinfo_data);
         show_framepage->setWindowFlags(Qt::WindowStaysOnTopHint);
         show_framepage->setGeometry(0, 0, GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
         show_framepage->show();
         close_framepage->close();
     } else {
-        show_framepage->GetMcuData(pcarinfo_data);
+        //show_framepage->GetMcuData(pcarinfo_data);
         show_framepage->update();
     }
 
