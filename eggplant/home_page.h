@@ -96,29 +96,6 @@ public:
     Icon_btn *icon_door[3];
     void Door_Sat_Change(uint8_t door_type, uint8_t status);
 
-    Show_text *show_time_str;
-    Show_text *show_slope_str;
-    Show_text *show_gear_str;
-    Show_text *show_batt_str;
-    Show_text *show_battconsum_str;
-    Show_text *show_totalkilo_str;
-    Show_text *show_currkilo_str;
-    Show_text *show_availkilo_str;
-    Show_text *show_mototemp_str;
-    Show_text *show_battpack_str;
-    Show_text *show_smallvolt_str;
-    Show_text *show_totalvolt_str;
-    Show_text *show_totalcurr_str;
-    Show_text *show_battsoc_str;
-    Show_text *show_frontair_str;
-    Show_text *show_behindair_str;
-
-
-    QStringList strlist_gear;
-
-
-    QStringList   strlist_batt;
-
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
 protected:
     void paintEvent(QPaintEvent *);

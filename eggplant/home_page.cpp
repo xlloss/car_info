@@ -158,104 +158,6 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
     show_item[HOME_ITEM_ID_ALARM_MSG]->setGeometry(HOME_ITEM_TEX3_X, HOME_ITEM_TEX3_Y,
         HOME_ITEM_TEX3_W, HOME_ITEM_TEX3_H);
 
-
-
-//    /* Dat Time */
-//    show_time_str = new Show_text(this);
-//    show_time_str->set_text("00 時 00 分 00 秒");
-//    show_time_str->m_font_size = 12;
-//    show_time_str->setGeometry(80, 60, 100, 70);
-//
-//    /* Slop */
-//    show_slope_str = new Show_text(this);
-//    show_slope_str->set_text("00 %");
-//    show_slope_str->m_font_size = 12;
-//    show_slope_str->setGeometry(80, 90, 50, 70);
-//
-//    /* Gear */
-//    show_gear_str = new Show_text(this);
-//    show_gear_str->set_text("前進檔");
-//    show_gear_str->m_font_size = 12;
-//    show_gear_str->setGeometry(80, 120, 50, 70);
-//
-//    /* Battery status */
-//    show_batt_str = new Show_text(this);
-//    show_batt_str->set_text("閒置");
-//    show_batt_str->m_font_size = 12;
-//    show_batt_str->setGeometry(80, 150, 50, 70);
-//
-//    /* Instant battery consumption */
-//    show_battconsum_str = new Show_text(this);
-//    show_battconsum_str->set_text("0 kw/100km");
-//    show_battconsum_str->m_font_size = 12;
-//    show_battconsum_str->setGeometry(80, 180, 50, 70);
-//
-//    /* total kilo */
-//    show_totalkilo_str = new Show_text(this);
-//    show_totalkilo_str->set_text("0 km");
-//    show_totalkilo_str->m_font_size = 12;
-//    show_totalkilo_str->setGeometry(80, 210, 100, 70);
-//
-//    /* total kilo */
-//    show_currkilo_str = new Show_text(this);
-//    show_currkilo_str->set_text("0 km");
-//    show_currkilo_str->m_font_size = 12;
-//    show_currkilo_str->setGeometry(80, 240, 100, 70);
-//
-//    /* avail kilo */
-//    show_availkilo_str = new Show_text(this);
-//    show_availkilo_str->set_text("0 km");
-//    show_availkilo_str->m_font_size = 12;
-//    show_availkilo_str->setGeometry(100, 270, 100, 70);
-//
-//    /* moto temp */
-//    show_mototemp_str = new Show_text(this);
-//    show_mototemp_str->set_text("0 °C");
-//    show_mototemp_str->m_font_size = 12;
-//    show_mototemp_str->setGeometry(700, 60, 100, 70);
-//
-//    /* battery pack */
-//    show_battpack_str = new Show_text(this);
-//    show_battpack_str->set_text("0 %");
-//    show_battpack_str->m_font_size = 12;
-//    show_battpack_str->setGeometry(700, 90, 100, 70);
-//
-//    /* small volt */
-//    show_smallvolt_str = new Show_text(this);
-//    show_smallvolt_str->set_text("0 V");
-//    show_smallvolt_str->m_font_size = 12;
-//    show_smallvolt_str->setGeometry(700, 120, 100, 70);
-//
-//    /* total volt */
-//    show_totalvolt_str = new Show_text(this);
-//    show_totalvolt_str->set_text("0 V");
-//    show_totalvolt_str->m_font_size = 12;
-//    show_totalvolt_str->setGeometry(700, 150, 100, 70);
-//
-//    /* total current */
-//    show_totalcurr_str = new Show_text(this);
-//    show_totalcurr_str->set_text("0 A");
-//    show_totalcurr_str->m_font_size = 12;
-//    show_totalcurr_str->setGeometry(700, 180, 100, 70);
-//
-//    /* battery SOC */
-//    show_battsoc_str = new Show_text(this);
-//    show_battsoc_str->set_text("0 %");
-//    show_battsoc_str->m_font_size = 12;
-//    show_battsoc_str->setGeometry(700, 210, 100, 70);
-//
-//    /* front air */
-//    show_frontair_str = new Show_text(this);
-//    show_frontair_str->set_text("0 Mpa");
-//    show_frontair_str->m_font_size = 12;
-//    show_frontair_str->setGeometry(720, 240, 100, 70);
-//
-//    /* behind air */
-//    show_behindair_str = new Show_text(this);
-//    show_behindair_str->set_text("0 Mpa");
-//    show_behindair_str->m_font_size = 12;
-//    show_behindair_str->setGeometry(720, 270, 100, 70);
-
     for (i = 0; i < HOME_ITEM_TOTAL_NUM - 1; i++)
         show_item[i]->show();
 
@@ -295,34 +197,6 @@ void Home_Page::paintEvent(QPaintEvent *)
 
     painter.drawImage(HOME_CARBUS_IMG_X, HOME_CARBUS_IMG_Y, image_car_bus);
 }
-
-
-/*
-enum HOME_ITEAM_ID {
-    HOME_ITEM_ID_DATE_TIME = 0,
-    HOME_ITEM_ID_SLOPE,
-    HOME_ITEM_ID_GEAR_SAT,
-    HOME_ITEM_ID_BATT_SAT,
-    HOME_ITEM_ID_IMM_PWR_CONSUMP,
-    HOME_ITEM_ID_TOTAL_MILEAGE,
-    HOME_ITEM_ID_PRE_MILEAGE,
-    HOME_ITEM_ID_AVAILABLE_MILE,
-    HOME_ITEM_ID_MOTO_TEMP,
-    HOME_ITEM_ID_BATT_PACK,
-    HOME_ITEM_ID_SMALL_VOLAT,
-    HOME_ITEM_ID_TOTAL_VOLT,
-    HOME_ITEM_ID_TOTAL_CURREN,
-    HOME_ITEM_ID_BATT_SOC,
-    HOME_ITEM_ID_FRONT_AIR_PRESSURE,
-    HOME_ITEM_ID_BEHIND_AIR_PRESSURE,
-    HOME_ITEM_ID_ALARM_MSG,
-    HOME_ITEM_TOTAL_NUM,
-    HOME_ITEM_ID_FDOOR,
-    HOME_ITEM_ID_MDOOR,
-    HOME_ITEM_ID_RDOOR,
-    HOME_ITEM_DOOR_NUM,
-};
-*/
 
 void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
