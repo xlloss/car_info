@@ -91,6 +91,7 @@ public:
     explicit Home_Page(QWidget *parent = nullptr);
     QImage image_car_bus;
     Show_text *show_item[HOME_ITEM_TEX_ALL_NUM];
+    Show_text *show_item_data[HOME_ITEM_TEX_ALL_NUM];
 
     Icon_btn *icon_door[3];
     void Door_Sat_Change(uint8_t door_type, uint8_t status);

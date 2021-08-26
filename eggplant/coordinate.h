@@ -52,6 +52,9 @@ enum {
 /******************************
  *           home page
  * ****************************/
+#define HOME_ITEM1_DATA_OFF 1
+#define HOME_ITEM2_DATA_OFF 1
+
 #define HOME_CARBUS_IMG_X 210
 #define HOME_CARBUS_IMG_Y 80
 
@@ -60,6 +63,12 @@ enum {
 #define HOME_ITEM_TEX1_W 120
 #define HOME_ITEM_TEX1_H 70
 #define HOME_ITEM_TEX1_Y_OFF 30
+
+#define HOME_ITEM_TEX1_DATA_X 10
+#define HOME_ITEM_TEX1_DATA_Y 60
+
+#define HOME_ITEM_TEX2_DATA_X 620
+#define HOME_ITEM_TEX2_DATA_Y 60
 
 #define HOME_ITEM_TEX2_X 630
 #define HOME_ITEM_TEX2_Y 80
