@@ -210,7 +210,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     QString str_temp;
     int time_hr, time_min, time_sec;
     signed char slope_data;
-    signed char mototemp_data;
+    int16_t mototemp_data;
     signed char battpack_data;
     double smallvolt_data;
     double totalvolt_data;
@@ -220,6 +220,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     double battsoc_data;
     double frontair_data;
     double behind_data;
+
     #define DOOR_DATA_MASK 0x03
     #define TIME_DATA_SIZE 6
     #define BATTSAT_DATA_MASK 0x03
@@ -294,19 +295,23 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     show_item_data[HOME_ITEM_ID_AVAILABLE_MILE]->set_text(str_temp);
 
     /* moto temp */
-    mototemp_data = int8_t(page_data[22]);
+    mototemp_data = int16_t(page_data[22]);
     mototemp_data = mototemp_data - 40;
-    if (mototemp_data < 0)
-        mototemp_data = 0;
+    if (mototemp_data < -40)
+        mototemp_data = -40;
+    if (mototemp_data > 210)
+        mototemp_data = -40;
 
-    str_temp.sprintf("%i °C", mototemp_data - 40);
+    str_temp.sprintf("%i °C", mototemp_data);
     show_item_data[HOME_ITEM_ID_MOTO_TEMP]->set_text(str_temp);
 
     /* battery pack */
     battpack_data = int8_t(page_data[23]);
     battpack_data = battpack_data - 40;
-    if (battpack_data < 40)
-        battpack_data = 0;
+    if (battpack_data < -40)
+        battpack_data = -40;
+    if (battpack_data > 100)
+        battpack_data = 100;
 
     str_temp.sprintf("%i °C", battpack_data);
     show_item_data[HOME_ITEM_ID_BATT_PACK]->set_text(str_temp);

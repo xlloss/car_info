@@ -77,5 +77,6 @@
         <file>icon/MDoorType1.png</file>
         <file>icon/RDoorType0.png</file>
         <file>icon/RDoorType1.png</file>
+        <file>icon/rampoard.png</file>
     </qresource>
 </RCC>
