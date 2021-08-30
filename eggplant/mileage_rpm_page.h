@@ -42,9 +42,11 @@ Q_OBJECT
 public:
     explicit Mile_Page(QWidget *parent = nullptr);
     QPixmap backimg2;
-    QImage str_img[8];
-    Icon_btn *btn[RPM_BTN_NUM];
-    Show_text *show_string[RPM_STR_NUM];
+    Icon_btn *zero_btn[4];
+    Show_text *show_item[8];
+    Show_text *show_data[6];
+    void Enable_Icon_Light(int i);
+    void Disable_Icon_Light(int i);
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
 protected:
     void paintEvent(QPaintEvent *);

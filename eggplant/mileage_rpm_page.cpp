@@ -27,89 +27,182 @@ int str_img_xy[RPM_STR_IMG_COL_NUM][RPM_STR_IMG_ROW_NUM] = {
     {RPM_STR_IMG_ID_7_X, RPM_STR_IMG_ID_7_Y,},    //ID_STR_IMG_7
 };
 
-int btn_img_xy[RPM_BTN_NUM * 2] = {
-    RPM_BTN_IMG_ID0_X, RPM_BTN_IMG_ID0_Y,
-    RPM_BTN_IMG_ID1_X, RPM_BTN_IMG_ID1_Y,
-    RPM_BTN_IMG_ID2_X, RPM_BTN_IMG_ID2_Y,
-    RPM_BTN_IMG_ID3_X, RPM_BTN_IMG_ID3_Y,
+int btn_img_xy[RPM_BTN_NUM][2] = {
+    {RPM_BTN_IMG_ID0_X, RPM_BTN_IMG_ID0_Y},
+    {RPM_BTN_IMG_ID1_X, RPM_BTN_IMG_ID1_Y},
+    {RPM_BTN_IMG_ID2_X, RPM_BTN_IMG_ID2_Y},
+    {RPM_BTN_IMG_ID3_X, RPM_BTN_IMG_ID3_Y},
 };
 
-int show_text_xy[RPM_STR_NUM * 2] = {
-    RPM_TEX_ID0_X, RPM_TEX_ID0_Y,
-    RPM_TEX_ID1_X, RPM_TEX_ID1_Y,
-    RPM_TEX_ID2_X, RPM_TEX_ID2_Y,
+static int item_xy[8][2] = {
+    {150, 40},
+    {40, 100},
+    {40, 175},
+    {40, 275},
 
-    RPM_TEX_ID3_X, RPM_TEX_ID3_Y,
-    RPM_TEX_ID4_X, RPM_TEX_ID4_Y,
-    RPM_TEX_ID5_X, RPM_TEX_ID5_Y,
+    {150 + 400 , 40},
+    {40  + 400, 100},
+    {40  + 400, 175},
+    {40  + 400, 275},
 };
 
 
+static int show_data_xy[6][2] = {
+    {RPM_DATA_ID0_X, RPM_DATA_ID0_Y},
+    {RPM_DATA_ID1_X, RPM_DATA_ID1_Y},
+    {RPM_DATA_ID2_X, RPM_DATA_ID2_Y},
 
-QString show_text_default[RPM_STR_NUM] = {
-    RPM_DAMPLE_STR_ID0,
-    RPM_DAMPLE_STR_ID1,
-    RPM_DAMPLE_STR_ID2,
-    RPM_DAMPLE_STR_ID3,
-    RPM_DAMPLE_STR_ID4,
-    RPM_DAMPLE_STR_ID5,
+    {RPM_DATA_ID3_X, RPM_DATA_ID3_Y},
+    {RPM_DATA_ID4_X, RPM_DATA_ID4_Y},
+    {RPM_DATA_ID5_X, RPM_DATA_ID5_Y},
 };
 
-QString rpm_page_btn_objname[RPM_BTN_NUM] = {
+static QString show_text_default[RPM_STR_NUM] = {
+    RPM_DATA_DEF_STR_ID0,
+    RPM_DATA_DEF_STR_ID1,
+    RPM_DATA_DEF_STR_ID2,
+    RPM_DATA_DEF_STR_ID3,
+    RPM_DATA_DEF_STR_ID4,
+    RPM_DATA_DEF_STR_ID5,
+};
+
+static QString rpm_page_btn_objname[RPM_BTN_NUM] = {
     RPM_SAMPLE_BTN_OBJ_ID0
     RPM_SAMPLE_BTN_OBJ_ID1
     RPM_SAMPLE_BTN_OBJ_ID2
     RPM_SAMPLE_BTN_OBJ_ID3
 };
 
+static QString item1_text[] = {
+    "累計資訊",
+    "總里程:",
+    "短里程 A:",
+    "短里程 B:",
+    "轉速資訊",
+    "累計總轉速:",
+    "總轉累計時間 A:",
+    "總轉累計時間 B:"
+};
+
+#define MILE_ITEM 8
+#define BTN_NUM 4
+
+enum {
+    MILE_PAGE_TOTAL_KM_DATA = 0,
+    MILE_PAGE_SHORT_KM_A_DATA,
+    MILE_PAGE_SHORT_KM_B_DATA,
+    MILE_PAGE_TOTAL_RPM_DATA,
+    MILE_PAGE_RPM_TIME_A_DATA,
+    MILE_PAGE_RPM_TIME_B_DATA,
+};
+
+
 Mile_Page::Mile_Page(QWidget *parent) : Frame_Page(parent)
 {
     this->setObjectName(RPM_OBJNAME);
-    int i, j;
+    int i;
 
     bgimg.load(RPM_BG_IMG);
     backimg2.load(RPM_FM_IMG);
 
-    for (i = 0; i < RPM_STR_IMG_COL_NUM; i++)
-        str_img[i].load(str_img_id[i]);
+    for (i = 0; i < MILE_ITEM; i++) {
+        show_item[i] = new Show_text(this);
+        show_item[i]->set_text(item1_text[i]);
+        show_item[i]->m_font_size = 20;
+        show_item[i]->setGeometry(item_xy[i][0], item_xy[i][1], 150, 40);
+    }
 
+    for (i = 0; i < 6; i++) {
+        show_data[i] = new Show_text(this);
+        show_data[i]->set_text(show_text_default[i]);
+        show_data[i]->setGeometry(show_data_xy[i][0], show_data_xy[i][1], 200, 70);
+        show_data[i]->show();
+    }
 
-    j = 0;
     for (i = 0; i < RPM_BTN_NUM; i++) {
-        btn[i] = new Icon_btn(this);
-        btn[i]->setObjectName(rpm_page_btn_objname[i]);
-        btn[i]->enable_scale = 0;
+        zero_btn[i] = new Icon_btn(this);
+        zero_btn[i]->setObjectName(rpm_page_btn_objname[i]);
+        zero_btn[i]->enable_scale = 0;
 
-        btn[i]->load_image_ft(":/icon/rpm_btn.png", ":/icon/rpm_btn_press.png");
-        btn[i]->setGeometry(btn_img_xy[j], btn_img_xy[j + 1], 120, 40);
+        zero_btn[i]->load_image_ft(":/icon/rpm_btn.png", ":/icon/rpm_btn_press.png");
+        zero_btn[i]->setGeometry(btn_img_xy[i][0], btn_img_xy[i][1], 120, 40);
 
-        btn[i]->set_text(RPM_PAGE_BTN_NAME);
-        btn[i]->m_set_text_y = RPM_FONT_SIZE;
-
-        show_string[i] = new Show_text(this);
-        show_string[i]->set_text(show_text_default[i]);
-        show_string[i]->setGeometry(show_text_xy[j], show_text_xy[j + 1], 200, 70);
-        show_string[i]->show();
-        j = j + 2;
+        zero_btn[i]->set_text(RPM_PAGE_BTN_NAME);
+        zero_btn[i]->m_set_text_y = RPM_FONT_SIZE;
     }
 }
 
 void Mile_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    int i;
 
     painter.drawPixmap(0, 0, bgimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 
     painter.drawPixmap(8, 30, backimg2, MILERPM_BACKIMAGE_X, MILERPM_BACKIMAGE_Y,
                        MILERPM_BACKIMAGE_W, MILERPM_BACKIMAGE_H);
+}
 
-    for (i = 0; i < RPM_STR_IMG_NUM; i++)
-        painter.drawImage(str_img_xy[i][0], str_img_xy[i][1], str_img[i]);
+void Mile_Page::Enable_Icon_Light(int i)
+{
+    zero_btn[i]->ft_light_enable();
+}
+
+void Mile_Page::Disable_Icon_Light(int i)
+{
+    zero_btn[i]->ft_dark_enable();
 }
 
 void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    qDebug("Mile_Page:%s\n", __func__);
+    uint8_t page_data[128];
+    double total_km, total_rpm;
+    double short_km_a, short_km_b;
+    uint8_t rpm_time_a_h, rpm_time_a_m, rpm_time_a_s;
+    uint8_t rpm_time_b_h, rpm_time_b_m, rpm_time_b_s;
+    uint8_t i, ret;
+    QString str_temp;
+
+    memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
+
+    total_km = double(page_data[3] << 24 |  page_data[2] << 16 | page_data[1] << 8 | page_data[0]);
+    total_km = total_km * 0.005;
+    str_temp.sprintf("%f km", total_km);
+    show_data[MILE_PAGE_TOTAL_KM_DATA]->set_text(str_temp);
+
+    short_km_a = double(page_data[7] << 24 |  page_data[6] << 16 | page_data[5] << 8 | page_data[4]);
+    short_km_a = short_km_a * 0.005;
+    str_temp.sprintf("%f km", short_km_a);
+    show_data[MILE_PAGE_SHORT_KM_A_DATA]->set_text(str_temp);
+
+    short_km_b = double(page_data[11] << 24 |  page_data[10] << 16 | page_data[9] << 8 | page_data[8]);
+    short_km_b = short_km_a * 0.005;
+    str_temp.sprintf("%f km", short_km_b);
+    show_data[MILE_PAGE_SHORT_KM_B_DATA]->set_text(str_temp);
+
+    total_rpm = double(page_data[13] << 8 |  page_data[12]);
+    str_temp.sprintf("%f rpm", total_rpm);
+    show_data[MILE_PAGE_TOTAL_RPM_DATA]->set_text(str_temp);
+
+    rpm_time_a_h = page_data[16];
+    rpm_time_a_m = page_data[15];
+    rpm_time_a_s = page_data[14];
+    str_temp.sprintf("%d : %d : %d", rpm_time_a_h, rpm_time_a_m, rpm_time_a_s);
+    show_data[MILE_PAGE_RPM_TIME_A_DATA]->set_text(str_temp);
+
+    rpm_time_b_h = page_data[19];
+    rpm_time_b_m = page_data[18];
+    rpm_time_b_s = page_data[17];
+    str_temp.sprintf("%d : %d : %d", rpm_time_b_h, rpm_time_b_m, rpm_time_b_s);
+    show_data[MILE_PAGE_RPM_TIME_B_DATA]->set_text(str_temp);
+
+    i = 0;
+    while (i < BTN_NUM) {
+        ret = (page_data[18] >> i) & 0x01;
+        if (ret)
+            Enable_Icon_Light(i);
+        else
+            Disable_Icon_Light(i);
+        i++;
+    }
 }

@@ -118,8 +118,8 @@ void PageCtl_Thread::run()
                     }
 
                     /* For TEST */
+                    //readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF] = 3;
 
-                    readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF] = 2;
                     m_carinfo_data.page_number = readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF];
                     memcpy(m_carinfo_data.meter_sat, &readbuf[PAGE_DATA_OFF + METER_SAT_OFF], 3);
                     memcpy(m_carinfo_data.page_data, &readbuf[PAGE_DATA_OFF + PAGE_DAT_OFF], data_sz - 4);

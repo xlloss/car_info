@@ -49,12 +49,12 @@
  *  rpm page
  ******************************************/
 #define RPM_PAGE_BTN_NAME "歸零"
-#define RPM_DAMPLE_STR_ID0 "012345678Km"
-#define RPM_DAMPLE_STR_ID1 "0000.2Km"
-#define RPM_DAMPLE_STR_ID2 "0204.9Km"
-#define RPM_DAMPLE_STR_ID3 "000002040Kr"
-#define RPM_DAMPLE_STR_ID4 "000000002h"
-#define RPM_DAMPLE_STR_ID5 "100000002h"
+#define RPM_DATA_DEF_STR_ID0 "012345678Km"
+#define RPM_DATA_DEF_STR_ID1 "0000.2Km"
+#define RPM_DATA_DEF_STR_ID2 "0204.9Km"
+#define RPM_DATA_DEF_STR_ID3 "000002040Kr"
+#define RPM_DATA_DEF_STR_ID4 "000000002h"
+#define RPM_DATA_DEF_STR_ID5 "100000002h"
 
 #define RPM_SAMPLE_BTN_OBJ_ID0 "set_zero_0"
 #define RPM_SAMPLE_BTN_OBJ_ID1 "set_zero_0"

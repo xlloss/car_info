@@ -129,18 +129,18 @@ enum {
 #define RPM_BTN_IMG_ID3_X 650
 #define RPM_BTN_IMG_ID3_Y 300
 
-#define RPM_TEX_ID0_X 140
-#define RPM_TEX_ID0_Y 115
-#define RPM_TEX_ID1_X 40
-#define RPM_TEX_ID1_Y 215
-#define RPM_TEX_ID2_X 40
-#define RPM_TEX_ID2_Y 315
-#define RPM_TEX_ID3_X 580
-#define RPM_TEX_ID3_Y 115
-#define RPM_TEX_ID4_X 430
-#define RPM_TEX_ID4_Y 215
-#define RPM_TEX_ID5_X 430
-#define RPM_TEX_ID5_Y 315
+#define RPM_DATA_ID0_X 110
+#define RPM_DATA_ID0_Y 100
+#define RPM_DATA_ID1_X 40
+#define RPM_DATA_ID1_Y 205
+#define RPM_DATA_ID2_X 40
+#define RPM_DATA_ID2_Y 305
+#define RPM_DATA_ID3_X 550
+#define RPM_DATA_ID3_Y 100
+#define RPM_DATA_ID4_X 440
+#define RPM_DATA_ID4_Y 205
+#define RPM_DATA_ID5_X 440
+#define RPM_DATA_ID5_Y 305
 
 #define MILERPM_BACKIMAGE_X 0
 #define MILERPM_BACKIMAGE_Y 0
