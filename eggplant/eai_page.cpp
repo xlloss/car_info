@@ -3,9 +3,9 @@
 #include "coordinate.h"
 #include "string/string.h"
 
-QString master_text[EAI_MAS_TEX_NUM] = {EAI_MAS_TEX_ID0, EAI_MAS_TEX_ID1, EAI_MAS_TEX_ID2};
+static QString master_text[EAI_MAS_TEX_NUM] = {EAI_MAS_TEX_ID0, EAI_MAS_TEX_ID1, EAI_MAS_TEX_ID2};
 
-QString sub_text[EAI_MAS_TEX_NUM][EAI_SUB_TEX_NUM] = {
+static QString sub_text[EAI_MAS_TEX_NUM][EAI_SUB_TEX_NUM] = {
     {EAI_SUB_STR_ID00, EAI_SUB_STR_ID01,
      EAI_SUB_STR_ID02, EAI_SUB_STR_ID03, EAI_SUB_STR_ID04, EAI_SUB_STR_ID05, EAI_SUB_STR_ID06},
 
@@ -16,7 +16,7 @@ QString sub_text[EAI_MAS_TEX_NUM][EAI_SUB_TEX_NUM] = {
      EAI_SUB_STR_ID22, EAI_SUB_STR_ID23, EAI_SUB_STR_ID24, EAI_SUB_STR_ID25, EAI_SUB_STR_ID26},
 };
 
-QString sub_text_msg[EAI_MAS_TEX_NUM][EAI_SUB_TEX_NUM] = {
+static QString sub_text_msg[EAI_MAS_TEX_NUM][EAI_SUB_TEX_NUM] = {
     {EAI_SUB_SAMPLE_STR_ID00, EAI_SUB_STR_ID01,
      EAI_SUB_SAMPLE_STR_ID02, EAI_SUB_STR_ID03,
      EAI_SUB_SAMPLE_STR_ID04, EAI_SUB_SAMPLE_STR_ID05, EAI_SUB_SAMPLE_STR_ID06},
@@ -30,13 +30,13 @@ QString sub_text_msg[EAI_MAS_TEX_NUM][EAI_SUB_TEX_NUM] = {
      EAI_SUB_SAMPLE_STR_ID24, EAI_SUB_SAMPLE_STR_ID25, EAI_SUB_SAMPLE_STR_ID26},
 };
 
-int master_text_xy[] = {
+static int master_text_xy[] = {
   EAI_MASTER_TEXT_X,  EAI_MASTER_TEXT_Y,
   EAI_MASTER_TEXT_X + (EAI_MASTER_TEXT_W + 70) * 1, EAI_MASTER_TEXT_Y,
   EAI_MASTER_TEXT_X + (EAI_MASTER_TEXT_W + 50) * 2, EAI_MASTER_TEXT_Y,
 };
 
-int sub_text_xy[] = {
+static int sub_text_xy[] = {
   EAI_SUB_TEXT_X,  EAI_SUB_TEXT_Y,
   EAI_SUB_TEXT_X , EAI_SUB_TEXT_Y + (EAI_SUB_TEXT_GAP  * 1),
   EAI_SUB_TEXT_X , EAI_SUB_TEXT_Y + (EAI_SUB_TEXT_GAP  * 2),
@@ -46,8 +46,8 @@ int sub_text_xy[] = {
   EAI_SUB_TEXT_X , EAI_SUB_TEXT_Y + (EAI_SUB_TEXT_GAP  * 6),
 };
 
-int sub_text_x_offset[EAI_MAS_TEX_NUM] = {0,  260, 510};
-int sub_text_msg_off[EAI_MAS_TEX_NUM] = {150, 400, 670};
+static int sub_text_x_offset[EAI_MAS_TEX_NUM] = {0,  260, 510};
+static int sub_text_msg_off[EAI_MAS_TEX_NUM] = {150, 400, 670};
 
 EleAccInfo_Page::EleAccInfo_Page(QWidget *parent) : Frame_Page(parent)
 {
@@ -79,16 +79,42 @@ EleAccInfo_Page::EleAccInfo_Page(QWidget *parent) : Frame_Page(parent)
             show_sub_item[i][k]->m_font_size = RAI_FONT2_SIZE;
             show_sub_item[i][k]->show();
 
-            show_sub_item[i][k] = new Show_text(this);
-            show_sub_item[i][k]->set_text(sub_text_msg[i][k]);
-            show_sub_item[i][k]->setGeometry(sub_text_xy[j] + sub_text_msg_off[i], sub_text_xy[j + 1],
+            show_sub_data[i][k] = new Show_text(this);
+            show_sub_data[i][k]->set_text(sub_text_msg[i][k]);
+            show_sub_data[i][k]->setGeometry(sub_text_xy[j] + sub_text_msg_off[i], sub_text_xy[j + 1],
                     EAI_SUB_TEXT_W, EAI_SUB_TEXT_H);
-            show_sub_item[i][k]->m_font_size = RAI_FONT2_SIZE;
-            show_sub_item[i][k]->show();
+            show_sub_data[i][k]->m_font_size = RAI_FONT2_SIZE;
+            show_sub_data[i][k]->show();
             j = j + 2;
         }
     }
 }
+
+enum {
+    ELEACC_INFO_I1 = 0,
+    ELEACC_INFO_I2,
+    ELEACC_INFO_I3,
+    ELEACC_INFO_I4,
+    ELEACC_INFO_I5,
+    ELEACC_INFO_I6,
+    ELEACC_INFO_I7,
+
+    ELEACC_INFO_J1 = 0,
+    ELEACC_INFO_J2,
+    ELEACC_INFO_J3,
+    ELEACC_INFO_J4,
+    ELEACC_INFO_J5,
+    ELEACC_INFO_J6,
+    ELEACC_INFO_J7,
+
+    ELEACC_INFO_K1 = 0,
+    ELEACC_INFO_K2,
+    ELEACC_INFO_K3,
+    ELEACC_INFO_K4,
+    ELEACC_INFO_K5,
+    ELEACC_INFO_K6,
+    ELEACC_INFO_K7,
+};
 
 void EleAccInfo_Page::paintEvent(QPaintEvent *)
 {
@@ -102,5 +128,9 @@ void EleAccInfo_Page::paintEvent(QPaintEvent *)
 
 void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    qDebug("EleAccInfo_Page:%s\n", __func__);
+    uint8_t page_data[128];
+
+    memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
+
+
 }
