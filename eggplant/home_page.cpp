@@ -221,7 +221,8 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     double frontair_data;
     double behind_data;
 
-    #define DOOR_DATA_MASK 0x03
+    #define DOOR_DATA_TYPE_FM_MASK 0x03
+    #define DOOR_DATA_TYPE_R_MASK 0x01
     #define TIME_DATA_SIZE 6
     #define BATTSAT_DATA_MASK 0x03
     #define DATA_GEAR_MASK 0x0F
@@ -229,13 +230,13 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
 
     /* Door */
-    door_sat = (page_data[0] >> DOOR_TYPE_F_SHIF) & DOOR_DATA_MASK;
+    door_sat = (page_data[0] >> DOOR_TYPE_F_SHIF) & DOOR_DATA_TYPE_FM_MASK;
     Door_Sat_Change(DOOR_TYPE_ID_F, door_sat);
 
-    door_sat = (page_data[0] >> DOOR_TYPE_M_SHIF) & DOOR_DATA_MASK;
+    door_sat = (page_data[0] >> DOOR_TYPE_M_SHIF) & DOOR_DATA_TYPE_FM_MASK;
     Door_Sat_Change(DOOR_TYPE_ID_M, door_sat);
 
-    door_sat = (page_data[0] >> DOOR_TYPE_R_SHIF) & DOOR_DATA_MASK;
+    door_sat = (page_data[0] >> DOOR_TYPE_R_SHIF) & DOOR_DATA_TYPE_R_MASK;
     Door_Sat_Change(DOOR_TYPE_ID_R, door_sat);
 
     /* Date Time */

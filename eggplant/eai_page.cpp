@@ -90,32 +90,6 @@ EleAccInfo_Page::EleAccInfo_Page(QWidget *parent) : Frame_Page(parent)
     }
 }
 
-enum {
-    ELEACC_INFO_I1 = 0,
-    ELEACC_INFO_I2,
-    ELEACC_INFO_I3,
-    ELEACC_INFO_I4,
-    ELEACC_INFO_I5,
-    ELEACC_INFO_I6,
-    ELEACC_INFO_I7,
-
-    ELEACC_INFO_J1 = 0,
-    ELEACC_INFO_J2,
-    ELEACC_INFO_J3,
-    ELEACC_INFO_J4,
-    ELEACC_INFO_J5,
-    ELEACC_INFO_J6,
-    ELEACC_INFO_J7,
-
-    ELEACC_INFO_K1 = 0,
-    ELEACC_INFO_K2,
-    ELEACC_INFO_K3,
-    ELEACC_INFO_K4,
-    ELEACC_INFO_K5,
-    ELEACC_INFO_K6,
-    ELEACC_INFO_K7,
-};
-
 void EleAccInfo_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
@@ -129,8 +103,245 @@ void EleAccInfo_Page::paintEvent(QPaintEvent *)
 void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     uint8_t page_data[128];
+    uint8_t u8_data_tmp;
+    double d_data_tmp;
+    QString str_tmp;
 
     memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
 
+    /* for DATA I-1 */
+    d_data_tmp = double(page_data[1] << 8 | page_data[0]);
+    d_data_tmp = d_data_tmp * 0.125;
+    if (d_data_tmp > 5000 )
+        d_data_tmp = 5000.0; 
+    else if (d_data_tmp < 0 )
+        d_data_tmp = 0;
 
+    str_tmp.sprintf("%f\n", d_data_tmp);
+    show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I1]->set_text(str_tmp);
+
+    /* for DATA I-2 */
+    d_data_tmp = double(page_data[3] << 8 | page_data[2]);
+    d_data_tmp = d_data_tmp * 0.1;
+    if (d_data_tmp > 1000 )
+        d_data_tmp = 1000.0; 
+    else if (d_data_tmp < 0 )
+        d_data_tmp = 0;
+
+    str_tmp.sprintf("%f\n", d_data_tmp);
+    show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I2]->set_text(str_tmp);
+
+    /* for DATA I-3 */
+    d_data_tmp = double(page_data[4]);
+    d_data_tmp = d_data_tmp * 0.1;
+    if (d_data_tmp > 1000 )
+        d_data_tmp = 1000; 
+    else if (d_data_tmp < 0 )
+        d_data_tmp = 0;
+
+    str_tmp.sprintf("%f A\n", d_data_tmp);
+    show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I3]->set_text(str_tmp);
+
+    /* for DATA I-4 */
+    d_data_tmp = double(page_data[5]);
+    d_data_tmp = d_data_tmp - 40;
+    if (d_data_tmp > 200 )
+        d_data_tmp = 200; 
+    else if (d_data_tmp < -40 )
+        d_data_tmp = -40;
+
+    str_tmp.sprintf("%f °C\n", d_data_tmp);
+    show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I4]->set_text(str_tmp);
+
+    /* for DATA I-5 */
+    u8_data_tmp = page_data[6];
+    u8_data_tmp = u8_data_tmp & 0x0F;
+    str_tmp.sprintf("%d \n", u8_data_tmp);
+    show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I5]->set_text(str_tmp);
+
+    /* for DATA I-6 */
+    u8_data_tmp = page_data[6];
+    u8_data_tmp = (u8_data_tmp & 0x03 << 4) >> 4;
+    if (u8_data_tmp == 1)
+        str_tmp.sprintf("%s\n", "作動");
+    else
+        str_tmp.sprintf("%s\n", "停止");
+
+    show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I6]->set_text(str_tmp);
+
+    /* for DATA I-7 */
+    u8_data_tmp = page_data[6];
+    u8_data_tmp = (u8_data_tmp & 0x01 << 6) >> 6;
+    if (u8_data_tmp == 1)
+        str_tmp.sprintf("%s\n", "完成");
+    else
+        str_tmp.sprintf("%s\n", "未完成");
+
+    show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I7]->set_text(str_tmp);
+
+
+    /* for DATA J-1 */
+    d_data_tmp = double(page_data[8] << 8 | page_data[7]);
+    d_data_tmp = d_data_tmp * 0.1;
+    if (d_data_tmp > 1000 )
+        d_data_tmp = 1000; 
+    else if (d_data_tmp < 0 )
+        d_data_tmp = 0;
+
+    str_tmp.sprintf("%f V\n", d_data_tmp);
+    show_sub_data[ELEACC_INFO_ITEM_J][ELEACC_INFO_J1]->set_text(str_tmp);
+
+
+    /* for DATA J-2 */
+    u8_data_tmp = page_data[9];
+    str_tmp.sprintf("%d A\n", u8_data_tmp);
+    show_sub_data[ELEACC_INFO_ITEM_J][ELEACC_INFO_J2]->set_text(str_tmp);
+
+    /* for DATA J-3 */
+    u8_data_tmp = page_data[10];
+    str_tmp.sprintf("%d A\n", u8_data_tmp);
+    show_sub_data[ELEACC_INFO_ITEM_J][ELEACC_INFO_J3]->set_text(str_tmp);
+
+
+    /* for DATA J-4 */
+    d_data_tmp = double(page_data[11]);
+    d_data_tmp = d_data_tmp - 40;
+    if (d_data_tmp > 210 )
+        d_data_tmp = 210; 
+    else if (d_data_tmp < -40 )
+        d_data_tmp = -40;
+
+    str_tmp.sprintf("%f °C\n", d_data_tmp);
+    show_sub_data[ELEACC_INFO_ITEM_J][ELEACC_INFO_J4]->set_text(str_tmp);
+
+
+    /* for DATA J-5 */
+    u8_data_tmp = page_data[12];
+    u8_data_tmp = u8_data_tmp & 0x0F;
+    str_tmp.sprintf("%d \n", u8_data_tmp);
+    show_sub_data[ELEACC_INFO_ITEM_J][ELEACC_INFO_J5]->set_text(str_tmp);
+
+    /* for DATA J-6 */
+    u8_data_tmp = page_data[12];
+    u8_data_tmp = (u8_data_tmp & (0x03 << 4) >> 4);
+    if (u8_data_tmp == 0)
+        str_tmp.sprintf("%s\n", "停止");
+    else if (u8_data_tmp == 1)
+        str_tmp.sprintf("%s\n", "作動");
+    else
+        str_tmp.sprintf("%s\n", "異常");
+
+    show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I6]->set_text(str_tmp);
+
+    /* for DATA J-7 */
+    u8_data_tmp = page_data[12];
+    u8_data_tmp = (u8_data_tmp & (0x01 << 6)) >> 6;
+    if (u8_data_tmp == 0)
+        str_tmp.sprintf("%s\n", "未完成");
+    else
+        str_tmp.sprintf("%s\n", "完成");
+
+    show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I6]->set_text(str_tmp);
+
+
+    /* for DATA K-1 */
+    d_data_tmp = double(page_data[14] << 8 | page_data[13]);
+    d_data_tmp = d_data_tmp * 0.125;
+    if (d_data_tmp > 5000 )
+        d_data_tmp = 5000; 
+    else if (d_data_tmp < 0 )
+        d_data_tmp = 0;
+
+    str_tmp.sprintf("%f rpm\n", d_data_tmp);
+    show_sub_data[ELEACC_INFO_ITEM_K][ELEACC_INFO_K1]->set_text(str_tmp);
+
+    /* for DATA K-2 */
+    d_data_tmp = double(page_data[16] << 8 | page_data[15]);
+    d_data_tmp = d_data_tmp * 0.1;
+    if (d_data_tmp > 1000 )
+        d_data_tmp = 1000; 
+    else if (d_data_tmp < 0 )
+        d_data_tmp = 0;
+
+    str_tmp.sprintf("%f V\n", d_data_tmp);
+    show_sub_data[ELEACC_INFO_ITEM_K][ELEACC_INFO_K2]->set_text(str_tmp);
+
+    /* for DATA K-3 */
+    d_data_tmp = double(page_data[17]);
+
+    if (d_data_tmp > 100 )
+        d_data_tmp = 100; 
+    else if (d_data_tmp < 0 )
+        d_data_tmp = 0;
+
+    str_tmp.sprintf("%f A\n", d_data_tmp);
+    show_sub_data[ELEACC_INFO_ITEM_K][ELEACC_INFO_K3]->set_text(str_tmp);
+
+    /* for DATA K-4 */
+    d_data_tmp = double(page_data[18]);
+    d_data_tmp = d_data_tmp - 40;
+    if (d_data_tmp > 200 )
+        d_data_tmp = 200; 
+    else if (d_data_tmp < -40 )
+        d_data_tmp = -40;
+
+    str_tmp.sprintf("%f °C\n", d_data_tmp);
+    show_sub_data[ELEACC_INFO_ITEM_K][ELEACC_INFO_K4]->set_text(str_tmp);
+
+    /* for DATA K-5 */
+    u8_data_tmp = page_data[19];
+    u8_data_tmp = u8_data_tmp & 0x0F;
+    str_tmp.sprintf("%d \n", u8_data_tmp);
+    show_sub_data[ELEACC_INFO_ITEM_K][ELEACC_INFO_K5]->set_text(str_tmp);
+
+
+    /* for DATA K-6 */
+    u8_data_tmp = page_data[19];
+    u8_data_tmp = (u8_data_tmp & (0x03 << 4) >> 4);
+    if (u8_data_tmp == 0)
+        str_tmp.sprintf("%s\n", "停止");
+    else if (u8_data_tmp == 1)
+        str_tmp.sprintf("%s\n", "作動");
+    else
+        str_tmp.sprintf("%s\n", "異常");
+
+    show_sub_data[ELEACC_INFO_ITEM_K][ELEACC_INFO_K6]->set_text(str_tmp);
+
+
+    /* for DATA K-7 */
+    u8_data_tmp = page_data[19];
+    u8_data_tmp = (u8_data_tmp & (0x01 << 6)) >> 6;
+    if (u8_data_tmp == 0)
+        str_tmp.sprintf("%s\n", "未完成");
+    else
+        str_tmp.sprintf("%s\n", "完成");
+
+    show_sub_data[ELEACC_INFO_ITEM_K][ELEACC_INFO_K7]->set_text(str_tmp);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
