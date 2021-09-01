@@ -253,14 +253,14 @@
 #define BATT_MAS_TEX_ID0 "電池溫度資訊"
 
 #define BATT_SUB_TEX_ID00 "電池第一高溫度:"
-#define BATT_SUB_TEX_ID01 "電池第一高溫度:"
-#define BATT_SUB_TEX_ID02 "電池第一高溫度:"
-#define BATT_SUB_TEX_ID03 "電池第一高溫度:"
+#define BATT_SUB_TEX_ID01 "電池第二高溫度:"
+#define BATT_SUB_TEX_ID02 "電池第三高溫度:"
+#define BATT_SUB_TEX_ID03 "電池第四高溫度:"
 
 #define BATT_SUB_TEX_ID10 "電池第一低溫度:"
-#define BATT_SUB_TEX_ID11 "電池第一低溫度:"
-#define BATT_SUB_TEX_ID12 "電池第一低溫度:"
-#define BATT_SUB_TEX_ID13 "電池第一低溫度:"
+#define BATT_SUB_TEX_ID11 "電池第二低溫度:"
+#define BATT_SUB_TEX_ID12 "電池第三低溫度:"
+#define BATT_SUB_TEX_ID13 "電池第四低溫度:"
 
 #define BATT_SUB_TEX_ID20 "位置(箱):"
 #define BATT_SUB_TEX_ID21 "位置(箱):"

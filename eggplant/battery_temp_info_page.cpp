@@ -3,9 +3,9 @@
 #include "coordinate.h"
 #include "string/string.h"
 
-QString battempinfo_master_text[BATTINFO_MAS_NUM] = {"電池溫度資訊"};
+static QString battempinfo_master_text[BATTINFO_MAS_NUM] = {"電池溫度資訊"};
 
-QString battempinfo_sub_text[BATTINFO_TEX_COL_NUM][BATTINFO_TEX_ROW_NUM] = {
+static QString battempinfo_sub_text[BATTINFO_TEX_COL_NUM][BATTINFO_TEX_ROW_NUM] = {
                             {BATT_SUB_TEX_ID00, BATT_SUB_TEX_ID01, BATT_SUB_TEX_ID02, BATT_SUB_TEX_ID03},
                             {BATT_SUB_TEX_ID10, BATT_SUB_TEX_ID11, BATT_SUB_TEX_ID12, BATT_SUB_TEX_ID13},
                             {BATT_SUB_TEX_ID20, BATT_SUB_TEX_ID21, BATT_SUB_TEX_ID22, BATT_SUB_TEX_ID23},
@@ -14,7 +14,7 @@ QString battempinfo_sub_text[BATTINFO_TEX_COL_NUM][BATTINFO_TEX_ROW_NUM] = {
                             {BATT_SUB_TEX_ID50, BATT_SUB_TEX_ID51, BATT_SUB_TEX_ID52, BATT_SUB_TEX_ID53},
 						};
 
-QString battempinfo_sub_text_msg[BATTINFO_TEX_COL_NUM][BATTINFO_TEX_ROW_NUM] = {
+static QString battempinfo_sub_text_msg[BATTINFO_TEX_COL_NUM][BATTINFO_TEX_ROW_NUM] = {
                             {BATT_MSG_TEX_ID00, BATT_MSG_TEX_ID01, BATT_MSG_TEX_ID02, BATT_MSG_TEX_ID03},
                             {BATT_MSG_TEX_ID10, BATT_MSG_TEX_ID11, BATT_MSG_TEX_ID12, BATT_MSG_TEX_ID13},
                             {BATT_MSG_TEX_ID20, BATT_MSG_TEX_ID21, BATT_MSG_TEX_ID22, BATT_MSG_TEX_ID23},
@@ -24,11 +24,11 @@ QString battempinfo_sub_text_msg[BATTINFO_TEX_COL_NUM][BATTINFO_TEX_ROW_NUM] = {
                         };
 
 
-int battempinfo_master_text_xy[] = {
+static int battempinfo_master_text_xy[] = {
     BATTEMP_MASTER_TEXT_X,  BATTEMP_MASTER_TEXT_Y,
 };
 
-int battempinfo_sub_text_xy[] = {
+static int battempinfo_sub_text_xy[] = {
    BATTEMP_SUB_TEXT_X,  BATTEMP_SUB_TEXT_Y                      ,
    BATTEMP_SUB_TEXT_X,  BATTEMP_SUB_TEXT_Y + (BATTEMP_SUB_TEXT_GAP  * 1),
    BATTEMP_SUB_TEXT_X,  BATTEMP_SUB_TEXT_Y + (BATTEMP_SUB_TEXT_GAP  * 2),
@@ -58,6 +58,53 @@ int battempinfo_sub_text_xy[] = {
 int battempinfo_sub_text_x_offset[6] = {0,  0, 380, 380, 580, 580};
 int battempinfo_sub_text_msg_off[6] = {160, 160, 470, 470, 670, 670};
 
+
+enum {
+    BATT_COLUMN_0 = 0,
+    BATT_COLUMN_1,
+    BATT_COLUMN_2,
+    BATT_COLUMN_3,
+    BATT_COLUMN_4,
+    BATT_COLUMN_5,
+};
+
+enum {
+    BATT_HI_TEMP_0 = 0,
+    BATT_HI_TEMP_1,
+    BATT_HI_TEMP_2,
+    BATT_HI_TEMP_3,
+    BATT_LO_TEMP_0,
+    BATT_LO_TEMP_1,
+    BATT_LO_TEMP_2,
+    BATT_LO_TEMP_3,
+};
+
+enum {
+    BATT_BOX_HI_TEMP_0 = 0,
+    BATT_BOX_HI_TEMP_1,
+    BATT_BOX_HI_TEMP_2,
+    BATT_BOX_HI_TEMP_3,
+    BATT_BOX_LO_TEMP_0,
+    BATT_BOX_LO_TEMP_1,
+    BATT_BOX_LO_TEMP_2,
+    BATT_BOX_LO_TEMP_3,
+};
+
+enum {
+    BATT_NUM_HI_TEMP_0 = 0,
+    BATT_NUM_HI_TEMP_1,
+    BATT_NUM_HI_TEMP_2,
+    BATT_NUM_HI_TEMP_3,
+    BATT_NUM_LO_TEMP_0,
+    BATT_NUM_LO_TEMP_1,
+    BATT_NUM_LO_TEMP_2,
+    BATT_NUM_LO_TEMP_3,
+};
+
+
+
+
+
 BatTempInfo_Page::BatTempInfo_Page(QWidget *parent) : Frame_Page(parent)
 {
     this->setObjectName(BATTINFO_OBJNAME);
@@ -86,13 +133,7 @@ BatTempInfo_Page::BatTempInfo_Page(QWidget *parent) : Frame_Page(parent)
                                              battempinfo_sub_text_xy[j + 1], BATTEMP_SUB_TEXT_W, BATTEMP_SUB_TEXT_H);
             show_sub_item[i][k]->m_font_size = 20;
             show_sub_item[i][k]->show();
-//            j = j + 2;
-//        }
-//    }
-//
-//    j = 0;
-//    for (i = 0; i < BATTINFO_TEX_COL_NUM; i++) {
-//        for (k = 0; k < BATTINFO_TEX_ROW_NUM; k++) {
+
             show_sub_item[i][k] = new Show_text(this);
             show_sub_item[i][k]->set_text(battempinfo_sub_text_msg[i][k]);
             show_sub_item[i][k]->setGeometry(battempinfo_sub_text_xy[j] + battempinfo_sub_text_msg_off[i],
