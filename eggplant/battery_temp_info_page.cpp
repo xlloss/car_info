@@ -60,12 +60,12 @@ int battempinfo_sub_text_msg_off[6] = {160, 160, 470, 470, 670, 670};
 
 
 enum {
-    BATT_CLASS_0_BAT_HI = 0,
-    BATT_CLASS_1_BAT_LO,
-    BATT_CLASS_2_LOC_BOX_H,
-    BATT_CLASS_3_LOC_BOX_L,
-    BATT_CLASS_4_LOC_NUM_H,
-    BATT_CLASS_5_LOC_NUM_L,
+    BATT_CLASS_0_TMP_HI = 0,
+    BATT_CLASS_1_TMP_LO,
+    BATT_CLASS_2_LOC_BOX_TMP_H,
+    BATT_CLASS_3_LOC_BOX_TMP_L,
+    BATT_CLASS_4_LOC_NUM_TMP_H,
+    BATT_CLASS_5_LOC_NUM_TMP_L,
     BATT_CLASS_END,
 };
 
@@ -178,20 +178,20 @@ void BatTempInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
     j = 0;
-    /* Temp */
+    /* volt */
     for (i = BATT_DATA_0; i < BATT_DATA_END; i++) {
-        /* HI Temp */
+        /* HI volt */
         d_data_tmp = double(page_data[j + 1] << 8 | page_data[j]);
-        d_data_tmp = (d_data_tmp * 0.1) - 40;
-        if (d_data_tmp > 210 )
-            d_data_tmp = 210.0;
-        else if (d_data_tmp < -40 )
-            d_data_tmp = -40;
+        d_data_tmp = (d_data_tmp * 0.001);
+        if (d_data_tmp > 32.767 )
+            d_data_tmp = 32.767;
+        else if (d_data_tmp < 0 )
+            d_data_tmp = 0;
 
         str_tmp.sprintf("%f\n", d_data_tmp);
-        show_sub_item_info[BATT_CLASS_0_BAT_HI][i]->set_text(str_tmp);
+        show_sub_item_info[BATT_CLASS_0_TMP_HI][i]->set_text(str_tmp);
 
-        /* LO Temp */
+        /* LO volt */
         d_data_tmp = double(page_data[j + 16 + 1] << 8 | page_data[j + 16]);
         d_data_tmp = d_data_tmp * 0.001;
         if (d_data_tmp > 32.767 )
@@ -200,38 +200,39 @@ void BatTempInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
             d_data_tmp = 0;
 
         str_tmp.sprintf("%f\n", d_data_tmp);
-        show_sub_item_info[BATT_CLASS_1_BAT_LO][i]->set_text(str_tmp);
+        show_sub_item_info[BATT_CLASS_1_TMP_LO][i]->set_text(str_tmp);
 
         j = j + 2;
     }
 
+    j = 0;
     /* Box */
     for (i = BATT_DATA_0; i < BATT_DATA_END; i++) {
         /* HI Temp */
         u8_data_tmp = page_data[j + 8];
         str_tmp.sprintf("%d\n", u8_data_tmp);
-        show_sub_item_info[BATT_CLASS_2_LOC_BOX_H][i]->set_text(str_tmp);
+        show_sub_item_info[BATT_CLASS_2_LOC_BOX_TMP_H][i]->set_text(str_tmp);
 
         /* LO Temp */
         u8_data_tmp = page_data[j + 24];
         str_tmp.sprintf("%d\n", u8_data_tmp);
-        show_sub_item_info[BATT_CLASS_3_LOC_BOX_L][i]->set_text(str_tmp);
+        show_sub_item_info[BATT_CLASS_3_LOC_BOX_TMP_L][i]->set_text(str_tmp);
 
         j = j + 2;
     }
 
-
+    j = 0;
     /* Number */
     for (i = BATT_DATA_0; i < BATT_DATA_END; i++) {
         /* HI Temp */
         u8_data_tmp = page_data[j + 12];
         str_tmp.sprintf("%d\n", u8_data_tmp);
-        show_sub_item_info[BATT_CLASS_4_LOC_NUM_H][i]->set_text(str_tmp);
+        show_sub_item_info[BATT_CLASS_4_LOC_NUM_TMP_H][i]->set_text(str_tmp);
 
         /* LO Temp */
         u8_data_tmp = page_data[j + 28];
         str_tmp.sprintf("%d\n", u8_data_tmp);
-        show_sub_item_info[BATT_CLASS_5_LOC_NUM_L][i]->set_text(str_tmp);
+        show_sub_item_info[BATT_CLASS_5_LOC_NUM_TMP_L][i]->set_text(str_tmp);
 
         j = j + 2;
     }
