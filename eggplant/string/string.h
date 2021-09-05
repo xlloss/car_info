@@ -574,9 +574,9 @@
 
 #define TIRES_TEMP_TEX_ID0 "溫度01:"
 #define TIRES_TEMP_TEX_ID1 "溫度06:"
-#define TIRES_TEMP_TEX_ID2 "溫度02:"
-#define TIRES_TEMP_TEX_ID3 "溫度03:"
-#define TIRES_TEMP_TEX_ID4 "溫度04:"
+#define TIRES_TEMP_TEX_ID2 "溫度03:"
+#define TIRES_TEMP_TEX_ID3 "溫度04:"
+#define TIRES_TEMP_TEX_ID4 "溫度02:"
 #define TIRES_TEMP_TEX_ID5 "溫度05:"
 
 #endif

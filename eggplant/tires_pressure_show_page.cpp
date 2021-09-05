@@ -5,7 +5,7 @@
 #include "string/string.h"
 #include "coordinate.h"
 
-int tires_value_air_coord[]
+static int tires_value_air_coord[]
 {
     TIRES_VAL_AIR_ID0_X, TIRES_VAL_AIR_ID0_Y,
     TIRES_VAL_AIR_ID1_X, TIRES_VAL_AIR_ID1_Y,
@@ -15,9 +15,9 @@ int tires_value_air_coord[]
     TIRES_VAL_AIR_ID5_X, TIRES_VAL_AIR_ID5_Y,
 };
 
-QString tires_btn_str[TIRES_BTN_NUM] = {TIRES_BTN_STR_ID0, TIRES_BTN_STR_ID1, TIRES_BTN_STR_ID2,
+static QString tires_btn_str[TIRES_BTN_NUM] = {TIRES_BTN_STR_ID0, TIRES_BTN_STR_ID1, TIRES_BTN_STR_ID2,
                             TIRES_BTN_STR_ID3, TIRES_BTN_STR_ID4, TIRES_BTN_STR_ID5};
-QString tires_btn_objname[TIRES_BTN_NUM] =
+static QString tires_btn_objname[TIRES_BTN_NUM] =
 {
     TIRES_ID0_OBJNAME,
     TIRES_ID1_OBJNAME,
@@ -27,14 +27,14 @@ QString tires_btn_objname[TIRES_BTN_NUM] =
     TIRES_ID5_OBJNAME,
 };
 
-QString tires_text_air_str[] =
+static QString tires_text_air_str[] =
 {
     TIRES_AIR_TEX_ID0, TIRES_AIR_TEX_ID1, TIRES_AIR_TEX_ID2,
     TIRES_AIR_TEX_ID3, TIRES_AIR_TEX_ID4, TIRES_AIR_TEX_ID5
 };
 
 
-int tires_text_air_coord[]
+static int tires_text_air_coord[]
 {
     TIRE_AIT_TEX_ID0_X, TIRE_AIT_TEX_ID0_Y,
     TIRE_AIT_TEX_ID1_X, TIRE_AIT_TEX_ID1_Y,
@@ -44,7 +44,7 @@ int tires_text_air_coord[]
     TIRE_AIT_TEX_ID5_X, TIRE_AIT_TEX_ID5_Y,
 };
 
-QString tires_text_temp_str[] =
+static QString tires_text_temp_str[] =
 {
     TIRES_TEMP_TEX_ID0,
     TIRES_TEMP_TEX_ID1,
@@ -54,7 +54,7 @@ QString tires_text_temp_str[] =
     TIRES_TEMP_TEX_ID5,
 };
 
-int tires_text_temp_coord[]
+static int tires_text_temp_coord[]
 {
     TIRES_TEMP_TEX_ID0_X, TIRES_TEMP_TEX_ID0_Y,
     TIRES_TEMP_TEX_ID1_X, TIRES_TEMP_TEX_ID1_Y,
@@ -64,7 +64,7 @@ int tires_text_temp_coord[]
     TIRES_TEMP_TEX_ID5_X, TIRES_TEMP_TEX_ID5_Y,
 };
 
-int tires_value_temp_coord[]
+static int tires_value_temp_coord[]
 {
     TIRES_TMEPVAL_ID0_X, TIRES_TMEPVAL_ID0_Y,
     TIRES_TMEPVAL_ID1_X, TIRES_TMEPVAL_ID1_Y,
@@ -74,7 +74,7 @@ int tires_value_temp_coord[]
     TIRES_TMEPVAL_ID5_X, TIRES_TMEPVAL_ID5_Y,
 };
 
-int tires_btn_coord[TIRES_BTN_NUM * 2] = {
+static int tires_btn_coord[TIRES_BTN_NUM * 2] = {
         TIRES_BTN_X + TIRES_ID_1_BTN_OFF_X, TIRES_BTN_Y + TIRES_ID_1_BTN_OFF_Y,
         TIRES_BTN_X + TIRES_ID_6_BTN_OFF_X, TIRES_BTN_Y + TIRES_ID_6_BTN_OFF_Y,
         TIRES_BTN_X + TIRES_ID_3_BTN_OFF_X, TIRES_BTN_Y + TIRES_ID_3_BTN_OFF_Y,
@@ -84,13 +84,14 @@ int tires_btn_coord[TIRES_BTN_NUM * 2] = {
 };
 
 
-int tires_btn_text_coord[TIRES_BTN_NUM * 2] = {
+static int tires_btn_text_coord[TIRES_BTN_NUM * 2] = {
     TIRES_BTN_TEX_ID0_X, TIRES_BTN_TEX_ID0_Y,
     TIRES_BTN_TEX_ID1_X, TIRES_BTN_TEX_ID1_Y,
     TIRES_BTN_TEX_ID2_X, TIRES_BTN_TEX_ID2_Y,
     TIRES_BTN_TEX_ID3_X, TIRES_BTN_TEX_ID3_Y,
     TIRES_BTN_TEX_ID4_X, TIRES_BTN_TEX_ID4_Y,
 };
+
 
 TiresPressShow_Page::TiresPressShow_Page(QWidget *parent) : Frame_Page(parent)
 {
@@ -157,12 +158,6 @@ TiresPressShow_Page::TiresPressShow_Page(QWidget *parent) : Frame_Page(parent)
     }
 }
 
-void TiresPressShow_Page::Enable_Icon_Light(int i)
-{
-    qDebug("%s i=%d", __func__, i);
-//    btn[i]->ft_light_enable();
-}
-
 void TiresPressShow_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
@@ -176,12 +171,54 @@ void TiresPressShow_Page::paintEvent(QPaintEvent *)
                        frame_img, FRAME_IMG_X, FRAME_IMG_Y, FRAME_IMG_W, FRAME_IMG_H);
 }
 
-void TiresPressShow_Page::mousePressEvent(QMouseEvent *ev)
+void TiresPressShow_Page::Enable_Icon_Light(int i)
 {
-    qDebug("x=%d, y=%d", ev->x(), ev->y());
+    tires_btn[i]->ft_light_enable();
 }
+
+void TiresPressShow_Page::Disable_Icon_Light(int i)
+{
+    tires_btn[i]->ft_dark_enable();
+}
+
 
 void TiresPressShow_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    qDebug("TiresPressShow_Page:%s\n", __func__);
+    uint8_t page_data[128];
+    uint8_t u8_data_tmp;
+    int8_t i8_data_temp;
+    QString str_tmp;
+    uint8_t tires_order[6] = {0, 5, 2, 3, 1, 4};
+    int i, j;
+
+    memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
+
+    for (i = 0, j = 0; i < 7; i = i + 2, j++) {
+        u8_data_tmp = (page_data[0] & (0x03 << i)) >> i;
+        if (u8_data_tmp == 0)
+            Enable_Icon_Light(j);
+        else
+            Disable_Icon_Light(j);
+    }
+
+    for (i = 0, j = 0; i < 4; i = i + 2, j++) {
+        u8_data_tmp = (page_data[1] & (0x03 << i)) >> i;
+        if (u8_data_tmp == 0)
+            Enable_Icon_Light(j);
+        else
+            Disable_Icon_Light(j);
+    }
+
+
+    for (i = 2, j = 0; i < 8; i++, j++) {
+        u8_data_tmp = page_data[i];
+        str_tmp.sprintf("%d kPa", u8_data_tmp);
+        tires_value_air[tires_order[j]]->set_text(str_tmp);
+    }
+
+    for (i = 8, j = 0; i < 14; i++, j++) {
+        i8_data_temp = int8_t(page_data[i]);
+        str_tmp.sprintf("%i °C", i8_data_temp);
+        tires_value_temp[tires_order[j]]->set_text(str_tmp);
+    }
 }
