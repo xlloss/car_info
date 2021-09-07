@@ -17,6 +17,7 @@ Icon_btn::Icon_btn(QWidget *parent) :
     font.setFamily("DroidSans");
     m_set_text_x = 30;
     m_set_text_y = 40;
+    m_texcolor = Qt::white;
 }
 
 Icon_btn::~Icon_btn()
@@ -87,7 +88,7 @@ void Icon_btn::paintEvent(QPaintEvent *)
 
     if (!m_set_text.isNull()) {
         painter.setFont(usefont);
-        painter.setPen(Qt::white);
+        painter.setPen(m_texcolor);
         painter.drawText(m_set_text_x, m_set_text_y, m_set_text);
     }
 }

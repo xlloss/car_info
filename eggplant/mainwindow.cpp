@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->main_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->mile_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->car_inout_page));
-    cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->time_adjust_page));
+    cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->system_setup_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->volume_adjust_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->eai_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->control_msg1_page));

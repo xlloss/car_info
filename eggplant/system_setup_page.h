@@ -22,6 +22,13 @@ public:
 
     Show_text *show_item[TIME_ADJ_TEX_TITLE_NUM];
     Show_text *show_item_child[TIME_ADJ_CHILD_TEX_TIME_NUM];
+    Icon_btn *system_btn[6];
+    void Enable_Icon_Light(int i);
+    void Disable_Icon_Light(int i);
+    QFont m_font;
+    int m_btn_id;
+    int m_msg_tit_id;
+
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
 protected:
     void paintEvent(QPaintEvent *);

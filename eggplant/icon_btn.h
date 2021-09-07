@@ -32,6 +32,7 @@ public:
     int m_set_text_y;
     QRect rectangle;
     QRect boundingRect;
+    QColor m_texcolor;
 
     void set_text(QString set_text);
 
