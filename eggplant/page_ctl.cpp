@@ -7,7 +7,7 @@ Page_Ctl::Page_Ctl(QWidget *parent)
     main_page = new Main_Page(parent);
     mile_page = new Mile_Page(parent);
     car_inout_page = new CarInOut_Page(parent);
-    time_adjust_page = new TimeAdjust_Page(parent);
+    system_setup_page = new SystemSetup_Page(parent);
     volume_adjust_page = new ScreenVolumeAdjust_Page(parent);
     eai_page = new EleAccInfo_Page(parent);
     control_msg1_page = new ControlMsg1_Page(parent);

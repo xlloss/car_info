@@ -50,7 +50,7 @@ SOURCES += \
     serial_port.cpp \
     show_text.cpp \
     temp_module_page.cpp \
-    time_adjust_page.cpp \
+    system_setup_page.cpp \
     slave_sat_out_msg_page.cpp \
     slave_sat_in_msg_page.cpp \
     sw_version_page.cpp \
@@ -81,7 +81,7 @@ HEADERS += \
     show_text.h \
     string/string.h \
     temp_module_page.h \
-    time_adjust_page.h \
+    system_setup_page.h \
     slave_sat_out_msg_page.h \
     slave_sat_in_msg_page.h \
     sw_version_page.h \

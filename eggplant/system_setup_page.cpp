@@ -1,4 +1,4 @@
-#include "time_adjust_page.h"
+#include "system_setup_page.h"
 #include <QPainter>
 #include "string/string.h"
 
@@ -39,43 +39,43 @@ int time_text_child_xy[TIME_ADJ_CHILD_TEX_TIME_NUM * 2] = {
     TIME_ADJ_CHILD_TEX_ID4_X, TIME_ADJ_CHILD_TEX_ID4_Y,
 };
 
-TimeAdjust_Page::TimeAdjust_Page(QWidget *parent) : Frame_Page(parent)
+SystemSetup_Page::SystemSetup_Page(QWidget *parent) : Frame_Page(parent)
 {
-    this->setObjectName(TIME_ADJ_OBJNAME);
+    this->setObjectName(SYSTEM_SETUP_OBJNAME);
     int i, j;
 
-    bgimg.load(TIME_ADJ_BG_IMG);
+    bgimg.load(SYSTEM_SETUP_BG_IMG);
 
-    j = 0;
-    for (i = 0; i < TIME_ADJ_TEX_TITLE_NUM / 2; i++) {
-        show_item[i] = new Show_text(this);
-        show_item[i]->set_text(time_text[i]);
-        show_item[i]->setGeometry(time_text_xy[j], time_text_xy[j + 1], 150, 70);
-        show_item[i]->show();
-        j = j + 2;
-    }
-
-    j = 0;
-    for (i = 3; i < TIME_ADJ_TEX_TITLE_NUM / 2; i++) {
-        show_item[i] = new Show_text(this);
-        show_item[i]->set_text(time_text[i]);
-        show_item[i]->setGeometry(time_text2_xy[j], time_text2_xy[j + 1], 150, 50);
-        show_item[i]->show();
-        j = j + 2;
-    }
-
-    j = 0;
-    for (i = 0; i < TIME_ADJ_CHILD_TEX_TIME_NUM; i++) {
-        show_item_child[i] = new Show_text(this);
-        show_item_child[i]->set_text(time_text_child[i]);
-        show_item_child[i]->text_color.setRgb(0, 245, 245);
-        show_item_child[i]->setGeometry(time_text_child_xy[j], time_text_child_xy[j + 1], 120, 70);
-        show_item_child[i]->show();
-        j = j + 2;
-    }
+    //j = 0;
+    //for (i = 0; i < TIME_ADJ_TEX_TITLE_NUM / 2; i++) {
+    //    show_item[i] = new Show_text(this);
+    //    show_item[i]->set_text(time_text[i]);
+    //    show_item[i]->setGeometry(time_text_xy[j], time_text_xy[j + 1], 150, 70);
+    //    show_item[i]->show();
+    //    j = j + 2;
+    //}
+    //
+    //j = 0;
+    //for (i = 3; i < TIME_ADJ_TEX_TITLE_NUM / 2; i++) {
+    //    show_item[i] = new Show_text(this);
+    //    show_item[i]->set_text(time_text[i]);
+    //    show_item[i]->setGeometry(time_text2_xy[j], time_text2_xy[j + 1], 150, 50);
+    //    show_item[i]->show();
+    //    j = j + 2;
+    //}
+    //
+    //j = 0;
+    //for (i = 0; i < TIME_ADJ_CHILD_TEX_TIME_NUM; i++) {
+    //    show_item_child[i] = new Show_text(this);
+    //    show_item_child[i]->set_text(time_text_child[i]);
+    //    show_item_child[i]->text_color.setRgb(0, 245, 245);
+    //    show_item_child[i]->setGeometry(time_text_child_xy[j], time_text_child_xy[j + 1], 120, 70);
+    //    show_item_child[i]->show();
+    //    j = j + 2;
+    //}
 }
 
-void TimeAdjust_Page::paintEvent(QPaintEvent *)
+void SystemSetup_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
@@ -84,7 +84,7 @@ void TimeAdjust_Page::paintEvent(QPaintEvent *)
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 }
 
-void TimeAdjust_Page::GetMcuData(class CarInfo_Data *protolcol_data)
+void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    qDebug("TimeAdjust_Page:%s\n", __func__);
+    qDebug("SystemSetup_Page:%s\n", __func__);
 }

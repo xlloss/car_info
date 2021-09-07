@@ -233,7 +233,7 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
 void Cmd_Receive::Triger_Page()
 {
     QString objname[] = {HOME_PAGE_OBJNAME, MAIN_PAGE_OBJNAME, RPM_OBJNAME, "CarInOut_Page",
-                        "TimeAdjust_Page", "ScreenVolumeAdjust_Page", "EleAccInfo_Page",
+                        "SystemSetup_Page", "ScreenVolumeAdjust_Page", "EleAccInfo_Page",
                         "ControlMsg1_Page", "ControlMsg2_Page", "BatTempInfo_Page", "BatVoltInfo_Page",
                         "TempModule_Page", "SatOutMsg_Page", "SatInMsg_Page", "SwVersion_Page",
                         "SlaveSatMsg_Page", "Bcm_Page", "TiresPressShow_Page",BAR_FRAME_OBJNAME,
