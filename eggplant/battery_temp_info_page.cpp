@@ -55,8 +55,8 @@ static int battempinfo_sub_text_xy[] = {
    BATTEMP_SUB_TEXT_X,  BATTEMP_SUB_TEXT_Y + (BATTEMP_SUB_TEXT_GAP  * 3) + 180,
 };
 
-int battempinfo_sub_text_x_offset[6] = {0,  0, 380, 380, 580, 580};
-int battempinfo_sub_text_msg_off[6] = {160, 160, 470, 470, 670, 670};
+static int battempinfo_sub_text_x_offset[6] = {0,  0, 380, 380, 580, 580};
+static int battempinfo_sub_text_msg_off[6] = {160, 160, 470, 470, 670, 670};
 
 
 enum {

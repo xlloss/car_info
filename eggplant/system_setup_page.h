@@ -20,8 +20,8 @@ Q_OBJECT
 public:
     explicit SystemSetup_Page(QWidget *parent = nullptr);
 
-    Show_text *show_item[TIME_ADJ_TEX_TITLE_NUM];
-    Show_text *show_item_child[TIME_ADJ_CHILD_TEX_TIME_NUM];
+    Show_text *show_item[15];
+    Show_text *show_item_data[15];
     Icon_btn *system_btn[6];
     void Enable_Icon_Light(int i);
     void Disable_Icon_Light(int i);
