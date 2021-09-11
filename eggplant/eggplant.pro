@@ -93,7 +93,6 @@ FORMS += \
     barframe.ui \
     frame_page.ui \
     mainwindow.ui \
-    test_frame.ui \
 
 TRANSLATIONS += \
     eggplant_zh_TW.ts
