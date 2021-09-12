@@ -106,7 +106,9 @@ void PageCtl_Thread::run()
 
             buf_index = 0;
             while (buf_index < getcmdlistbuf->buf_sz) {
-                if (readbuf[buf_index + HEAD1_OFF] == HEAD1 && readbuf[buf_index + HEAD2_OFF] == HEAD2) {
+                if (readbuf[buf_index + HEAD1_OFF] == HEAD1 &&
+                    readbuf[buf_index + HEAD2_OFF] == HEAD2 &&
+                    readbuf[buf_index + ID_OFF] == PAGE_RQ) {
                     data_sz = uint8_t((readbuf[buf_index + LENH_OFF] << 8) | readbuf[buf_index + LENL_OFF]);
 
                     //compute checksun
