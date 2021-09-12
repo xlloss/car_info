@@ -90,6 +90,7 @@ static int tires_btn_text_coord[TIRES_BTN_NUM * 2] = {
     TIRES_BTN_TEX_ID2_X, TIRES_BTN_TEX_ID2_Y,
     TIRES_BTN_TEX_ID3_X, TIRES_BTN_TEX_ID3_Y,
     TIRES_BTN_TEX_ID4_X, TIRES_BTN_TEX_ID4_Y,
+    TIRES_BTN_TEX_ID5_X, TIRES_BTN_TEX_ID5_Y,
 };
 
 
@@ -108,13 +109,13 @@ TiresPressShow_Page::TiresPressShow_Page(QWidget *parent) : Frame_Page(parent)
         tires_btn[i] = new Icon_btn(this);
         tires_btn[i]->setObjectName(tires_btn_objname[i]);
         tires_btn[i]->enable_scale = 0;
-    
+
         tires_btn[i]->font.setPixelSize(TIRES_FONT_SIZE);
         tires_btn_name = tires_btn_str[i];
         tires_btn[i]->m_set_text_x = tires_btn_text_coord[j];
         tires_btn[i]->m_set_text_y = tires_btn_text_coord[j + 1];
         tires_btn[i]->set_text(tires_btn_name);
-    
+
         tires_btn[i]->load_image_ft(":icon/tires_0.png", ":icon/tires_1.png");
         tires_btn[i]->setGeometry(tires_btn_coord[j], tires_btn_coord[j + 1],
             TIRES_BTN_W, TIRES_BTN_H);
@@ -122,25 +123,23 @@ TiresPressShow_Page::TiresPressShow_Page(QWidget *parent) : Frame_Page(parent)
         tires_text_air[i] = new Show_text(this);
         tires_text_air[i]->set_text(tires_text_air_str[i]);
         tires_text_air[i]->m_text_x = 50;
-        tires_text_air[i]->m_text_y = 25;
         tires_text_air[i]->m_font_size = TIRES_FONT_SIZE;
         tires_text_air[i]->font.setBold(0);
-        tires_text_air[i]->setGeometry(tires_text_air_coord[j], tires_text_air_coord[j + 1], 150, 50);
+        tires_text_air[i]->setGeometry(tires_text_air_coord[j], tires_text_air_coord[j + 1], 200, 50);
         tires_text_air[i]->show();
 
         tires_value_air[i] = new Show_text(this);
         tires_value_air[i]->set_text(TIRES_AIR_VAL_DEF);
-        tires_value_air[i]->m_text_x = 50;
-        tires_value_air[i]->m_text_y = 25;
         tires_value_air[i]->m_font_size = TIRES_FONT_SIZE;
+        tires_value_air[i]->m_text_x = 50;
         tires_value_air[i]->font.setBold(0);
-        tires_value_air[i]->setGeometry(tires_value_air_coord[j], tires_value_air_coord[j + 1], 150, 50);
+        tires_value_air[i]->setGeometry(tires_value_air_coord[j], tires_value_air_coord[j + 1], 200, 50);
         tires_value_air[i]->show();
 
         tires_text_temp[i] = new Show_text(this);
         tires_text_temp[i]->set_text(tires_text_temp_str[i]);
         tires_text_temp[i]->m_text_x = 50;
-        tires_text_temp[i]->m_text_y = 25;
+        //tires_text_temp[i]->m_text_y = 25;
         tires_text_temp[i]->m_font_size = TIRES_FONT_SIZE;;
         tires_text_temp[i]->font.setBold(0);
         tires_text_temp[i]->setGeometry(tires_text_temp_coord[j], tires_text_temp_coord[j + 1], 150, 50);
@@ -149,7 +148,7 @@ TiresPressShow_Page::TiresPressShow_Page(QWidget *parent) : Frame_Page(parent)
         tires_value_temp[i] = new Show_text(this);
         tires_value_temp[i]->set_text(TIRES_TEMPVAL_DEF);
         tires_value_temp[i]->m_text_x = 50;
-        tires_value_temp[i]->m_text_y = 25;
+        //tires_value_temp[i]->m_text_y = 25;
         tires_value_temp[i]->m_font_size = TIRES_FONT_SIZE;;
         tires_value_temp[i]->font.setBold(0);
         tires_value_temp[i]->setGeometry(tires_value_temp_coord[j], tires_value_temp_coord[j + 1], 150, 50);
@@ -214,6 +213,7 @@ void TiresPressShow_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         u8_data_tmp = page_data[i];
         str_tmp.sprintf("%d kPa", u8_data_tmp);
         tires_value_air[tires_order[j]]->set_text(str_tmp);
+        tires_value_air[0]->set_text(str_tmp);
     }
 
     for (i = 8, j = 0; i < 14; i++, j++) {
