@@ -39,6 +39,7 @@ SOURCES += \
     control_msg2_page.cpp \
     eai_page.cpp \
     frame_page.cpp \
+    fw_update.cpp \
     home_page.cpp \
     icon_btn.cpp \
     main.cpp \
@@ -69,6 +70,7 @@ HEADERS += \
     coordinate.h \
     eai_page.h \
     frame_page.h \
+    fw_update_page.h \
     home_page.h \
     icon_btn.h \
     main_page.h \
@@ -104,16 +106,3 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     icon.qrc
-
-#win32:CONFIG(release, debug|release): LIBS += -L$$PWD/eggplantlib/release/ -lserial
-#else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/eggplantlib/debug/ -lserial
-#else:unix: LIBS += -L$$PWD/eggplantlib/ -lserial
-#
-#INCLUDEPATH += $$PWD/eggplantlib
-#DEPENDPATH += $$PWD/eggplantlib
-#
-#win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/eggplantlib/release/libserial.a
-#else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/eggplantlib/debug/libserial.a
-#else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/eggplantlib/release/serial.lib
-#else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/eggplantlib/debug/serial.lib
-#else:unix: PRE_TARGETDEPS += $$PWD/eggplantlib/libserial.a

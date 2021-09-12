@@ -29,6 +29,7 @@
 #include "slave_sat_msg_page.h"
 #include "bcm_page.h"
 #include "tires_pressure_show_page.h"
+#include "fw_update_page.h"
 #include "cmd_receive.h"
 
 #define MAINWINDOW_OBJNAME "Mainwindow"
@@ -72,7 +73,7 @@ public:
     SlaveSatMsg_Page *slave_sat_msg_page;
     Bcm_Page *bcm_page;
     TiresPressShow_Page *tires_press_show_page;
-
+    FwUpdate_Page *fw_update_show_page;
     Cmd_Receive *cmd_get;
 
 protected:

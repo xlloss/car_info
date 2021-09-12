@@ -21,4 +21,5 @@ Page_Ctl::Page_Ctl(QWidget *parent)
     slave_sat_msg_page = new SlaveSatMsg_Page(parent);
     bcm_page = new Bcm_Page(parent);
     tires_press_show_page = new TiresPressShow_Page(parent);
+    fw_update_show_page = new FwUpdate_Page(parent);
 }

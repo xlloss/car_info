@@ -118,7 +118,7 @@ void PageCtl_Thread::run()
                     }
 
                     /* For TEST */
-                    readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF] = 5;
+                    readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF] = 19;
 
                     m_carinfo_data.page_number = readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF];
                     memcpy(m_carinfo_data.meter_sat, &readbuf[PAGE_DATA_OFF + METER_SAT_OFF], 3);
@@ -232,11 +232,25 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
 
 void Cmd_Receive::Triger_Page()
 {
-    QString objname[] = {HOME_PAGE_OBJNAME, MAIN_PAGE_OBJNAME, RPM_OBJNAME, "CarInOut_Page",
-                        "SystemSetup_Page", "ScreenVolumeAdjust_Page", "EleAccInfo_Page",
-                        "ControlMsg1_Page", "ControlMsg2_Page", "BatTempInfo_Page", "BatVoltInfo_Page",
-                        "TempModule_Page", "SatOutMsg_Page", "SatInMsg_Page", "SwVersion_Page",
-                        "SlaveSatMsg_Page", "Bcm_Page", "TiresPressShow_Page",BAR_FRAME_OBJNAME,
+    QString objname[] = {HOME_PAGE_OBJNAME,//0
+                         MAIN_PAGE_OBJNAME,//1
+                         RPM_OBJNAME,//2
+                         "CarInOut_Page",//3
+                         "SystemSetup_Page",//4
+                         "ScreenVolumeAdjust_Page",//5
+                         "EleAccInfo_Page",//6
+                         "ControlMsg1_Page",//7
+                         "ControlMsg2_Page",//8
+                         "BatTempInfo_Page",//9
+                         "BatVoltInfo_Page",//10
+                         "TempModule_Page",//11
+                         "SatOutMsg_Page",//12
+                         "SatInMsg_Page",//13
+                         "SwVersion_Page",//14
+                         "SlaveSatMsg_Page",//15
+                         "Bcm_Page",//16
+                         "TiresPressShow_Page",//17
+                         "FwUpdate_Page"//18
                         };
 
     Frame_Page_Show(BAR_FRAME_OBJNAME);

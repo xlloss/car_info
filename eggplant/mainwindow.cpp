@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->slave_sat_msg_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->bcm_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->tires_press_show_page));
+    cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->fw_update_show_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(bar_frame));
 
     page_ctl->home_page->setWindowState(Qt::WindowActive);
