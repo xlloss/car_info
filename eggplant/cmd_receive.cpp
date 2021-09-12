@@ -117,6 +117,11 @@ void PageCtl_Thread::run()
                                     readbuf[buf_index + PAGE_DATA_OFF + data_sz]);
                     if (ret) {
                         qDebug("checksun fail\n");
+                    } else {
+                        /* Do ACK */
+                        if (readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF] != 0x12) {
+
+                        }
                     }
 
                     /* For TEST */
