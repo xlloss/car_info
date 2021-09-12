@@ -2,6 +2,8 @@
 #include <QPainter>
 #include "string/string.h"
 
+#define SYSTEM_BTN ":/icon/system_setup_btn.png"
+
 static QString time_text[TIME_ADJ_TEX_TITLE_NUM] = {
     TIME_ADJ_TEX_TIME,
     TIME_ADJ_TEX_WEEK,
@@ -10,36 +12,6 @@ static QString time_text[TIME_ADJ_TEX_TITLE_NUM] = {
     TIME_ADJ_TEX_MONTH,
     TIME_ADJ_TEX_DAY
 };
-
-static QString time_text_child[TIME_ADJ_CHILD_TEX_TIME_NUM] =
-{   TIME_ADJ_CHILD_TEX_TIME_SAMPLE,
-    TIME_ADJ_CHILD_TEX_WEEK_SAMPLE,
-    TIME_ADJ_CHILD_TEX_YEAR_SAMPLE,
-    TIME_ADJ_CHILD_TEX_MONTH_SAMPLE,
-    TIME_ADJ_CHILD_TEX_DAY_SAMPLE
-};
-
-static int time_text_xy[TIME_ADJ_TEX_TITLE_NUM * 2] = {
-    TIME_ADJ_TEX_TITLE_ID0_X, TIME_ADJ_TEX_TITLE_ID0_Y,
-    TIME_ADJ_TEX_TITLE_ID1_X, TIME_ADJ_TEX_TITLE_ID1_Y,
-    TIME_ADJ_TEX_TITLE_ID2_X, TIME_ADJ_TEX_TITLE_ID2_Y,
-};
-
-static int time_text2_xy[TIME_ADJ_TEX_TITLE_NUM] = {
-    TIME_ADJ_TEX_TITLE_ID3_X, TIME_ADJ_TEX_TITLE_ID3_Y,
-    TIME_ADJ_TEX_TITLE_ID4_X, TIME_ADJ_TEX_TITLE_ID4_Y,
-    TIME_ADJ_TEX_TITLE_ID5_X, TIME_ADJ_TEX_TITLE_ID5_Y,
-};
-
-static int time_text_child_xy[TIME_ADJ_CHILD_TEX_TIME_NUM * 2] = {
-    TIME_ADJ_CHILD_TEX_ID0_X, TIME_ADJ_CHILD_TEX_ID0_Y,
-    TIME_ADJ_CHILD_TEX_ID1_X, TIME_ADJ_CHILD_TEX_ID1_Y,
-    TIME_ADJ_CHILD_TEX_ID2_X, TIME_ADJ_CHILD_TEX_ID2_Y,
-    TIME_ADJ_CHILD_TEX_ID3_X, TIME_ADJ_CHILD_TEX_ID3_Y,
-    TIME_ADJ_CHILD_TEX_ID4_X, TIME_ADJ_CHILD_TEX_ID4_Y,
-};
-
-#define SYSTEM_BTN ":/icon/system_setup_btn.png"
 
 enum {
   SYS_BTN_ID0_MILEAGE = 0,
@@ -125,11 +97,11 @@ static QString sys_msg_data[12] =
 static int sys_btn_txt_x[6] = {25, 35, 35, 25, 45, 25};
 static int sys_btn_txt_y[6] = {30, 30, 30, 30, 30, 30};
 
-//                                 0    1    2    3    4    5    6    7    8    9    10   11   12
+/*                                 0    1    2    3    4    5    6    7    8    9    10   11   12 */
 static int sys_data_title_x[15] = {170, 170, 170, 170, 245, 285, 170, 170, 270, 330, 390, 170, 170};
 static int sys_data_title_y[15] = {100, 100, 100, 55,  55,  55 , 95,  135, 135, 135, 135, 100, 100};
 
-//                               0    1    2    3    4    5    6    7    8    9    10   11
+/*                               0    1    2    3    4    5    6    7    8    9    10   11 */
 static int sys_data_msg_x[15] = {160, 240, 170, 220, 260, 300, 220, 220, 300, 360, 220, 260};
 static int sys_data_msg_y[15] = {100, 100, 100, 55,  55,  55 , 95,  135, 135, 135, 100, 100};
 
@@ -220,22 +192,10 @@ SystemSetup_Page::SystemSetup_Page(QWidget *parent) : Frame_Page(parent)
 void SystemSetup_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-//    QFont usefont(m_font.family(), m_font.pointSize(), m_font.weight(), m_font.bold());
 
     painter.drawPixmap(0, 0, bgimg,
                        GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
-
-//    painter.setFont(usefont);
-//    painter.setPen(QColor(Qt::white));
-//
-//    if (m_btn_id == SYS_BTN_ID3_DATETIME) {
-//        painter.drawText(170, 65, sys_msg_tit[SYS_BTN_ID3_DATETIME]);
-//        painter.drawText(170, 125, sys_msg_tit[SYS_BTN_ID3_DATETIME + 1]);
-//        painter.drawText(170, 185, sys_msg_tit[SYS_BTN_ID3_DATETIME + 2]);
-//    } else {
-//        painter.drawText(170, 120, sys_msg_tit[m_msg_tit_id]);
-//    }
 
 }
 
@@ -243,7 +203,6 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     uint8_t page_data[128];
     uint8_t u8_data_tmp;
-    uint8_t u8_child_item, u8_child_item_color;
     QString str_tmp;
     int i, data_index;
     #define PROTOCOL_OFF_ID0_ALL_WHITE 0
@@ -269,8 +228,7 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         Enable_Icon_Light(m_btn_id);
     }
 
-    /* Left Right Data Content */
-
+    /* Right Data Content */
     if (u8_data_tmp == PROTOCOL_OFF_ID0_ALL_WHITE) {
         for (i = SYS_DATA_MSG_MILEAGE; i < SYS_DATA_MSG_END; i++)
             show_item_data[i]->hide();
@@ -335,7 +293,7 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     show_item_data[SYS_DATA_MSG_ALARM]->set_text(str_tmp);
 
     //Data for Btn Volume
-    u8_data_tmp = (page_data[3] & (0x01 << 3)) >> 3;
+    u8_data_tmp = (page_data[3] & (0x01 << 6)) >> 6;
     if (u8_data_tmp == 0)
         str_tmp.sprintf("OFF");
     else
