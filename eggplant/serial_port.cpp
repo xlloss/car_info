@@ -40,6 +40,20 @@ int Serial_Port::Serial_Port_Write(QByteArray *data_write)
     return 0;
 }
 
+int Serial_Port::Serial_Port_Write(uint8_t *data_write, uint32_t data_len)
+{
+    if (!data_write)
+        return -EINVAL;
+
+    /* Write to the serial port */
+    if (serial_write(m_serial, data_write, data_len) < 0) {
+        qDebug("serial_write(): %s\n", serial_errmsg(m_serial));
+        return -EINVAL;
+    }
+
+    return 0;
+}
+
 int Serial_Port::Serial_Port_Read(QByteArray *data_read)
 {
     unsigned char buf[256];
