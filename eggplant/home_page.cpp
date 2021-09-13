@@ -200,7 +200,13 @@ void Home_Page::paintEvent(QPaintEvent *)
 
 void Home_Page::GetAckData(unsigned char *)
 {
+    #define HEAD1 0x5A
+    #define HEAD2 0x87
+    #define PAGE_RQ 0x0C
 
+
+
+    delete m_ackdata;
 }
 
 void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
@@ -379,4 +385,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     str_temp.sprintf("%f Mpa", behind_data);
     show_item_data[HOME_ITEM_ID_BEHIND_AIR_PRESSURE]->set_text(str_temp);
+
+    /* head_data[2] + cmd_code[1] + data_len[2] + page number[1] + meter status[3] + page_data[X] */
+    m_ackdata = new uint8_t[protolcol_data->page_data_sz + 9];
 }

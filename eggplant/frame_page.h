@@ -16,10 +16,11 @@ class Frame_Page : public QFrame
 public:
     explicit Frame_Page(QWidget *parent = nullptr);
     ~Frame_Page();
+    uint8_t *m_ackdata;
     Icon_btn *icon_id[50];
     void Enable_Icon_Light(int i);
     void Load_Background(QString image);
-
+    int do_checksum(uint8_t *data, uint16_t data_len, uint8_t check);
     virtual void GetMcuData(class CarInfo_Data *) = 0;
     virtual void GetAckData(unsigned char *) = 0;
 private slots:

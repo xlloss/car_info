@@ -22,6 +22,22 @@ Frame_Page::~Frame_Page()
     delete ui;
 }
 
+int Frame_Page::do_checksum(uint8_t *data, uint16_t data_len, uint8_t check)
+{
+    int ret = 0;
+    uint32_t len = 0;
+
+    do {
+        ret = ret ^ data[len];
+        len++;
+    } while (len < data_len);
+
+    if (ret != check)
+        ret = -1;
+
+    return 0;
+}
+
 void Frame_Page::Load_Background(QString image)
 {
     qDebug("%s\n", __func__);
