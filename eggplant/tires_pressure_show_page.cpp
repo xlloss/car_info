@@ -180,6 +180,10 @@ void TiresPressShow_Page::Disable_Icon_Light(int i)
     tires_btn[i]->ft_dark_enable();
 }
 
+void TiresPressShow_Page::GetAckData(unsigned char *)
+{
+
+}
 
 void TiresPressShow_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {

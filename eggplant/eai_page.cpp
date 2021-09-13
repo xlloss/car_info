@@ -100,6 +100,11 @@ void EleAccInfo_Page::paintEvent(QPaintEvent *)
     painter.drawPixmap(8, 50, tableimg, 0, 0, 788, 360);
 }
 
+void EleAccInfo_Page::GetAckData(unsigned char *)
+{
+
+}
+
 void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     uint8_t page_data[128];

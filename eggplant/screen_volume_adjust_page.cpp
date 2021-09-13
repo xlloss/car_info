@@ -3,8 +3,8 @@
 #include "coordinate.h"
 #include "string/string.h"
 
-int volume_text_xy[VOL_TEX_NUM] = {VOL_TEX_X, VOL_TEX_Y};
-int volume_value_xy[VOL_TEX_NUM] = {VOL_TEX_VAL_X, VOL_TEX_VAL_Y};
+static int volume_text_xy[VOL_TEX_NUM] = {VOL_TEX_X, VOL_TEX_Y};
+static int volume_value_xy[VOL_TEX_NUM] = {VOL_TEX_VAL_X, VOL_TEX_VAL_Y};
 
 ScreenVolumeAdjust_Page::ScreenVolumeAdjust_Page(QWidget *parent) : Frame_Page(parent)
 {
@@ -38,7 +38,12 @@ void ScreenVolumeAdjust_Page::paintEvent(QPaintEvent *)
         painter.drawRect(VOL_BAR_X + (VOL_BAR_W + VOL_BAR_GAP) * i , 105, VOL_BAR_W, VOL_BAR_H);
 }
 
+void ScreenVolumeAdjust_Page::GetAckData(unsigned char *)
+{
+
+}
+
 void ScreenVolumeAdjust_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    qDebug("ScreenVolumeAdjust_Page:%s\n", __func__);
+    qDebug("SatInMsg_Page:%s page_number %d\n", __func__, protolcol_data->page_number);
 }

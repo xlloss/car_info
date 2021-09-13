@@ -153,6 +153,11 @@ void Mile_Page::Disable_Icon_Light(int i)
     zero_btn[i]->ft_dark_enable();
 }
 
+void Mile_Page::GetAckData(unsigned char *)
+{
+
+}
+
 void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     uint8_t page_data[128];

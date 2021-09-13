@@ -199,6 +199,11 @@ void SystemSetup_Page::paintEvent(QPaintEvent *)
 
 }
 
+void SystemSetup_Page::GetAckData(unsigned char *)
+{
+
+}
+
 void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     uint8_t page_data[128];

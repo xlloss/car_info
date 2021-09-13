@@ -67,7 +67,12 @@ void SatOutMsg_Page::paintEvent(QPaintEvent *)
     painter.drawPixmap(5, 20, tableimg, 0, 0, 788, 380);
 }
 
+void SatOutMsg_Page::GetAckData(unsigned char *)
+{
+
+}
+
 void SatOutMsg_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    qDebug("SatOutMsg_Page:%s\n", __func__);
+    qDebug("SatInMsg_Page:%s page_number %d\n", __func__, protolcol_data->page_number);
 }

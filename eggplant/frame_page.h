@@ -21,6 +21,7 @@ public:
     void Load_Background(QString image);
 
     virtual void GetMcuData(class CarInfo_Data *) = 0;
+    virtual void GetAckData(unsigned char *) = 0;
 private slots:
 
 protected:

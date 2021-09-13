@@ -24,6 +24,7 @@ public:
     Show_text *show_sub_item[SATIN_SUB_ITEM_COL_NUM][SATIN_SUB_ITEM_ROW_NUM];
     Show_text *show_sub_item_info[SATIN_SUB_ITEM_COL_NUM][SATIN_SUB_ITEM_ROW_NUM];
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
+    virtual void GetAckData(unsigned char *) override;
 protected:
     void paintEvent(QPaintEvent *);
 

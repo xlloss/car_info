@@ -168,6 +168,11 @@ void BatTempInfo_Page::paintEvent(QPaintEvent *)
     painter.drawPixmap(8, 20, tableimg, 0, 0, 788, 385);
 }
 
+void BatTempInfo_Page::GetAckData(unsigned char *)
+{
+
+}
+
 void BatTempInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     uint8_t page_data[128];

@@ -65,6 +65,11 @@ void CarInOut_Page::paintEvent(QPaintEvent *)
     painter.drawImage(180, 50, ramp_board);
 }
 
+void CarInOut_Page::GetAckData(unsigned char *)
+{
+
+}
+
 void CarInOut_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     uint8_t page_data[128];

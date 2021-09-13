@@ -24,6 +24,7 @@ public:
     Show_text *show_sub_item[2][10];
     Show_text *show_sub_item_info[2][10];
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
+    virtual void GetAckData(unsigned char *) override;
 protected:
     void paintEvent(QPaintEvent *);
 

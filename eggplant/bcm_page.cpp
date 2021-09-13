@@ -84,6 +84,12 @@ void Bcm_Page::paintEvent(QPaintEvent *)
     painter.drawPixmap(5, 20, frame_img, 0, 0, 788, 369);
 }
 
+void Bcm_Page::GetAckData(unsigned char *)
+{
+
+}
+
+
 void Bcm_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     qDebug("BatVoltInfo_Page:%s\n", __func__);

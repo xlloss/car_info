@@ -47,6 +47,7 @@ public:
     int m_cmd_ret;
     int exe_cmd(int cmd);
     QProcess process;
+
     // if Stop = true, the thread will break
     // out of the loop, and will be disposed
 //    bool Stop;
@@ -78,9 +79,11 @@ public:
 
     Show_text *show_item_child1_data;
     Show_text *show_item_child2_data;
-
     UpdateThread *update_thread;
+    uint16_t Crc16_Encode(char *addr,uint16_t len);
+    QFile mfile;
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
+    virtual void GetAckData(unsigned char *) override;
 protected:
     void paintEvent(QPaintEvent *);
 

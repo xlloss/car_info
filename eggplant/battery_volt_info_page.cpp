@@ -128,6 +128,11 @@ void BatVoltInfo_Page::paintEvent(QPaintEvent *)
     painter.drawPixmap(8, 20, tableimg, 0, 0, 788, 385);
 }
 
+void BatVoltInfo_Page::GetAckData(unsigned char *)
+{
+
+}
+
 void BatVoltInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     uint8_t page_data[128];
