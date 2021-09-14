@@ -117,11 +117,6 @@ void PageCtl_Thread::run()
                                     readbuf[buf_index + PAGE_DATA_OFF + data_sz]);
                     if (ret) {
                         qDebug("checksun fail\n");
-                    } else {
-                        /* Do ACK */
-                        if (readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF] != 0x12) {
-
-                        }
                     }
 
                     /* For TEST */
@@ -197,6 +192,7 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
     class Frame_Page *show_framepage;
     class Frame_Page *close_framepage;
     class BarFrame *bar_page;
+    uint8_t get_ackdata[256];
     int i, j;
 
     i = Find_Frame(show_objname);
@@ -233,6 +229,9 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
         show_framepage->GetMcuData(pcarinfo_data);
         show_framepage->update();
     }
+
+    show_framepage->GetAckData(get_ackdata);
+    mThread->serialport->Serial_Port_Write(get_ackdata, (get_ackdata[3] << 8 | get_ackdata[4]));
 
     current_page = show_objname;
 }

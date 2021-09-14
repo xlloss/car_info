@@ -198,13 +198,25 @@ void Home_Page::paintEvent(QPaintEvent *)
     painter.drawImage(HOME_CARBUS_IMG_X, HOME_CARBUS_IMG_Y, image_car_bus);
 }
 
-void Home_Page::GetAckData(unsigned char *)
+/* head_data[2] + cmd_code[1] + data_len[2] + page number[1] + meter status[3] + page_data[X] */
+void Home_Page::GetAckData(unsigned char *ackdata)
 {
     #define HEAD1 0x5A
     #define HEAD2 0x87
     #define PAGE_RQ 0x0C
+    int get_checksum;
+    uint16_t tot_data_len, data_len;
 
+    m_ackdata[0] = HEAD1;
+    m_ackdata[1] = HEAD2;
+    m_ackdata[2] = PAGE_RQ;
 
+    tot_data_len = (m_ackdata[3] << 8 | m_ackdata[4]) + 5;
+    data_len = (m_ackdata[3] << 8 | m_ackdata[4]);
+    get_checksum = do_checksum(m_ackdata, data_len, 0);
+
+    m_ackdata[5 + data_len] = get_checksum;
+    memcpy(ackdata, m_ackdata, sizeof(*m_ackdata) / sizeof(m_ackdata[0]));
 
     delete m_ackdata;
 }
@@ -386,6 +398,16 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     str_temp.sprintf("%f Mpa", behind_data);
     show_item_data[HOME_ITEM_ID_BEHIND_AIR_PRESSURE]->set_text(str_temp);
 
-    /* head_data[2] + cmd_code[1] + data_len[2] + page number[1] + meter status[3] + page_data[X] */
-    m_ackdata = new uint8_t[protolcol_data->page_data_sz + 9];
+    //   0        1      2       3       4         5        6          7          8            9                    Len - 1
+    //--------------------------------------------------------------------------------------------------------------------
+    // HEAD1  | HEAD2 | CMD  | LEN-H | LEN-L | Page_Num | Meter[2] | Meter[1] | Meter[0] | Data [N] ... Data[N-1] | CKSUM |
+    //--------------------------------------------------------------------------------------------------------------------
+    //  LEN-H | LEN-L = Page + Meter + Data + Checksun
+
+    m_ackdata = new uint8_t[10 + protolcol_data->page_data_sz];
+    m_ackdata[3] = ((protolcol_data->page_number + 10) & 0xFF00) >> 8;
+    m_ackdata[4] = (protolcol_data->page_number + 10) & 0x00FF;
+    m_ackdata[5] = protolcol_data->page_number;
+    memcpy(&m_ackdata[6], protolcol_data->meter_sat, 3);
+    memcpy(&m_ackdata[9], protolcol_data->page_data, protolcol_data->page_data_sz);
 }

@@ -32,10 +32,7 @@ int Frame_Page::do_checksum(uint8_t *data, uint16_t data_len, uint8_t check)
         len++;
     } while (len < data_len);
 
-    if (ret != check)
-        ret = -1;
-
-    return 0;
+    return ret;
 }
 
 void Frame_Page::Load_Background(QString image)
