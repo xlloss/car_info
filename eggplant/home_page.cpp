@@ -121,7 +121,7 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
         show_item_data[i]->set_text("--");
         show_item_data[i]->m_font_size = 12;
         show_item_data[i]->m_text_x = 0;
-        show_item_data[i]->m_text_y = 0;
+        show_item_data[i]->m_text_y = 50;
 
         item_str_start = item1_text[i].size() * show_item_data[i]->m_font_size + HOME_ITEM1_DATA_OFF;
         show_item_data[i]->setGeometry(HOME_ITEM_TEX1_DATA_X + item_str_start,
@@ -142,7 +142,7 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
         show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->set_text("--");
         show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->m_font_size = 12;
         show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->m_text_x = 0;
-        show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->m_text_y = 0;
+        show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->m_text_y = 50;
 
         item_str_start = item2_text[i].size() * \
                 show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->m_font_size + HOME_ITEM2_DATA_OFF;
