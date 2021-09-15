@@ -103,8 +103,6 @@ void Main_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     uint8_t page_data[128];
     int i, item_num, ret;
 
-    qDebug("Main_Page:%s\n", __func__);
-
     memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
 
     item_num = (MAIN_PAG_ID_BUS_SYS_SAT + 1);
