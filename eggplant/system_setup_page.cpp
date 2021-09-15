@@ -169,7 +169,7 @@ SystemSetup_Page::SystemSetup_Page(QWidget *parent) : Frame_Page(parent)
 //    show_item_data[SYS_DATA_MSG_TIME_H]->show();
 //    show_item_data[SYS_DATA_MSG_TIME_M]->show();
 //    show_item_data[SYS_DATA_MSG_TIME_S]->show();
-//
+
 //    show_item[SYS_DATA_ITEM_WEEK]->show();
 //    show_item[SYS_DATA_ITEM_DATE]->show();
 //    show_item[SYS_DATA_ITEM_YEAR]->show();
@@ -266,6 +266,7 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
             break;
         }
 
+        show_item_data[data_index]->show();
         if (page_data[2] == 1)
             show_item_data[data_index]->text_color = QColor(0, 204, 240);
         else
@@ -279,7 +280,9 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     else
         str_tmp.sprintf("MP/H");
 
+    show_item[SYS_DATA_MSG_MILEAGE]->show();
     show_item_data[SYS_DATA_MSG_MILEAGE]->set_text(str_tmp);
+    show_item_data[SYS_DATA_MSG_MILEAGE]->show();
 
     //Data for Alarm
     u8_data_tmp = (page_data[3] & (0x0F << 2)) >> 2;
@@ -290,7 +293,9 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     else
         str_tmp.sprintf("3");
 
+    show_item[SYS_DATA_MSG_ALARM]->show();
     show_item_data[SYS_DATA_MSG_ALARM]->set_text(str_tmp);
+    show_item_data[SYS_DATA_MSG_ALARM]->show();
 
     //Data for Btn Volume
     u8_data_tmp = (page_data[3] & (0x01 << 6)) >> 6;
@@ -299,8 +304,20 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     else
         str_tmp.sprintf("ON");
 
+    show_item[SYS_DATA_MSG_BTNVOLUM]->show();
     show_item_data[SYS_DATA_MSG_BTNVOLUM]->set_text(str_tmp);
+    show_item_data[SYS_DATA_MSG_BTNVOLUM]->show();
 
+
+    //Year-Date-Time
+    show_item[SYS_DATA_ITEM_TIME]->show();
+    show_item[SYS_DATA_ITEM_TIME_SP1]->show();
+    show_item[SYS_DATA_ITEM_TIME_SP2]->show();
+    show_item[SYS_DATA_ITEM_WEEK]->show();
+    show_item[SYS_DATA_ITEM_DATE]->show();
+    show_item[SYS_DATA_ITEM_YEAR]->show();
+    show_item[SYS_DATA_ITEM_MONTH]->show();
+    show_item[SYS_DATA_ITEM_DAY]->show();
 
     //Data for Year
     u8_data_tmp = page_data[9];
@@ -346,4 +363,15 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     u8_data_tmp = page_data[12];
     str_tmp.sprintf("%d", u8_data_tmp);
     show_item_data[SYS_DATA_MSG_FACTORY]->set_text(str_tmp);
+
+    show_item_data[SYS_DATA_MSG_FACTORY]->show();
+    show_item_data[SYS_DATA_MSG_LIGHT]->show();
+    show_item_data[SYS_DATA_MSG_WEEK]->show();
+    show_item_data[SYS_DATA_MSG_TIME_S]->show();
+    show_item_data[SYS_DATA_MSG_TIME_M]->show();
+    show_item_data[SYS_DATA_MSG_TIME_H]->show();
+    show_item_data[SYS_DATA_MSG_DAY]->show();
+    show_item_data[SYS_DATA_MSG_MONTH]->show();
+    show_item_data[SYS_DATA_MSG_YEAR]->show();
+
 }
