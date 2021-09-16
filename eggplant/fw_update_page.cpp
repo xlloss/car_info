@@ -203,16 +203,13 @@ void FwUpdate_Page::paintEvent(QPaintEvent *)
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 }
 
-void FwUpdate_Page::GetAckData(unsigned char *)
-{
-
-}
-
 void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     uint8_t page_data[128];
     uint8_t u8_data_tmp, u8_data_b0, u8_data_b1;
     uint8_t update_dev = 0, update_sat = 0;
+    uint32_t mcu_fw_offset;
+    uint32_t mcu_fw_size;
     QString str_tmp;
     #define UPDATE_DEV_NO (1 << 0)
     #define UPDATE_DEV_APP (1 << 1)
@@ -222,10 +219,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     #define UPDATE_SAT_APP (1 << 1)
     #define UPDATE_SAT_MCU (1 << 2)
 
-    return;
-
     memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
-
 
     //Update Device B0
     update_thread->m_cmd = FW_UP_MOUNT_USBA_CMD;
@@ -254,6 +248,9 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         protolcol_data->page_data[3] = 0;
         protolcol_data->page_data[4] = 0;
         protolcol_data->page_data[5] = 0;
+
+        protolcol_data->page_data_sz = 6;
+        memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
         return;
     }
 
@@ -288,33 +285,32 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         //For ACK
         if (update_sat & UPDATE_SAT_APP) {
             protolcol_data->page_data[2] = 2;
-        }
-        else if (update_sat & UPDATE_SAT_MCU) {
-            QByteArray mcufw_bin;
+        } else if (update_sat & UPDATE_SAT_MCU) {
+            
             uint32_t mcu_fw_size;
             uint16_t crc_ret;
-            char *int8_mcufw_bin;
 
-            mfile.setFileName("AT313SFW.BIN");
+
+            m_mcufile.setFileName("AT313SFW.BIN");
             QDir::setCurrent("/mnt");
-            if (!mfile.open(QIODevice::ReadOnly)) {
+            if (!m_mcufile.open(QIODevice::ReadOnly)) {
                 qDebug("File Open Fail\n");
                 show_item_child1_data->set_text("更新檔 讀取錯誤");
                 return;
             }
 
-            /* qDebug("File Size %lld\n", mfile.size()); */
-            mcu_fw_size = uint32_t(mfile.size());
+            /* qDebug("File Size %lld\n", m_mcufile.size()); */
+            mcu_fw_size = uint32_t(m_mcufile.size());
             protolcol_data->page_data[5] = uint8_t((mcu_fw_size & 0xFF0000) >> 16);
             protolcol_data->page_data[4] = uint8_t((mcu_fw_size & 0x00FF00) >> 8);
             protolcol_data->page_data[3] = uint8_t((mcu_fw_size & 0x0000FF) >> 0);
 
-            while (!mfile.atEnd()) {
-                mcufw_bin = mfile.readAll();
+            while (!m_mcufile.atEnd()) {
+                m_mcufw_bin = m_mcufile.readAll();
             }
 
-            int8_mcufw_bin = mcufw_bin.data();
-            crc_ret = Crc16_Encode(int8_mcufw_bin, uint16_t(mcufw_bin.length()));
+            m_int8_mcufw_bin = m_mcufw_bin.data();
+            crc_ret = Crc16_Encode(m_int8_mcufw_bin, uint16_t(m_mcufw_bin.length()));
 
             protolcol_data->page_data[7] = uint8_t((crc_ret & 0xFF00) >> 8);
             protolcol_data->page_data[6] = uint8_t((crc_ret & 0x00FF));
@@ -323,15 +319,29 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         else
             protolcol_data->page_data[2] = 1;
 
+        protolcol_data->page_data_sz = 8;
+        memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
         return;
-    } 
+    }
 
     if (u8_data_b1 == 2) {
         //Start Update
         show_item_child2_data->set_text("開始更新");
+
+        mcu_fw_offset = protolcol_data->page_data[10] << 16  |
+                        protolcol_data->page_data[9]  << 8   |
+                        protolcol_data->page_data[8];
+
+        mcu_fw_size = protolcol_data->page_data[12] << 8 |
+                      protolcol_data->page_data[11];
+
+
+        memcpy(&protolcol_data->page_data[13], (m_int8_mcufw_bin + mcu_fw_offset),
+            mcu_fw_size);
+
+        protolcol_data->page_data_sz = mcu_fw_size + 13;
+
+        memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
+        return;
     }
-
-
-    //update_thread->m_cmd = FW_UP_CKMOUNT_USB_CMD;
-    //update_thread->start();
 }

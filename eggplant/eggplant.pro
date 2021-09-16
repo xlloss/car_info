@@ -39,7 +39,7 @@ SOURCES += \
     control_msg2_page.cpp \
     eai_page.cpp \
     frame_page.cpp \
-    fw_update.cpp \
+    fw_update_page.cpp \
     home_page.cpp \
     icon_btn.cpp \
     main.cpp \

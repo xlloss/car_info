@@ -100,7 +100,7 @@ public:
     void Door_Sat_Change(uint8_t door_type, uint8_t status);
 
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
-    virtual void GetAckData(unsigned char *ackdata) override;
+
 protected:
     void paintEvent(QPaintEvent *);
 

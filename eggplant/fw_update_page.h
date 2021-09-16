@@ -81,11 +81,15 @@ public:
     Show_text *show_item_child2_data;
     UpdateThread *update_thread;
     uint16_t Crc16_Encode(char *addr,uint16_t len);
-    QFile mfile;
+
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
-    virtual void GetAckData(unsigned char *) override;
 protected:
     void paintEvent(QPaintEvent *);
+
+private:
+    QFile m_mcufile;
+    QByteArray m_mcufw_bin;
+    char *m_int8_mcufw_bin;
 
 signals:
 
