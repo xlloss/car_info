@@ -122,10 +122,12 @@ void PageCtl_Thread::run()
                     /* For TEST */
                     readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF] = 19;
 
+                    //5 = Page_Num + Meter[2] + Meter[1] + Meter[0]
+                    m_carinfo_data.page_data_sz = data_sz - 4;
+
                     m_carinfo_data.page_number = readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF];
                     memcpy(m_carinfo_data.meter_sat, &readbuf[PAGE_DATA_OFF + METER_SAT_OFF], 3);
-                    memcpy(m_carinfo_data.page_data, &readbuf[PAGE_DATA_OFF + PAGE_DAT_OFF], data_sz - 4);
-                    m_carinfo_data.page_data_sz = data_sz - 4;
+                    memcpy(m_carinfo_data.page_data, &readbuf[PAGE_DATA_OFF + PAGE_DAT_OFF], m_carinfo_data.page_data_sz);
                     cmd_receive->pcarinfo_data = &m_carinfo_data;
 
                     /* qDebug("m_carinfo_data.page_number %d\n", m_carinfo_data.page_number); */
@@ -193,6 +195,7 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
     class Frame_Page *close_framepage;
     class BarFrame *bar_page;
     uint8_t get_ackdata[256];
+    uint8_t get_ackdata_len;
     int i, j;
 
     i = Find_Frame(show_objname);
@@ -231,7 +234,8 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
     }
 
     show_framepage->GetAckData(get_ackdata);
-    mThread->serialport->Serial_Port_Write(get_ackdata, (get_ackdata[3] << 8 | get_ackdata[4]));
+    get_ackdata_len = 5 + (get_ackdata[3] << 8 | get_ackdata[4]);
+    mThread->serialport->Serial_Port_Write(get_ackdata, get_ackdata_len);
 
     current_page = show_objname;
 }

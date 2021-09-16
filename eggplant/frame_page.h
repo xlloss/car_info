@@ -20,8 +20,8 @@ public:
     Icon_btn *icon_id[50];
     void Enable_Icon_Light(int i);
     void Load_Background(QString image);
-    int do_checksum(uint8_t *data, uint16_t data_len, uint8_t check);
-
+    uint8_t do_checksum(uint8_t *data, uint16_t data_len);
+    class CarInfo_Data m_protolcol_data;
     virtual void GetMcuData(class CarInfo_Data *) = 0;
     virtual void GetAckData(uint8_t *);
 private slots:

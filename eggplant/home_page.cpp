@@ -201,24 +201,24 @@ void Home_Page::paintEvent(QPaintEvent *)
 /* head_data[2] + cmd_code[1] + data_len[2] + page number[1] + meter status[3] + page_data[X] */
 void Home_Page::GetAckData(unsigned char *ackdata)
 {
-    #define HEAD1 0x5A
-    #define HEAD2 0x87
-    #define PAGE_RQ 0x0C
-    int get_checksum;
-    uint16_t tot_data_len, data_len;
-
-    m_ackdata[0] = HEAD1;
-    m_ackdata[1] = HEAD2;
-    m_ackdata[2] = PAGE_RQ;
-
-    tot_data_len = (m_ackdata[3] << 8 | m_ackdata[4]) + 5;
-    data_len = (m_ackdata[3] << 8 | m_ackdata[4]);
-    get_checksum = do_checksum(m_ackdata, data_len, 0);
-
-    m_ackdata[5 + data_len] = get_checksum;
-    memcpy(ackdata, m_ackdata, sizeof(*m_ackdata) / sizeof(m_ackdata[0]));
-
-    delete m_ackdata;
+//    #define HEAD1 0x5A
+//    #define HEAD2 0x87
+//    #define PAGE_RQ 0x0C
+//    int get_checksum;
+//    uint16_t tot_data_len, data_len;
+//
+//    m_ackdata[0] = HEAD1;
+//    m_ackdata[1] = HEAD2;
+//    m_ackdata[2] = PAGE_RQ;
+//
+//    tot_data_len = (m_ackdata[3] << 8 | m_ackdata[4]) + 5;
+//    data_len = (m_ackdata[3] << 8 | m_ackdata[4]);
+//    get_checksum = do_checksum(m_ackdata, data_len, 0);
+//
+//    m_ackdata[5 + data_len] = get_checksum;
+//    memcpy(ackdata, m_ackdata, sizeof(*m_ackdata) / sizeof(m_ackdata[0]));
+//
+//    delete m_ackdata;
 }
 
 void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
@@ -404,10 +404,10 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     //--------------------------------------------------------------------------------------------------------------------
     //  LEN-H | LEN-L = Page + Meter + Data + Checksun
 
-    m_ackdata = new uint8_t[10 + protolcol_data->page_data_sz];
-    m_ackdata[3] = ((protolcol_data->page_number + 10) & 0xFF00) >> 8;
-    m_ackdata[4] = (protolcol_data->page_number + 10) & 0x00FF;
-    m_ackdata[5] = protolcol_data->page_number;
-    memcpy(&m_ackdata[6], protolcol_data->meter_sat, 3);
-    memcpy(&m_ackdata[9], protolcol_data->page_data, protolcol_data->page_data_sz);
+//    m_ackdata = new uint8_t[10 + protolcol_data->page_data_sz];
+//    m_ackdata[3] = ((protolcol_data->page_number + 10) & 0xFF00) >> 8;
+//    m_ackdata[4] = (protolcol_data->page_number + 10) & 0x00FF;
+//    m_ackdata[5] = protolcol_data->page_number;
+//    memcpy(&m_ackdata[6], protolcol_data->meter_sat, 3);
+//    memcpy(&m_ackdata[9], protolcol_data->page_data, protolcol_data->page_data_sz);
 }
