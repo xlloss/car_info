@@ -70,11 +70,6 @@ void SwVersion_Page::paintEvent(QPaintEvent *)
     painter.drawPixmap(5, 20, tableimg, 0, 0, 788, 380);
 }
 
-void SwVersion_Page::GetAckData(unsigned char *)
-{
-
-}
-
 void SwVersion_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     qDebug("SatInMsg_Page:%s page_number %d\n", __func__, protolcol_data->page_number);

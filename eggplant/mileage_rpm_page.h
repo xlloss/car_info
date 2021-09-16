@@ -48,7 +48,6 @@ public:
     void Enable_Icon_Light(int i);
     void Disable_Icon_Light(int i);
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
-    virtual void GetAckData(unsigned char *) override;
 protected:
     void paintEvent(QPaintEvent *);
 

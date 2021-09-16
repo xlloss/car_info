@@ -67,11 +67,6 @@ void SlaveSatMsg_Page::paintEvent(QPaintEvent *)
     painter.drawPixmap(5, 20, frameimg, 0, 0, 788, 369);
 }
 
-void SlaveSatMsg_Page::GetAckData(unsigned char *)
-{
-
-}
-
 void SlaveSatMsg_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     qDebug("SatInMsg_Page:%s page_number %d\n", __func__, protolcol_data->page_number);

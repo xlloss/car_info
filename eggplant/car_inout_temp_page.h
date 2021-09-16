@@ -25,7 +25,7 @@ public:
     Show_text *show_item[CAR_INOUT_TEX_NUM];
     Show_text *show_item_data[CAR_INOUT_CHILD_TEX_NUM];
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
-    virtual void GetAckData(unsigned char *) override;
+
 protected:
     void paintEvent(QPaintEvent *);
 

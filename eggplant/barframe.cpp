@@ -84,11 +84,6 @@ void BarFrame::Enable_Icon_Light(int i)
     icon_id[i]->ft_light_enable();
 }
 
-void BarFrame::GetAckData(unsigned char *)
-{
-
-}
-
 void BarFrame::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     int i, index;

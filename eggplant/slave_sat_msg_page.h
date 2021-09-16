@@ -21,7 +21,6 @@ public:
     QPixmap frameimg;
     QString sat_msg_str[10];
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
-    virtual void GetAckData(unsigned char *) override;
 private slots:
     void Enable_Icon_Light(int i);
 

@@ -44,3 +44,11 @@ void Frame_Page::Enable_Icon_Light(int i)
 {
     qDebug("%s i=%d", __func__, i);
 }
+
+void Frame_Page::GetAckData(uint8_t *get_ackdata)
+{
+    if (!get_ackdata)
+        return;
+
+    qDebug("%s %d", __func__, __LINE__);
+}

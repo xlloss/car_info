@@ -98,11 +98,6 @@ void Main_Page::paintEvent(QPaintEvent *)
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 }
 
-void Main_Page::GetAckData(unsigned char *)
-{
-
-}
-
 void Main_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     uint8_t page_data[128];

@@ -30,7 +30,6 @@ public:
     int m_msg_tit_id;
 
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
-    virtual void GetAckData(unsigned char *) override;
 protected:
     void paintEvent(QPaintEvent *);
 

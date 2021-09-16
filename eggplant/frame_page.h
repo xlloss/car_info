@@ -23,7 +23,7 @@ public:
     int do_checksum(uint8_t *data, uint16_t data_len, uint8_t check);
 
     virtual void GetMcuData(class CarInfo_Data *) = 0;
-    virtual void GetAckData(unsigned char *) = 0;
+    virtual void GetAckData(uint8_t *);
 private slots:
 
 protected:
