@@ -157,7 +157,6 @@ uint16_t FwUpdate_Page:: Crc16_Encode(char *addr, uint16_t len)
     return uint16_t(uchCRCHi << 8 | uchCRCLo);
 }
 
-
 FwUpdate_Page::FwUpdate_Page(QWidget *parent) : Frame_Page(parent)
 {
     setObjectName(FWV_UPDATE_OBJNAME);
@@ -165,27 +164,32 @@ FwUpdate_Page::FwUpdate_Page(QWidget *parent) : Frame_Page(parent)
 
     show_item = new Show_text(this);
     show_item->set_text(ITEM_TEXT);
-    show_item->setGeometry(25, 40, 100, 50);
+    show_item->setGeometry(FW_UPDATE_ITEM_X, FW_UPDATE_ITEM_Y,
+                           FW_UPDATE_ITEM_W, FW_UPDATE_ITEM_H);
     show_item->show();
 
     show_item_child1 = new Show_text(this);
     show_item_child1->set_text(ITEM_CHILD_TEXT1);
-    show_item_child1->setGeometry(170, 40, 100, 50);
+    show_item_child1->setGeometry(FW_UPDATE_CHILD_TEXT1_X, FW_UPDATE_CHILD_TEXT1_Y,
+                                  FW_UPDATE_CHILD_TEXT1_W, FW_UPDATE_CHILD_TEXT1_H);
     show_item_child1->show();
 
     show_item_child1_data = new Show_text(this);
     show_item_child1_data->set_text(ITEM_CHILD_TEXT1_DATA_DEF);
-    show_item_child1_data->setGeometry(260, 40, 100, 50);
+    show_item_child1_data->setGeometry(FW_UPDATE_CHILD_TEXT1_DATA_X, FW_UPDATE_CHILD_TEXT1_DATA_Y,
+                                       FW_UPDATE_CHILD_TEXT1_DATA_W, FW_UPDATE_CHILD_TEXT1_DATA_H);
     show_item_child1_data->show();
 
     show_item_child2 = new Show_text(this);
     show_item_child2->set_text(ITEM_CHILD_TEXT2);
-    show_item_child2->setGeometry(170, 100, 100, 50);
+    show_item_child2->setGeometry(FW_UPDATE_CHILD_TEXT2_X, FW_UPDATE_CHILD_TEXT2_Y,
+                                  FW_UPDATE_CHILD_TEXT2_W, FW_UPDATE_CHILD_TEXT2_H);
     show_item_child2->show();
 
     show_item_child2_data = new Show_text(this);
     show_item_child2_data->set_text(ITEM_CHILD_TEXT2_DATA_DEF);
-    show_item_child2_data->setGeometry(260, 100, 100, 50);
+    show_item_child2_data->setGeometry(FW_UPDATE_CHILD_TEXT2_DATA_X, FW_UPDATE_CHILD_TEXT2_DATA_Y,
+                                       FW_UPDATE_CHILD_TEXT2_DATA_W, FW_UPDATE_CHILD_TEXT2_DATA_H);
     show_item_child2_data->show();
 
 
