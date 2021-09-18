@@ -206,7 +206,7 @@ void FwUpdate_Page::paintEvent(QPaintEvent *)
 void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     uint8_t page_data[128];
-    uint8_t u8_data_tmp, u8_data_b0, u8_data_b1;
+    uint8_t u8_data_b0, u8_data_b1;
     uint8_t update_dev = 0, update_sat = 0;
     uint32_t mcu_fw_offset;
     uint32_t mcu_fw_size;
@@ -243,13 +243,15 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     //No Update
     if (u8_data_b1 == 0) {
         show_item_child2_data->set_text("無");
+
         //for ACK
         protolcol_data->page_data[2] = 0;
         protolcol_data->page_data[3] = 0;
         protolcol_data->page_data[4] = 0;
         protolcol_data->page_data[5] = 0;
-
-        protolcol_data->page_data_sz = 6;
+        protolcol_data->page_data[6] = 0;
+        protolcol_data->page_data[7] = 0;
+        protolcol_data->page_data_sz = 8;
         memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
         return;
     }
@@ -261,6 +263,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         if (update_dev & UPDATE_DEV_APP) {
             update_thread->m_cmd = FW_UP_FIND_SOC_FWBIN_CMD;
             update_thread->start();
+            QThread::msleep(500);
 
             if (!update_thread->m_cmd_ret) {
                 show_item_child1_data->set_text("APP 可更新");
@@ -283,6 +286,19 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         }
 
         //For ACK
+        if (update_sat & UPDATE_SAT_NO) {
+            protolcol_data->page_data[2] = 0;
+            protolcol_data->page_data[3] = 0;
+            protolcol_data->page_data[4] = 0;
+            protolcol_data->page_data[5] = 0;
+            protolcol_data->page_data[6] = 0;
+            protolcol_data->page_data[7] = 0;
+            protolcol_data->page_data_sz = 8;
+            memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
+            return;
+        }
+
+
         if (update_sat & UPDATE_SAT_APP) {
             protolcol_data->page_data[2] = 2;
         } else if (update_sat & UPDATE_SAT_MCU) {
