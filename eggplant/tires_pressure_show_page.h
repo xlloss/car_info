@@ -8,11 +8,16 @@
 #include "icon_btn.h"
 #include "show_text.h"
 
+#define TIRES_IMG_0 ":icon/tires_0.png"
+#define TIRES_IMG_1 ":icon/tires_1.png"
 #define TIRES_OBJNAME "TiresPressShow_Page"
 #define TIRES_BG_IMG ":/icon/rpm_page_bg.png"
 #define TIRES_FM_IMG ":/icon/tires_pressure_show.png"
 #define TIRES_FONT_SIZE 18
 #define TIRES_BTN_NUM 6
+#define TIRES_TEXT_DEF_X 50
+#define TIRES_TEXT_DEF_W 200
+#define TIRES_TEXT_DEF_H 50
 
 class TiresPressShow_Page : public Frame_Page
 {
