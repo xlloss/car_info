@@ -6,7 +6,6 @@
 #include "frame_page.h"
 #include "show_text.h"
 
-#define SATIN_OBJNAME "SatInMsg_Page"
 #define SATIN_BG_IMG ":/icon/rpm_page_bg.png"
 #define SATIN_FM_IMG ":/icon/slave_sat_table.png"
 

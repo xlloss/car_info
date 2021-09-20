@@ -73,8 +73,10 @@
 
 
 /******************************************
- *  time adj page
+ *  System steup page
  ******************************************/
+#define SYSTEM_SETUP_OBJNAME "SystemSetup_Page"
+
 
 #define TIME_ADJ_TEX_TIME "時間:"
 #define TIME_ADJ_TEX_WEEK "星期:"
@@ -93,13 +95,14 @@
 /******************************************
  *  volume adj page
  ******************************************/
+#define VOL_ADJ_OBJNAME "ScreenVolumeAdjust_Page"
 #define VOLUME_TEXT "螢幕音量:"
 #define VOLUME_TEXT_SAMPLE_VAL "15"
 
 /******************************************
  *  EAI page
  ******************************************/
-
+#define EAI_OBJNAME "EleAccInfo_Page"
 #define EAI_MAS_TEX_ID0 "電轉向控制器"
 #define EAI_MAS_TEX_ID1 "DCDC變換器"
 #define EAI_MAS_TEX_ID2 "電機空壓機控制器"
@@ -158,7 +161,7 @@
 /******************************************
  *  control msg 1 page
  ******************************************/
-
+#define CONTROL1_OBJNAME "ControlMsg1_Page"
 #define CONTROL1_MAS_TEX_ID0 "系統工作狀態"
 #define CONTROL1_MAS_TEX_ID1 "系統信息狀態"
 
@@ -210,6 +213,7 @@
 /******************************************
  *  control msg 2 page
  ******************************************/
+#define CONTROL2_OBJNAME "ControlMsg2_Page"
 
 #define CONTROL2_MAS_TEX_ID0 "高壓配電工作狀態"
 
@@ -249,6 +253,7 @@
 /******************************************
  *  battery temp page
  ******************************************/
+#define BATTINFO_OBJNAME "BatTempInfo_Page"
 
 #define BATT_MAS_TEX_ID0 "電池溫度資訊"
 
@@ -314,6 +319,7 @@
 /******************************************
  *  battery volt page
  ******************************************/
+#define BATTVAL_OBJNAME "BatVoltInfo_Page"
 
 #define BATVOL_MAS_TEX_ID0 "電池電壓資訊"
 #define BATVOL_SUB_TEX_ID00 "單體第一高電壓:"
@@ -376,6 +382,7 @@
 /******************************************
  *  temp module info page
  ******************************************/
+#define TEMP_MOD_OBJNAME "TempModule_Page"
 #define TEMP_SUB_TEX_ID00 "主站模塊"
 #define TEMP_SUB_TEX_ID01 "從站模塊1"
 #define TEMP_SUB_TEX_ID02 "從站模塊3:"
@@ -418,6 +425,7 @@
 /******************************************
  *  sat out info page
  ******************************************/
+#define SATOUT_BOJNAME "SatOutMsg_Page"
 #define SATOUT_SUB_TEX_ID00 "J1-01"
 #define SATOUT_SUB_TEX_ID01 "J1-05"
 #define SATOUT_SUB_TEX_ID02 "J2-04"
@@ -460,6 +468,7 @@
 /******************************************
  *  sat in info page
  ******************************************/
+#define SATIN_OBJNAME "SatInMsg_Page"
 
 #define SATIN_SUB_TEX_ID00 "J6-01"
 #define SATIN_SUB_TEX_ID01 "J6-05"
@@ -503,6 +512,7 @@
 /******************************************
  *  sw version page
  ******************************************/
+#define SWVER_OBJNAME "SwVersion_Page"
 #define SWVER_SUB_TEX_ID00 "儀表"
 #define SWVER_SUB_TEX_ID01 "主站"
 #define SWVER_SUB_TEX_ID02 "從站0"
@@ -532,6 +542,7 @@
 /******************************************
  *  slave station mesg page
  ******************************************/
+#define SLAVE_SAT_MSG_OBJNAME "SlaveSatMsg_Page"
 #define SLASAT_MSG_BTN_NAME "從站訊息"
 #define SLASAT_BACKMAIN_BTN_NAME "返回主頁"
 #define SLASAT_BACKPREV_BTN_NAME "返回上一層"
@@ -540,6 +551,7 @@
 /******************************************
  *  bcm info page
  ******************************************/
+#define BCM_OBJNAME "Bcm_Page"
 #define BCM_BTN_STR_ID0 "從站輸入狀態"
 #define BCM_BTN_STR_ID1 "從站故障檢測"
 #define BCM_BTN_STR_ID2 "模塊溫度"
@@ -550,6 +562,7 @@
 /******************************************
  *  tire press info page
  ******************************************/
+#define TIRES_OBJNAME "TiresPressShow_Page"
 #define TIRES_ID0_OBJNAME "tires_id_1"
 #define TIRES_ID1_OBJNAME "tires_id_6"
 #define TIRES_ID2_OBJNAME "tires_id_3"
@@ -578,5 +591,41 @@
 #define TIRES_TEMP_TEX_ID3 "溫度04:"
 #define TIRES_TEMP_TEX_ID4 "溫度02:"
 #define TIRES_TEMP_TEX_ID5 "溫度05:"
+
+
+/******************************************
+ *  FW Update page
+ ******************************************/
+#define FWV_UPDATE_OBJNAME "FwUpdate_Page"
+ 
+
+
+
+
+/******************************************
+ *  Page Redefine
+ ******************************************/
+
+#define PAGE_00 HOME_PAGE_OBJNAME
+#define PAGE_01 MAIN_PAGE_OBJNAME
+#define PAGE_02 RPM_OBJNAME
+#define PAGE_03 CAR_INOUT_OBJ
+#define PAGE_04 SYSTEM_SETUP_OBJNAME
+#define PAGE_05 VOL_ADJ_OBJNAME
+#define PAGE_06 EAI_OBJNAME
+#define PAGE_07 CONTROL1_OBJNAME
+#define PAGE_08 CONTROL2_OBJNAME
+#define PAGE_09 BATTINFO_OBJNAME
+#define PAGE_10 BATTVAL_OBJNAME
+#define PAGE_11 TEMP_MOD_OBJNAME
+#define PAGE_12 SATOUT_BOJNAME
+#define PAGE_13 SATIN_OBJNAME
+#define PAGE_14 SWVER_OBJNAME
+#define PAGE_15 SLAVE_SAT_MSG_OBJNAME
+#define PAGE_16 BCM_OBJNAME
+#define PAGE_17 TIRES_OBJNAME
+#define PAGE_18 FWV_UPDATE_OBJNAME
+
+
 
 #endif

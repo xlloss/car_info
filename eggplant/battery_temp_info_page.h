@@ -6,7 +6,6 @@
 #include "frame_page.h"
 #include "show_text.h"
 
-#define BATTINFO_OBJNAME "BatTempInfo_Page"
 #define BATTINFO_BG_IMG ":/icon/rpm_page_bg.png"
 #define BATTINFO_FM_IMG ":/icon/battery-info.png"
 

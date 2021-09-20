@@ -10,7 +10,6 @@
 
 #define TIRES_IMG_0 ":icon/tires_0.png"
 #define TIRES_IMG_1 ":icon/tires_1.png"
-#define TIRES_OBJNAME "TiresPressShow_Page"
 #define TIRES_BG_IMG ":/icon/rpm_page_bg.png"
 #define TIRES_FM_IMG ":/icon/tires_pressure_show.png"
 #define TIRES_FONT_SIZE 18

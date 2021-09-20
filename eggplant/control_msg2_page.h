@@ -6,7 +6,6 @@
 #include "frame_page.h"
 #include "show_text.h"
 
-#define CONTROL2_OBJNAME "ControlMsg2_Page"
 #define CONTROL2_BG_IMG ":/icon/rpm_page_bg.png"
 #define CONTROL2_FM_IMG ":/icon/control_msg2.png"
 

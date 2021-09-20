@@ -6,7 +6,7 @@
 #include "frame_page.h"
 #include "show_text.h"
 
-#define SWVER_OBJNAME "SwVersion_Page"
+
 #define SWVER_BG_IMG ":/icon/rpm_page_bg.png"
 #define SWVER_FM_IMG ":/icon/sw_version_table.png"
 

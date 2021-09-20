@@ -12,7 +12,7 @@
 #include "serial_port.h"
 
 
-#define FWV_UPDATE_OBJNAME "FwUpdate_Page"
+
 #define FWV_UPDATE_BG_IMG ":/icon/system_setup.png"
 
 #define ITEM_TEXT "系統更新"

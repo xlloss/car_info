@@ -2,6 +2,7 @@
 #include <QDir>
 #include "fw_update_page.h"
 #include "coordinate.h"
+#include "string/string.h"
 
 UpdateThread::UpdateThread(QObject *parent, bool b) :
     QThread(parent), Stop(b)

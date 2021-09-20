@@ -6,7 +6,6 @@
 #include "frame_page.h"
 #include "show_text.h"
 
-#define SYSTEM_SETUP_OBJNAME "SystemSetup_Page"
 #define SYSTEM_SETUP_BG_IMG ":/icon/system_setup.png"
 
 #define TIME_ADJ_TEX_TITLE_NUM 6

@@ -9,7 +9,7 @@ SlaveSatMsg_Page::SlaveSatMsg_Page(QWidget *parent) : Frame_Page(parent)
     int i;
     QString btn_name;
 
-    this->setObjectName("SlaveSatMsg_Page");
+    this->setObjectName(SLAVE_SAT_MSG_OBJNAME);
 
     bgimg.load(":/icon/rpm_page_bg.png");
     frameimg.load(":/icon/slave_msg_frame.png");
