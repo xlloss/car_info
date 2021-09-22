@@ -13,6 +13,8 @@
 #define MAIN_PAGE_BUS ":/icon/bus-bg.png"
 #define MAIN_PAG_FONT_TYPE "DroidSans"
 #define MAIN_PAG_FONT_SIZE 22
+#define MAIN_PAGE_BTN ":/icon/menu-button.png"
+#define MAIN_PAGE_BTN_PRESS ":/icon/menu-button-press.png"
 
 class Main_Page : public Frame_Page
 {

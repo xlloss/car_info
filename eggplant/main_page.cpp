@@ -47,9 +47,10 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
         btn[i]->setObjectName(main_page_string[i]);
         btn[i]->enable_scale = 0;
         btn_name = main_page_string[i];
-        btn[i]->load_image_ft(":/icon/menu-button.png", ":/icon/menu-button-press.png");
-        btn[i]->setGeometry(MAIN_BTN_LEFT_X, MAIN_BTN_LEFT_Y + ((MAIN_BTN_OFF_Y + MAIN_BTN_H) * i),
-                            MAIN_BTN_W, MAIN_BTN_H);
+        btn[i]->load_image_ft(MAIN_PAGE_BTN, MAIN_PAGE_BTN_PRESS);
+        btn[i]->setGeometry(MAIN_BTN_LEFT_X,
+            MAIN_BTN_LEFT_Y + ((MAIN_BTN_OFF_Y + MAIN_BTN_H) * i),
+            MAIN_BTN_W, MAIN_BTN_H);
 
         btn[i]->set_text(btn_name);
 
@@ -59,10 +60,11 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
         btn[i + MAIN_PAG_ID_CTRL_MSG]->enable_scale = 0;
 
         btn_name = main_page_string[i + MAIN_PAG_ID_CTRL_MSG];
-        btn[i + MAIN_PAG_ID_CTRL_MSG]->load_image_ft(":/icon/menu-button.png", ":/icon/menu-button-press.png");
-        btn[i + MAIN_PAG_ID_CTRL_MSG]->setGeometry(MAIN_BTN_RIGHT_X + MAIN_BTN_W + MAIN_BTN_OFF_X,
-                                MAIN_BTN_RIGHT_Y + ((MAIN_BTN_OFF_Y + MAIN_BTN_H) * i),
-                                MAIN_BTN_W, MAIN_BTN_H);
+        btn[i + MAIN_PAG_ID_CTRL_MSG]->load_image_ft(MAIN_PAGE_BTN, MAIN_PAGE_BTN_PRESS);
+        btn[i + MAIN_PAG_ID_CTRL_MSG]->setGeometry(
+            MAIN_BTN_RIGHT_X + MAIN_BTN_W + MAIN_BTN_OFF_X,
+            MAIN_BTN_RIGHT_Y + ((MAIN_BTN_OFF_Y + MAIN_BTN_H) * i),
+            MAIN_BTN_W, MAIN_BTN_H);
 
         btn[i + MAIN_PAG_ID_CTRL_MSG]->set_text(btn_name);
     }
@@ -94,8 +96,9 @@ void Main_Page::paintEvent(QPaintEvent *)
     QPainter painter(this);
     QFont font(MAIN_PAG_FONT_TYPE, MAIN_PAG_FONT_SIZE);
     painter.setFont(font);
-    painter.drawPixmap(0, 0, bgimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
-                       GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
+    painter.drawPixmap(0, 0,
+        bgimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 }
 
 void Main_Page::GetMcuData(class CarInfo_Data *protolcol_data)
@@ -103,7 +106,8 @@ void Main_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     uint8_t page_data[128];
     int i, item_num, ret;
 
-    memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
+    memcpy(page_data, protolcol_data->page_data,
+        sizeof(uint8_t) * protolcol_data->page_data_sz);
 
     item_num = (MAIN_PAG_ID_BUS_SYS_SAT + 1);
     i = MAIN_PAG_ID_MILE_RPM;
