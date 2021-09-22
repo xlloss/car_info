@@ -6,11 +6,13 @@
 /******************************************
  *  car gear page
  ******************************************/
+#define BAR_FRAME_OBJNAME "BarFrame"
 
 
 /******************************************
  *  home page
  ******************************************/
+#define HOME_PAGE_OBJNAME "Home_Page"
 #define HOME_ITEM_TEX_DATE_TIME "日期時間:"
 #define HOME_ITEM_TEX_SLOPE "坡度:"
 #define HOME_ITEM_TEX_GEAR_SAT "檔位狀態:"
@@ -32,8 +34,8 @@
 /******************************************
  *  main page
  ******************************************/
+#define MAIN_PAGE_OBJNAME "Main_Page"
 #define MAIN_STR_NUM 10
-
 #define MAIN_STR_ID0 "里程與轉速訊息"
 #define MAIN_STR_ID1 "車內外及艙溫"
 #define MAIN_STR_ID2 "時間調整"
@@ -48,6 +50,7 @@
 /******************************************
  *  rpm page
  ******************************************/
+#define RPM_OBJNAME "Rpm_Page"
 #define RPM_PAGE_BTN_NAME "歸零"
 #define RPM_DATA_DEF_STR_ID0 "012345678Km"
 #define RPM_DATA_DEF_STR_ID1 "0000.2Km"

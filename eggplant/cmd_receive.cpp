@@ -2,23 +2,6 @@
 #include "barframe.h"
 #include <QDebug>
 
-#define HEAD1 0x5A
-#define HEAD2 0x87
-#define PAGE_RQ 0x0B
-
-#define HEAD1_OFF 0
-#define HEAD2_OFF 1
-#define ID_OFF 2
-#define LENH_OFF 3
-#define LENL_OFF 4
-#define PAGE_DATA_OFF 5
-
-#define HEAD_SIZE 5
-#define PAGE_NUM_OFF 0
-#define METER_SAT_OFF 1
-#define PAGE_DAT_OFF 4
-
-
 #define REC_UART_PORT "/dev/ttyS1"
 #define REC_UART_SPEED 921600
 
