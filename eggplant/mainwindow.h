@@ -5,11 +5,9 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QPaintEvent>
-
 #include "icon_btn.h"
 #include "page_ctl.h"
 #include "barframe.h"
-
 #include "home_page.h"
 #include "main_page.h"
 #include "mileage_rpm_page.h"
