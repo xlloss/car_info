@@ -9,6 +9,11 @@
 
 #define CARGEAR_ICON_NUM 15
 
+#define CAR_GERAGRP0_N 4
+#define CAR_GERAGRP1_N 2
+#define CAR_GERAGRP2_N 4
+#define CAR_GERAGRP3_N 5
+
 #define CARGEAR_ID_0_0 ":/icon/ID-0-0.png"
 #define CARGEAR_ID_0_1 ":/icon/ID-0-1.png"
 #define CARGEAR_ID_1_0 ":/icon/ID-1-0.png"
