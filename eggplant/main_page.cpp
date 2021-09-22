@@ -4,20 +4,6 @@
 #include "string/string.h"
 #include "coordinate.h"
 
-enum main_page_id {
-    MAIN_PAG_ID_MILE_RPM = 0,
-    MAIN_PAG_ID_CAR_INOUT_TEMP,
-    MAIN_PAG_ID_TIME_ADJ,
-    MAIN_PAG_ID_SPEAK_SET,
-    MAIN_PAG_ID_EMESG,
-    MAIN_PAG_ID_CTRL_MSG,
-    MAIN_PAG_ID_BATT_SAT,
-    MAIN_PAG_ID_BUS_SYS_SAT,
-    MAIN_PAG_ID_TIRE_PRESS,
-    MAIN_PAG_ID_RETURN_MAIN,
-    MAIN_PAG_TOTAL_NUM
-};
-
 Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
 {
     int i, item_num;
