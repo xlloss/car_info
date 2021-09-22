@@ -9,7 +9,7 @@
 #define EAI_MAS_TEX_NUM 3
 #define EAI_SUB_TEX_NUM 7
 
-#define EAI_OBJNAME "EleAccInfo_Page"
+
 #define EAI_BG_IMG ":/icon/rpm_page_bg.png"
 #define EAI_FM_IMG ":/icon/electrical_accessories_information.png"
 #define RAI_FONT_SIZE 20

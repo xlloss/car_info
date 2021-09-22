@@ -225,26 +225,25 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
 
 void Cmd_Receive::Triger_Page()
 {
-    QString objname[] = {HOME_PAGE_OBJNAME,//0
-                         MAIN_PAGE_OBJNAME,//1
-                         RPM_OBJNAME,//2
-                         "CarInOut_Page",//3
-                         "SystemSetup_Page",//4
-                         "ScreenVolumeAdjust_Page",//5
-                         "EleAccInfo_Page",//6
-                         "ControlMsg1_Page",//7
-                         "ControlMsg2_Page",//8
-                         "BatTempInfo_Page",//9
-                         "BatVoltInfo_Page",//10
-                         "TempModule_Page",//11
-                         "SatOutMsg_Page",//12
-                         "SatInMsg_Page",//13
-                         "SwVersion_Page",//14
-                         "SlaveSatMsg_Page",//15
-                         "Bcm_Page",//16
-                         "TiresPressShow_Page",//17
-                         "FwUpdate_Page"//18
-                        };
+    QString objname[] = {PAGE_00,
+		PAGE_01,
+		PAGE_02,
+		PAGE_03,
+		PAGE_04,
+		PAGE_05,
+		PAGE_06,
+		PAGE_07,
+		PAGE_08,
+		PAGE_09,
+		PAGE_10,
+		PAGE_11,
+		PAGE_12,
+		PAGE_13,
+		PAGE_14,
+		PAGE_15,
+		PAGE_16,
+		PAGE_17,
+		PAGE_18};
 
     Frame_Page_Show(BAR_FRAME_OBJNAME);
     Frame_Page_Show(objname[pcarinfo_data->page_number - 1]);

@@ -6,7 +6,6 @@
 #include "frame_page.h"
 #include "show_text.h"
 
-#define BATTVAL_OBJNAME "BatVoltInfo_Page"
 #define BATTVAL_BG_IMG ":/icon/rpm_page_bg.png"
 #define BATTVAL_FM_IMG ":/icon/battery-info.png"
 

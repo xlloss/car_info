@@ -2,6 +2,7 @@
 #include <QDir>
 #include "fw_update_page.h"
 #include "coordinate.h"
+#include "string/string.h"
 
 UpdateThread::UpdateThread(QObject *parent, bool b) :
     QThread(parent), Stop(b)
@@ -157,7 +158,6 @@ uint16_t FwUpdate_Page:: Crc16_Encode(char *addr, uint16_t len)
     return uint16_t(uchCRCHi << 8 | uchCRCLo);
 }
 
-
 FwUpdate_Page::FwUpdate_Page(QWidget *parent) : Frame_Page(parent)
 {
     setObjectName(FWV_UPDATE_OBJNAME);
@@ -165,27 +165,32 @@ FwUpdate_Page::FwUpdate_Page(QWidget *parent) : Frame_Page(parent)
 
     show_item = new Show_text(this);
     show_item->set_text(ITEM_TEXT);
-    show_item->setGeometry(25, 40, 100, 50);
+    show_item->setGeometry(FW_UPDATE_ITEM_X, FW_UPDATE_ITEM_Y,
+                           FW_UPDATE_ITEM_W, FW_UPDATE_ITEM_H);
     show_item->show();
 
     show_item_child1 = new Show_text(this);
     show_item_child1->set_text(ITEM_CHILD_TEXT1);
-    show_item_child1->setGeometry(170, 40, 100, 50);
+    show_item_child1->setGeometry(FW_UPDATE_CHILD_TEXT1_X, FW_UPDATE_CHILD_TEXT1_Y,
+                                  FW_UPDATE_CHILD_TEXT1_W, FW_UPDATE_CHILD_TEXT1_H);
     show_item_child1->show();
 
     show_item_child1_data = new Show_text(this);
     show_item_child1_data->set_text(ITEM_CHILD_TEXT1_DATA_DEF);
-    show_item_child1_data->setGeometry(260, 40, 100, 50);
+    show_item_child1_data->setGeometry(FW_UPDATE_CHILD_TEXT1_DATA_X, FW_UPDATE_CHILD_TEXT1_DATA_Y,
+                                       FW_UPDATE_CHILD_TEXT1_DATA_W, FW_UPDATE_CHILD_TEXT1_DATA_H);
     show_item_child1_data->show();
 
     show_item_child2 = new Show_text(this);
     show_item_child2->set_text(ITEM_CHILD_TEXT2);
-    show_item_child2->setGeometry(170, 100, 100, 50);
+    show_item_child2->setGeometry(FW_UPDATE_CHILD_TEXT2_X, FW_UPDATE_CHILD_TEXT2_Y,
+                                  FW_UPDATE_CHILD_TEXT2_W, FW_UPDATE_CHILD_TEXT2_H);
     show_item_child2->show();
 
     show_item_child2_data = new Show_text(this);
     show_item_child2_data->set_text(ITEM_CHILD_TEXT2_DATA_DEF);
-    show_item_child2_data->setGeometry(260, 100, 100, 50);
+    show_item_child2_data->setGeometry(FW_UPDATE_CHILD_TEXT2_DATA_X, FW_UPDATE_CHILD_TEXT2_DATA_Y,
+                                       FW_UPDATE_CHILD_TEXT2_DATA_W, FW_UPDATE_CHILD_TEXT2_DATA_H);
     show_item_child2_data->show();
 
 
@@ -206,7 +211,7 @@ void FwUpdate_Page::paintEvent(QPaintEvent *)
 void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     uint8_t page_data[128];
-    uint8_t u8_data_tmp, u8_data_b0, u8_data_b1;
+    uint8_t u8_data_b0, u8_data_b1;
     uint8_t update_dev = 0, update_sat = 0;
     uint32_t mcu_fw_offset;
     uint32_t mcu_fw_size;
@@ -243,13 +248,15 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     //No Update
     if (u8_data_b1 == 0) {
         show_item_child2_data->set_text("無");
+
         //for ACK
         protolcol_data->page_data[2] = 0;
         protolcol_data->page_data[3] = 0;
         protolcol_data->page_data[4] = 0;
         protolcol_data->page_data[5] = 0;
-
-        protolcol_data->page_data_sz = 6;
+        protolcol_data->page_data[6] = 0;
+        protolcol_data->page_data[7] = 0;
+        protolcol_data->page_data_sz = 8;
         memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
         return;
     }
@@ -261,6 +268,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         if (update_dev & UPDATE_DEV_APP) {
             update_thread->m_cmd = FW_UP_FIND_SOC_FWBIN_CMD;
             update_thread->start();
+            QThread::msleep(500);
 
             if (!update_thread->m_cmd_ret) {
                 show_item_child1_data->set_text("APP 可更新");
@@ -283,6 +291,19 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         }
 
         //For ACK
+        if (update_sat & UPDATE_SAT_NO) {
+            protolcol_data->page_data[2] = 0;
+            protolcol_data->page_data[3] = 0;
+            protolcol_data->page_data[4] = 0;
+            protolcol_data->page_data[5] = 0;
+            protolcol_data->page_data[6] = 0;
+            protolcol_data->page_data[7] = 0;
+            protolcol_data->page_data_sz = 8;
+            memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
+            return;
+        }
+
+
         if (update_sat & UPDATE_SAT_APP) {
             protolcol_data->page_data[2] = 2;
         } else if (update_sat & UPDATE_SAT_MCU) {

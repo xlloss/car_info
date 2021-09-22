@@ -12,7 +12,6 @@
 #define SATOUT_MSG_ROW_NUM 8
 #define SATOUT_FONT_SIZE 20
 
-#define SATOUT_BOJNAME "SatOutMsg_Page"
 #define SATOUT_BG_IMG ":/icon/rpm_page_bg.png"
 #define SATOUT_FM_IMG ":/icon/slave_sat_table.png"
 

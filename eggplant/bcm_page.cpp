@@ -32,7 +32,7 @@ Bcm_Page::Bcm_Page(QWidget *parent) : Frame_Page(parent)
     int i, j;
     QString func_btn_name, back_btn_name;
 
-    this->setObjectName("Bcm_Page");
+    this->setObjectName(BCM_OBJNAME);
 
     bgimg.load(":/icon/rpm_page_bg.png");
     frame_img.load(":/icon/slave_msg_frame.png");

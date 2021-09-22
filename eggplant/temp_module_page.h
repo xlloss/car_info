@@ -6,7 +6,7 @@
 #include "frame_page.h"
 #include "show_text.h"
 
-#define TEMP_MOD_OBJNAME "TempModule_Page"
+
 #define TEMP_MOD_BG_IMG ":/icon/rpm_page_bg.png"
 #define TEMP_MOD_FM_IMG ":/icon/temp_module.png"
 
