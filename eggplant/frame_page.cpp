@@ -62,8 +62,6 @@ void Frame_Page::GetAckData(uint8_t *get_ackdata)
     if (!get_ackdata)
         return;
 
-    qDebug("%s %d", __func__, __LINE__);
-
     //   0        1      2       3       4         5        6          7          8            9    ...            TotalLen - 1
     //--------------------------------------------------------------------------------------------------------------------
     // HEAD1  | HEAD2 | CMD  | LEN-H | LEN-L | Page_Num | Meter[2] | Meter[1] | Meter[0] | Data [N] ... Data[N-1] | CKSUM |

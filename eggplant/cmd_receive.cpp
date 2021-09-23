@@ -102,9 +102,6 @@ void PageCtl_Thread::run()
                         qDebug("checksun fail\n");
                     }
 
-                    /* For TEST */
-                    readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF] = 19;
-
                     //5 = Page_Num + Meter[2] + Meter[1] + Meter[0]
                     m_carinfo_data.page_data_sz = data_sz - 4;
 
