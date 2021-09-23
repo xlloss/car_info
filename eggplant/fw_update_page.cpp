@@ -22,7 +22,6 @@ int UpdateThread::find_update()
 
     process.start("mount", QStringList() << "/dev/sda1 /mnt/");
 
-
     return ret;
 }
 

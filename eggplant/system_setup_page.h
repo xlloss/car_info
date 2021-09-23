@@ -11,8 +11,6 @@
 #define TIME_ADJ_TEX_TITLE_NUM 6
 #define TIME_ADJ_CHILD_TEX_TIME_NUM 5
 
-
-
 class SystemSetup_Page : public Frame_Page
 {
 Q_OBJECT

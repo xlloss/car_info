@@ -72,7 +72,6 @@ int Serial_Port::Serial_Port_Read(QByteArray *data_read)
     data_read->resize(ret);
     memcpy(data_read->data(), buf, ret);
 
-    //qDebug("read %d byte: buf[0] 0x%x\n", ret, buf[0]);
     return 0;
 }
 

@@ -52,7 +52,6 @@ public:
 
     BarFrame *bar_frame;
     Page_Ctl *page_ctl;
-
     Home_Page *home_page;
     Main_Page *main_page;
     Mile_Page *mile_page;

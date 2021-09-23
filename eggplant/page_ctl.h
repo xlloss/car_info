@@ -49,7 +49,6 @@ public:
     Bcm_Page *bcm_page;
     TiresPressShow_Page *tires_press_show_page;
     FwUpdate_Page *fw_update_show_page;
-
     class Frame_Page *framepage;
 
 signals:

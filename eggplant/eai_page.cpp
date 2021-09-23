@@ -3,17 +3,21 @@
 #include "coordinate.h"
 #include "string/string.h"
 
-static QString master_text[EAI_MAS_TEX_NUM] = {EAI_MAS_TEX_ID0, EAI_MAS_TEX_ID1, EAI_MAS_TEX_ID2};
+static QString master_text[EAI_MAS_TEX_NUM] = {EAI_MAS_TEX_ID0,
+    EAI_MAS_TEX_ID1, EAI_MAS_TEX_ID2};
 
 static QString sub_text[EAI_MAS_TEX_NUM][EAI_SUB_TEX_NUM] = {
     {EAI_SUB_STR_ID00, EAI_SUB_STR_ID01,
-     EAI_SUB_STR_ID02, EAI_SUB_STR_ID03, EAI_SUB_STR_ID04, EAI_SUB_STR_ID05, EAI_SUB_STR_ID06},
+     EAI_SUB_STR_ID02, EAI_SUB_STR_ID03,
+     EAI_SUB_STR_ID04, EAI_SUB_STR_ID05, EAI_SUB_STR_ID06},
 
     {EAI_SUB_STR_ID10, EAI_SUB_STR_ID11,
-     EAI_SUB_STR_ID12, EAI_SUB_STR_ID13, EAI_SUB_STR_ID14, EAI_SUB_STR_ID15, EAI_SUB_STR_ID16},
+     EAI_SUB_STR_ID12, EAI_SUB_STR_ID13,
+     EAI_SUB_STR_ID14, EAI_SUB_STR_ID15, EAI_SUB_STR_ID16},
 
     {EAI_SUB_STR_ID20, EAI_SUB_STR_ID21,
-     EAI_SUB_STR_ID22, EAI_SUB_STR_ID23, EAI_SUB_STR_ID24, EAI_SUB_STR_ID25, EAI_SUB_STR_ID26},
+     EAI_SUB_STR_ID22, EAI_SUB_STR_ID23,
+     EAI_SUB_STR_ID24, EAI_SUB_STR_ID25, EAI_SUB_STR_ID26},
 };
 
 static QString sub_text_msg[EAI_MAS_TEX_NUM][EAI_SUB_TEX_NUM] = {
@@ -318,30 +322,3 @@ void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     show_sub_data[ELEACC_INFO_ITEM_K][ELEACC_INFO_K7]->set_text(str_tmp);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

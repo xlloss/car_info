@@ -9,17 +9,12 @@
 
 #define TEMP_MOD_BG_IMG ":/icon/rpm_page_bg.png"
 #define TEMP_MOD_FM_IMG ":/icon/temp_module.png"
-
-
 #define TEMP_MAS_ITEM_NUM 2
 #define TEMP_SUB_ITEM_COL_NUM 2
 #define TEMP_SUB_ITEM_ROW_NUM 8
-
 #define TEMP_SUB_INFO_COL_NUM 3
 #define TEMP_SUB_INFO_ROW_NUM 6
-
 #define TEMP_FONT_SIZE 20
-
 
 class TempModule_Page : public Frame_Page
 {

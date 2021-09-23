@@ -33,7 +33,6 @@ public:
     QRect rectangle;
     QRect boundingRect;
     QColor m_texcolor;
-
     void set_text(QString set_text);
 
     int width;

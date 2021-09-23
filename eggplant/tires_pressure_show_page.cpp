@@ -33,7 +33,6 @@ static QString tires_text_air_str[] =
     TIRES_AIR_TEX_ID3, TIRES_AIR_TEX_ID4, TIRES_AIR_TEX_ID5
 };
 
-
 static int tires_text_air_coord[]
 {
     TIRE_AIT_TEX_ID0_X, TIRE_AIT_TEX_ID0_Y,
@@ -83,7 +82,6 @@ static int tires_btn_coord[TIRES_BTN_NUM * 2] = {
         TIRES_BTN_X + TIRES_ID_5_BTN_OFF_X, TIRES_BTN_Y + TIRES_ID_5_BTN_OFF_Y,
 };
 
-
 static int tires_btn_text_coord[TIRES_BTN_NUM * 2] = {
     TIRES_BTN_TEX_ID0_X, TIRES_BTN_TEX_ID0_Y,
     TIRES_BTN_TEX_ID1_X, TIRES_BTN_TEX_ID1_Y,
@@ -92,7 +90,6 @@ static int tires_btn_text_coord[TIRES_BTN_NUM * 2] = {
     TIRES_BTN_TEX_ID4_X, TIRES_BTN_TEX_ID4_Y,
     TIRES_BTN_TEX_ID5_X, TIRES_BTN_TEX_ID5_Y,
 };
-
 
 TiresPressShow_Page::TiresPressShow_Page(QWidget *parent) : Frame_Page(parent)
 {
@@ -126,8 +123,8 @@ TiresPressShow_Page::TiresPressShow_Page(QWidget *parent) : Frame_Page(parent)
         tires_text_air[i]->m_font_size = TIRES_FONT_SIZE;
         tires_text_air[i]->font.setBold(0);
         tires_text_air[i]->setGeometry(tires_text_air_coord[j],
-			tires_text_air_coord[j + 1],
-			TIRES_TEXT_DEF_W, TIRES_TEXT_DEF_H);
+            tires_text_air_coord[j + 1],
+            TIRES_TEXT_DEF_W, TIRES_TEXT_DEF_H);
 
         tires_text_air[i]->show();
 
@@ -137,8 +134,8 @@ TiresPressShow_Page::TiresPressShow_Page(QWidget *parent) : Frame_Page(parent)
         tires_value_air[i]->m_text_x = TIRES_TEXT_DEF_X;
         tires_value_air[i]->font.setBold(0);
         tires_value_air[i]->setGeometry(tires_value_air_coord[j],
-			tires_value_air_coord[j + 1],
-			TIRES_TEXT_DEF_W, TIRES_TEXT_DEF_H);
+            tires_value_air_coord[j + 1],
+            TIRES_TEXT_DEF_W, TIRES_TEXT_DEF_H);
         tires_value_air[i]->show();
 
         tires_text_temp[i] = new Show_text(this);
@@ -147,8 +144,8 @@ TiresPressShow_Page::TiresPressShow_Page(QWidget *parent) : Frame_Page(parent)
         tires_text_temp[i]->m_font_size = TIRES_FONT_SIZE;;
         tires_text_temp[i]->font.setBold(0);
         tires_text_temp[i]->setGeometry(tires_text_temp_coord[j],
-			tires_text_temp_coord[j + 1],
-			TIRES_TEXT_DEF_W, TIRES_TEXT_DEF_H);
+            tires_text_temp_coord[j + 1],
+            TIRES_TEXT_DEF_W, TIRES_TEXT_DEF_H);
         tires_text_temp[i]->show();
 
         tires_value_temp[i] = new Show_text(this);
@@ -157,7 +154,7 @@ TiresPressShow_Page::TiresPressShow_Page(QWidget *parent) : Frame_Page(parent)
         tires_value_temp[i]->m_font_size = TIRES_FONT_SIZE;;
         tires_value_temp[i]->font.setBold(0);
         tires_value_temp[i]->setGeometry(tires_value_temp_coord[j],
-			tires_value_temp_coord[j + 1], TIRES_TEXT_DEF_W, TIRES_TEXT_DEF_H);
+            tires_value_temp_coord[j + 1], TIRES_TEXT_DEF_W, TIRES_TEXT_DEF_H);
         tires_value_temp[i]->show();
         j = j + 2;
     }
@@ -168,12 +165,14 @@ void TiresPressShow_Page::paintEvent(QPaintEvent *)
     QPainter painter(this);
 
     painter.drawPixmap(0, 0, backimg,
-                       GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
-                       GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
+            GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+            GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 
 
     painter.drawPixmap(FRAME_IMG_WIN_X, FRAME_IMG_WIN_Y,
-                       frame_img, FRAME_IMG_X, FRAME_IMG_Y, FRAME_IMG_W, FRAME_IMG_H);
+        frame_img,
+        FRAME_IMG_X, FRAME_IMG_Y,
+        FRAME_IMG_W, FRAME_IMG_H);
 }
 
 void TiresPressShow_Page::Enable_Icon_Light(int i)
@@ -195,7 +194,8 @@ void TiresPressShow_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     uint8_t tires_order[6] = {0, 5, 2, 3, 1, 4};
     int i, j;
 
-    memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
+    memcpy(page_data, protolcol_data->page_data,
+        sizeof(uint8_t) * protolcol_data->page_data_sz);
 
     for (i = 0, j = 0; i < 7; i = i + 2, j++) {
         u8_data_tmp = (page_data[0] & (0x03 << i)) >> i;
@@ -212,7 +212,6 @@ void TiresPressShow_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         else
             Disable_Icon_Light(j);
     }
-
 
     for (i = 2, j = 0; i < 8; i++, j++) {
         u8_data_tmp = page_data[i];

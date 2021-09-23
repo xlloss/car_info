@@ -34,9 +34,6 @@ public:
     Serial_Port *serialport;
     int do_checksum(uint8_t *data, uint16_t data_len, uint8_t check);
 signals:
-    // To communicate with Gui Thread
-    // we need to emit a signal
-    //void valueChanged(int);
 
 public slots:
 
@@ -53,10 +50,8 @@ public:
     CarInfo_Data m_carinfo_data;
 
 signals:
-    // To communicate with Gui Thread
-    // we need to emit a signal
-    //void valueChanged(int);
     void Triger_Page_Signal();
+
 public slots:
 
 };

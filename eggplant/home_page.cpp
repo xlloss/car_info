@@ -100,12 +100,11 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
         icon_door[i] = new Icon_btn(this);
         icon_door[i]->enable_scale = 0;
         icon_door[i]->load_image_ft(door_name[i][0], door_name[i][1]);
-        icon_door[i]->setGeometry(door_coord_xy[i][0], door_coord_xy[i][1], 420, 250);
+        icon_door[i]->setGeometry(door_coord_xy[i][0],
+            door_coord_xy[i][1], 420, 250);
     }
 
-
     //image_car_bus = image_car_bus.scaled(294, 175);
-
     item_num = HOME_ITEM_ID_AVAILABLE_MILE - HOME_ITEM_ID_DATE_TIME + 1;
     for (i = 0; i < item_num; i++) {
         /* item 1 title */
@@ -123,7 +122,9 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
         show_item_data[i]->m_text_x = 0;
         show_item_data[i]->m_text_y = 50;
 
-        item_str_start = item1_text[i].size() * show_item_data[i]->m_font_size + HOME_ITEM1_DATA_OFF;
+        item_str_start =
+            item1_text[i].size() * show_item_data[i]->m_font_size + HOME_ITEM1_DATA_OFF;
+
         show_item_data[i]->setGeometry(HOME_ITEM_TEX1_DATA_X + item_str_start,
             HOME_ITEM_TEX1_DATA_Y + HOME_ITEM_TEX1_Y_OFF * i,
             HOME_ITEM_TEX1_W, HOME_ITEM_TEX1_H);
@@ -162,9 +163,9 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
         show_item[i]->show();
 
     item_num = HOME_ITEM_DOOR_NUM - HOME_ITEM_ID_FDOOR;
+
     for (i = 0; i < item_num; i++)
         icon_door[i]->show();
-
 }
 
 void Home_Page::Door_Sat_Change(uint8_t door_type, uint8_t status)
@@ -183,8 +184,6 @@ void Home_Page::Door_Sat_Change(uint8_t door_type, uint8_t status)
         icon_door[door_type]->ft_light_enable();
     else
         icon_door[door_type]->ft_dark_enable();
-
-
 }
 
 void Home_Page::paintEvent(QPaintEvent *)
@@ -257,13 +256,17 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     show_item_data[HOME_ITEM_ID_GEAR_SAT]->set_text(strgear[gear_data]);
 
     /* Battery status */
-    batt_data = uint16_t(page_data[HOME_PGE_DATA_BATT_SAT_H] << 8 | page_data[HOME_PGE_DATA_BATT_SAT_L]);
+    batt_data = uint16_t(page_data[HOME_PGE_DATA_BATT_SAT_H] << 8 |
+        page_data[HOME_PGE_DATA_BATT_SAT_L]);
+
     batt_data = batt_data & BATTSAT_DATA_MASK;
     show_item_data[HOME_ITEM_ID_BATT_SAT]->set_text(strbatt[batt_data]);
 
 
     /* Instant battery consumption */
-    battconsum_data = uint16_t(page_data[HOME_PGE_DATA_BATT_CSUM_H] << 8 | page_data[HOME_PGE_DATA_BATT_CSUM_L]);
+    battconsum_data = uint16_t(page_data[HOME_PGE_DATA_BATT_CSUM_H] << 8 |
+        page_data[HOME_PGE_DATA_BATT_CSUM_L]);
+
     str_temp.sprintf("%d kw/100km", battconsum_data);
     show_item_data[HOME_ITEM_ID_IMM_PWR_CONSUMP]->set_text(str_temp);
 
@@ -291,7 +294,9 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     show_item_data[HOME_ITEM_ID_PRE_MILEAGE]->set_text(str_temp);
 
     /* available kilo */
-    availkilo_data = uint16_t(page_data[HOME_PGE_DATA_AVAI_KILO_H] << 8 | page_data[HOME_PGE_DATA_AVAI_KILO_L]);
+    availkilo_data = uint16_t(page_data[HOME_PGE_DATA_AVAI_KILO_H] << 8 |
+        page_data[HOME_PGE_DATA_AVAI_KILO_L]);
+
     str_temp.sprintf("%u km", availkilo_data);
     show_item_data[HOME_ITEM_ID_AVAILABLE_MILE]->set_text(str_temp);
 
@@ -374,7 +379,5 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     str_temp.sprintf("%f Mpa", behind_data);
     show_item_data[HOME_ITEM_ID_BEHIND_AIR_PRESSURE]->set_text(str_temp);
-
-
     memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
 }

@@ -14,7 +14,6 @@ WorkThread::WorkThread(QObject *parent, bool b) :
     ret = serialport->Serial_Port_Open(REC_UART_PORT, REC_UART_SPEED);
     if (ret)
         qDebug("Serial_Port_Open fail\n");
-
 }
 
 int WorkThread::do_checksum(uint8_t *data, uint16_t data_len, uint8_t check)
@@ -98,9 +97,8 @@ void PageCtl_Thread::run()
                     ret = cmd_receive->mThread->do_checksum(static_cast<uint8_t *>(&readbuf[buf_index + HEAD1_OFF]),
                                     uint16_t(data_sz + HEAD_SIZE),
                                     readbuf[buf_index + PAGE_DATA_OFF + data_sz]);
-                    if (ret) {
+                    if (ret)
                         qDebug("checksun fail\n");
-                    }
 
                     //5 = Page_Num + Meter[2] + Meter[1] + Meter[0]
                     m_carinfo_data.page_data_sz = data_sz - 4;
@@ -111,7 +109,6 @@ void PageCtl_Thread::run()
                     cmd_receive->pcarinfo_data = &m_carinfo_data;
 
                     /* qDebug("m_carinfo_data.page_number %d\n", m_carinfo_data.page_number); */
-
                     emit Triger_Page_Signal();
                 }
                 buf_index++;
@@ -223,24 +220,24 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
 void Cmd_Receive::Triger_Page()
 {
     QString objname[] = {PAGE_00,
-		PAGE_01,
-		PAGE_02,
-		PAGE_03,
-		PAGE_04,
-		PAGE_05,
-		PAGE_06,
-		PAGE_07,
-		PAGE_08,
-		PAGE_09,
-		PAGE_10,
-		PAGE_11,
-		PAGE_12,
-		PAGE_13,
-		PAGE_14,
-		PAGE_15,
-		PAGE_16,
-		PAGE_17,
-		PAGE_18};
+        PAGE_01,
+        PAGE_02,
+        PAGE_03,
+        PAGE_04,
+        PAGE_05,
+        PAGE_06,
+        PAGE_07,
+        PAGE_08,
+        PAGE_09,
+        PAGE_10,
+        PAGE_11,
+        PAGE_12,
+        PAGE_13,
+        PAGE_14,
+        PAGE_15,
+        PAGE_16,
+        PAGE_17,
+        PAGE_18};
 
     Frame_Page_Show(BAR_FRAME_OBJNAME);
     Frame_Page_Show(objname[pcarinfo_data->page_number - 1]);

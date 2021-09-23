@@ -39,16 +39,12 @@ void Frame_Page::Load_Background(QString image)
 {
     if (image.isNull())
         return;
-
-    qDebug("%s\n", __func__);
 }
 
 void Frame_Page::Enable_Icon_Light(int i)
 {
     if (i < 0)
         return;
-
-    qDebug("%s i=%d", __func__, i);
 }
 
 void Frame_Page::GetAckData(uint8_t *get_ackdata)

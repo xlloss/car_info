@@ -41,7 +41,6 @@ MainWindow::MainWindow(QWidget *parent)
     cmd_get->Register(dynamic_cast<Frame_Page *>(bar_frame));
 
     page_ctl->home_page->setWindowState(Qt::WindowActive);
-
     bar_frame->show();
     page_ctl->home_page->show();
 }
