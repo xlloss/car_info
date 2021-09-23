@@ -3,14 +3,13 @@
 #include "coordinate.h"
 #include "string/string.h"
 
-
-static QString door_name[3][2] = {
+static QString door_name[F_DOOR_NAME_NUM][F_DOOR_TYPE_NUM] = {
         {F_DOOR_TYPE0,  F_DOOR_TYPE1},
         {M_DOOR_TYPE0,  M_DOOR_TYPE1},
         {R_DOOR_TYPE0,  R_DOOR_TYPE1},
 };
 
-static int door_coord_xy[3][2] = {
+static int door_coord_xy[CARBUS_TYPE_NUM][2] = {
         {HOME_CARBUS_IMG_X,  HOME_CARBUS_IMG_Y},
         {HOME_CARBUS_IMG_X,  HOME_CARBUS_IMG_Y},
         {HOME_CARBUS_IMG_X,  HOME_CARBUS_IMG_Y},
@@ -38,7 +37,7 @@ static QString item2_text[HOME_ITEM_TEX2_NUM] = {
     HOME_ITEM_TEX_BEHIND_AIR_PRESSURE
 };
 
-static QString strgear[10] = {
+static QString strgear[GEAR_STR_NUM] = {
     GEAR_STR_ID0,
     GEAR_STR_ID1,
     GEAR_STR_ID2,
@@ -51,7 +50,7 @@ static QString strgear[10] = {
     GEAR_STR_ID9
 };
 
-static QString strbatt [4] = {
+static QString strbatt [BATT_SAT_STR_NUM] = {
     BATT_SAT_STR_ID0,
     BATT_SAT_STR_ID1,
     BATT_SAT_STR_ID2,

@@ -40,6 +40,9 @@
 #define DOOR_TYPE_ID_M 1
 #define DOOR_TYPE_ID_R 2
 
+#define F_DOOR_NAME_NUM 3
+#define F_DOOR_TYPE_NUM 2
+
 #define F_DOOR_TYPE0 ":/icon/FDoorType0.png"
 #define F_DOOR_TYPE1 ":/icon/FDoorType1.png"
 #define M_DOOR_TYPE0 ":/icon/MDoorType0.png"
@@ -66,6 +69,7 @@
 #define GEAR_FORW_5 0x0A
 #define GEAR_FORW_6 0x0B
 
+#define GEAR_STR_NUM 10
 #define GEAR_STR_ID0 "前進擋"
 #define GEAR_STR_ID1 "後退擋"
 #define GEAR_STR_ID2 "空擋"
@@ -82,6 +86,7 @@
 #define BATT_SAT2 2
 #define BATT_SAT3 3
 
+#define BATT_SAT_STR_NUM 4
 #define BATT_SAT_STR_ID0 "閒置"
 #define BATT_SAT_STR_ID1 "放電"
 #define BATT_SAT_STR_ID2 "充電"

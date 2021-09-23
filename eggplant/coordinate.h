@@ -55,6 +55,8 @@ enum {
 #define HOME_ITEM1_DATA_OFF 1
 #define HOME_ITEM2_DATA_OFF 1
 
+#define CARBUS_TYPE_NUM 3
+
 #define HOME_CARBUS_IMG_X 210
 #define HOME_CARBUS_IMG_Y 80
 
