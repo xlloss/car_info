@@ -70,28 +70,10 @@
 #define GEAR_FORW_5 0x0A
 #define GEAR_FORW_6 0x0B
 
-#define GEAR_STR_NUM 10
-#define GEAR_STR_ID0 "前進擋"
-#define GEAR_STR_ID1 "後退擋"
-#define GEAR_STR_ID2 "空擋"
-#define GEAR_STR_ID3 "PARK擋"
-#define GEAR_STR_ID4 "前進1檔"
-#define GEAR_STR_ID5 "前進2檔"
-#define GEAR_STR_ID6 "前進3檔"
-#define GEAR_STR_ID7 "前進4檔"
-#define GEAR_STR_ID8 "前進5檔"
-#define GEAR_STR_ID9 "前進6檔"
-
 #define BATT_SAT0 0
 #define BATT_SAT1 1
 #define BATT_SAT2 2
 #define BATT_SAT3 3
-
-#define BATT_SAT_STR_NUM 4
-#define BATT_SAT_STR_ID0 "閒置"
-#define BATT_SAT_STR_ID1 "放電"
-#define BATT_SAT_STR_ID2 "充電"
-#define BATT_SAT_STR_ID3 "異常"
 
 class Home_Page : public Frame_Page
 {

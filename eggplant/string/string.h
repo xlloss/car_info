@@ -31,6 +31,24 @@
 #define HOME_ITEM_TEX_BEHIND_AIR_PRESSURE "後儲氣筒氣壓值:"
 #define HOME_ITEM_TEX_ALARM_MSG "警報訊息"
 
+#define BATT_SAT_STR_NUM 4
+#define BATT_SAT_STR_ID0 "閒置"
+#define BATT_SAT_STR_ID1 "放電"
+#define BATT_SAT_STR_ID2 "充電"
+#define BATT_SAT_STR_ID3 "異常"
+
+#define GEAR_STR_NUM 10
+#define GEAR_STR_ID0 "前進擋"
+#define GEAR_STR_ID1 "後退擋"
+#define GEAR_STR_ID2 "空擋"
+#define GEAR_STR_ID3 "PARK擋"
+#define GEAR_STR_ID4 "前進1檔"
+#define GEAR_STR_ID5 "前進2檔"
+#define GEAR_STR_ID6 "前進3檔"
+#define GEAR_STR_ID7 "前進4檔"
+#define GEAR_STR_ID8 "前進5檔"
+#define GEAR_STR_ID9 "前進6檔"
+
 /******************************************
  *  main page
  ******************************************/
