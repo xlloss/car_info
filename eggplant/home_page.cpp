@@ -109,7 +109,7 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
         /* item 1 title */
         show_item[i] = new Show_text(this);
         show_item[i]->set_text(item1_text[i]);
-        show_item[i]->m_font_size = 12;
+        show_item[i]->m_font_size = HOME_ITEM_FONT_DEFAULT;
         show_item[i]->setGeometry(HOME_ITEM_TEX1_X,
             HOME_ITEM_TEX1_Y + HOME_ITEM_TEX1_Y_OFF * i,
             HOME_ITEM_TEX1_W, HOME_ITEM_TEX1_H);
@@ -117,7 +117,7 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
         /* item 1 data */
         show_item_data[i] = new Show_text(this);
         show_item_data[i]->set_text("--");
-        show_item_data[i]->m_font_size = 12;
+        show_item_data[i]->m_font_size = HOME_ITEM_FONT_DEFAULT;
         show_item_data[i]->m_text_x = 0;
         show_item_data[i]->m_text_y = 50;
 
@@ -131,7 +131,9 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
         /* item 2 title */
         show_item[i + HOME_ITEM_ID_MOTO_TEMP] = new Show_text(this);
         show_item[i + HOME_ITEM_ID_MOTO_TEMP]->set_text(item2_text[i]);
-        show_item[i + HOME_ITEM_ID_MOTO_TEMP]->m_font_size = 12;
+        show_item[i + HOME_ITEM_ID_MOTO_TEMP]->m_font_size =
+            HOME_ITEM_FONT_DEFAULT;
+
         show_item[i + HOME_ITEM_ID_MOTO_TEMP]->setGeometry(HOME_ITEM_TEX2_X,
             HOME_ITEM_TEX2_Y + HOME_ITEM_TEX2_Y_OFF * i,
             HOME_ITEM_TEX1_W, HOME_ITEM_TEX2_H);
@@ -140,21 +142,26 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
         /* item 2 data */
         show_item_data[i + HOME_ITEM_ID_MOTO_TEMP] = new Show_text(this);
         show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->set_text("--");
-        show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->m_font_size = 12;
+        show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->m_font_size =
+            HOME_ITEM_FONT_DEFAULT;
+
         show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->m_text_x = 0;
         show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->m_text_y = 50;
 
         item_str_start = item2_text[i].size() * \
-                show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->m_font_size + HOME_ITEM2_DATA_OFF;
+                show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->m_font_size +
+                    HOME_ITEM2_DATA_OFF;
 
-        show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->setGeometry(HOME_ITEM_TEX2_DATA_X + item_str_start,
+        show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->setGeometry(HOME_ITEM_TEX2_DATA_X +
+            item_str_start,
+
             HOME_ITEM_TEX2_DATA_Y + HOME_ITEM_TEX2_Y_OFF * i,
             HOME_ITEM_TEX2_W, HOME_ITEM_TEX2_H);
     }
 
     show_item[HOME_ITEM_ID_ALARM_MSG] = new Show_text(this);
     show_item[HOME_ITEM_ID_ALARM_MSG]->set_text(HOME_ITEM_TEX_ALARM_MSG);
-    show_item[HOME_ITEM_ID_ALARM_MSG]->m_font_size = 12;
+    show_item[HOME_ITEM_ID_ALARM_MSG]->m_font_size = HOME_ITEM_FONT_DEFAULT;
     show_item[HOME_ITEM_ID_ALARM_MSG]->setGeometry(HOME_ITEM_TEX3_X, HOME_ITEM_TEX3_Y,
         HOME_ITEM_TEX3_W, HOME_ITEM_TEX3_H);
 

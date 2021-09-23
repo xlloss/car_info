@@ -9,6 +9,7 @@
 
 #define HOME_PAGE_BACKGROUND ":/icon/background.png"
 #define HOME_PAGE_BUS ":/icon/bus-bg.png"
+#define HOME_ITEM_FONT_DEFAULT 12
 #define HOME_ITEM_TEX1_NUM 8
 #define HOME_ITEM_TEX2_NUM 8
 #define HOME_ITEM_TEX3_NUM 1
