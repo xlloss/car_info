@@ -86,6 +86,9 @@ void PageCtl_Thread::run()
             memcpy(readbuf, getcmdlistbuf->buf, sizeof(uint8_t) * uint8_t(getcmdlistbuf->buf_sz));
             readbuf[getcmdlistbuf->buf_sz] = 0;
 
+            for (int i = 0; i < getcmdlistbuf->buf_sz; i++)
+                qDebug("readbuf[%d] => 0x%x\n", i, readbuf[i]);
+
             buf_index = 0;
             while (buf_index < getcmdlistbuf->buf_sz) {
                 if (readbuf[buf_index + HEAD1_OFF] == HEAD1 &&
