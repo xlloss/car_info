@@ -84,7 +84,7 @@ enum HOME_ITEAM_ID {
 
 Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
 {
-    int i, item_num, item_str_start;
+    int i, item_num, item_str_start, size;
 
     this->setObjectName(HOME_PAGE_OBJNAME);
 
@@ -93,6 +93,8 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
         qDebug("image load fail");
         return;
     }
+
+    image_car_bus = image_car_bus.scaled(HOME_CARBUS_SCALE_X, HOME_CARBUS_SCALE_Y);
 
     item_num = HOME_ITEM_ID_RDOOR - HOME_ITEM_ID_FDOOR + 1;
     for (i = 0; i < item_num; i++) {
@@ -103,7 +105,6 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
             door_coord_xy[i][1], 420, 250);
     }
 
-    //image_car_bus = image_car_bus.scaled(294, 175);
     item_num = HOME_ITEM_ID_AVAILABLE_MILE - HOME_ITEM_ID_DATE_TIME + 1;
     for (i = 0; i < item_num; i++) {
         /* item 1 title */
@@ -121,10 +122,7 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
         show_item_data[i]->m_text_x = 0;
         show_item_data[i]->m_text_y = 50;
 
-        item_str_start =
-            item1_text[i].size() * show_item_data[i]->m_font_size + HOME_ITEM1_DATA_OFF;
-
-        show_item_data[i]->setGeometry(HOME_ITEM_TEX1_DATA_X + item_str_start,
+        show_item_data[i]->setGeometry(HOME_ITEM_TEX1_DATA_X + 100,
             HOME_ITEM_TEX1_DATA_Y + HOME_ITEM_TEX1_Y_OFF * i,
             HOME_ITEM_TEX1_W, HOME_ITEM_TEX1_H);
 
@@ -136,7 +134,7 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
 
         show_item[i + HOME_ITEM_ID_MOTO_TEMP]->setGeometry(HOME_ITEM_TEX2_X,
             HOME_ITEM_TEX2_Y + HOME_ITEM_TEX2_Y_OFF * i,
-            HOME_ITEM_TEX1_W, HOME_ITEM_TEX2_H);
+            HOME_ITEM_TEX2_W, HOME_ITEM_TEX2_H);
 
 
         /* item 2 data */
@@ -148,13 +146,7 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
         show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->m_text_x = 0;
         show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->m_text_y = 50;
 
-        item_str_start = item2_text[i].size() * \
-                show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->m_font_size +
-                    HOME_ITEM2_DATA_OFF;
-
-        show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->setGeometry(HOME_ITEM_TEX2_DATA_X +
-            item_str_start,
-
+        show_item_data[i + HOME_ITEM_ID_MOTO_TEMP]->setGeometry(HOME_ITEM_TEX2_DATA_X + 100,
             HOME_ITEM_TEX2_DATA_Y + HOME_ITEM_TEX2_Y_OFF * i,
             HOME_ITEM_TEX2_W, HOME_ITEM_TEX2_H);
     }

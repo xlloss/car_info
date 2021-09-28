@@ -86,9 +86,6 @@ void PageCtl_Thread::run()
             memcpy(readbuf, getcmdlistbuf->buf, sizeof(uint8_t) * uint8_t(getcmdlistbuf->buf_sz));
             readbuf[getcmdlistbuf->buf_sz] = 0;
 
-            for (int i = 0; i < getcmdlistbuf->buf_sz; i++)
-                qDebug("readbuf[%d] => 0x%x\n", i, readbuf[i]);
-
             buf_index = 0;
             while (buf_index < getcmdlistbuf->buf_sz) {
                 if (readbuf[buf_index + HEAD1_OFF] == HEAD1 &&
@@ -105,7 +102,6 @@ void PageCtl_Thread::run()
 
                     //5 = Page_Num + Meter[2] + Meter[1] + Meter[0]
                     m_carinfo_data.page_data_sz = data_sz - 4;
-
                     m_carinfo_data.page_number = readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF];
                     memcpy(m_carinfo_data.meter_sat, &readbuf[PAGE_DATA_OFF + METER_SAT_OFF], 3);
                     memcpy(m_carinfo_data.page_data, &readbuf[PAGE_DATA_OFF + PAGE_DAT_OFF], m_carinfo_data.page_data_sz);
