@@ -102,7 +102,7 @@ void PageCtl_Thread::run()
                         qDebug("checksun fail\n");
 
                     //qDebug("m_carinfo_data.page_number %d\n", readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF]);
-                    readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF] = (8 + 1);
+                    //readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF] = (4 + 1);
                     //5 = Page_Num + Meter[2] + Meter[1] + Meter[0]
                     m_carinfo_data.page_data_sz = data_sz - 4;
                     m_carinfo_data.page_number = readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF];

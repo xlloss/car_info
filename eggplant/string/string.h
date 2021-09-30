@@ -56,8 +56,8 @@
 #define MAIN_STR_NUM 10
 #define MAIN_STR_ID0 "里程與轉速訊息"
 #define MAIN_STR_ID1 "車內外及艙溫"
-#define MAIN_STR_ID2 "時間調整"
-#define MAIN_STR_ID3 "揚聲器設定"
+#define MAIN_STR_ID2 "系統設置"
+#define MAIN_STR_ID3 "N/A"
 #define MAIN_STR_ID4 "電輔件訊息"
 #define MAIN_STR_ID5 "控制器狀態訊息"
 #define MAIN_STR_ID6 "電池狀態訊息"
