@@ -109,7 +109,7 @@ void Main_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     item_num = MAIN_PAG_TOTAL_NUM;
     i = MAIN_PAG_ID_TIRE_PRESS;
     while (i < item_num) {
-        ret = (page_data[1] >> i) & 0x01;
+        ret = (page_data[1] >> (i - MAIN_PAG_ID_TIRE_PRESS)) & 0x01;
         if (ret)
             Enable_Icon_Light(i);
         else
