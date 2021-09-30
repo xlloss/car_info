@@ -235,8 +235,7 @@ void Cmd_Receive::Triger_Page()
         PAGE_14,
         PAGE_15,
         PAGE_16,
-        PAGE_17,
-        PAGE_18};
+        PAGE_17};
 
     Frame_Page_Show(BAR_FRAME_OBJNAME);
     Frame_Page_Show(objname[pcarinfo_data->page_number - 1]);
