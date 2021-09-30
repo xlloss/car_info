@@ -4,7 +4,7 @@
 
 #define REC_UART_PORT "/dev/ttyS1"
 #define REC_UART_SPEED 921600
-#define DISABLE_ACK 1
+#define ENABLE_ACK 0
 
 WorkThread::WorkThread(QObject *parent, bool b) :
     QThread(parent), Stop(b)
@@ -102,6 +102,7 @@ void PageCtl_Thread::run()
                         qDebug("checksun fail\n");
 
                     //qDebug("m_carinfo_data.page_number %d\n", readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF]);
+                    readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF] = (8 + 1);
                     //5 = Page_Num + Meter[2] + Meter[1] + Meter[0]
                     m_carinfo_data.page_data_sz = data_sz - 4;
                     m_carinfo_data.page_number = readbuf[PAGE_DATA_OFF + PAGE_NUM_OFF];
@@ -211,7 +212,7 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
         show_framepage->update();
     }
 
-#if DISABLE_ACK
+#if ENABLE_ACK
     show_framepage->GetAckData(get_ackdata);
     get_ackdata_len = 5 + (get_ackdata[3] << 8 | get_ackdata[4]);
     mThread->serialport->Serial_Port_Write(get_ackdata, get_ackdata_len);
@@ -222,7 +223,8 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
 
 void Cmd_Receive::Triger_Page()
 {
-    QString objname[] = {PAGE_00,
+    QString objname[] = {
+        PAGE_00,
         PAGE_01,
         PAGE_02,
         PAGE_03,

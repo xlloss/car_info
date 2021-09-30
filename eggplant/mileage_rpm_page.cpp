@@ -163,6 +163,8 @@ void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     uint8_t i, ret;
     QString str_temp;
 
+    return;
+
     memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
 
     total_km = double(page_data[3] << 24 |  page_data[2] << 16 | page_data[1] << 8 | page_data[0]);

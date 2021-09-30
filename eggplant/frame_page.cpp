@@ -55,6 +55,8 @@ void Frame_Page::GetAckData(uint8_t *get_ackdata)
     uint8_t get_checksum;
     uint16_t tot_data_len;
 
+    return;
+
     if (!get_ackdata)
         return;
 

@@ -139,18 +139,20 @@ BatTempInfo_Page::BatTempInfo_Page(QWidget *parent) : Frame_Page(parent)
 
     j = 0;
     for (i = 0; i < BATTINFO_TEX_COL_NUM; i++) {
-        for (k = 0; k < BATTINFO_TEX_ROW_NUM / 2; k++) {
+        for (k = 0; k < BATTINFO_TEX_ROW_NUM; k++) {
             show_sub_item[i][k] = new Show_text(this);
             show_sub_item[i][k]->set_text(battempinfo_sub_text[i][k]);
             show_sub_item[i][k]->setGeometry(battempinfo_sub_text_xy[j] + battempinfo_sub_text_x_offset[i],
-                                             battempinfo_sub_text_xy[j + 1], BATTEMP_SUB_TEXT_W, BATTEMP_SUB_TEXT_H);
+                                             battempinfo_sub_text_xy[j + 1],
+                                             BATTEMP_SUB_TEXT_W, BATTEMP_SUB_TEXT_H);
             show_sub_item[i][k]->m_font_size = 20;
             show_sub_item[i][k]->show();
 
             show_sub_item_info[i][k] = new Show_text(this);
             show_sub_item_info[i][k]->set_text(battempinfo_sub_text_msg[i][k]);
             show_sub_item_info[i][k]->setGeometry(battempinfo_sub_text_xy[j] + battempinfo_sub_text_msg_off[i],
-                                             battempinfo_sub_text_xy[j + 1], BATTEMP_SUB_TEXT_W, BATTEMP_SUB_TEXT_H);
+                                             battempinfo_sub_text_xy[j + 1],
+                                             BATTEMP_SUB_TEXT_W, BATTEMP_SUB_TEXT_H);
             show_sub_item_info[i][k]->m_font_size = 20;
             show_sub_item_info[i][k]->show();
             j = j + 2;

@@ -24,18 +24,19 @@ MainWindow::MainWindow(QWidget *parent)
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->mile_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->car_inout_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->system_setup_page));
-    cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->volume_adjust_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->eai_page));
+
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->control_msg1_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->control_msg2_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->bat_temp_info_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->bat_volt_info_page));
+    cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->bcm_page));
+
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->temp_module_page));
-    cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->sat_outmsg_page));
-    cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->sat_inmsg_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->sw_version_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->slave_sat_msg_page));
-    cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->bcm_page));
+    cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->sat_outmsg_page));
+    cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->sat_inmsg_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->tires_press_show_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->fw_update_show_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(bar_frame));
