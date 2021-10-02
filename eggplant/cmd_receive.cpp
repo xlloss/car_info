@@ -2,8 +2,8 @@
 #include "barframe.h"
 #include <QDebug>
 
-//#define REC_UART_PORT "/dev/ttyS1"
-#define REC_UART_PORT "/dev/ttyUSB0"
+#define REC_UART_PORT "/dev/ttyS1"
+//#define REC_UART_PORT "/dev/ttyUSB0"
 #define REC_UART_SPEED 921600
 #define ENABLE_ACK 0
 

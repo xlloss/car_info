@@ -173,7 +173,6 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
 
 void Home_Page::Door_Sat_Change(uint8_t door_type, uint8_t status)
 {
-    qDebug("%s door_type %d status %d\n", __func__, door_type, status);
     if (door_type == DOOR_TYPE_ID_R) {
         if (status == DOOR_STAUS_TYPE_DISABLE)
             icon_door[door_type]->hide();
