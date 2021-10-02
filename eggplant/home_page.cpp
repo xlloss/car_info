@@ -10,9 +10,12 @@ static QString door_name[F_DOOR_NAME_NUM][F_DOOR_TYPE_NUM] = {
 };
 
 static int door_coord_xy[CARBUS_TYPE_NUM][2] = {
-        {HOME_CARBUS_IMG_X,  HOME_CARBUS_IMG_Y},
-        {HOME_CARBUS_IMG_X,  HOME_CARBUS_IMG_Y},
-        {HOME_CARBUS_IMG_X,  HOME_CARBUS_IMG_Y},
+        //{HOME_FDOOR_IMG_X,  HOME_FDOOR_IMG_Y},
+        //{HOME_MDOOR_IMG_X,  HOME_MDOOR_IMG_Y},
+        //{HOME_RDOOR_IMG_X,  HOME_RDOOR_IMG_Y},
+        {150,  80},
+        {170,  80},
+        {185,  80},
 };
 
 static QString item1_text[HOME_ITEM_TEX1_NUM] = {
@@ -47,7 +50,9 @@ static QString strgear[GEAR_STR_NUM] = {
     GEAR_STR_ID6,
     GEAR_STR_ID7,
     GEAR_STR_ID8,
-    GEAR_STR_ID9
+    GEAR_STR_ID9,
+    GEAR_STR_ID10,
+    GEAR_STR_ID11,
 };
 
 static QString strbatt [BATT_SAT_STR_NUM] = {
@@ -84,7 +89,7 @@ enum HOME_ITEAM_ID {
 
 Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
 {
-    int i, item_num, item_str_start, size;
+    int i, item_num;
 
     this->setObjectName(HOME_PAGE_OBJNAME);
 
@@ -163,25 +168,33 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
     item_num = HOME_ITEM_DOOR_NUM - HOME_ITEM_ID_FDOOR;
 
     for (i = 0; i < item_num; i++)
-        icon_door[i]->show();
+        icon_door[i]->hide();
 }
 
 void Home_Page::Door_Sat_Change(uint8_t door_type, uint8_t status)
 {
+    qDebug("%s door_type %d status %d\n", __func__, door_type, status);
     if (door_type == DOOR_TYPE_ID_R) {
         if (status == DOOR_STAUS_TYPE_DISABLE)
-            icon_door[door_type]->ft_light_enable();
-        else
+            icon_door[door_type]->hide();
+        else {
             icon_door[door_type]->ft_dark_enable();
+            icon_door[door_type]->show();
+        }
         return;
     }
 
-    if (status == DOOR_STAUS_TYPE_DISABLE)
+    if (status == DOOR_STAUS_TYPE_DISABLE) {
         icon_door[door_type]->hide();
-    else if (status == DOOR_STAUS_TYPE_NOR_EN)
+    }
+    else if (status == DOOR_STAUS_TYPE_NOR_EN) {
+        icon_door[door_type]->show();
         icon_door[door_type]->ft_light_enable();
-    else
+    }
+    else {
+        icon_door[door_type]->show();
         icon_door[door_type]->ft_dark_enable();
+    }
 }
 
 void Home_Page::paintEvent(QPaintEvent *)
@@ -260,7 +273,6 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     batt_data = batt_data & BATTSAT_DATA_MASK;
     show_item_data[HOME_ITEM_ID_BATT_SAT]->set_text(strbatt[batt_data]);
 
-
     /* Instant battery consumption */
     battconsum_data = uint16_t(page_data[HOME_PGE_DATA_BATT_CSUM_H] << 8 |
         page_data[HOME_PGE_DATA_BATT_CSUM_L]);
@@ -276,11 +288,10 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     totalkilo_data = totalkilo_data * 0.005;
     if (totalkilo_data < 0)
         totalkilo_data = 0;
-    str_temp.sprintf("%f km", totalkilo_data * 0.005);
+    str_temp.sprintf("%f km", totalkilo_data);
     show_item_data[HOME_ITEM_ID_TOTAL_MILEAGE]->set_text(str_temp);
 
     /* current kilo */
-
     currkilo_data = double(page_data[HOME_PGE_DATA_CUR_KM_BIT3] << 24 |
                            page_data[HOME_PGE_DATA_CUR_KM_BIT2] << 16 |
                            page_data[HOME_PGE_DATA_CUR_KM_BIT1] << 8 |
@@ -319,7 +330,6 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     str_temp.sprintf("%i °C", battpack_data);
     show_item_data[HOME_ITEM_ID_BATT_PACK]->set_text(str_temp);
-
 
     /* small volt */
     smallvolt_data = page_data[24];

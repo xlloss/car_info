@@ -51,6 +51,8 @@
 #define R_DOOR_TYPE0 ":/icon/RDoorType0.png"
 #define R_DOOR_TYPE1 ":/icon/RDoorType1.png"
 
+#define RAMP_BOARD ":/icon/rampoard.png"
+
 #define DOOR_STAUS_TYPE_DISABLE 0
 #define DOOR_STAUS_TYPE_NOR_EN 1
 #define DOOR_STAUS_TYPE_FOC_EN 2
@@ -85,6 +87,7 @@ public:
     Show_text *show_item_data[HOME_ITEM_TEX_ALL_NUM];
 
     Icon_btn *icon_door[3];
+    //Icon_btn *ramp_board;
     void Door_Sat_Change(uint8_t door_type, uint8_t status);
 
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
