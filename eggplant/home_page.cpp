@@ -169,6 +169,12 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
 
     for (i = 0; i < item_num; i++)
         icon_door[i]->hide();
+
+    show_version = new Show_text(this);
+    show_version->set_text("R2021-10-02.1");
+    show_version->m_font_size = 8;
+    show_version->setGeometry(10, 350, 100, 50);
+    show_version->show();
 }
 
 void Home_Page::Door_Sat_Change(uint8_t door_type, uint8_t status)
@@ -205,6 +211,7 @@ void Home_Page::paintEvent(QPaintEvent *)
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 
     painter.drawImage(HOME_CARBUS_IMG_X, HOME_CARBUS_IMG_Y, image_car_bus);
+    painter.drawText(100, 150, "2021-10-02");
 }
 
 void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
