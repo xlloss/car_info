@@ -3,6 +3,8 @@
 #include "coordinate.h"
 #include "string/string.h"
 
+#define VERSION "R2021-10-04.2"
+
 static QString door_name[F_DOOR_NAME_NUM][F_DOOR_TYPE_NUM] = {
         {F_DOOR_TYPE0,  F_DOOR_TYPE1},
         {M_DOOR_TYPE0,  M_DOOR_TYPE1},
@@ -171,7 +173,7 @@ Home_Page::Home_Page(QWidget *parent) : Frame_Page(parent)
         icon_door[i]->hide();
 
     show_version = new Show_text(this);
-    show_version->set_text("R2021-10-02.1");
+    show_version->set_text(VERSION);
     show_version->m_font_size = 8;
     show_version->setGeometry(10, 350, 100, 50);
     show_version->show();
@@ -294,7 +296,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     totalkilo_data = totalkilo_data * 0.005;
     if (totalkilo_data < 0)
         totalkilo_data = 0;
-    str_temp.sprintf("%f km", totalkilo_data);
+    str_temp.sprintf("%.1f km", totalkilo_data);
     show_item_data[HOME_ITEM_ID_TOTAL_MILEAGE]->set_text(str_temp);
 
     /* current kilo */
@@ -305,7 +307,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     currkilo_data = currkilo_data * 0.005;
     if (currkilo_data < 0)
         currkilo_data = 0;
-    str_temp.sprintf("%f km", currkilo_data);
+    str_temp.sprintf("%.1f km", currkilo_data);
     show_item_data[HOME_ITEM_ID_PRE_MILEAGE]->set_text(str_temp);
 
     /* available kilo */
@@ -343,7 +345,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     if (smallvolt_data < 0)
         smallvolt_data = 0;
 
-    str_temp.sprintf("%f V", smallvolt_data);
+    str_temp.sprintf("%.1f V", smallvolt_data);
     show_item_data[HOME_ITEM_ID_SMALL_VOLAT]->set_text(str_temp);
 
     /* total volt */
@@ -352,7 +354,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     if (totalvolt_data < 0)
         totalvolt_data = 0;
 
-    str_temp.sprintf("%f V", totalvolt_data);
+    str_temp.sprintf("%.1f V", totalvolt_data);
     show_item_data[HOME_ITEM_ID_TOTAL_VOLT]->set_text(str_temp);
 
     /* total curr */
@@ -361,7 +363,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     if (totalcurr_data < 0)
         totalcurr_data = 0;
 
-    str_temp.sprintf("%f A", totalcurr_data);
+    str_temp.sprintf("%.1f A", totalcurr_data);
     show_item_data[HOME_ITEM_ID_TOTAL_CURREN]->set_text(str_temp);
 
 
@@ -371,7 +373,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     if (battsoc_data < 0)
         battsoc_data = 0;
 
-    str_temp.sprintf("%f  %c", battsoc_data, 0x25);
+    str_temp.sprintf("%.1f  %c", battsoc_data, 0x25);
     show_item_data[HOME_ITEM_ID_BATT_SOC]->set_text(str_temp);
 
 
@@ -381,7 +383,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     if (frontair_data < 0)
         frontair_data = 0;
 
-    str_temp.sprintf("%f Mpa", frontair_data);
+    str_temp.sprintf("%.2f Mpa", frontair_data);
     show_item_data[HOME_ITEM_ID_FRONT_AIR_PRESSURE]->set_text(str_temp);
 
 
@@ -391,7 +393,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     if (behind_data < 0)
         behind_data = 0;
 
-    str_temp.sprintf("%f Mpa", behind_data);
+    str_temp.sprintf("%.2f Mpa", behind_data);
     show_item_data[HOME_ITEM_ID_BEHIND_AIR_PRESSURE]->set_text(str_temp);
     memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
 }
