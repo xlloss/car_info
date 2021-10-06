@@ -2,10 +2,10 @@
 #include "barframe.h"
 #include <QDebug>
 
-#define REC_UART_PORT "/dev/ttyS1"
-//#define REC_UART_PORT "/dev/ttyUSB0"
+//#define REC_UART_PORT "/dev/ttyS1"
+#define REC_UART_PORT "/dev/ttyUSB0"
 #define REC_UART_SPEED 921600
-#define ENABLE_ACK 0
+#define ENABLE_ACK 1
 
 WorkThread::WorkThread(QObject *parent, bool b) :
     QThread(parent), Stop(b)
@@ -37,8 +37,10 @@ int WorkThread::do_checksum(uint8_t *data, uint16_t data_len, uint8_t check)
 void WorkThread::run()
 {
     QByteArray rdata, cmdbuf;
+    uint8_t test_get_ackdata[10] = {0x00, 0x01, 0x02, 0x03, 0x04};
 
     QThread::msleep(100);
+
     while(1) {
         serialport->Serial_Port_Read(&rdata);
         if (rdata.size() <= 0)
@@ -51,6 +53,8 @@ void WorkThread::run()
 
         rdata.clear();
         rdata.resize(0);
+
+        serialport->Serial_Port_Write(test_get_ackdata, 5);
 
 gotsleep:
         msleep(10);
@@ -121,7 +125,6 @@ void PageCtl_Thread::run()
             cmd_receive->mThread->cmd_list.removeAt(cmd_index);
             delete getcmdlistbuf;
         }
-
 do_sleep:
         QThread::msleep(10);
     }
@@ -214,9 +217,10 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
     }
 
 #if ENABLE_ACK
-    show_framepage->GetAckData(get_ackdata);
-    get_ackdata_len = 5 + (get_ackdata[3] << 8 | get_ackdata[4]);
-    mThread->serialport->Serial_Port_Write(get_ackdata, get_ackdata_len);
+    //show_framepage->GetAckData(get_ackdata);
+    //get_ackdata_len = 5 + (get_ackdata[3] << 8 | get_ackdata[4]);
+    //mThread->serialport->Serial_Port_Write(get_ackdata, get_ackdata_len);
+    //mThread->serialport->Serial_Port_Write(test_get_ackdata, 5);
 #endif
 
     current_page = show_objname;

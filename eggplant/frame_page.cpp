@@ -51,7 +51,7 @@ void Frame_Page::GetAckData(uint8_t *get_ackdata)
 {
     #define HEAD1 0x5A
     #define HEAD2 0x87
-    #define PAGE_RQ 0x0C
+    #define PAGE_RP 0x0C
     uint8_t get_checksum;
     uint16_t tot_data_len;
 
@@ -69,7 +69,7 @@ void Frame_Page::GetAckData(uint8_t *get_ackdata)
 
     get_ackdata[0] = HEAD1;
     get_ackdata[1] = HEAD2;
-    get_ackdata[2] = PAGE_RQ;
+    get_ackdata[2] = PAGE_RP;
 
     get_ackdata[3] = ((m_protolcol_data.page_data_sz + 4) & 0xFF00) >> 8;
     get_ackdata[4] = (m_protolcol_data.page_data_sz + 4) & 0x00FF;
