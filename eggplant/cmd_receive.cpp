@@ -37,7 +37,6 @@ int WorkThread::do_checksum(uint8_t *data, uint16_t data_len, uint8_t check)
 void WorkThread::run()
 {
     QByteArray rdata, cmdbuf;
-    uint8_t test_get_ackdata[10] = {0x00, 0x01, 0x02, 0x03, 0x04};
 
     QThread::msleep(100);
 
@@ -53,8 +52,6 @@ void WorkThread::run()
 
         rdata.clear();
         rdata.resize(0);
-
-        serialport->Serial_Port_Write(test_get_ackdata, 5);
 
 gotsleep:
         msleep(10);
@@ -217,10 +214,9 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
     }
 
 #if ENABLE_ACK
-    //show_framepage->GetAckData(get_ackdata);
-    //get_ackdata_len = 5 + (get_ackdata[3] << 8 | get_ackdata[4]);
-    //mThread->serialport->Serial_Port_Write(get_ackdata, get_ackdata_len);
-    //mThread->serialport->Serial_Port_Write(test_get_ackdata, 5);
+    show_framepage->GetAckData(get_ackdata);
+    get_ackdata_len = 6 + (get_ackdata[3] << 8 | get_ackdata[4]);
+    mThread->serialport->Serial_Port_Write(get_ackdata, get_ackdata_len);
 #endif
 
     current_page = show_objname;
