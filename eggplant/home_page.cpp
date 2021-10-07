@@ -369,7 +369,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     /* battery soc */
     battsoc_data = page_data[30] << 8 | page_data[29];
-    battsoc_data = battsoc_data * 0.1;
+    battsoc_data = battsoc_data * 0.4;
     if (battsoc_data < 0)
         battsoc_data = 0;
 
