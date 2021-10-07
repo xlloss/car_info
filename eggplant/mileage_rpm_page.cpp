@@ -163,27 +163,25 @@ void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     uint8_t i, ret;
     QString str_temp;
 
-    return;
-
     memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
 
     total_km = double(page_data[3] << 24 |  page_data[2] << 16 | page_data[1] << 8 | page_data[0]);
     total_km = total_km * 0.005;
-    str_temp.sprintf("%f km", total_km);
+    str_temp.sprintf("%1f km", total_km);
     show_data[MILE_PAGE_TOTAL_KM_DATA]->set_text(str_temp);
 
     short_km_a = double(page_data[7] << 24 |  page_data[6] << 16 | page_data[5] << 8 | page_data[4]);
     short_km_a = short_km_a * 0.005;
-    str_temp.sprintf("%f km", short_km_a);
+    str_temp.sprintf("%1f km", short_km_a);
     show_data[MILE_PAGE_SHORT_KM_A_DATA]->set_text(str_temp);
 
     short_km_b = double(page_data[11] << 24 |  page_data[10] << 16 | page_data[9] << 8 | page_data[8]);
     short_km_b = short_km_a * 0.005;
-    str_temp.sprintf("%f km", short_km_b);
+    str_temp.sprintf("%1f km", short_km_b);
     show_data[MILE_PAGE_SHORT_KM_B_DATA]->set_text(str_temp);
 
     total_rpm = double(page_data[13] << 8 |  page_data[12]);
-    str_temp.sprintf("%f rpm", total_rpm);
+    str_temp.sprintf("%1f rpm", total_rpm);
     show_data[MILE_PAGE_TOTAL_RPM_DATA]->set_text(str_temp);
 
     rpm_time_a_h = page_data[16];
@@ -207,4 +205,5 @@ void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
             Disable_Icon_Light(i);
         i++;
     }
+    memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
 }

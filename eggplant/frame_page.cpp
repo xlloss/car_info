@@ -72,10 +72,8 @@ void Frame_Page::GetAckData(uint8_t *get_ackdata)
     get_ackdata[3] = ((m_protolcol_data.page_data_sz + 4) & 0xFF00) >> 8;
     get_ackdata[4] = (m_protolcol_data.page_data_sz + 4) & 0x00FF;
     get_ackdata[5] = m_protolcol_data.page_number;
-
     memcpy(&get_ackdata[6], m_protolcol_data.meter_sat, 3);
     memcpy(&get_ackdata[9], &m_protolcol_data.page_data, m_protolcol_data.page_data_sz);
-
     tot_data_len = uint16_t((get_ackdata[3] << 8 | get_ackdata[4]) + 6);
     get_checksum = do_checksum(get_ackdata, tot_data_len - 1);
     get_ackdata[tot_data_len - 1] = get_checksum;
