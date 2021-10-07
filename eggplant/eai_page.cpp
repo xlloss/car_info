@@ -321,4 +321,5 @@ void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         str_tmp.sprintf("%s\n", "完成");
 
     show_sub_data[ELEACC_INFO_ITEM_K][ELEACC_INFO_K7]->set_text(str_tmp);
+    memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
 }

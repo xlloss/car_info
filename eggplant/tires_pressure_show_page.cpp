@@ -225,4 +225,6 @@ void TiresPressShow_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         str_tmp.sprintf("%i °C", i8_data_temp);
         tires_value_temp[tires_order[j]]->set_text(str_tmp);
     }
+
+    memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
 }

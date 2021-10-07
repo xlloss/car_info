@@ -109,6 +109,5 @@ void CarInOut_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     str_temp.sprintf("%i °C", car_meter_temp);
     show_item_data[CAR_METER_TEMP]->set_text(str_temp);
-
-
+    memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
 }
