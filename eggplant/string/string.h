@@ -38,14 +38,14 @@
 #define BATT_SAT_STR_ID3 "異常"
 
 #define GEAR_STR_NUM 12
-#define GEAR_STR_ID0 "錯誤"
+#define GEAR_STR_ID0 "無"
 #define GEAR_STR_ID1 "前進擋"
 #define GEAR_STR_ID2 "後退擋"
 #define GEAR_STR_ID3 "前進1檔"
 #define GEAR_STR_ID4 "空擋"
 #define GEAR_STR_ID5 "前進2檔"
 #define GEAR_STR_ID6 "前進3檔"
-#define GEAR_STR_ID7 "錯誤"
+#define GEAR_STR_ID7 "無"
 #define GEAR_STR_ID8 "PARK檔"
 #define GEAR_STR_ID9 "前進4檔"
 #define GEAR_STR_ID10 "前進5檔"
