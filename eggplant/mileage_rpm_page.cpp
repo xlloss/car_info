@@ -198,7 +198,7 @@ void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     i = 0;
     while (i < BTN_NUM) {
-        ret = (page_data[18] >> i) & 0x01;
+        ret = (page_data[20] >> i) & 0x01;
         if (ret)
             Enable_Icon_Light(i);
         else
