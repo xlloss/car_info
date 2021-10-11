@@ -75,37 +75,34 @@ void CarInOut_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
 
-    car_in_temp = int8_t(page_data[0]);
-    car_in_temp = car_in_temp - 40;
+    car_in_temp = int8_t((page_data[0] >> 1) - 30);
     if (car_in_temp < -40)
         car_in_temp = -40;
 
-    if (car_in_temp > 100)
-        car_in_temp = 100;
+    if (car_in_temp > 97)
+        car_in_temp = 97;
 
     str_temp.sprintf("%i °C", car_in_temp);
     show_item_data[CAR_IN_TEMP]->set_text(str_temp);
 
 
-    car_out_temp = int8_t(page_data[1]);
-    car_out_temp = car_out_temp - 40;
+    car_out_temp = int8_t((page_data[1] >> 1) - 30);
     if (car_out_temp < -40)
         car_out_temp = -40;
 
-    if (car_out_temp > 100)
-        car_out_temp = 100;
+    if (car_out_temp > 97)
+        car_out_temp = 97;
 
     str_temp.sprintf("%i °C", car_out_temp);
     show_item_data[CAR_OUT_TEMP]->set_text(str_temp);
 
 
-    car_meter_temp = int8_t(page_data[2]);
-    car_meter_temp = car_meter_temp - 40;
+    car_meter_temp = int8_t((page_data[2] >> 1) - 30);
     if (car_meter_temp < -40)
         car_meter_temp = -40;
 
-    if (car_meter_temp > 100)
-        car_meter_temp = 100;
+    if (car_meter_temp > 97)
+        car_meter_temp = 97;
 
     str_temp.sprintf("%i °C", car_meter_temp);
     show_item_data[CAR_METER_TEMP]->set_text(str_temp);
