@@ -121,7 +121,7 @@ void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     else if (d_data_tmp < 0 )
         d_data_tmp = 0;
 
-    str_tmp.sprintf("%f\n", d_data_tmp);
+    str_tmp.sprintf("%d rpm", uint32_t(d_data_tmp));
     show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I1]->set_text(str_tmp);
 
     /* for DATA I-2 */
@@ -132,18 +132,18 @@ void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     else if (d_data_tmp < 0 )
         d_data_tmp = 0;
 
-    str_tmp.sprintf("%f\n", d_data_tmp);
+    str_tmp.sprintf("%.1f V", d_data_tmp);
     show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I2]->set_text(str_tmp);
 
     /* for DATA I-3 */
     d_data_tmp = double(page_data[4]);
-    d_data_tmp = d_data_tmp * 0.1;
+    d_data_tmp = d_data_tmp;
     if (d_data_tmp > 1000 )
         d_data_tmp = 1000; 
     else if (d_data_tmp < 0 )
         d_data_tmp = 0;
 
-    str_tmp.sprintf("%f A\n", d_data_tmp);
+    str_tmp.sprintf("%d A", uint32_t(d_data_tmp));
     show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I3]->set_text(str_tmp);
 
     /* for DATA I-4 */
@@ -154,22 +154,22 @@ void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     else if (d_data_tmp < -40 )
         d_data_tmp = -40;
 
-    str_tmp.sprintf("%f °C\n", d_data_tmp);
+    str_tmp.sprintf("%i °C", int32_t(d_data_tmp));
     show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I4]->set_text(str_tmp);
 
     /* for DATA I-5 */
     u8_data_tmp = page_data[6];
     u8_data_tmp = u8_data_tmp & 0x0F;
-    str_tmp.sprintf("%d \n", u8_data_tmp);
+    str_tmp.sprintf("%d", u8_data_tmp);
     show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I5]->set_text(str_tmp);
 
     /* for DATA I-6 */
     u8_data_tmp = page_data[6];
     u8_data_tmp = (u8_data_tmp & 0x03 << 4) >> 4;
     if (u8_data_tmp == 1)
-        str_tmp.sprintf("%s\n", "作動");
+        str_tmp.sprintf("%s", "作動");
     else
-        str_tmp.sprintf("%s\n", "停止");
+        str_tmp.sprintf("%s", "停止");
 
     show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I6]->set_text(str_tmp);
 
@@ -177,9 +177,9 @@ void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     u8_data_tmp = page_data[6];
     u8_data_tmp = (u8_data_tmp & 0x01 << 6) >> 6;
     if (u8_data_tmp == 1)
-        str_tmp.sprintf("%s\n", "完成");
+        str_tmp.sprintf("%s", "完成");
     else
-        str_tmp.sprintf("%s\n", "未完成");
+        str_tmp.sprintf("%s", "未完成");
 
     show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I7]->set_text(str_tmp);
 
@@ -192,18 +192,18 @@ void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     else if (d_data_tmp < 0 )
         d_data_tmp = 0;
 
-    str_tmp.sprintf("%f V\n", d_data_tmp);
+    str_tmp.sprintf("%.1f V", d_data_tmp);
     show_sub_data[ELEACC_INFO_ITEM_J][ELEACC_INFO_J1]->set_text(str_tmp);
 
 
     /* for DATA J-2 */
     u8_data_tmp = page_data[9];
-    str_tmp.sprintf("%d A\n", u8_data_tmp);
+    str_tmp.sprintf("%d A", u8_data_tmp);
     show_sub_data[ELEACC_INFO_ITEM_J][ELEACC_INFO_J2]->set_text(str_tmp);
 
     /* for DATA J-3 */
     u8_data_tmp = page_data[10];
-    str_tmp.sprintf("%d A\n", u8_data_tmp);
+    str_tmp.sprintf("%d A", u8_data_tmp);
     show_sub_data[ELEACC_INFO_ITEM_J][ELEACC_INFO_J3]->set_text(str_tmp);
 
 
@@ -215,37 +215,37 @@ void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     else if (d_data_tmp < -40 )
         d_data_tmp = -40;
 
-    str_tmp.sprintf("%f °C\n", d_data_tmp);
+    str_tmp.sprintf("%i °C", int32_t(d_data_tmp));
     show_sub_data[ELEACC_INFO_ITEM_J][ELEACC_INFO_J4]->set_text(str_tmp);
 
 
     /* for DATA J-5 */
     u8_data_tmp = page_data[12];
     u8_data_tmp = u8_data_tmp & 0x0F;
-    str_tmp.sprintf("%d \n", u8_data_tmp);
+    str_tmp.sprintf("%d", u8_data_tmp);
     show_sub_data[ELEACC_INFO_ITEM_J][ELEACC_INFO_J5]->set_text(str_tmp);
 
     /* for DATA J-6 */
     u8_data_tmp = page_data[12];
-    u8_data_tmp = (u8_data_tmp & (0x03 << 4) >> 4);
-    if (u8_data_tmp == 0)
-        str_tmp.sprintf("%s\n", "停止");
-    else if (u8_data_tmp == 1)
-        str_tmp.sprintf("%s\n", "作動");
-    else
-        str_tmp.sprintf("%s\n", "異常");
+    u8_data_tmp = ((u8_data_tmp >> 4) & 0x03);
 
-    show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I6]->set_text(str_tmp);
+    if (u8_data_tmp == 0)
+        str_tmp.sprintf("%s", "停止");
+    else if (u8_data_tmp == 1)
+        str_tmp.sprintf("%s", "作動");
+    else
+        str_tmp.sprintf("%s", "異常");
+    show_sub_data[ELEACC_INFO_ITEM_J][ELEACC_INFO_J6]->set_text(str_tmp);
 
     /* for DATA J-7 */
     u8_data_tmp = page_data[12];
     u8_data_tmp = (u8_data_tmp & (0x01 << 6)) >> 6;
     if (u8_data_tmp == 0)
-        str_tmp.sprintf("%s\n", "未完成");
+        str_tmp.sprintf("%s", "未完成");
     else
-        str_tmp.sprintf("%s\n", "完成");
+        str_tmp.sprintf("%s", "完成");
 
-    show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I6]->set_text(str_tmp);
+    show_sub_data[ELEACC_INFO_ITEM_J][ELEACC_INFO_I7]->set_text(str_tmp);
 
 
     /* for DATA K-1 */
@@ -256,18 +256,18 @@ void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     else if (d_data_tmp < 0 )
         d_data_tmp = 0;
 
-    str_tmp.sprintf("%f rpm\n", d_data_tmp);
+    str_tmp.sprintf("%d rpm", uint32_t(d_data_tmp));
     show_sub_data[ELEACC_INFO_ITEM_K][ELEACC_INFO_K1]->set_text(str_tmp);
 
     /* for DATA K-2 */
     d_data_tmp = double(page_data[16] << 8 | page_data[15]);
     d_data_tmp = d_data_tmp * 0.1;
-    if (d_data_tmp > 1000 )
+    if (d_data_tmp > 1000)
         d_data_tmp = 1000; 
     else if (d_data_tmp < 0 )
         d_data_tmp = 0;
 
-    str_tmp.sprintf("%f V\n", d_data_tmp);
+    str_tmp.sprintf("%.1f V", d_data_tmp);
     show_sub_data[ELEACC_INFO_ITEM_K][ELEACC_INFO_K2]->set_text(str_tmp);
 
     /* for DATA K-3 */
@@ -278,7 +278,7 @@ void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     else if (d_data_tmp < 0 )
         d_data_tmp = 0;
 
-    str_tmp.sprintf("%f A\n", d_data_tmp);
+    str_tmp.sprintf("%d A", uint32_t(d_data_tmp));
     show_sub_data[ELEACC_INFO_ITEM_K][ELEACC_INFO_K3]->set_text(str_tmp);
 
     /* for DATA K-4 */
@@ -289,25 +289,25 @@ void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     else if (d_data_tmp < -40 )
         d_data_tmp = -40;
 
-    str_tmp.sprintf("%f °C\n", d_data_tmp);
+    str_tmp.sprintf("%i °C", int32_t(d_data_tmp));
     show_sub_data[ELEACC_INFO_ITEM_K][ELEACC_INFO_K4]->set_text(str_tmp);
 
     /* for DATA K-5 */
     u8_data_tmp = page_data[19];
     u8_data_tmp = u8_data_tmp & 0x0F;
-    str_tmp.sprintf("%d \n", u8_data_tmp);
+    str_tmp.sprintf("%d", u8_data_tmp);
     show_sub_data[ELEACC_INFO_ITEM_K][ELEACC_INFO_K5]->set_text(str_tmp);
 
 
     /* for DATA K-6 */
     u8_data_tmp = page_data[19];
-    u8_data_tmp = (u8_data_tmp & (0x03 << 4) >> 4);
+    u8_data_tmp = (u8_data_tmp >> 4) & 0x03;
     if (u8_data_tmp == 0)
-        str_tmp.sprintf("%s\n", "停止");
+        str_tmp.sprintf("%s", "停止");
     else if (u8_data_tmp == 1)
-        str_tmp.sprintf("%s\n", "作動");
+        str_tmp.sprintf("%s", "作動");
     else
-        str_tmp.sprintf("%s\n", "異常");
+        str_tmp.sprintf("%s", "異常");
 
     show_sub_data[ELEACC_INFO_ITEM_K][ELEACC_INFO_K6]->set_text(str_tmp);
 
@@ -315,10 +315,12 @@ void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     /* for DATA K-7 */
     u8_data_tmp = page_data[19];
     u8_data_tmp = (u8_data_tmp & (0x01 << 6)) >> 6;
+    qDebug("page_data[19] 0x%x\n", page_data[19]);
+    qDebug("u8_data_tmp 0x%x\n", u8_data_tmp);
     if (u8_data_tmp == 0)
-        str_tmp.sprintf("%s\n", "未完成");
+        str_tmp.sprintf("%s", "未完成");
     else
-        str_tmp.sprintf("%s\n", "完成");
+        str_tmp.sprintf("%s", "完成");
 
     show_sub_data[ELEACC_INFO_ITEM_K][ELEACC_INFO_K7]->set_text(str_tmp);
     memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));

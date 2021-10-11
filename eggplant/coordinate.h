@@ -233,13 +233,13 @@ enum {
  *****************************/
 
 #define EAI_MASTER_TEXT_X 30
-#define EAI_MASTER_TEXT_Y 15
+#define EAI_MASTER_TEXT_Y 55
 #define EAI_MASTER_TEXT_W 220
 #define EAI_MASTER_TEXT_H 50
 #define EAI_MASTER_TEXT_GAP 50
 
 #define EAI_SUB_TEXT_X 30
-#define EAI_SUB_TEXT_Y 55
+#define EAI_SUB_TEXT_Y 95
 #define EAI_SUB_TEXT_W 200
 #define EAI_SUB_TEXT_H 45
 #define EAI_SUB_TEXT_GAP 45
