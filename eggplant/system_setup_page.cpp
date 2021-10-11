@@ -94,6 +94,23 @@ static QString sys_msg_data[12] =
     "否",//11
 };
 
+static QString sys_msg_week[7] =
+{
+    "一",
+    "二",
+    "三",
+    "四",
+    "五",
+    "六",
+    "日",
+};
+
+static QString sys_msg_factory[2] =
+{
+    "ON",
+    "OFF",
+};
+
 static int sys_btn_txt_x[6] = {25, 35, 35, 25, 45, 25};
 static int sys_btn_txt_y[6] = {30, 30, 30, 30, 30, 30};
 
@@ -155,9 +172,10 @@ SystemSetup_Page::SystemSetup_Page(QWidget *parent) : Frame_Page(parent)
         str_len_data = sys_msg_data[i].length() * 20;
         show_item_data[i] = new Show_text(this);
         show_item_data[i]->set_text(sys_msg_data[i]);
-        show_item_data[i]->setGeometry(sys_data_msg_x[i], sys_data_msg_y[i], str_len_data + 10, 50);
+        show_item_data[i]->setGeometry(sys_data_msg_x[i], sys_data_msg_y[i], str_len_data + 20, 50);
         show_item_data[i]->hide();
     }
+
 }
 
 void SystemSetup_Page::paintEvent(QPaintEvent *)
@@ -199,14 +217,14 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
             show_item[i]->hide();
             show_item_data[i]->hide();
         }
-
-        return;
+        goto exit;
     }
 
     /* clean all */
     for (i = SYS_BTN_ID0_MILEAGE; i < SYS_BTN_END; i++)
         Disable_Icon_Light(i);
 
+    /* hide all */
     for (i = SYS_DATA_MSG_MILEAGE; i < SYS_DATA_MSG_END; i++) {
         show_item[i]->hide();
         show_item_data[i]->hide();
@@ -241,7 +259,6 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         show_item_data[data_index]->text_color = QColor(0, 204, 240);
     else
         show_item_data[data_index]->text_color = Qt::white;
-
 
     if (u8_data_tmp == ID4_DATE_TIME) {
         QColor txt_color_white, txt_color_geen;
@@ -287,7 +304,6 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     }
 
     u8_data_left = u8_data_tmp;
-    printf("u8_data_left %d\n", u8_data_left);
 
     //Data for Mile
     if (u8_data_left == ID1_DATE_MILEAGE) {
@@ -300,12 +316,16 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         show_item[SYS_DATA_MSG_MILEAGE]->show();
         show_item_data[SYS_DATA_MSG_MILEAGE]->set_text(str_tmp);
         show_item_data[SYS_DATA_MSG_MILEAGE]->show();
-        return;
+        goto exit;
     }
 
     //Data for Alarm
     if (u8_data_left == ID2_DATE_ALARM) {
-        u8_data_tmp = (page_data[3] & (0x0F << 2)) >> 2;
+        qDebug("page_data[3] 0x%x\n", page_data[3]);
+        u8_data_tmp = (page_data[3] & (0x0F << 1)) >> 1;
+
+        qDebug("u8_data_tmp 0x%x\n", u8_data_tmp);
+
         if (u8_data_tmp == 0)
             str_tmp.sprintf("1");
         else if (u8_data_tmp == 1)
@@ -316,7 +336,7 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         show_item[SYS_DATA_MSG_ALARM]->show();
         show_item_data[SYS_DATA_MSG_ALARM]->set_text(str_tmp);
         show_item_data[SYS_DATA_MSG_ALARM]->show();
-        return;
+        goto exit;
     }
 
     //Data for Btn Volume
@@ -330,14 +350,14 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         show_item[SYS_DATA_MSG_BTNVOLUM]->show();
         show_item_data[SYS_DATA_MSG_BTNVOLUM]->set_text(str_tmp);
         show_item_data[SYS_DATA_MSG_BTNVOLUM]->show();
-        return;
+        goto exit;
     }
 
     //Year-Date-Time
     if (u8_data_left == ID4_DATE_TIME) {
         //Data for Year
         u8_data_tmp = page_data[4];
-        str_tmp.sprintf("%x", u8_data_tmp);
+        str_tmp.sprintf("20%x", u8_data_tmp);
         show_item_data[SYS_DATA_MSG_YEAR]->set_text(str_tmp);
 
         //Data for Month
@@ -367,7 +387,7 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
         //Data for Week
         u8_data_tmp = page_data[10];
-        str_tmp.sprintf("%x", u8_data_tmp);
+        str_tmp = sys_msg_week[u8_data_tmp];
         show_item_data[SYS_DATA_MSG_WEEK]->set_text(str_tmp);
 
         show_item[SYS_DATA_ITEM_TIME]->show();
@@ -386,7 +406,7 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         show_item_data[SYS_DATA_MSG_TIME_M]->show();
         show_item_data[SYS_DATA_MSG_TIME_S]->show();
         show_item_data[SYS_DATA_MSG_WEEK]->show();
-        return;
+        goto exit;
     }
 
     //Data for Light
@@ -395,17 +415,20 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         str_tmp.sprintf("%d", u8_data_tmp);
         show_item_data[SYS_DATA_MSG_LIGHT]->set_text(str_tmp);
         show_item_data[SYS_DATA_MSG_LIGHT]->show();
-        return;
+        show_item[SYS_DATA_ITEM_LIGHT]->show();
+        goto exit;
     }
 
     //Data for Factory
     if (u8_data_left == ID6_DATE_FACTORY) {
         u8_data_tmp = page_data[12];
-        str_tmp.sprintf("%d", u8_data_tmp);
+        str_tmp = sys_msg_factory[u8_data_tmp];
         show_item_data[SYS_DATA_MSG_FACTORY]->set_text(str_tmp);
         show_item_data[SYS_DATA_MSG_FACTORY]->show();
-        return;
+        show_item[SYS_DATA_ITEM_FACTORY]->show();
+        goto exit;
     }
 
+exit:
     memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
 }

@@ -40,7 +40,7 @@ void Show_text::paintEvent(QPaintEvent *)
 
     if (!m_show_text.isNull()) {
         painter.setFont(usefont);
-        painter.setPen(Qt::white);
+        painter.setPen(text_color);
         painter.drawText(m_text_x, m_text_y, m_show_text);
     }
 }
