@@ -179,29 +179,32 @@ void BatTempInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     int i, j;
 
     memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
+
+    qDebug("BatTempInfo_Page\n");
+
     j = 0;
     /* volt */
     for (i = BATT_DATA_0; i < BATT_DATA_END; i++) {
-        /* HI volt */
+        /* HI temperature */
         d_data_tmp = double(page_data[j + 1] << 8 | page_data[j]);
+        d_data_tmp = (d_data_tmp * 0.1) - 40;
+        if (d_data_tmp > 32.767 )
+            d_data_tmp = 32.767;
+        else if (d_data_tmp < -40 )
+            d_data_tmp = -40;
+
+        str_tmp.sprintf("%.1f °C", d_data_tmp);
+        show_sub_item_info[BATT_CLASS_0_TMP_HI][i]->set_text(str_tmp);
+
+        /* LO temperature */
+        d_data_tmp = double(page_data[j + 16 + 1] << 8 | page_data[j + 16]);
         d_data_tmp = (d_data_tmp * 0.001);
         if (d_data_tmp > 32.767 )
             d_data_tmp = 32.767;
         else if (d_data_tmp < 0 )
             d_data_tmp = 0;
 
-        str_tmp.sprintf("%f\n", d_data_tmp);
-        show_sub_item_info[BATT_CLASS_0_TMP_HI][i]->set_text(str_tmp);
-
-        /* LO volt */
-        d_data_tmp = double(page_data[j + 16 + 1] << 8 | page_data[j + 16]);
-        d_data_tmp = d_data_tmp * 0.001;
-        if (d_data_tmp > 32.767 )
-            d_data_tmp = 32.767;
-        else if (d_data_tmp < 0 )
-            d_data_tmp = 0;
-
-        str_tmp.sprintf("%f\n", d_data_tmp);
+        str_tmp.sprintf("%.1f °C", d_data_tmp);
         show_sub_item_info[BATT_CLASS_1_TMP_LO][i]->set_text(str_tmp);
 
         j = j + 2;
@@ -212,15 +215,15 @@ void BatTempInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     for (i = BATT_DATA_0; i < BATT_DATA_END; i++) {
         /* HI Temp */
         u8_data_tmp = page_data[j + 8];
-        str_tmp.sprintf("%d\n", u8_data_tmp);
+        str_tmp.sprintf("%d °C", u8_data_tmp);
         show_sub_item_info[BATT_CLASS_2_LOC_BOX_TMP_H][i]->set_text(str_tmp);
 
         /* LO Temp */
         u8_data_tmp = page_data[j + 24];
-        str_tmp.sprintf("%d\n", u8_data_tmp);
+        str_tmp.sprintf("%d °C", u8_data_tmp);
         show_sub_item_info[BATT_CLASS_3_LOC_BOX_TMP_L][i]->set_text(str_tmp);
 
-        j = j + 2;
+        j = j + 1;
     }
 
     j = 0;
@@ -228,15 +231,17 @@ void BatTempInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     for (i = BATT_DATA_0; i < BATT_DATA_END; i++) {
         /* HI Temp */
         u8_data_tmp = page_data[j + 12];
-        str_tmp.sprintf("%d\n", u8_data_tmp);
+        str_tmp.sprintf("%d", u8_data_tmp);
         show_sub_item_info[BATT_CLASS_4_LOC_NUM_TMP_H][i]->set_text(str_tmp);
 
         /* LO Temp */
         u8_data_tmp = page_data[j + 28];
-        str_tmp.sprintf("%d\n", u8_data_tmp);
+        str_tmp.sprintf("%d", u8_data_tmp);
         show_sub_item_info[BATT_CLASS_5_LOC_NUM_TMP_L][i]->set_text(str_tmp);
 
-        j = j + 2;
+        j = j + 1;
     }
+
+    memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
 
 }
