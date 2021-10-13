@@ -231,7 +231,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     u8_data_b0 = page_data[0];
     if (u8_data_b0 == 0) {
-        show_item_child1_data->set_text("否");
+        show_item_child1_data->set_text("無 ");
         update_dev |= UPDATE_DEV_NO;
     } else if (u8_data_b0 == 1) {
         show_item_child1_data->set_text("APP");
