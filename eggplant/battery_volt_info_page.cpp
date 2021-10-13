@@ -141,26 +141,26 @@ void BatVoltInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     j = 0;
     /* Temp */
     for (i = BATT_DATA_0; i < BATT_DATA_END; i++) {
-        /* HI Temp */
+        /* HI volt */
         d_data_tmp = double(page_data[j + 1] << 8 | page_data[j]);
-        d_data_tmp = (d_data_tmp * 0.1) - 40;
-        if (d_data_tmp > 210 )
-            d_data_tmp = 210.0;
-        else if (d_data_tmp < -40 )
-            d_data_tmp = -40;
+        d_data_tmp = (d_data_tmp * 0.001);
+        if (d_data_tmp > 32.767 )
+            d_data_tmp = 32.767;
+        else if (d_data_tmp < 0 )
+            d_data_tmp = 0;
 
-        str_tmp.sprintf("%f\n", d_data_tmp);
+        str_tmp.sprintf("%.3f V", d_data_tmp);
         show_sub_item_info[BATT_CLASS_0_VOLT_HI][i]->set_text(str_tmp);
 
-        /* LO Temp */
-        d_data_tmp = double(page_data[j + 16 + 1] << 8 | page_data[j + 16]);
+        /* LO volt */
+        d_data_tmp = double(page_data[j + 17] << 8 | page_data[j + 16]);
         d_data_tmp = d_data_tmp * 0.001;
         if (d_data_tmp > 32.767 )
             d_data_tmp = 32.767;
         else if (d_data_tmp < 0 )
             d_data_tmp = 0;
 
-        str_tmp.sprintf("%f\n", d_data_tmp);
+        str_tmp.sprintf("%f V", d_data_tmp);
         show_sub_item_info[BATT_CLASS_1_VOLT_LO][i]->set_text(str_tmp);
 
         j = j + 2;
@@ -169,17 +169,17 @@ void BatVoltInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     /* Box */
     j = 0;
     for (i = BATT_DATA_0; i < BATT_DATA_END; i++) {
-        /* HI Temp */
+        /* HI Box */
         u8_data_tmp = page_data[j + 8];
-        str_tmp.sprintf("%d\n", u8_data_tmp);
+        str_tmp.sprintf("%d", u8_data_tmp);
         show_sub_item_info[BATT_CLASS_2_LOC_BOX_VOLT_H][i]->set_text(str_tmp);
 
-        /* LO Temp */
+        /* LO */
         u8_data_tmp = page_data[j + 24];
-        str_tmp.sprintf("%d\n", u8_data_tmp);
+        str_tmp.sprintf("%d", u8_data_tmp);
         show_sub_item_info[BATT_CLASS_3_LOC_BOX_VOLT_L][i]->set_text(str_tmp);
 
-        j = j + 2;
+        j = j + 1;
     }
 
     /* Number */
@@ -187,14 +187,16 @@ void BatVoltInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     for (i = BATT_DATA_0; i < BATT_DATA_END; i++) {
         /* HI Temp */
         u8_data_tmp = page_data[j + 12];
-        str_tmp.sprintf("%d\n", u8_data_tmp);
+        str_tmp.sprintf("%d", u8_data_tmp);
         show_sub_item_info[BATT_CLASS_4_LOC_NUM_VOLT_H][i]->set_text(str_tmp);
 
         /* LO Temp */
         u8_data_tmp = page_data[j + 28];
-        str_tmp.sprintf("%d\n", u8_data_tmp);
+        str_tmp.sprintf("%d", u8_data_tmp);
         show_sub_item_info[BATT_CLASS_5_LOC_NUM_VOLT_L][i]->set_text(str_tmp);
 
-        j = j + 2;
+        j = j + 1;
     }
+
+    memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
 }
