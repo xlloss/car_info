@@ -160,7 +160,7 @@ void BatVoltInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         else if (d_data_tmp < 0 )
             d_data_tmp = 0;
 
-        str_tmp.sprintf("%f V", d_data_tmp);
+        str_tmp.sprintf("%.3f V", d_data_tmp);
         show_sub_item_info[BATT_CLASS_1_VOLT_LO][i]->set_text(str_tmp);
 
         j = j + 2;
