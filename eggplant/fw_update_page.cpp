@@ -222,6 +222,13 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     #define UPDATE_SAT_NO (1 << 0)
     #define UPDATE_SAT_APP (1 << 1)
     #define UPDATE_SAT_MCU (1 << 2)
+    #define B1_NONE_UPDATE 0x00
+    #define B1_CHECK_UPDATE 0x01
+    #define B1_START_UPDATE 0x02
+    #define B2_NONE 0
+    #define B2_NOFILE_UPDATE 1
+    #define B2_SOC_UPDATE 2
+    #define B2_MCU_UPDATE 3
 
     memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
 
@@ -245,7 +252,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     u8_data_b1 = page_data[1];
 
     //No Update
-    if (u8_data_b1 == 0) {
+    if (u8_data_b1 == B1_NONE_UPDATE) {
         show_item_child2_data->set_text("無");
 
         //for ACK
@@ -261,13 +268,13 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     }
 
     //Check Update
-    if (u8_data_b1 == 1) {
+    if (u8_data_b1 == B1_CHECK_UPDATE) {
         show_item_child2_data->set_text("檢查更新檔");
 
         if (update_dev & UPDATE_DEV_APP) {
             update_thread->m_cmd = FW_UP_FIND_SOC_FWBIN_CMD;
             update_thread->start();
-            QThread::msleep(500);
+            QThread::msleep(2000);
 
             if (!update_thread->m_cmd_ret) {
                 show_item_child1_data->set_text("APP 可更新");
@@ -291,7 +298,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
         //For ACK
         if (update_sat & UPDATE_SAT_NO) {
-            protolcol_data->page_data[2] = 0;
+            protolcol_data->page_data[2] = B2_NOFILE_UPDATE;
             protolcol_data->page_data[3] = 0;
             protolcol_data->page_data[4] = 0;
             protolcol_data->page_data[5] = 0;
@@ -334,17 +341,17 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
             protolcol_data->page_data[7] = uint8_t((crc_ret & 0xFF00) >> 8);
             protolcol_data->page_data[6] = uint8_t((crc_ret & 0x00FF));
-            protolcol_data->page_data[2] = 3;
+            protolcol_data->page_data[2] = B2_MCU_UPDATE;
         }
         else
-            protolcol_data->page_data[2] = 1;
+            protolcol_data->page_data[2] = B2_SOC_UPDATE;
 
         protolcol_data->page_data_sz = 8;
         memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
         return;
     }
 
-    if (u8_data_b1 == 2) {
+    if (u8_data_b1 == B1_START_UPDATE) {
         //Start Update
         show_item_child2_data->set_text("開始更新");
 
