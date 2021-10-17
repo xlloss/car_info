@@ -31,6 +31,15 @@ int UpdateThread::exe_cmd(int cmd)
     int ret = 0;
     qDebug("%s %d\n", __func__, __LINE__);
     switch (cmd){
+
+    case FW_UP_CHECK_USB_DRIVER_CMD:
+        process.execute("lsmod | grep sp_bc");
+        break;
+    case FW_UP_INSTALL_USB_DRIVER_CMD:
+        process.execute("insmod  /tmp/sp/usr/local/drivers/sp-bc.ko");
+        process.execute("insmod  /tmp/sp/usr/local/drivers/ehci-hcd.ko");
+        break;
+
     case FW_UP_MOUNT_USBA_CMD:
         qDebug("%s %d\n", __func__, __LINE__);
         process.execute("mount /dev/sda1 /mnt/");
@@ -73,6 +82,13 @@ int UpdateThread::exe_cmd(int cmd)
         strtmp = process.readAll();
 
         switch (cmd) {
+        case FW_UP_CHECK_USB_DRIVER_CMD:
+            if (strtmp.contains("sp_bc") == 1)
+                ret = 0;
+            else
+                ret = -1;
+            break;
+
         case FW_UP_CKMOUNT_USB_CMD:
             if (strtmp.contains("/dev/sda1") == 1)
                 ret = 0;
@@ -311,12 +327,15 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     //Check Update
     if (u8_data_b1 == B1_CHECK_UPDATE) {
         qDebug("%s %d\n", __func__, __LINE__);
-        if (show_counter < 5) {
+        if (show_counter < 30) {
             qDebug("%s %d\n", __func__, __LINE__);
             show_item_child2_data->set_text("檢查更新檔");
             if (show_counter == 1) {
+                m_cmd_ret = update_thread->exe_cmd(FW_UP_CHECK_USB_DRIVER_CMD);
+                if (!m_cmd_ret)
+                    update_thread->exe_cmd(FW_UP_INSTALL_USB_DRIVER_CMD);
+            } else if (show_counter == 25)
                 update_thread->exe_cmd(FW_UP_MOUNT_USBA_CMD);
-            }
 
             show_counter++;
             protolcol_data->page_data_sz = 8;
