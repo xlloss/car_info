@@ -5,7 +5,7 @@
 #define RELEASE_VER
 
 #ifdef RELEASE_VER
-#define REC_UART_PORT "/dev/ttyS1"
+#define REC_UART_PORT "/dev/ttyS3"
 #else
 #error "Not Release Version"
 #define REC_UART_PORT "/dev/ttyUSB0"
