@@ -225,10 +225,11 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         Disable_Icon_Light(i);
 
     /* hide all */
-    for (i = SYS_DATA_MSG_MILEAGE; i < SYS_DATA_MSG_END; i++) {
+    for (i = SYS_DATA_ITEM_MILEAGE; i < SYS_DATA_ITEM_END; i++)
         show_item[i]->hide();
+
+    for (i = SYS_DATA_MSG_MILEAGE; i < SYS_DATA_MSG_END; i++)
         show_item_data[i]->hide();
-    }
 
     /* Left Side Button */
     m_btn_id = u8_data_tmp - 1;
