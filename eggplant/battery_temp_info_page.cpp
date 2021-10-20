@@ -114,10 +114,6 @@ enum {
     BATT_NUM_LO_TEMP_END,
 };
 
-
-
-
-
 BatTempInfo_Page::BatTempInfo_Page(QWidget *parent) : Frame_Page(parent)
 {
     this->setObjectName(BATTINFO_OBJNAME);
@@ -180,10 +176,8 @@ void BatTempInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
 
-    qDebug("BatTempInfo_Page\n");
-
     j = 0;
-    /* volt */
+    /* temperature */
     for (i = BATT_DATA_0; i < BATT_DATA_END; i++) {
         /* HI temperature */
         d_data_tmp = double(page_data[j + 1] << 8 | page_data[j]);
@@ -215,12 +209,12 @@ void BatTempInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     for (i = BATT_DATA_0; i < BATT_DATA_END; i++) {
         /* HI Temp */
         u8_data_tmp = page_data[j + 8];
-        str_tmp.sprintf("%d °C", u8_data_tmp);
+        str_tmp.sprintf("%d", u8_data_tmp);
         show_sub_item_info[BATT_CLASS_2_LOC_BOX_TMP_H][i]->set_text(str_tmp);
 
         /* LO Temp */
         u8_data_tmp = page_data[j + 24];
-        str_tmp.sprintf("%d °C", u8_data_tmp);
+        str_tmp.sprintf("%d", u8_data_tmp);
         show_sub_item_info[BATT_CLASS_3_LOC_BOX_TMP_L][i]->set_text(str_tmp);
 
         j = j + 1;
@@ -243,5 +237,4 @@ void BatTempInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     }
 
     memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
-
 }
