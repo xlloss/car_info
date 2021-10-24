@@ -231,6 +231,9 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     for (i = SYS_DATA_MSG_MILEAGE; i < SYS_DATA_MSG_END; i++)
         show_item_data[i]->hide();
 
+    for (i = SYS_DATA_MSG_TIME_H; i < SYS_DATA_MSG_DAY + 1; i++)
+        show_item_data[i]->text_color = Qt::white;
+
     /* Left Side Button */
     m_btn_id = u8_data_tmp - 1;
     Enable_Icon_Light(m_btn_id);
@@ -267,7 +270,6 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         txt_color_geen = QColor(0, 204, 240);
 
         switch (page_data[2]) {
-
         case 1:
             show_item_data[SYS_DATA_MSG_TIME_H]->text_color = txt_color_geen;
             break;
