@@ -190,7 +190,7 @@ void SystemSetup_Page::paintEvent(QPaintEvent *)
 
 void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    uint8_t page_data[128];
+    uint8_t page_data[256];
     uint8_t u8_data_tmp, u8_data_left;
     QString str_tmp;
     int i, data_index;
@@ -322,10 +322,7 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     //Data for Alarm
     if (u8_data_left == ID2_DATE_ALARM) {
-        qDebug("page_data[3] 0x%x\n", page_data[3]);
         u8_data_tmp = (page_data[3] & (0x0F << 1)) >> 1;
-
-        qDebug("u8_data_tmp 0x%x\n", u8_data_tmp);
 
         if (u8_data_tmp == 0)
             str_tmp.sprintf("1");

@@ -92,5 +92,4 @@ void ControlMsg2_Page::paintEvent(QPaintEvent *)
 
 void ControlMsg2_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    qDebug("ControlMsg2_Page:%s\n", __func__);
 }

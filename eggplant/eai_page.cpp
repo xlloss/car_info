@@ -106,7 +106,7 @@ void EleAccInfo_Page::paintEvent(QPaintEvent *)
 
 void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    uint8_t page_data[128];
+    uint8_t page_data[256];
     uint8_t u8_data_tmp;
     double d_data_tmp;
     QString str_tmp;
@@ -315,8 +315,6 @@ void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     /* for DATA K-7 */
     u8_data_tmp = page_data[19];
     u8_data_tmp = (u8_data_tmp & (0x01 << 6)) >> 6;
-    qDebug("page_data[19] 0x%x\n", page_data[19]);
-    qDebug("u8_data_tmp 0x%x\n", u8_data_tmp);
     if (u8_data_tmp == 0)
         str_tmp.sprintf("%s", "未完成");
     else

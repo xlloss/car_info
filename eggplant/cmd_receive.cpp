@@ -2,12 +2,12 @@
 #include "barframe.h"
 #include <QDebug>
 
-#define RELEASE_VER
+//#define RELEASE_VER
 
 #ifdef RELEASE_VER
 #define REC_UART_PORT "/dev/ttyS3"
 #else
-#error "Not Release Version"
+//#error "Not Release Version"
 #define REC_UART_PORT "/dev/ttyUSB0"
 #endif
 
@@ -45,7 +45,7 @@ void WorkThread::run()
 {
     QByteArray rdata, cmdbuf;
 
-    QThread::msleep(100);
+    QThread::msleep(10);
 
     while(1) {
         serialport->Serial_Port_Read(&rdata);
@@ -61,7 +61,7 @@ void WorkThread::run()
         rdata.resize(0);
 
 gotsleep:
-        msleep(10);
+        msleep(1);
     }
 }
 
@@ -82,7 +82,7 @@ void PageCtl_Thread::run()
     int cmd_n;
     int cmd_index;
 
-    QThread::msleep(100);
+    QThread::msleep(10);
 
     while(1) {
         cmd_n = cmd_receive->mThread->cmd_list.size();
@@ -119,7 +119,6 @@ void PageCtl_Thread::run()
                     memcpy(m_carinfo_data.page_data, &readbuf[PAGE_DATA_OFF + PAGE_DAT_OFF], m_carinfo_data.page_data_sz);
                     cmd_receive->pcarinfo_data = &m_carinfo_data;
 
-                    /* qDebug("m_carinfo_data.page_number %d\n", m_carinfo_data.page_number); */
                     emit Triger_Page_Signal();
                 }
                 buf_index++;
@@ -130,7 +129,7 @@ void PageCtl_Thread::run()
             delete getcmdlistbuf;
         }
 do_sleep:
-        QThread::msleep(10);
+        QThread::msleep(1);
     }
 }
 
@@ -165,7 +164,6 @@ int Cmd_Receive::Find_Frame(QString objname)
     for (i = 0; i < list_cnt; i++) {
         frameage = page_list.at(i);
         ret = objname.compare(frameage->objectName());
-        //qDebug() << "find frameage->objectName()" << frameage->objectName();
         if (!ret)
             break;
     }
@@ -181,7 +179,7 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
     class Frame_Page *show_framepage;
     class Frame_Page *close_framepage;
     class BarFrame *bar_page;
-    uint8_t get_ackdata[256];
+    uint8_t get_ackdata[512];
     uint8_t get_ackdata_len;
     int i, j;
 
@@ -199,22 +197,22 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
     }
 
     show_framepage = page_list.at(i);
-    //qDebug() << "show frameage objname=" <<show_framepage->objectName();
 
     j = Find_Frame(current_page);
     if (j < 0) {
         qDebug("can't find any current page\n");
         return;
     }
-    close_framepage = page_list.at(j);
-    //qDebug() << "close frame page objname=" <<close_framepage->objectName();
 
     if (current_page.compare(show_objname) != 0) {
         show_framepage->GetMcuData(pcarinfo_data);
         show_framepage->setWindowFlags(Qt::WindowStaysOnTopHint);
         show_framepage->setGeometry(0, 0, GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
         show_framepage->show();
-        close_framepage->close();
+        close_framepage = page_list.at(j);
+        if (close_framepage) {
+            close_framepage->hide();
+        }
     } else {
         show_framepage->GetMcuData(pcarinfo_data);
         show_framepage->update();
@@ -231,7 +229,8 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
 
 void Cmd_Receive::Triger_Page()
 {
-    QString objname[] = {
+    #define OBJNAME_TOTAL 18
+    QString objname[OBJNAME_TOTAL] = {
         PAGE_00,
         PAGE_01,
         PAGE_02,
@@ -251,6 +250,8 @@ void Cmd_Receive::Triger_Page()
         PAGE_16,
         PAGE_17};
 
-    Frame_Page_Show(BAR_FRAME_OBJNAME);
-    Frame_Page_Show(objname[pcarinfo_data->page_number - 1]);
+    if (pcarinfo_data->page_number > 0 && pcarinfo_data->page_number < OBJNAME_TOTAL - 1) {
+        Frame_Page_Show(BAR_FRAME_OBJNAME);
+        Frame_Page_Show(objname[pcarinfo_data->page_number - 1]);
+    }
 }
