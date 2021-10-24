@@ -134,8 +134,8 @@
 #define EAI_SUB_STR_ID00 "電機轉速:"
 #define EAI_SUB_STR_ID01 "控制器母線:"
 #define EAI_SUB_STR_ID02 "控制器電流:"
-#define EAI_SUB_STR_ID03 "故障編碼:"
-#define EAI_SUB_STR_ID04 "控制器溫度:"
+#define EAI_SUB_STR_ID03 "控制器溫度:"
+#define EAI_SUB_STR_ID04 "故障編碼:"
 #define EAI_SUB_STR_ID05 "電動油磊狀態:"
 #define EAI_SUB_STR_ID06 "預充電狀態:"
 

@@ -232,8 +232,16 @@ enum {
  *     EAI page
  *****************************/
 
-#define EAI_MASTER_TEXT_X 30
-#define EAI_MASTER_TEXT_Y 55
+#define EAI_MAS_I_TEXT_X 100
+#define EAI_MAS_I_TEXT_Y 55
+
+#define EAI_MAS_J_TEXT_X 350
+#define EAI_MAS_J_TEXT_Y 55
+
+#define EAI_MAS_K_TEXT_X 590
+#define EAI_MAS_K_TEXT_Y 55
+
+
 #define EAI_MASTER_TEXT_W 220
 #define EAI_MASTER_TEXT_H 50
 #define EAI_MASTER_TEXT_GAP 50

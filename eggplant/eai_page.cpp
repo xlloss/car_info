@@ -35,9 +35,9 @@ static QString sub_text_msg[EAI_MAS_TEX_NUM][EAI_SUB_TEX_NUM] = {
 };
 
 static int master_text_xy[] = {
-  EAI_MASTER_TEXT_X,  EAI_MASTER_TEXT_Y,
-  EAI_MASTER_TEXT_X + (EAI_MASTER_TEXT_W + 70) * 1, EAI_MASTER_TEXT_Y,
-  EAI_MASTER_TEXT_X + (EAI_MASTER_TEXT_W + 50) * 2, EAI_MASTER_TEXT_Y,
+  EAI_MAS_I_TEXT_X, EAI_MAS_I_TEXT_Y,
+  EAI_MAS_J_TEXT_X, EAI_MAS_J_TEXT_Y,
+  EAI_MAS_K_TEXT_X, EAI_MAS_K_TEXT_Y,
 };
 
 static int sub_text_xy[] = {
