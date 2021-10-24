@@ -84,5 +84,4 @@ void TempModule_Page::paintEvent(QPaintEvent *)
 
 void TempModule_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    qDebug("SatInMsg_Page:%s page_number %d\n", __func__, protolcol_data->page_number);
 }

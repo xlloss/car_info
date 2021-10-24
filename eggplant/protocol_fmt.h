@@ -49,7 +49,7 @@ class CarInfo_Data
 public:
     uint8_t page_number;
     uint8_t meter_sat[3];
-    uint8_t page_data[384];
+    uint8_t page_data[512];
     uint32_t page_data_sz;
 };
 

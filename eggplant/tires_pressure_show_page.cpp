@@ -187,7 +187,7 @@ void TiresPressShow_Page::Disable_Icon_Light(int i)
 
 void TiresPressShow_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    uint8_t page_data[128];
+    uint8_t page_data[256];
     uint8_t u8_data_tmp;
     int8_t i8_data_temp;
     QString str_tmp;

@@ -87,9 +87,7 @@ public:
     Show_text *show_item_data[HOME_ITEM_TEX_ALL_NUM];
     Show_text *show_version;
     Icon_btn *icon_door[3];
-    //Icon_btn *ramp_board;
     void Door_Sat_Change(uint8_t door_type, uint8_t status);
-
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
 
 protected:

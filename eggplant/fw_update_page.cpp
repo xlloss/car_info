@@ -233,7 +233,7 @@ void FwUpdate_Page::paintEvent(QPaintEvent *)
 
 void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    uint8_t page_data[128];
+    uint8_t page_data[256];
     uint8_t u8_data_b0, u8_data_b1, u8_data_b2;
     uint8_t update_dev = 0, update_sat = 0;
     uint32_t mcu_fw_offset;

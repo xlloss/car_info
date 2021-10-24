@@ -69,5 +69,4 @@ void SlaveSatMsg_Page::paintEvent(QPaintEvent *)
 
 void SlaveSatMsg_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    qDebug("SatInMsg_Page:%s page_number %d\n", __func__, protolcol_data->page_number);
 }

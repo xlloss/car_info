@@ -56,15 +56,16 @@ int Serial_Port::Serial_Port_Write(uint8_t *data_write, uint32_t data_len)
 
 int Serial_Port::Serial_Port_Read(QByteArray *data_read)
 {
-    unsigned char buf[256];
+    #define BUF_SIZE 512
+    #define TIMEOUT 10
+    uint8_t buf[BUF_SIZE];
     int ret;
-    #define TIMEOUT 100
 
     if (!data_read)
         return -EINVAL;
 
     /* Read up to buf size or 100ms timeout */
-    if ((ret = serial_read(m_serial, buf, sizeof(unsigned char) * 256, TIMEOUT)) < 0) {
+    if ((ret = serial_read(m_serial, buf, sizeof(uint8_t) * BUF_SIZE, TIMEOUT)) < 0) {
         qDebug("serial_read(): %s\n", serial_errmsg(m_serial));
         return -EINVAL;
     }

@@ -12,12 +12,9 @@ static QString door_name[F_DOOR_NAME_NUM][F_DOOR_TYPE_NUM] = {
 };
 
 static int door_coord_xy[CARBUS_TYPE_NUM][2] = {
-        //{HOME_FDOOR_IMG_X,  HOME_FDOOR_IMG_Y},
-        //{HOME_MDOOR_IMG_X,  HOME_MDOOR_IMG_Y},
-        //{HOME_RDOOR_IMG_X,  HOME_RDOOR_IMG_Y},
-        {150,  80},
-        {170,  80},
-        {185,  80},
+    {HOME_FDOOR_IMG_X,  HOME_FDOOR_IMG_Y},
+    {HOME_MDOOR_IMG_X,  HOME_MDOOR_IMG_Y},
+    {HOME_RDOOR_IMG_X,  HOME_RDOOR_IMG_Y},
 };
 
 static QString item1_text[HOME_ITEM_TEX1_NUM] = {
@@ -213,12 +210,11 @@ void Home_Page::paintEvent(QPaintEvent *)
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 
     painter.drawImage(HOME_CARBUS_IMG_X, HOME_CARBUS_IMG_Y, image_car_bus);
-    painter.drawText(100, 150, "2021-10-02");
 }
 
 void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    uint8_t page_data[128];
+    uint8_t page_data[256];
     uint8_t door_sat;
     uint8_t date_time[6];
     uint8_t gear_data;

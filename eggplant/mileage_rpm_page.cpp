@@ -155,7 +155,7 @@ void Mile_Page::Disable_Icon_Light(int i)
 
 void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    uint8_t page_data[128];
+    uint8_t page_data[256];
     double total_km, total_rpm;
     double short_km_a, short_km_b;
     uint8_t rpm_time_a_h, rpm_time_a_m, rpm_time_a_s;
