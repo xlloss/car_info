@@ -153,6 +153,17 @@ void Mile_Page::Disable_Icon_Light(int i)
     zero_btn[i]->ft_dark_enable();
 }
 
+QString Mile_Page::Change_DigToStr(uint8_t digital)
+{
+    QString chnage_str;
+
+    chnage_str.sprintf("%d", digital);
+    if (digital < 10)
+        chnage_str.sprintf("0%d", digital);
+
+    return chnage_str;
+}
+
 void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     uint8_t page_data[256];
@@ -200,17 +211,20 @@ void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     rpm_time_a_m = page_data[15];
     rpm_time_a_s = page_data[14];
 
-    rpm_time_a_h_str.sprintf("%d", rpm_time_a_h);
-    if (rpm_time_a_h < 10)
-        rpm_time_a_h_str.sprintf("0%d", rpm_time_a_h);
+    //rpm_time_a_h_str.sprintf("%d", rpm_time_a_h);
+    //if (rpm_time_a_h < 10)
+    //    rpm_time_a_h_str.sprintf("0%d", rpm_time_a_h);
+    rpm_time_a_h_str = Change_DigToStr(rpm_time_a_h);
 
-    rpm_time_a_m_str.sprintf("%d", rpm_time_a_m);
-    if (rpm_time_a_m < 10)
-        rpm_time_a_m_str.sprintf("0%d", rpm_time_a_m);
+    //rpm_time_a_m_str.sprintf("%d", rpm_time_a_m);
+    //if (rpm_time_a_m < 10)
+    //    rpm_time_a_m_str.sprintf("0%d", rpm_time_a_m);
+    rpm_time_a_h_str = Change_DigToStr(rpm_time_a_m);
 
-    rpm_time_a_s_str.sprintf("%d", rpm_time_a_s);
-    if (rpm_time_a_s < 10)
-        rpm_time_a_s_str.sprintf("0%d", rpm_time_a_s);
+    //rpm_time_a_s_str.sprintf("%d", rpm_time_a_s);
+    //if (rpm_time_a_s < 10)
+    //    rpm_time_a_s_str.sprintf("0%d", rpm_time_a_s);
+    rpm_time_a_s_str = Change_DigToStr(rpm_time_a_s);
 
     str_temp.sprintf("%s : %s : %s",
                      rpm_time_a_h_str.toUtf8().data(),
@@ -222,18 +236,20 @@ void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     rpm_time_b_m = page_data[18];
     rpm_time_b_s = page_data[17];
 
-    rpm_time_b_h_str.sprintf("%d", rpm_time_b_h);
-    if (rpm_time_b_h < 10)
-        rpm_time_b_h_str.sprintf("0%d", rpm_time_b_h);
+    //rpm_time_b_h_str.sprintf("%d", rpm_time_b_h);
+    //if (rpm_time_b_h < 10)
+    //    rpm_time_b_h_str.sprintf("0%d", rpm_time_b_h);
+    rpm_time_b_h_str = Change_DigToStr(rpm_time_b_h);
 
-    rpm_time_b_m_str.sprintf("%d", rpm_time_b_m);
-    if (rpm_time_b_m < 10)
-        rpm_time_b_m_str.sprintf("0%d", rpm_time_b_m);
+    //rpm_time_b_m_str.sprintf("%d", rpm_time_b_m);
+    //if (rpm_time_b_m < 10)
+    //    rpm_time_b_m_str.sprintf("0%d", rpm_time_b_m);
+    rpm_time_b_m_str = Change_DigToStr(rpm_time_b_m);
 
-    rpm_time_b_s_str.sprintf("%d", rpm_time_b_s);
-    if (rpm_time_b_s < 10)
-        rpm_time_b_s_str.sprintf("0%d", rpm_time_b_s);
-
+    //rpm_time_b_s_str.sprintf("%d", rpm_time_b_s);
+    //if (rpm_time_b_s < 10)
+    //    rpm_time_b_s_str.sprintf("0%d", rpm_time_b_s);
+    rpm_time_b_s_str = Change_DigToStr(rpm_time_b_s);
 
     str_temp.sprintf("%s : %s : %s",
                      rpm_time_b_h_str.toUtf8().data(),
