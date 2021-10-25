@@ -182,8 +182,6 @@ void BatTempInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         /* HI temperature */
         d_data_tmp = double(page_data[j + 1] << 8 | page_data[j]);
         d_data_tmp = (d_data_tmp * 0.1) - 40;
-        if (d_data_tmp > 32.767 )
-            d_data_tmp = 32.767;
         else if (d_data_tmp < -40 )
             d_data_tmp = -40;
 
