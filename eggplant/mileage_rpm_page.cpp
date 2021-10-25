@@ -212,7 +212,7 @@ void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     rpm_time_a_s = page_data[14];
 
     rpm_time_a_h_str = Change_DigToStr(rpm_time_a_h);
-    rpm_time_a_h_str = Change_DigToStr(rpm_time_a_m);
+    rpm_time_a_m_str = Change_DigToStr(rpm_time_a_m);
     rpm_time_a_s_str = Change_DigToStr(rpm_time_a_s);
 
     str_temp.sprintf("%s : %s : %s",
