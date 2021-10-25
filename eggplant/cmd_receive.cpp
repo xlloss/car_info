@@ -229,7 +229,15 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
 
 void Cmd_Receive::Triger_Page()
 {
+   /*
+    * real cmd, page start form 1
+    * Qt source code, page start form 0
+    * total cmd are 18
+    */
+
     #define OBJNAME_TOTAL 18
+    #define REAL_CMD_TOTAL (OBJNAME_TOTAL + 1)
+
     QString objname[OBJNAME_TOTAL] = {
         PAGE_00,
         PAGE_01,
@@ -250,7 +258,7 @@ void Cmd_Receive::Triger_Page()
         PAGE_16,
         PAGE_17};
 
-    if (pcarinfo_data->page_number > 0 && pcarinfo_data->page_number < OBJNAME_TOTAL - 1) {
+    if (pcarinfo_data->page_number > 0 && pcarinfo_data->page_number < REAL_CMD_TOTAL) {
         Frame_Page_Show(BAR_FRAME_OBJNAME);
         Frame_Page_Show(objname[pcarinfo_data->page_number - 1]);
     }
