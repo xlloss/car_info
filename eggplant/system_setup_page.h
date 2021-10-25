@@ -30,6 +30,9 @@ public:
 protected:
     void paintEvent(QPaintEvent *);
 
+private:
+    QString Change_DigToStr(uint8_t digital);
+
 signals:
 
 };
