@@ -357,32 +357,32 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     if (u8_data_left == ID4_DATE_TIME) {
         //Data for Year
         u8_data_tmp = page_data[4];
-        str_tmp.sprintf("20%x", u8_data_tmp);
+        str_tmp.sprintf("20%d", u8_data_tmp);
         show_item_data[SYS_DATA_MSG_YEAR]->set_text(str_tmp);
 
         //Data for Month
         u8_data_tmp = page_data[5];
-        str_tmp.sprintf("%x", u8_data_tmp);
+        str_tmp.sprintf("%d", u8_data_tmp);
         show_item_data[SYS_DATA_MSG_MONTH]->set_text(str_tmp);
 
         //Data for Day
         u8_data_tmp = page_data[6];
-        str_tmp.sprintf("%x", u8_data_tmp);
+        str_tmp.sprintf("%d", u8_data_tmp);
         show_item_data[SYS_DATA_MSG_DAY]->set_text(str_tmp);
 
         //Data for Time-H
         u8_data_tmp = page_data[7];
-        str_tmp.sprintf("%x", u8_data_tmp);
+        str_tmp.sprintf("%d", u8_data_tmp);
         show_item_data[SYS_DATA_MSG_TIME_H]->set_text(str_tmp);
 
         //Data for Time-M
         u8_data_tmp = page_data[8];
-        str_tmp.sprintf("%x", u8_data_tmp);
+        str_tmp.sprintf("%d", u8_data_tmp);
         show_item_data[SYS_DATA_MSG_TIME_M]->set_text(str_tmp);
 
         //Data for Time-S
         u8_data_tmp = page_data[9];
-        str_tmp.sprintf("%x", u8_data_tmp);
+        str_tmp.sprintf("%d", u8_data_tmp);
         show_item_data[SYS_DATA_MSG_TIME_S]->set_text(str_tmp);
 
         //Data for Week
