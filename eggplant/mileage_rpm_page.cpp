@@ -193,7 +193,7 @@ void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     show_data[MILE_PAGE_SHORT_KM_B_DATA]->set_text(str_temp);
 
     total_rpm = double(page_data[13] << 8 |  page_data[12]);
-    str_temp.sprintf("%.1f rpm", total_rpm);
+    str_temp.sprintf("%.1f rpm", total_rpm - 12000);
     show_data[MILE_PAGE_TOTAL_RPM_DATA]->set_text(str_temp);
 
     rpm_time_a_h = page_data[16];
