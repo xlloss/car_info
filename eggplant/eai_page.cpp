@@ -166,10 +166,12 @@ void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     /* for DATA I-6 */
     u8_data_tmp = page_data[6];
     u8_data_tmp = (u8_data_tmp & 0x03 << 4) >> 4;
-    if (u8_data_tmp == 1)
+    if (u8_data_tmp == 0)
+        str_tmp.sprintf("%s", "停止");
+    else if (u8_data_tmp == 1)
         str_tmp.sprintf("%s", "作動");
     else
-        str_tmp.sprintf("%s", "停止");
+        str_tmp.sprintf("%s", "異常");
 
     show_sub_data[ELEACC_INFO_ITEM_I][ELEACC_INFO_I6]->set_text(str_tmp);
 
