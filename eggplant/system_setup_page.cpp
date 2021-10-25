@@ -335,7 +335,7 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     //Data for Alarm
     if (u8_data_left == ID2_DATE_ALARM) {
-        u8_data_tmp = (page_data[3] & (0x0F << 1)) >> 1;
+        u8_data_tmp = (page_data[3] & (0x0F << 2)) >> 2;
 
         if (u8_data_tmp == 0)
             str_tmp.sprintf("1");
