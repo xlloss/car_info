@@ -165,7 +165,8 @@ void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     QString rpm_time_a_h_str, rpm_time_a_m_str, rpm_time_a_s_str;
     QString rpm_time_b_h_str, rpm_time_b_m_str, rpm_time_b_s_str;
 
-    memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
+    memcpy(page_data, protolcol_data->page_data,
+        sizeof(uint8_t) * protolcol_data->page_data_sz);
 
     total_km = double(page_data[3] << 24 |  page_data[2] << 16 | page_data[1] << 8 | page_data[0]);
     total_km = total_km * 0.005;
@@ -178,7 +179,7 @@ void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     show_data[MILE_PAGE_SHORT_KM_A_DATA]->set_text(str_temp);
 
     short_km_b = double(page_data[11] << 24 |  page_data[10] << 16 | page_data[9] << 8 | page_data[8]);
-    short_km_b = short_km_a * 0.005;
+    short_km_b = short_km_b * 0.005;
     str_temp.sprintf("%.1f km", short_km_b);
     show_data[MILE_PAGE_SHORT_KM_B_DATA]->set_text(str_temp);
 
