@@ -225,7 +225,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     int time_hr, time_min, time_sec;
     signed char slope_data;
     int16_t mototemp_data;
-    signed char battpack_data;
+    int16_t battpack_data;
     double smallvolt_data;
     double totalvolt_data;
     double totalkilo_data;
@@ -314,23 +314,17 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     show_item_data[HOME_ITEM_ID_AVAILABLE_MILE]->set_text(str_temp);
 
     /* moto temp */
-    mototemp_data = int16_t(page_data[22]);
-    mototemp_data = mototemp_data - 40;
+    mototemp_data = int16_t(page_data[22] - 40);
     if (mototemp_data < -40)
-        mototemp_data = -40;
-    if (mototemp_data > 210)
         mototemp_data = -40;
 
     str_temp.sprintf("%i °C", mototemp_data);
     show_item_data[HOME_ITEM_ID_MOTO_TEMP]->set_text(str_temp);
 
     /* battery pack */
-    battpack_data = int8_t(page_data[23]);
-    battpack_data = battpack_data - 40;
+    battpack_data = int16_t(page_data[23] - 40);
     if (battpack_data < -40)
         battpack_data = -40;
-    if (battpack_data > 100)
-        battpack_data = 100;
 
     str_temp.sprintf("%i °C", battpack_data);
     show_item_data[HOME_ITEM_ID_BATT_PACK]->set_text(str_temp);
