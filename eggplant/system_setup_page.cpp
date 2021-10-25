@@ -107,8 +107,8 @@ static QString sys_msg_week[7] =
 
 static QString sys_msg_factory[2] =
 {
-    "ON",
     "OFF",
+    "ON",
 };
 
 static int sys_btn_txt_x[6] = {25, 35, 35, 25, 45, 25};
