@@ -107,11 +107,11 @@ int UpdateThread::exe_cmd(int cmd)
             break;
 
         case FW_UP_FIND_MCU_FWBIN_CMD:
-            if (strtmp.contains("AT313SFW.BIN") == 1) {
-                qDebug("found AT313SFW.BIN\n");
+            if (strtmp.contains("AT313S.BIN") == 1) {
+                qDebug("found AT313S.BIN\n");
                 ret = 0;
             } else {
-                qDebug("can't found AT313SFW.BIN\n");
+                qDebug("can't found AT313S.BIN\n");
                 ret = -1;
             }
             break;
