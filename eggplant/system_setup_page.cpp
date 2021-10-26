@@ -383,19 +383,16 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
         //Data for Time-H
         u8_data_tmp = page_data[7];
-        //str_tmp.sprintf("%d", u8_data_tmp);
         str_tmp = Change_DigToStr(u8_data_tmp);
         show_item_data[SYS_DATA_MSG_TIME_H]->set_text(str_tmp);
 
         //Data for Time-M
         u8_data_tmp = page_data[8];
-        //str_tmp.sprintf("%d", u8_data_tmp);
         str_tmp = Change_DigToStr(u8_data_tmp);
         show_item_data[SYS_DATA_MSG_TIME_M]->set_text(str_tmp);
 
         //Data for Time-S
         u8_data_tmp = page_data[9];
-        //str_tmp.sprintf("%d", u8_data_tmp);
         str_tmp = Change_DigToStr(u8_data_tmp);
         show_item_data[SYS_DATA_MSG_TIME_S]->set_text(str_tmp);
 
