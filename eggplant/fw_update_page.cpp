@@ -4,6 +4,9 @@
 #include "coordinate.h"
 #include "string/string.h"
 
+#define MCU_FW_NAME "AT313SFW.BIN"
+#define SOC_FW_NAME "ISPBOOOT.BIN"
+
 UpdateThread::UpdateThread(QObject *parent, bool b) :
     QThread(parent), Stop(b)
 {
@@ -11,7 +14,6 @@ UpdateThread::UpdateThread(QObject *parent, bool b) :
 
 void UpdateThread::run()
 {
-    qDebug("%s %d\n", __func__, __LINE__);
     m_cmd_ret = exe_cmd(m_cmd);
     msleep(5);
 }
@@ -97,21 +99,21 @@ int UpdateThread::exe_cmd(int cmd)
             break;
 
         case FW_UP_FIND_SOC_FWBIN_CMD:
-            if (strtmp.contains("ISPBOOOT.BIN") == 1) {
-                qDebug("found ISPBOOOT.BIN\n");
+            if (strtmp.contains(SOC_FW_NAME) == 1) {
+                qDebug("found %s\n", SOC_FW_NAME);
                 ret = 0;
             } else {
-                qDebug("can't found ISPBOOOT.BIN\n");
+                qDebug("can't found %s\n", SOC_FW_NAME);
                 ret = -1;
             }
             break;
 
         case FW_UP_FIND_MCU_FWBIN_CMD:
-            if (strtmp.contains("AT313S.BIN") == 1) {
-                qDebug("found AT313S.BIN\n");
+            if (strtmp.contains(MCU_FW_NAME) == 1) {
+                qDebug("found %s\n", MCU_FW_NAME);
                 ret = 0;
             } else {
-                qDebug("can't found AT313S.BIN\n");
+                qDebug("can't found %s\n", MCU_FW_NAME);
                 ret = -1;
             }
             break;
@@ -252,13 +254,18 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     #define B0_NONE_UPDATE_DEV 0x00
     #define B0_APP_UPDATE_DEV 0x01
     #define B0_MCU_UPDATE_DEV 0x02
-    #define B1_NONE_UPDATE 0x00
+    #define B1_NONE_BEHAVE 0x00
     #define B1_CHECK_UPDATE 0x01
     #define B1_START_UPDATE 0x02
-    #define B2_NONE 0
-    #define B2_NOFILE_UPDATE 1
-    #define B2_SOC_UPDATE 2
-    #define B2_MCU_UPDATE 3
+    #define B1_UPDATE_FAIL 0x03
+    #define B2_NONE 0x0
+    #define B2_NOFILE_UPDATE 0x01
+    #define B2_SOC_UPDATE 0x02
+    #define B2_MCU_UPDATE 0x03
+    #define B2_CHECK_SOC_UPDATING 0x04
+    #define B2_CHECK_MCU_UPDATING 0x05
+    #define B2_MCU_UPDATING 0x06
+    #define B2_UPDATE_FAIL 0x07
 
     memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
 
@@ -271,7 +278,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     qDebug("%s %d u8_data_b2 0x%x\n", __func__, __LINE__, u8_data_b2);
 
     if (u8_data_b0 == B0_NONE_UPDATE_DEV &&
-        u8_data_b1 == B1_NONE_UPDATE &&
+        u8_data_b1 == B1_NONE_BEHAVE &&
         u8_data_b2 == B2_NONE) {
         qDebug("%s %d\n", __func__, __LINE__);
         show_item_child1_data->set_text("無");
@@ -282,9 +289,11 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         protolcol_data->page_data_sz = 8;
         memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
 
+        /* umount device last time if device already mount */
         m_cmd_ret = update_thread->exe_cmd(FW_UP_CKMOUNT_USB_CMD);
         if (!m_cmd_ret)
             update_thread->exe_cmd(FW_UP_UMOUNT_MNT_CMD);
+
         show_counter = 0;
         return;
     }
@@ -310,7 +319,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         return;
     }
 
-    if (u8_data_b1 == B1_NONE_UPDATE) {
+    if (u8_data_b1 == B1_NONE_BEHAVE) {
         if (u8_data_b0 == B0_APP_UPDATE_DEV) {
             show_item_child1_data->set_text("APP");
             update_dev |= UPDATE_DEV_APP;
@@ -339,6 +348,15 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
             show_counter++;
             protolcol_data->page_data_sz = 8;
+
+            if (u8_data_b0 == B0_APP_UPDATE_DEV) {
+                show_item_child2_data->set_text("檢查 APP 更新檔中 ...");
+                protolcol_data->page_data[2] = B2_CHECK_SOC_UPDATING;
+            } else {
+                show_item_child2_data->set_text("檢查 MCU 更新檔中 ...");
+                protolcol_data->page_data[2] = B2_CHECK_MCU_UPDATING;
+            }
+
             memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
             QThread::msleep(100);
             return;
@@ -347,10 +365,8 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         qDebug("%s %d\n", __func__, __LINE__);
         if (u8_data_b0 == B0_APP_UPDATE_DEV) {
             m_cmd_ret = update_thread->exe_cmd(FW_UP_FIND_SOC_FWBIN_CMD);
-            qDebug("%s %d\n", __func__, __LINE__);
             QThread::msleep(500);
             if (!m_cmd_ret) {
-                qDebug("%s %d\n", __func__, __LINE__);
                 show_item_child2_data->set_text("SOC 可更新");
                 update_sat &= ~UPDATE_SAT_NO;
                 update_sat |= UPDATE_SAT_APP;
@@ -373,12 +389,12 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
                 update_sat &= ~UPDATE_SAT_NO;
                 update_sat |= UPDATE_SAT_MCU;
 
-                m_mcufile.setFileName("AT313SFW.BIN");
+                m_mcufile.setFileName(MCU_FW_NAME);
                 QDir::setCurrent("/mnt");
                 if (!m_mcufile.open(QIODevice::ReadOnly)) {
                     qDebug("File Open Fail\n");
                     show_item_child1_data->set_text("更新檔 讀取錯誤");
-                    protolcol_data->page_data[2] = B2_NOFILE_UPDATE;
+                    protolcol_data->page_data[2] = B2_UPDATE_FAIL;
                     protolcol_data->page_data_sz = 8;
                     memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
                     return;
@@ -418,7 +434,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     if (u8_data_b1 == B1_START_UPDATE) {
         //Start Update
-        show_item_child2_data->set_text("開始更新");
+        show_item_child2_data->set_text("更新中 0~100%");
 
         mcu_fw_offset = protolcol_data->page_data[10] << 16  |
                         protolcol_data->page_data[9]  << 8   |
@@ -433,6 +449,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
         protolcol_data->page_data_sz = mcu_fw_size + 13;
 
+        protolcol_data->page_data[2] = B2_MCU_UPDATING;
         memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
         return;
     }
