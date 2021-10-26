@@ -52,14 +52,14 @@ enum {
 
 static QString sys_msg_tit[13] =
 {
-    "里程單位:",//0
-    "警示音:",//1
-    "按鍵音:",//2
-    "時間:", ":", ":", //3, 4, 5
-    "星期:",//6
-    "日期:", "年", "月", "日", //7, 8, 9, 10
-    "亮度:",//11
-    "恢復出廠設定:",//12
+    "里程單位:",                   //0
+    "警示音:",                    //1
+    "按鍵音:",                    //2
+    "時間:", ":", ":",            //3, 4, 5
+    "星期:",                      //6
+    "日期:", "年", "月", "日",     //7, 8, 9, 10
+    "亮度:",                      //11
+    "恢復出廠設定:",               //12
 };
 
 enum {
@@ -111,7 +111,7 @@ static QString sys_msg_factory[2] =
     "ON",
 };
 
-static int sys_btn_txt_x[6] = {25, 35, 35, 25, 45, 25};
+static int sys_btn_txt_x[6] = {25, 35, 35, 25, 45, 10};
 static int sys_btn_txt_y[6] = {30, 30, 30, 30, 30, 30};
 
 /*                                 0    1    2    3    4    5    6    7    8    9    10   11   12 */
@@ -119,7 +119,7 @@ static int sys_data_title_x[15] = {170, 170, 170, 170, 245, 295, 170, 170, 270, 
 static int sys_data_title_y[15] = {100, 100, 100, 55,  55,  55 , 95,  135, 135, 135, 135, 100, 100};
 
 /*                               0    1    2    3    4    5    6    7    8    9    10   11 */
-static int sys_data_msg_x[15] = {260, 240, 240, 220, 265, 305, 225, 225, 300, 360, 225, 260};
+static int sys_data_msg_x[15] = {260, 240, 240, 220, 265, 305, 225, 225, 300, 360, 225, 300};
 static int sys_data_msg_y[15] = {100, 100, 100, 55,  55,  55 , 95,  135, 135, 135, 100, 100};
 
 void SystemSetup_Page::Enable_Icon_Light(int i)
@@ -142,14 +142,14 @@ SystemSetup_Page::SystemSetup_Page(QWidget *parent) : Frame_Page(parent)
     m_btn_id = SYS_BTN_ID3_DATETIME;
 
     m_font.setBold(0);
-    m_font.setPointSize(20);
+    m_font.setPointSize(SYSTEM_SETUP_FONT_SZ);
     m_font.setFamily("DroidSans");
 
     bgimg.load(SYSTEM_SETUP_BG_IMG);
 
     for (i = SYS_BTN_ID0_MILEAGE; i < SYS_BTN_END; i++) {
         system_btn[i] = new Icon_btn(this);
-        system_btn[i]->font.setPointSize(20);
+        system_btn[i]->font.setPointSize(SYSTEM_SETUP_FONT_SZ);
         system_btn[i]->m_set_text_x = sys_btn_txt_x[i];
         system_btn[i]->m_set_text_y = sys_btn_txt_y[i];
         system_btn[i]->m_texcolor = Qt::white;
