@@ -202,6 +202,7 @@ FwUpdate_Page::FwUpdate_Page(QWidget *parent) : Frame_Page(parent)
 
     show_item_child1_data = new Show_text(this);
     show_item_child1_data->set_text(ITEM_CHILD_TEXT1_DATA_DEF);
+    show_item_child1_data->text_color = QColor(0, 204, 240);
     show_item_child1_data->setGeometry(FW_UPDATE_CHILD_TEXT1_DATA_X, FW_UPDATE_CHILD_TEXT1_DATA_Y,
                                        FW_UPDATE_CHILD_TEXT1_DATA_W, FW_UPDATE_CHILD_TEXT1_DATA_H);
     show_item_child1_data->show();
