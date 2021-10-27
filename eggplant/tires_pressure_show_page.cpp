@@ -191,7 +191,7 @@ void TiresPressShow_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     uint8_t u8_data_tmp;
     int8_t i8_data_temp;
     QString str_tmp;
-    uint8_t tires_order[6] = {0, 5, 2, 3, 1, 4};
+    uint8_t tires_order[6] = {0, 2, 3, 4, 5, 1};
     uint8_t tiresbtn_order[6] = {0, 2, 3, 4, 5, 1};
     uint8_t tiresbtn_order2[2] = {5, 1};
     int i, j;
@@ -230,17 +230,20 @@ void TiresPressShow_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         j++;
     }
 
-    for (i = 2, j = 0; i < 8; i++, j++) {
+    j = 0;
+    for (i = 2; i < 8; i++) {
         u8_data_tmp = page_data[i];
         str_tmp.sprintf("%d kPa", u8_data_tmp);
         tires_value_air[tires_order[j]]->set_text(str_tmp);
-        tires_value_air[0]->set_text(str_tmp);
+        j++;
     }
 
-    for (i = 8, j = 0; i < 14; i++, j++) {
+    j = 0;
+    for (i = 8; i < 14; i++) {
         i8_data_temp = int8_t(page_data[i]);
-        str_tmp.sprintf("%i °C", i8_data_temp);
+        str_tmp.sprintf("%i °C", i8_data_temp - 40);
         tires_value_temp[tires_order[j]]->set_text(str_tmp);
+        j++;
     }
 
     memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
