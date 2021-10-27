@@ -201,7 +201,7 @@ QString SystemSetup_Page::Change_DigToStr(uint8_t digital)
 
 void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    uint8_t page_data[256];
+    uint8_t page_data[BUFFER_SIZE];
     uint8_t u8_data_tmp, u8_data_left;
     QString str_tmp;
     int i, data_index;

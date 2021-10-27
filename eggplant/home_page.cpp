@@ -214,7 +214,7 @@ void Home_Page::paintEvent(QPaintEvent *)
 
 void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    uint8_t page_data[256];
+    uint8_t page_data[BUFFER_SIZE];
     uint8_t door_sat;
     uint8_t date_time[6];
     uint8_t gear_data;

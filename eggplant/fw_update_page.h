@@ -90,6 +90,9 @@ protected:
     void paintEvent(QPaintEvent *);
 
 private:
+    int OpenMCUFile(QString filename);
+    int ReadMCUFile();
+    void CloseMCUFile();
     QFile m_mcufile;
     QByteArray m_mcufw_bin;
     char *m_int8_mcufw_bin;

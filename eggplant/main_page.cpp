@@ -89,7 +89,7 @@ void Main_Page::paintEvent(QPaintEvent *)
 
 void Main_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    uint8_t page_data[256];
+    uint8_t page_data[BUFFER_SIZE];
     int i, item_num, ret;
 
     memcpy(page_data, protolcol_data->page_data,

@@ -106,7 +106,7 @@ void EleAccInfo_Page::paintEvent(QPaintEvent *)
 
 void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    uint8_t page_data[256];
+    uint8_t page_data[BUFFER_SIZE];
     uint8_t u8_data_tmp;
     double d_data_tmp;
     QString str_tmp;

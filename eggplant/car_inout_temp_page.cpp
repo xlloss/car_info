@@ -67,7 +67,7 @@ void CarInOut_Page::paintEvent(QPaintEvent *)
 
 void CarInOut_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
-    uint8_t page_data[256];
+    uint8_t page_data[BUFFER_SIZE];
     int8_t car_in_temp;
     int8_t car_out_temp;
     int8_t car_meter_temp;

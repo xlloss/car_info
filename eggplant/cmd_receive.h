@@ -13,7 +13,7 @@ class Cmd_Receive;
 class Cmd_Buf
 {
 public:
-    uint8_t buf[256];
+    uint8_t buf[BUFFER_SIZE];
     int32_t buf_sz;
 };
 

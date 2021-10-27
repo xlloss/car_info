@@ -42,8 +42,11 @@ int Serial_Port::Serial_Port_Write(QByteArray *data_write)
 
 int Serial_Port::Serial_Port_Write(uint8_t *data_write, uint32_t data_len)
 {
-    if (!data_write)
+
+    if (!data_write) {
+        qDebug("serial_write(): %s\n", serial_errmsg(m_serial));
         return -EINVAL;
+    }
 
     /* Write to the serial port */
     if (serial_write(m_serial, data_write, data_len) < 0) {

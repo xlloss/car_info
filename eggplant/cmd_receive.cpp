@@ -179,9 +179,9 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
     class Frame_Page *show_framepage;
     class Frame_Page *close_framepage;
     class BarFrame *bar_page;
-    uint8_t get_ackdata[512];
-    uint8_t get_ackdata_len;
-    int i, j;
+    uint8_t get_ackdata[BUFFER_SIZE];
+    uint32_t get_ackdata_len;
+    int i, j, ret;
 
     i = Find_Frame(show_objname);
     if (i < 0) {
@@ -221,7 +221,11 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
 #if ENABLE_ACK
     show_framepage->GetAckData(get_ackdata);
     get_ackdata_len = 6 + (get_ackdata[3] << 8 | get_ackdata[4]);
-    mThread->serialport->Serial_Port_Write(get_ackdata, get_ackdata_len);
+
+    ret = mThread->serialport->Serial_Port_Write(get_ackdata, get_ackdata_len);
+    if (ret) {
+        qDebug("Serial_Port_Write Fault\n");
+    }
 #endif
 
     current_page = show_objname;

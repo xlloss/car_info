@@ -44,13 +44,14 @@
 #define METER_SAT_OFF 1
 #define PAGE_DAT_OFF 4
 
+#define BUFFER_SIZE 512
 class CarInfo_Data
 {
 public:
+    uint32_t page_data_sz;
     uint8_t page_number;
     uint8_t meter_sat[3];
-    uint8_t page_data[512];
-    uint32_t page_data_sz;
+    uint8_t page_data[BUFFER_SIZE];
 };
 
 #endif // PROTOCOL_FMT_H
