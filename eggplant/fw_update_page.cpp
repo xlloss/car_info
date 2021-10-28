@@ -31,7 +31,7 @@ int UpdateThread::find_update()
 int UpdateThread::exe_cmd(int cmd)
 {
     int ret = 0;
-    qDebug("%s %d\n", __func__, __LINE__);
+
     switch (cmd){
 
     case FW_UP_CHECK_USB_DRIVER_CMD:
@@ -219,10 +219,9 @@ FwUpdate_Page::FwUpdate_Page(QWidget *parent) : Frame_Page(parent)
                                        FW_UPDATE_CHILD_TEXT2_DATA_W, FW_UPDATE_CHILD_TEXT2_DATA_H);
     show_item_child2_data->show();
 
-
     update_thread = new UpdateThread();
 
-
+    installEventFilter(this);
 }
 
 void FwUpdate_Page::paintEvent(QPaintEvent *)
@@ -264,13 +263,33 @@ void FwUpdate_Page::CloseMCUFile()
     m_mcufile.close();
 }
 
+bool FwUpdate_Page::eventFilter(QObject *obj, QEvent *event)
+{
+    int32_t  m_cmd_ret;
+
+    if (event->type() == QEvent::Hide) {
+
+        m_cmd_ret = update_thread->exe_cmd(FW_UP_CKMOUNT_USB_CMD);
+        if (!m_cmd_ret)
+            update_thread->exe_cmd(FW_UP_UMOUNT_MNT_CMD);
+
+        return true;
+    } else {
+        return false;
+    }
+
+    // pass the event on to the parent class
+    return eventFilter(obj, event);
+
+}
+
 void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     uint8_t page_data[BUFFER_SIZE];
     uint8_t u8_data_b0, u8_data_b1, u8_data_b2;
     uint8_t update_dev = 0;
     uint32_t mcu_fw_offset;
-    uint32_t mcu_fw_size, req_mcu_fw_size;
+    uint32_t req_mcu_fw_size;
     int32_t  m_cmd_ret;
     int32_t file_size;
     static int32_t downlaod_size = 0;
@@ -309,9 +328,9 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     u8_data_b1 = page_data[1];
     u8_data_b2 = page_data[2];
 
-    qDebug("%s %d u8_data_b0 0x%x\n", __func__, __LINE__, u8_data_b0);
-    qDebug("%s %d u8_data_b1 0x%x\n", __func__, __LINE__, u8_data_b1);
-    qDebug("%s %d u8_data_b2 0x%x\n", __func__, __LINE__, u8_data_b2);
+    //qDebug("%s %d u8_data_b0 0x%x\n", __func__, __LINE__, u8_data_b0);
+    //qDebug("%s %d u8_data_b1 0x%x\n", __func__, __LINE__, u8_data_b1);
+    //qDebug("%s %d u8_data_b2 0x%x\n", __func__, __LINE__, u8_data_b2);
 
     if (u8_data_b0 == B0_NONE_UPDATE_DEV &&
         u8_data_b1 == B1_NONE_BEHAVE &&
@@ -519,10 +538,10 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         show_item_child2_data->set_text(download_bar);
 
         memcpy(&protolcol_data->page_data[13],
-            (uint8_t *)(&m_int8_mcufw_bin[mcu_fw_offset]), mcu_fw_size);
+            (uint8_t *)(&m_int8_mcufw_bin[mcu_fw_offset]), req_mcu_fw_size);
 
         protolcol_data->page_data_sz &= ~0xFFFFFFFF;
-        protolcol_data->page_data_sz = mcu_fw_size + 13;
+        protolcol_data->page_data_sz = req_mcu_fw_size + 13;
         protolcol_data->page_data[2] = B2_MCU_UPDATING;
 
         memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));

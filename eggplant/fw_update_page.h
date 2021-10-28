@@ -6,7 +6,7 @@
 #include <QImage>
 #include <QFile>
 #include <QProcess>
-
+#include <QEvent>
 #include "frame_page.h"
 #include "show_text.h"
 #include "serial_port.h"
@@ -86,8 +86,10 @@ public:
     uint16_t Crc16_Encode(char *addr,uint16_t len);
 
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
+
 protected:
     void paintEvent(QPaintEvent *);
+    bool eventFilter(QObject *obj, QEvent *ev) override;
 
 private:
     int OpenMCUFile(QString filename);
