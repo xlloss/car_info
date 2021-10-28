@@ -552,6 +552,8 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         f_downlaod_size = float_t(downlaod_size);
         f_file_size = float_t(file_size);
         total_precent = (f_downlaod_size / f_file_size) * 100.0;
+        if (total_precent > 100)
+            total_precent = 100;
 
         download_bar.sprintf("%d %s", uint32_t(total_precent), "%");
         show_item_child2_data->set_text(download_bar);
