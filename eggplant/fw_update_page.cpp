@@ -333,7 +333,9 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         return;
     }
 
-    if (u8_data_b2 == B2_NOFILE_UPDATE) {
+    if (u8_data_b1 != B1_CHECK_UPDATE &&
+        u8_data_b2 == B2_NOFILE_UPDATE) {
+
         if (u8_data_b0 == B0_APP_UPDATE_DEV)
             show_item_child1_data->set_text("APP");
         else
@@ -349,6 +351,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         if (!m_cmd_ret)
             update_thread->exe_cmd(FW_UP_UMOUNT_MNT_CMD);
         show_counter = 0;
+        downlaod_size = 0;
         return;
     }
 
@@ -369,6 +372,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     //Check Update
     if (u8_data_b1 == B1_CHECK_UPDATE) {
         downlaod_size = 0;
+        qDebug("show_counter %d\n", show_counter);
         if (show_counter < 30) {
             show_item_child2_data->set_text("檢查更新檔");
             if (show_counter == 1) {
@@ -405,6 +409,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
                 return;
             } else {
                 show_item_child2_data->set_text("無更新檔");
+                show_counter = 0;
             }
         } else if (u8_data_b0 == B0_MCU_UPDATE_DEV) {
             m_cmd_ret = update_thread->exe_cmd(FW_UP_FIND_MCU_FWBIN_CMD);
