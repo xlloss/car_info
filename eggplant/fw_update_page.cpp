@@ -294,6 +294,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     int32_t file_size;
     static int32_t downlaod_size = 0;
     static int32_t show_counter = 0;
+    static uint8_t u8_old_data_b0 = 255;
     QString download_bar;
     QString str_tmp;
     int file_ret;
@@ -328,16 +329,33 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     u8_data_b1 = page_data[1];
     u8_data_b2 = page_data[2];
 
-    //qDebug("%s %d u8_data_b0 0x%x\n", __func__, __LINE__, u8_data_b0);
-    //qDebug("%s %d u8_data_b1 0x%x\n", __func__, __LINE__, u8_data_b1);
-    //qDebug("%s %d u8_data_b2 0x%x\n", __func__, __LINE__, u8_data_b2);
+    qDebug("%s %d u8_data_b0 0x%x\n", __func__, __LINE__, u8_data_b0);
+    qDebug("%s %d u8_data_b1 0x%x\n", __func__, __LINE__, u8_data_b1);
+    qDebug("%s %d u8_data_b2 0x%x\n", __func__, __LINE__, u8_data_b2);
 
-    if (u8_data_b0 == B0_NONE_UPDATE_DEV &&
-        u8_data_b1 == B1_NONE_BEHAVE &&
-        u8_data_b2 == B2_NONE) {
-        show_item_child1_data->set_text("無");
+    if (u8_old_data_b0 == 255)
+        u8_old_data_b0 = u8_data_b0;
+
+    if (u8_old_data_b0 != u8_data_b0) {
+        u8_old_data_b0 = 255;
+        protolcol_data->page_data[2] = B2_NONE;
+        protolcol_data->page_data_sz = 8;
+        memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
+        return;
+    }
+
+    if (u8_data_b1 == B1_NONE_BEHAVE) {
+
+        if (u8_data_b0 == B0_NONE_UPDATE_DEV) {
+            show_item_child1_data->set_text("無");
+        }
+
+        if (u8_data_b0 == B0_APP_UPDATE_DEV)
+            show_item_child1_data->set_text("APP");
+        else if (u8_data_b0 == B0_MCU_UPDATE_DEV)
+            show_item_child1_data->set_text("MCU");
+
         show_item_child2_data->set_text("無");
-        update_dev |= UPDATE_DEV_NO;
 
         protolcol_data->page_data[2] = B2_NONE;
         protolcol_data->page_data_sz = 8;
@@ -349,6 +367,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
             update_thread->exe_cmd(FW_UP_UMOUNT_MNT_CMD);
 
         show_counter = 0;
+        downlaod_size = 0;
         return;
     }
 
