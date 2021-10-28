@@ -621,7 +621,20 @@
  *  FW Update page
  ******************************************/
 #define FWV_UPDATE_OBJNAME "FwUpdate_Page"
- 
+#define MCU_FW_NAME "AT313SFW.BIN"
+#define SOC_FW_NAME "ISPBOOOT.BIN"
+#define DEV_NONE "無"
+#define DEV_APP "APP"
+#define DEV_MCU "MCU"
+#define SAT_NONE "無"
+#define SAT_NO_UPDATE_FILE "無更新檔"
+#define SAT_CHECK_UPDATE_FILE "檢查更新檔"
+#define SAT_CHECK_UPDATE_APP "檢查 APP 更新檔中 ..."
+#define SAT_CHECK_UPDATE_MCU "檢查 MCU 更新檔中 ..."
+#define SAT_SOC_UPDATE_OK "SOC 可更新"
+#define SAT_MCU_UPDATE_OK "MCU 可更新"
+#define SAT_UPDATE_READY "準備更新"
+#define SAT_UPDATE_FILE_FAIL "更新檔 讀取錯誤"
 
 
 

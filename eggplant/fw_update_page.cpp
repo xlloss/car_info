@@ -4,9 +4,6 @@
 #include "coordinate.h"
 #include "string/string.h"
 
-#define MCU_FW_NAME "AT313SFW.BIN"
-#define SOC_FW_NAME "ISPBOOOT.BIN"
-
 UpdateThread::UpdateThread(QObject *parent, bool b) :
     QThread(parent), Stop(b)
 {
@@ -299,14 +296,6 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     QString str_tmp;
     int file_ret;
     float total_precent, f_downlaod_size, f_file_size;
-    #define UPDATE_DEV_NO (1 << 0)
-    #define UPDATE_DEV_APP (1 << 1)
-    #define UPDATE_DEV_MCU (1 << 2)
-    #define UPDATE_DEV_MSK 0x0F
-    #define UPDATE_SAT_NO (1 << 0)
-    #define UPDATE_SAT_APP (1 << 1)
-    #define UPDATE_SAT_MCU (1 << 2)
-    #define UPDATE_CHECK_FILE (1 << 3)
     #define B0_NONE_UPDATE_DEV 0x00
     #define B0_APP_UPDATE_DEV 0x01
     #define B0_MCU_UPDATE_DEV 0x02
@@ -345,17 +334,16 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     }
 
     if (u8_data_b1 == B1_NONE_BEHAVE) {
-
         if (u8_data_b0 == B0_NONE_UPDATE_DEV) {
-            show_item_child1_data->set_text("無");
+            show_item_child1_data->set_text(DEV_NONE);
         }
 
         if (u8_data_b0 == B0_APP_UPDATE_DEV)
-            show_item_child1_data->set_text("APP");
+            show_item_child1_data->set_text(DEV_APP);
         else if (u8_data_b0 == B0_MCU_UPDATE_DEV)
-            show_item_child1_data->set_text("MCU");
+            show_item_child1_data->set_text(DEV_MCU);
 
-        show_item_child2_data->set_text("無");
+        show_item_child2_data->set_text(SAT_NONE);
 
         protolcol_data->page_data[2] = B2_NONE;
         protolcol_data->page_data_sz = 8;
@@ -375,13 +363,12 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         u8_data_b2 == B2_NOFILE_UPDATE) {
 
         if (u8_data_b0 == B0_APP_UPDATE_DEV)
-            show_item_child1_data->set_text("APP");
+            show_item_child1_data->set_text(DEV_APP);
         else
-            show_item_child1_data->set_text("MCU");
+            show_item_child1_data->set_text(DEV_MCU);
 
-        show_item_child2_data->set_text("無更新檔");
+        show_item_child2_data->set_text(SAT_NO_UPDATE_FILE);
 
-        //for ACK
         protolcol_data->page_data_sz = 8;
         protolcol_data->page_data[2] = B2_NOFILE_UPDATE;
         memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
@@ -394,13 +381,10 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     }
 
     if (u8_data_b1 == B1_NONE_BEHAVE) {
-        if (u8_data_b0 == B0_APP_UPDATE_DEV) {
-            show_item_child1_data->set_text("APP");
-            update_dev |= UPDATE_DEV_APP;
-        } else if (u8_data_b0 == B0_MCU_UPDATE_DEV) {
-            show_item_child1_data->set_text("MCU");
-            update_dev |= UPDATE_DEV_MCU;
-        }
+        if (u8_data_b0 == B0_APP_UPDATE_DEV)
+            show_item_child1_data->set_text(DEV_APP);
+        else if (u8_data_b0 == B0_MCU_UPDATE_DEV)
+            show_item_child1_data->set_text(DEV_MCU);
 
         protolcol_data->page_data_sz = 8;
         memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
@@ -412,7 +396,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         downlaod_size = 0;
         qDebug("show_counter %d\n", show_counter);
         if (show_counter < 30) {
-            show_item_child2_data->set_text("檢查更新檔");
+            show_item_child2_data->set_text(SAT_CHECK_UPDATE_FILE);
             if (show_counter == 1) {
                 m_cmd_ret = update_thread->exe_cmd(FW_UP_CHECK_USB_DRIVER_CMD);
                 if (!m_cmd_ret)
@@ -424,10 +408,10 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
             protolcol_data->page_data_sz = 8;
 
             if (u8_data_b0 == B0_APP_UPDATE_DEV) {
-                show_item_child2_data->set_text("檢查 APP 更新檔中 ...");
+                show_item_child2_data->set_text(SAT_CHECK_UPDATE_APP);
                 protolcol_data->page_data[2] = B2_CHECK_SOC_UPDATING;
             } else {
-                show_item_child2_data->set_text("檢查 MCU 更新檔中 ...");
+                show_item_child2_data->set_text(SAT_CHECK_UPDATE_MCU);
                 protolcol_data->page_data[2] = B2_CHECK_MCU_UPDATING;
             }
 
@@ -440,13 +424,13 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
             m_cmd_ret = update_thread->exe_cmd(FW_UP_FIND_SOC_FWBIN_CMD);
             QThread::msleep(500);
             if (!m_cmd_ret) {
-                show_item_child2_data->set_text("SOC 可更新");
+                show_item_child2_data->set_text(SAT_SOC_UPDATE_OK);
                 protolcol_data->page_data[2] = B2_SOC_UPDATE;
                 protolcol_data->page_data_sz = 8;
                 memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
                 return;
             } else {
-                show_item_child2_data->set_text("無更新檔");
+                show_item_child2_data->set_text(SAT_NO_UPDATE_FILE);
                 show_counter = 0;
             }
         } else if (u8_data_b0 == B0_MCU_UPDATE_DEV) {
@@ -455,13 +439,13 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
             if (!m_cmd_ret) {
                 uint32_t mcu_fw_size;
                 uint16_t crc_ret;
-                show_item_child2_data->set_text("MCU 可更新");
+                show_item_child2_data->set_text(SAT_MCU_UPDATE_OK);
 
                 qDebug("%s %d Open MCU Data\n", __func__, __LINE__);
                 file_ret = OpenMCUFile(MCU_FW_NAME);
                 if (!file_ret) {
                     qDebug("B0_MCU_UPDATE_DEV : File Open Fail\n");
-                    show_item_child2_data->set_text("更新檔 讀取錯誤");
+                    show_item_child2_data->set_text(SAT_UPDATE_FILE_FAIL);
                     protolcol_data->page_data[2] = B2_UPDATE_FAIL;
                     protolcol_data->page_data_sz = 8;
                     memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
@@ -472,7 +456,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
                 file_ret = ReadMCUFile();
                 if (file_ret) {
                     qDebug("B0_MCU_UPDATE_DEV : File Size is fault\n");
-                    show_item_child2_data->set_text("更新檔 讀取錯誤");
+                    show_item_child2_data->set_text(SAT_UPDATE_FILE_FAIL);
                     protolcol_data->page_data[2] = B2_UPDATE_FAIL;
                     protolcol_data->page_data_sz = 8;
                     memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
@@ -497,7 +481,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
                 CloseMCUFile();
                 return;
             } else {
-                show_item_child2_data->set_text("無更新檔");
+                show_item_child2_data->set_text(SAT_NO_UPDATE_FILE);
             }
         }
 
@@ -509,13 +493,13 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     if (u8_data_b1 == B1_START_UPDATE) {
         //Start Update
-        show_item_child2_data->set_text("準備更新");
+        show_item_child2_data->set_text(SAT_UPDATE_READY);
 
         qDebug("%s %d Open MCU Data\n", __func__, __LINE__);
         file_ret = OpenMCUFile(MCU_FW_NAME);
         if (!file_ret) {
             qDebug("B1_START_UPDATE : File Open Fail\n");
-            show_item_child2_data->set_text("更新檔 讀取錯誤");
+            show_item_child2_data->set_text(SAT_UPDATE_FILE_FAIL);
             protolcol_data->page_data[2] = B2_UPDATE_FAIL;
             protolcol_data->page_data_sz = 8;
             memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
@@ -526,7 +510,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         file_ret = ReadMCUFile();
         if (file_ret) {
             qDebug("B0_MCU_UPDATE_DEV : File Size is fault\n");
-            show_item_child2_data->set_text("更新檔 讀取錯誤");
+            show_item_child2_data->set_text(SAT_UPDATE_FILE_FAIL);
             protolcol_data->page_data[2] = B2_UPDATE_FAIL;
             protolcol_data->page_data_sz = 8;
             memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
