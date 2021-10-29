@@ -117,5 +117,5 @@ void Main_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         i++;
     }
 
-    CopyDtatToAck(protolcol_data);
+		CopyDataToAck(protolcol_data);
 }

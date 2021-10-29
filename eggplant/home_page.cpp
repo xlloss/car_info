@@ -386,5 +386,5 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     str_temp.sprintf("%.2f Mpa", behind_data);
     show_item_data[HOME_ITEM_ID_BEHIND_AIR_PRESSURE]->set_text(str_temp);
 
-    CopyDtatToAck(protolcol_data);
+    CopyDataToAck(protolcol_data);
 }
