@@ -441,5 +441,5 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     }
 
 exit:
-    memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
+    CopyDtatToAck(protolcol_data);
 }

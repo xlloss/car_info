@@ -329,7 +329,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         u8_old_data_b0 = 255;
         protolcol_data->page_data[2] = B2_NONE;
         protolcol_data->page_data_sz = 8;
-        memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
+        CopyDtatToAck(protolcol_data);
         return;
     }
 
@@ -347,7 +347,6 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
         protolcol_data->page_data[2] = B2_NONE;
         protolcol_data->page_data_sz = 8;
-        memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
 
         /* umount device last time if device already mount */
         m_cmd_ret = update_thread->exe_cmd(FW_UP_CKMOUNT_USB_CMD);
@@ -356,6 +355,8 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
         show_counter = 0;
         downlaod_size = 0;
+
+        CopyDtatToAck(protolcol_data);
         return;
     }
 
@@ -371,12 +372,13 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
         protolcol_data->page_data_sz = 8;
         protolcol_data->page_data[2] = B2_NOFILE_UPDATE;
-        memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
         m_cmd_ret = update_thread->exe_cmd(FW_UP_CKMOUNT_USB_CMD);
         if (!m_cmd_ret)
             update_thread->exe_cmd(FW_UP_UMOUNT_MNT_CMD);
         show_counter = 0;
         downlaod_size = 0;
+
+        CopyDtatToAck(protolcol_data);
         return;
     }
 
@@ -387,7 +389,8 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
             show_item_child1_data->set_text(DEV_MCU);
 
         protolcol_data->page_data_sz = 8;
-        memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
+
+        CopyDtatToAck(protolcol_data);
         return;
     }
 
@@ -415,7 +418,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
                 protolcol_data->page_data[2] = B2_CHECK_MCU_UPDATING;
             }
 
-            memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
+            CopyDtatToAck(protolcol_data);
             QThread::msleep(100);
             return;
         }
@@ -427,7 +430,8 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
                 show_item_child2_data->set_text(SAT_SOC_UPDATE_OK);
                 protolcol_data->page_data[2] = B2_SOC_UPDATE;
                 protolcol_data->page_data_sz = 8;
-                memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
+
+                CopyDtatToAck(protolcol_data);
                 return;
             } else {
                 show_item_child2_data->set_text(SAT_NO_UPDATE_FILE);
@@ -448,7 +452,8 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
                     show_item_child2_data->set_text(SAT_UPDATE_FILE_FAIL);
                     protolcol_data->page_data[2] = B2_UPDATE_FAIL;
                     protolcol_data->page_data_sz = 8;
-                    memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
+
+                    CopyDtatToAck(protolcol_data);
                     return;
                 }
 
@@ -459,7 +464,8 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
                     show_item_child2_data->set_text(SAT_UPDATE_FILE_FAIL);
                     protolcol_data->page_data[2] = B2_UPDATE_FAIL;
                     protolcol_data->page_data_sz = 8;
-                    memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
+
+                    CopyDtatToAck(protolcol_data);
                     return;
                 }
 
@@ -475,10 +481,10 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
                 protolcol_data->page_data[6] = uint8_t((crc_ret & 0x00FF));
                 protolcol_data->page_data[2] = B2_MCU_UPDATE;
                 protolcol_data->page_data_sz = 8;
-                memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
 
                 qDebug("%s %d Close MCU Data\n", __func__, __LINE__);
                 CloseMCUFile();
+                CopyDtatToAck(protolcol_data);
                 return;
             } else {
                 show_item_child2_data->set_text(SAT_NO_UPDATE_FILE);
@@ -487,7 +493,8 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
         protolcol_data->page_data[2] = B2_NOFILE_UPDATE;
         protolcol_data->page_data_sz = 8;
-        memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
+
+        CopyDtatToAck(protolcol_data);
         return;
     }
 
@@ -502,7 +509,8 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
             show_item_child2_data->set_text(SAT_UPDATE_FILE_FAIL);
             protolcol_data->page_data[2] = B2_UPDATE_FAIL;
             protolcol_data->page_data_sz = 8;
-            memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
+
+            CopyDtatToAck(protolcol_data);
             return;
         }
 
@@ -513,7 +521,8 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
             show_item_child2_data->set_text(SAT_UPDATE_FILE_FAIL);
             protolcol_data->page_data[2] = B2_UPDATE_FAIL;
             protolcol_data->page_data_sz = 8;
-            memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
+
+            CopyDtatToAck(protolcol_data);
             return;
         }
 
@@ -549,9 +558,9 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         protolcol_data->page_data_sz = req_mcu_fw_size + 13;
         protolcol_data->page_data[2] = B2_MCU_UPDATING;
 
-        memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
-
         CloseMCUFile();
+
+        CopyDtatToAck(protolcol_data);
         return;
     }
 }

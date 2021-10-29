@@ -47,6 +47,11 @@ void Frame_Page::Enable_Icon_Light(int i)
         return;
 }
 
+void Frame_Page::CopyDtatToAck(class CarInfo_Data *protolcol_data)
+{
+	memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));
+}
+
 void Frame_Page::GetAckData(uint8_t *get_ackdata)
 {
     #define HEAD1 0x5A
