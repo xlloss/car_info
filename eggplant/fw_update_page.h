@@ -11,16 +11,7 @@
 #include "show_text.h"
 #include "serial_port.h"
 
-
-
 #define FWV_UPDATE_BG_IMG ":/icon/system_setup.png"
-
-#define ITEM_TEXT "系統更新"
-#define ITEM_CHILD_TEXT1 "更新設備:"
-#define ITEM_CHILD_TEXT2 "更新狀態:"
-
-#define ITEM_CHILD_TEXT1_DATA_DEF "APP"
-#define ITEM_CHILD_TEXT2_DATA_DEF "無更新檔"
 
 enum
 {
@@ -51,21 +42,10 @@ public:
     int exe_cmd(int cmd);
     QProcess process;
 
-    // if Stop = true, the thread will break
-    // out of the loop, and will be disposed
-//    bool Stop;
-//    QList <Cmd_Buf *> cmd_list;
-//    Cmd_Buf *getcmd;
-//    Serial_Port *serialport;
-//    int do_checksum(uint8_t *data, uint16_t data_len, uint8_t check);
-
 private:
     QFile mfile;
 
 signals:
-    // To communicate with Gui Thread
-    // we need to emit a signal
-    //void valueChanged(int);
 
 public slots:
 };
