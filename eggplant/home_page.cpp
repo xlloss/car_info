@@ -3,7 +3,9 @@
 #include "coordinate.h"
 #include "string/string.h"
 
+
 #define VERSION "R2021-10-29.1"
+
 
 static QString door_name[F_DOOR_NAME_NUM][F_DOOR_TYPE_NUM] = {
         {F_DOOR_TYPE0,  F_DOOR_TYPE1},
@@ -241,7 +243,7 @@ void Home_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     #define BATTSAT_DATA_MASK 0x03
     #define DATA_GEAR_MASK 0x0F
 
-    memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
+    CopyAckToData(protolcol_data, page_data);
 
     /* Door */
     door_sat = (page_data[0] >> DOOR_TYPE_F_SHIF) & DOOR_DATA_TYPE_FM_MASK;

@@ -92,9 +92,7 @@ void Main_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     uint8_t page_data[BUFFER_SIZE];
     int i, item_num, ret;
 
-    memcpy(page_data, protolcol_data->page_data,
-        sizeof(uint8_t) * protolcol_data->page_data_sz);
-
+    CopyAckToData(protolcol_data, page_data);
     item_num = (MAIN_PAG_ID_BUS_SYS_SAT + 1);
     i = MAIN_PAG_ID_MILE_RPM;
     while (i < item_num) {

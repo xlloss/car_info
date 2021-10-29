@@ -47,6 +47,12 @@ void Frame_Page::Enable_Icon_Light(int i)
         return;
 }
 
+void Frame_Page::CopyAckToData(class CarInfo_Data *protolcol_data, uint8_t *page_data)
+{
+	memcpy(page_data, protolcol_data->page_data,
+		sizeof(uint8_t) * protolcol_data->page_data_sz);
+}
+
 void Frame_Page::CopyDataToAck(class CarInfo_Data *protolcol_data)
 {
 	memcpy(&m_protolcol_data, protolcol_data, sizeof(m_protolcol_data));

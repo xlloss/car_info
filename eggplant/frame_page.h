@@ -24,6 +24,7 @@ public:
     class CarInfo_Data m_protolcol_data;
     virtual void GetMcuData(class CarInfo_Data *) = 0;
     virtual void GetAckData(uint8_t *);
+    virtual void CopyAckToData(class CarInfo_Data *protolcol_data, uint8_t *page_data);
     virtual void CopyDataToAck(class CarInfo_Data *protolcol_data);
 private slots:
 
