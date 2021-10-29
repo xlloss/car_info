@@ -214,7 +214,7 @@ void SystemSetup_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     #define ID5_DATE_LIGHT 5
     #define ID6_DATE_FACTORY 6
 
-    memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
+    CopyAckToData(protolcol_data, page_data);
 
     u8_data_tmp  = page_data[0] > ID6_DATE_FACTORY ? ID6_DATE_FACTORY : page_data[0];
 

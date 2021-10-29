@@ -203,8 +203,7 @@ void TiresPressShow_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     //tires_btn[4] map tire number 4
     //tires_btn[5] map tire number 5
 
-    memcpy(page_data, protolcol_data->page_data,
-        sizeof(uint8_t) * protolcol_data->page_data_sz);
+    CopyAckToData(protolcol_data, page_data);
 
     j = 0;
     for (i = 0; i < 7; i = i + 2) {

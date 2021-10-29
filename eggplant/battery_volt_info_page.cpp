@@ -137,7 +137,8 @@ void BatVoltInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     QString str_tmp;
     int i, j;
 
-    memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
+    CopyAckToData(protolcol_data, page_data);
+
     j = 0;
     /* Temp */
     for (i = BATT_DATA_0; i < BATT_DATA_END; i++) {

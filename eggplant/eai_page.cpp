@@ -111,7 +111,7 @@ void EleAccInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     double d_data_tmp;
     QString str_tmp;
 
-    memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
+    CopyAckToData(protolcol_data, page_data);
 
     /* for DATA I-1 */
     d_data_tmp = double(page_data[1] << 8 | page_data[0]);

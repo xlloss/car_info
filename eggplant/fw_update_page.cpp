@@ -311,7 +311,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     #define B2_MCU_UPDATING 0x06
     #define B2_UPDATE_FAIL 0x07
 
-    memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
+    CopyAckToData(protolcol_data, page_data);
 
     u8_data_b0 = page_data[0];
     u8_data_b1 = page_data[1];
