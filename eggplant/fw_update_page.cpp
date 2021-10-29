@@ -284,7 +284,6 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     uint8_t page_data[BUFFER_SIZE];
     uint8_t u8_data_b0, u8_data_b1, u8_data_b2;
-    uint8_t update_dev = 0;
     uint32_t mcu_fw_offset;
     uint32_t req_mcu_fw_size;
     int32_t  m_cmd_ret;
@@ -333,7 +332,8 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         return;
     }
 
-    if (u8_data_b1 == B1_NONE_BEHAVE) {
+    if (u8_data_b1 == B1_NONE_BEHAVE &&
+        u8_data_b2 != B2_NOFILE_UPDATE) {
         if (u8_data_b0 == B0_NONE_UPDATE_DEV) {
             show_item_child1_data->set_text(DEV_NONE);
         }
