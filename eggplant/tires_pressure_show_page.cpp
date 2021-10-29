@@ -246,5 +246,5 @@ void TiresPressShow_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         j++;
     }
 
-    CopyDtatToAck(protolcol_data);
+    CopyDataToAck(protolcol_data);
 }
