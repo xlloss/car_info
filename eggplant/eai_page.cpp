@@ -92,6 +92,10 @@ EleAccInfo_Page::EleAccInfo_Page(QWidget *parent) : Frame_Page(parent)
             j = j + 2;
         }
     }
+
+    this->setGeometry(GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+                      GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
+
 }
 
 void EleAccInfo_Page::paintEvent(QPaintEvent *)

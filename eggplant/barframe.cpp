@@ -30,6 +30,10 @@ BarFrame::BarFrame(QWidget *parent) :
 
     int i;
 
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnBottomHint); 
+
+    barframe_backimg.load(":/icon/barfram_bg.png");
+
     for (i = CARGEAR_ID_0; i < CARGEAR_ID_5; i++) {
         icon_id[i] = new Icon_btn(this);
         icon_id[i]->load_image_ft(icon_name[i][0], icon_name[i][1]);
@@ -73,8 +77,9 @@ void BarFrame::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
-    painter.setBrush(QBrush(Qt::black));
-    painter.drawRect(0, 0, this->width(), this->height());
+    painter.drawPixmap(0, 0, barframe_backimg,
+                       0, 0,
+                       800, 55);
 }
 
 void BarFrame::Enable_Icon_Light(int i)

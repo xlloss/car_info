@@ -40,10 +40,6 @@ MainWindow::MainWindow(QWidget *parent)
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->tires_press_show_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(page_ctl->fw_update_show_page));
     cmd_get->Register(dynamic_cast<Frame_Page *>(bar_frame));
-
-    page_ctl->home_page->setWindowState(Qt::WindowActive);
-    bar_frame->show();
-    page_ctl->home_page->show();
 }
 
 MainWindow::~MainWindow()
@@ -54,6 +50,7 @@ MainWindow::~MainWindow()
 void MainWindow::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+
     painter.drawPixmap(0, 0, backimg,
                        GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
                        GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);

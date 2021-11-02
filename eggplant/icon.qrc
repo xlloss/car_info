@@ -79,5 +79,6 @@
         <file>icon/RDoorType1.png</file>
         <file>icon/rampoard.png</file>
         <file>icon/system_setup_btn.png</file>
+        <file>icon/barfram_bg.png</file>
     </qresource>
 </RCC>

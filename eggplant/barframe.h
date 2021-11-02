@@ -65,6 +65,7 @@ private slots:
 
 protected:
     void paintEvent(QPaintEvent *);
+    QPixmap barframe_backimg;
 
 private:
     Ui::BarFrame *ui;
