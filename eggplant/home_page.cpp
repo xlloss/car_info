@@ -3,7 +3,7 @@
 #include "coordinate.h"
 #include "string/string.h"
 
-#define VERSION "R2021-11-02.3"
+#define VERSION "R2021-11-02.4"
 
 static QString door_name[F_DOOR_NAME_NUM][F_DOOR_TYPE_NUM] = {
         {F_DOOR_TYPE0,  F_DOOR_TYPE1},
