@@ -70,8 +70,6 @@ Bcm_Page::Bcm_Page(QWidget *parent) : Frame_Page(parent)
 
 void Bcm_Page::Enable_Icon_Light(int i)
 {
-    qDebug("%s i=%d", __func__, i);
-//    btn[i]->ft_light_enable();
 }
 
 void Bcm_Page::paintEvent(QPaintEvent *)
