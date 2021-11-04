@@ -191,8 +191,8 @@ void BatTempInfo_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         /* LO temperature */
         d_data_tmp = double(page_data[j + 16 + 1] << 8 | page_data[j + 16]);
         d_data_tmp = (d_data_tmp * 0.1) - 40;
-        if (d_data_tmp < 0 )
-            d_data_tmp = 0;
+        if (d_data_tmp < -40 )
+            d_data_tmp = -40;
 
         str_tmp.sprintf("%.1f °C", d_data_tmp);
         show_sub_item_info[BATT_CLASS_1_TMP_LO][i]->set_text(str_tmp);
