@@ -189,7 +189,7 @@ void TiresPressShow_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 {
     uint8_t page_data[BUFFER_SIZE];
     uint8_t u8_data_tmp;
-    int8_t i8_data_temp;
+    int32_t i32_data_temp;
     QString str_tmp;
     uint8_t tires_order[6] = {0, 2, 3, 4, 5, 1};
     uint8_t tiresbtn_order[6] = {0, 2, 3, 4, 5, 1};
@@ -240,8 +240,12 @@ void TiresPressShow_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     j = 0;
     for (i = 8; i < 14; i++) {
-        i8_data_temp = int8_t(page_data[i]);
-        str_tmp.sprintf("%i °C", i8_data_temp - 40);
+        i32_data_temp = int32_t(page_data[i]);
+        i32_data_temp = i32_data_temp - 40;
+        if (i32_data_temp < -40)
+            i32_data_temp = -40;
+
+        str_tmp.sprintf("%i °C", i32_data_temp);
         tires_value_temp[tires_order[j]]->set_text(str_tmp);
         j++;
     }
