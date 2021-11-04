@@ -176,8 +176,7 @@ void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     QString rpm_time_a_h_str, rpm_time_a_m_str, rpm_time_a_s_str;
     QString rpm_time_b_h_str, rpm_time_b_m_str, rpm_time_b_s_str;
 
-    memcpy(page_data, protolcol_data->page_data,
-        sizeof(uint8_t) * protolcol_data->page_data_sz);
+    CopyAckToData(protolcol_data, page_data);
 
     total_km = double(page_data[3] << 24 |
             page_data[2] << 16 |
@@ -245,5 +244,5 @@ void Mile_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         i++;
     }
 
-    CopyDtatToAck(protolcol_data);
+    CopyDataToAck(protolcol_data);
 }

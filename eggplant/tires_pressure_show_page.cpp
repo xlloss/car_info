@@ -203,8 +203,7 @@ void TiresPressShow_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     //tires_btn[4] map tire number 4
     //tires_btn[5] map tire number 5
 
-    memcpy(page_data, protolcol_data->page_data,
-        sizeof(uint8_t) * protolcol_data->page_data_sz);
+    CopyAckToData(protolcol_data, page_data);
 
     j = 0;
     for (i = 0; i < 7; i = i + 2) {
@@ -221,7 +220,7 @@ void TiresPressShow_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     j = 0;
     for (i = 0; i < 4; i = i + 2) {
         u8_data_tmp = (page_data[1] & (0x03 << i)) >> i;
-        qDebug("u8_data_tmp=%d j=%d tiresbtn_order2[%d] %d\n", u8_data_tmp, j, j, tiresbtn_order2[j]);
+
         if (u8_data_tmp > 0)
             Enable_Icon_Light(tiresbtn_order2[j]);
         else
@@ -250,5 +249,5 @@ void TiresPressShow_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         j++;
     }
 
-    CopyDtatToAck(protolcol_data);
+    CopyDataToAck(protolcol_data);
 }

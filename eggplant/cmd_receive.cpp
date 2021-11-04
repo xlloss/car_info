@@ -141,7 +141,10 @@ Cmd_Receive::Cmd_Receive(QObject *parent) : QObject(parent)
 
     mThread->start();
     mPage_ctl_thread->start();
-    current_page = HOME_PAGE_OBJNAME;
+    current_page = "NONE";
+    old_meter_sat[0] = 255;
+    old_meter_sat[1] = 255;
+    old_meter_sat[2] = 255;
 }
 
 
@@ -189,30 +192,36 @@ void Cmd_Receive::Frame_Page_Show(QString show_objname)
         return;
     }
 
+
     if (!show_objname.compare(BAR_FRAME_OBJNAME)) {
         bar_page = static_cast<BarFrame *>(page_list.at(i));
         bar_page->GetMcuData(pcarinfo_data);
+        bar_page->show();
         bar_page->update();
         return;
     }
 
+    j = -1;
     show_framepage = page_list.at(i);
-
-    j = Find_Frame(current_page);
-    if (j < 0) {
-        qDebug("can't find any current page\n");
-        return;
+    if (current_page.compare("NONE") != 0) {
+        j = Find_Frame(current_page);
+        if (j < 0) {
+            qDebug("can't find any current page\n");
+            return;
+        }
     }
 
     if (current_page.compare(show_objname) != 0) {
+        if (j >= 0) {
+            close_framepage = page_list.at(j);
+            if (close_framepage)
+                close_framepage->hide();
+        }
         show_framepage->GetMcuData(pcarinfo_data);
         show_framepage->setWindowFlags(Qt::WindowStaysOnTopHint);
         show_framepage->setGeometry(0, 0, GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
+        show_framepage->setWindowState(Qt::WindowActive);
         show_framepage->show();
-        close_framepage = page_list.at(j);
-        if (close_framepage) {
-            close_framepage->hide();
-        }
     } else {
         show_framepage->GetMcuData(pcarinfo_data);
         show_framepage->update();
@@ -241,6 +250,7 @@ void Cmd_Receive::Triger_Page()
 
     #define OBJNAME_TOTAL 18
     #define REAL_CMD_TOTAL (OBJNAME_TOTAL + 1)
+    int meter_sat_index, update_meter_sat;
 
     QString objname[OBJNAME_TOTAL] = {
         PAGE_00,
@@ -262,8 +272,20 @@ void Cmd_Receive::Triger_Page()
         PAGE_16,
         PAGE_17};
 
-    if (pcarinfo_data->page_number > 0 && pcarinfo_data->page_number < REAL_CMD_TOTAL) {
-        Frame_Page_Show(BAR_FRAME_OBJNAME);
-        Frame_Page_Show(objname[pcarinfo_data->page_number - 1]);
+    update_meter_sat = 0;
+    for (meter_sat_index = 0; meter_sat_index < 3; meter_sat_index++) {
+        if (old_meter_sat[meter_sat_index] != pcarinfo_data->meter_sat[meter_sat_index]) {
+            old_meter_sat[0] = pcarinfo_data->meter_sat[0];
+            old_meter_sat[1] = pcarinfo_data->meter_sat[1];
+            old_meter_sat[2] = pcarinfo_data->meter_sat[2];
+            update_meter_sat = 1;
+            break;
+        }
     }
+
+    if (update_meter_sat)
+        Frame_Page_Show(BAR_FRAME_OBJNAME);
+
+    if (pcarinfo_data->page_number > 0 && pcarinfo_data->page_number < REAL_CMD_TOTAL)
+        Frame_Page_Show(objname[pcarinfo_data->page_number - 1]);
 }

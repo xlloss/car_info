@@ -73,7 +73,7 @@ void CarInOut_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     int8_t car_meter_temp;
     QString str_temp;
 
-    memcpy(page_data, protolcol_data->page_data, sizeof(uint8_t) * protolcol_data->page_data_sz);
+    CopyAckToData(protolcol_data, page_data);
 
     car_in_temp = int8_t((page_data[0] >> 1) - 30);
     if (car_in_temp < -40)
@@ -105,5 +105,5 @@ void CarInOut_Page::GetMcuData(class CarInfo_Data *protolcol_data)
 
     str_temp.sprintf("%i °C", car_meter_temp);
     show_item_data[CAR_METER_TEMP]->set_text(str_temp);
-    CopyDtatToAck(protolcol_data);
+    CopyDataToAck(protolcol_data);
 }

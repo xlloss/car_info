@@ -72,7 +72,7 @@ public:
     QString current_page;
     QList <class Frame_Page *> page_list;
     CarInfo_Data *pcarinfo_data;
-
+    uint8_t old_meter_sat[3];
 private slots:
     void Triger_Page();
 

@@ -38,7 +38,6 @@ public:
 
     Icon_btn *btn[MAIN_PAG_TOTAL_NUM];
     void LoadBackground();
-    int m_load_background_img;
     virtual void GetMcuData(class CarInfo_Data *protolcol_data) override;
 
 private slots:

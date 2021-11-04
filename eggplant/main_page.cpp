@@ -24,8 +24,6 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
 
     this->setObjectName(MAIN_PAGE_OBJNAME);
     bgimg.load(MAIN_PAGE_BACKGROUND);
-    this->setGeometry(GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
-                      GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
 
     item_num = MAIN_PAG_TOTAL_NUM / 2;
     for (i = 0; i < item_num; i++) {
@@ -55,7 +53,9 @@ Main_Page::Main_Page(QWidget *parent) : Frame_Page(parent)
         btn[i + MAIN_PAG_ID_CTRL_MSG]->set_text(btn_name);
     }
 
-    m_load_background_img = 0;
+    this->setGeometry(GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
+                      GOBAL_BACKGROUND_IMG_W, GOBAL_BACKGROUND_IMG_H);
+
 }
 
 void Main_Page::Enable_Icon_Light(int i)
@@ -74,13 +74,13 @@ void Main_Page::LoadBackground()
 
     bgimg.load(MAIN_PAGE_BACKGROUND);
     palette.setColor(QPalette::Background, Qt::black);
-    m_load_background_img = 1;
 }
 
 void Main_Page::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     QFont font(MAIN_PAG_FONT_TYPE, MAIN_PAG_FONT_SIZE);
+
     painter.setFont(font);
     painter.drawPixmap(0, 0,
         bgimg, GOBAL_BACKGROUND_IMG_X, GOBAL_BACKGROUND_IMG_Y,
@@ -92,9 +92,7 @@ void Main_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     uint8_t page_data[BUFFER_SIZE];
     int i, item_num, ret;
 
-    memcpy(page_data, protolcol_data->page_data,
-        sizeof(uint8_t) * protolcol_data->page_data_sz);
-
+    CopyAckToData(protolcol_data, page_data);
     item_num = (MAIN_PAG_ID_BUS_SYS_SAT + 1);
     i = MAIN_PAG_ID_MILE_RPM;
     while (i < item_num) {
@@ -117,5 +115,5 @@ void Main_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         i++;
     }
 
-    CopyDtatToAck(protolcol_data);
+    CopyDataToAck(protolcol_data);
 }
