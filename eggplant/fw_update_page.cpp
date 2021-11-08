@@ -310,7 +310,8 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
     #define B2_CHECK_SOC_UPDATING 0x04
     #define B2_CHECK_MCU_UPDATING 0x05
     #define B2_MCU_UPDATING 0x06
-    #define B2_UPDATE_FAIL 0x07
+    #define B2_SOC_UPDATE_FAIL 0x07
+    #define B2_MCU_UPDATE_FAIL 0x08
 
     CopyAckToData(protolcol_data, page_data);
 
@@ -330,6 +331,19 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         protolcol_data->page_data[2] = B2_NONE;
         protolcol_data->page_data_sz = 8;
         CopyDataToAck(protolcol_data);
+        return;
+    }
+
+    /* check MCU update status */
+    if (u8_data_b1 == B1_UPDATE_FAIL) {
+        show_item_child1_data->set_text(DEV_MCU);
+        show_item_child2_data->set_text(SAT_MCU_UPDATE_FILE_FAIL);
+        protolcol_data->page_data[2] = B2_MCU_UPDATE_FAIL;
+        protolcol_data->page_data_sz = 8;
+        CopyDataToAck(protolcol_data);
+
+        show_counter = 0;
+        downlaod_size = 0;
         return;
     }
 
@@ -451,7 +465,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
                 if (!file_ret) {
                     qDebug("B0_MCU_UPDATE_DEV : File Open Fail\n");
                     show_item_child2_data->set_text(SAT_UPDATE_FILE_FAIL);
-                    protolcol_data->page_data[2] = B2_UPDATE_FAIL;
+                    protolcol_data->page_data[2] = B2_SOC_UPDATE_FAIL;
                     protolcol_data->page_data_sz = 8;
 
                     CopyDataToAck(protolcol_data);
@@ -463,7 +477,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
                 if (file_ret) {
                     qDebug("B0_MCU_UPDATE_DEV : File Size is fault\n");
                     show_item_child2_data->set_text(SAT_UPDATE_FILE_FAIL);
-                    protolcol_data->page_data[2] = B2_UPDATE_FAIL;
+                    protolcol_data->page_data[2] = B2_SOC_UPDATE_FAIL;
                     protolcol_data->page_data_sz = 8;
 
                     CopyDataToAck(protolcol_data);
@@ -508,7 +522,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         if (!file_ret) {
             qDebug("B1_START_UPDATE : File Open Fail\n");
             show_item_child2_data->set_text(SAT_UPDATE_FILE_FAIL);
-            protolcol_data->page_data[2] = B2_UPDATE_FAIL;
+            protolcol_data->page_data[2] = B2_SOC_UPDATE_FAIL;
             protolcol_data->page_data_sz = 8;
 
             CopyDataToAck(protolcol_data);
@@ -520,7 +534,7 @@ void FwUpdate_Page::GetMcuData(class CarInfo_Data *protolcol_data)
         if (file_ret) {
             qDebug("B0_MCU_UPDATE_DEV : File Size is fault\n");
             show_item_child2_data->set_text(SAT_UPDATE_FILE_FAIL);
-            protolcol_data->page_data[2] = B2_UPDATE_FAIL;
+            protolcol_data->page_data[2] = B2_SOC_UPDATE_FAIL;
             protolcol_data->page_data_sz = 8;
 
             CopyDataToAck(protolcol_data);

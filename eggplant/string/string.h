@@ -635,6 +635,7 @@
 #define SAT_MCU_UPDATE_OK "MCU 可更新"
 #define SAT_UPDATE_READY "準備更新"
 #define SAT_UPDATE_FILE_FAIL "更新檔 讀取錯誤"
+#define SAT_MCU_UPDATE_FILE_FAIL "MCU 更新錯誤"
 #define ITEM_TEXT "系統更新"
 #define ITEM_CHILD_TEXT1 "更新設備:"
 #define ITEM_CHILD_TEXT2 "更新狀態:"
